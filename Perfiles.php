@@ -10,10 +10,7 @@ include "header.php";
 <!-- title and meta -->
 <meta charset="utf-8">
 <meta content="width=device-width,initial-scale=1.0" name="viewport">
-<meta content=""
-	name="Various CSS input text styles that are great for giving forms on your site a more welcoming and appealing look, done with straight up CSS.">
 
-<title>Various CSS Input Text Styles</title>
 
 <!-- css -->
 <link

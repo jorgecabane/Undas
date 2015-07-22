@@ -1,7 +1,7 @@
 <?php 
 
 include "conexionLocal.php";
-include "Function/isAdmin.php";
+include "include/isAdmin.php";
 
 $result=mysql_query("Select * from Centro");
 if($_SESSION["usuario"]){

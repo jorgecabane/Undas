@@ -18,7 +18,5 @@ $result=mysql_query($quert);
 
             //echo $quert;
             echo json_encode($json_response);
-            
-
-            
+           
 ?>
