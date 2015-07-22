@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../header.php";
-include "../include/verificacionUsuario.php";
+include "header.php";
+include "include/verificacionUsuario.php";
 
 ?>
 <html>
@@ -9,10 +9,10 @@ include "../include/verificacionUsuario.php";
        <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     </head>
-    <body background="../images/bg.gif">
+    <body background="images/bg.gif">
          <div class="container">
       <h2>Agregar Empresa</h2>
-      <form role="form" action="../querys/insertEmpresaR.php" method="POST">
+      <form role="form" action="querys/insertEmpresaR.php" method="POST">
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" name="nombre" placeholder="Agrege nombre de la empresa" required>

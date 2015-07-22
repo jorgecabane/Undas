@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../header.php";
-include "../include/verificacionUsuario.php";
+include "header.php";
+include "include/verificacionUsuario.php";
 ?>
 <!DOCTYPE html>
 <!--
@@ -14,10 +14,10 @@ and open the template in the editor.
        <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     </head>
-    <body background="../images/bg.gif">
+    <body background="images/bg.gif">
          <div class="container">
       <h2>Agregar Centro Nuevo</h2>
-      <form action='../querys/insertCentroNuevoR.php' method='POST'>
+      <form action='querys/insertCentroNuevoR.php' method='POST'>
         <div class="form-group">
           <label for="nombre" >Nombre</label>
           <input type="text" class="form-control" name="nombre" placeholder="Agrege nombre" required>
@@ -34,7 +34,7 @@ and open the template in the editor.
           <br>
          
           <?php
-include_once "../conexionLocal.php";
+include_once "conexionLocal.php";
   
     $query = "SELECT * from Empresa order by Nombre asc ";
 

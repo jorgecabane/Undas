@@ -41,7 +41,7 @@ $rut=$_POST['Rut'];
 
            
        <?php
-            include "informacionTm.php";
+            include "../informacionTm.php";
                     ?>
                     </table> 
                    

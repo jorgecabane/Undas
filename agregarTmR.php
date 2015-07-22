@@ -1,8 +1,8 @@
 <!--  !OOJOOO!REVISAR HEADER! COLAPSA CON <script src="js/bootstrap.min.js"></script> -->
 <?php
 session_start();
-include "../header.php";
-include "../include/verificacionUsuario.php";
+include "header.php";
+include "include/verificacionUsuario.php";
 
 ?>
 <html>
@@ -11,10 +11,10 @@ include "../include/verificacionUsuario.php";
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   </head>
 
-  <body background="../images/bg.gif">
+  <body background="images/bg.gif">
     <div class="container">
       <h2>Agregar Personal</h2>
-      <form role="form" action="../querys/insertTmR.php" method="POST" enctype="multipart/form-data">
+      <form role="form" action="querys/insertTmR.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="Nombre">Nombre</label>
           <input type="text" class="form-control" name="nombre"  placeholder="Agrege nombre" required>

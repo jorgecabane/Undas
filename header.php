@@ -63,9 +63,9 @@ if($_SESSION["usuario"]){
 					<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ingreso de Datos <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="agregaDatos/agregarTmR.php">Tecnologos Medicos</a></li>
-            <li><a href="agregaDatos/agregarEmpresaR.php">Empresa nueva</a></li>
-            <li><a href="agregaDatos/agregarCentroNuevoR.php">Centro nuevo</a></li>
+            <li><a href="agregarTmR.php">Tecnologos Medicos</a></li>
+            <li><a href="agregarEmpresaR.php">Empresa nueva</a></li>
+            <li><a href="agregarCentroNuevoR.php">Centro nuevo</a></li>
            </ul>
         </li>
         <?php } // si es admin ve esto?>

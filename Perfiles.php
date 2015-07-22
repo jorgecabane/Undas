@@ -70,8 +70,8 @@ include "include/verificacionUsuario.php";
 
 			</div>
 
-
-			<div id="fototm"></div>
+<!--   <div id="fototm">      </div>  -->
+			
 
 
 			<div id="listado" style="margin-top:60px;">
@@ -154,7 +154,7 @@ $( document ).ready(function() {
                                 var idTM=ui.item.id3;
 
 $( "#perfil" ).load( "include/perfilGeneral.php" , {"Rut":idTM} );
-$( "#fototm" ).load( "include/fotoTmAutocomplete.php" , {"Rut":idTM} );
+//$( "#fototm" ).load( "include/fotoTmAutocomplete.php" , {"Rut":idTM} );
                                 }//end select
                             });//autocompleteComuna
 
