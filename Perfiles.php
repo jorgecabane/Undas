@@ -153,7 +153,7 @@ $( document ).ready(function() {
                            select: function(event, ui){
                                 var idTM=ui.item.id3;
 
-$( "#perfil" ).load( "include/perfilGeneral.php" , {"Rut":idTM} );
+$( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":idTM} );
 //$( "#fototm" ).load( "include/fotoTmAutocomplete.php" , {"Rut":idTM} );
                                 }//end select
                             });//autocompleteComuna
