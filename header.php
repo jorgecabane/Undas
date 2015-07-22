@@ -45,7 +45,7 @@ if($_SESSION["usuario"]){
 				<?php 
 				while ($row = mysql_fetch_array($result)) {?>
 					<li>
-					<a href='http://localhost/Unda/pillsTm.php?id=<?php echo $row['idCentro'] ;?>' ><?php echo $row['Nombre']; ?></a>
+					<a href='pillsTm.php?id=<?php echo $row['idCentro'] ;?>' ><?php echo $row['Nombre']; ?></a>
 					</form>
 				
 					</li><?php 
@@ -63,24 +63,24 @@ if($_SESSION["usuario"]){
 					<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ingreso de Datos <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="http://localhost/Unda/agregarTmR.php">Tecnologos Medicos</a></li>
-            <li><a href="http://localhost/Unda/agregarEmpresaR.php">Empresa nueva</a></li>
-            <li><a href="http://localhost/Unda/agregarCentroNuevoR.php">Centro nuevo</a></li>
+            <li><a href="agregaDatos/agregarTmR.php">Tecnologos Medicos</a></li>
+            <li><a href="agregaDatos/agregarEmpresaR.php">Empresa nueva</a></li>
+            <li><a href="agregaDatos/agregarCentroNuevoR.php">Centro nuevo</a></li>
            </ul>
         </li>
         <?php } // si es admin ve esto?>
-		 <li><a href="http://localhost/Unda/schedule.php">Resumen Horarios</a></li>
-		 <li><a href="http://localhost/Unda/Perfiles.php">Perfiles TM</a></li>
+		 <li><a href="schedule.php">Resumen Horarios</a></li>
+		 <li><a href="Perfiles.php">Perfiles TM</a></li>
 		
 		 
 		
-		 <li><a href="http://localhost/Unda/editarClave.php">Editar Clave</a></li>
+		 <li><a href="editarClave.php">Editar Clave</a></li>
 				
       </ul>
       <!-- aqui termina -->
 	 
       <ul class="nav navbar-nav navbar-right">
-       <li><a href="http://localhost/Unda/logOff.php"><?php echo $_SESSION['usuario'];?>  (Cerrar sesión)</a></li>
+       <li><a href="logOff.php"><?php echo $_SESSION['usuario'];?>  (Cerrar sesión)</a></li>
         
       </ul>
     </div><!-- /.navbar-collapse -->

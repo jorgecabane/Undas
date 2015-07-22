@@ -14,7 +14,7 @@ include "include/verificacionUsuario.php";
   <body background="images/bg.gif">
     <div class="container">
       <h2>Editar Clave</h2>
-      <form role="form" action="updateClaveTm.php" method="POST" enctype="multipart/form-data">
+      <form role="form" action="querys/updateClaveTm.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="Nombre">Ingrese Clave Antigua</label>
           <input type="password" class="form-control" name="claveantigua"  placeholder="Ingrese clave antigua" required>

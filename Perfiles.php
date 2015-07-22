@@ -1,6 +1,7 @@
 <?php
 session_start ();
 include "header.php";
+include "include/verificacionUsuario.php";
 ?>
 <html class="no-js" lang="en">
 <head>
@@ -152,8 +153,8 @@ $( document ).ready(function() {
                            select: function(event, ui){
                                 var idTM=ui.item.id3;
 
-$( "#perfil" ).load( "perfilGeneral.php" , {"Rut":idTM} );
-$( "#fototm" ).load( "fotoTmAutocomplete.php" , {"Rut":idTM} );
+$( "#perfil" ).load( "include/perfilGeneral.php" , {"Rut":idTM} );
+$( "#fototm" ).load( "include/fotoTmAutocomplete.php" , {"Rut":idTM} );
                                 }//end select
                             });//autocompleteComuna
 
