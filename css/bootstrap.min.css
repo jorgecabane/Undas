@@ -100,6 +100,11 @@ hr {
 	box-sizing: content-box
 }
 
+.hr-sm{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 pre {
 	overflow: auto
 }
@@ -5148,6 +5153,10 @@ a.label:focus, a.label:hover {
 .btn .label {
 	position: relative;
 	top: -1px
+}
+
+.label-block{
+	width:100%
 }
 
 .label-default {
