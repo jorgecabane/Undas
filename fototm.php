@@ -14,6 +14,3 @@ $rut=$_POST['Rut'];
             $celular=$hola['Celular'];
             
             ?>
-<center>
-            <img src="FotoPerfil/<?php echo $imagen; ?>" width='50px' height="50px">
-            </center>
