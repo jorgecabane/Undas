@@ -2,8 +2,10 @@
 <html>
 <head>
 <meta charset='utf-8' />
-<link href='../fullcalendar.css' rel='stylesheet' />
-<link href='../fullcalendar.print.css' rel='stylesheet' media='print' />
+<link href='../calendario/fullcalendar.css' rel='stylesheet' />
+<link href='../calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link href='../css/fullcalendar.css' rel='stylesheet' />
+<link href="../css/bootstrap.min.css">
 <style>
 body {
 	margin-top: 40px;
@@ -59,7 +61,7 @@ body {
 
 		<div id='external-events'>
 			<h4>Draggable Events</h4>
-			<div class='fc-event' id="1">Juan Perez</div>
+			<div class='fc-event label label-primary label-block' id="1">Juan Perez</div>
 			<div class='fc-event'>Eduardo Rojas</div>
 			<div class='fc-event'>Jorge Cabane</div>
 			<div class='fc-event'>Cesar Gonzalez</div>
@@ -68,10 +70,10 @@ body {
 				<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove
 					after drop</label>
 			</p>
-			<a href="#" class='btn'>BOTON</a>
+			<a href="#" class='btn btn-default'>BOTON</a>
 		</div>
 		<div>
-		Filtros
+		
 		
 		
 		</div>
@@ -82,11 +84,13 @@ body {
 
 	</div>
 </body>
-<script src='../lib/moment.min.js'></script>
-<script src='../lib/jquery.min.js'></script>
-<script src='../lib/jquery-ui.custom.min.js'></script>
-<script src='../fullcalendar.min.js'></script>
-<script src='../lang/es.js'></script>
+<script src='../calendario/lib/moment.min.js'></script>
+<script src='../calendario/lib/jquery.min.js'></script>
+<script src='../calendario/lib/jquery-ui.custom.min.js'></script>
+<script src='../calendario/fullcalendar.min.js'></script>
+<script src='../calendario/lang/es.js'></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 
