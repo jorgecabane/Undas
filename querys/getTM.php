@@ -7,10 +7,10 @@
 include_once '../conexionLocal.php'; // archivo de conexion local
 function getTM($idTM = null) {
 	if ($idTM == null) { // si se utilizo la funcion sin un id especifico
-		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular, Imagen
+		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
 				FROM TM";
 	} else { // si se indico un id para buscar solo los datos de dicha persona
-		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular, Imagen
+		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
 				FROM TM
 				WHERE idTM=$idTM";
 	}
