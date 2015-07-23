@@ -1,12 +1,15 @@
+<?php
+session_start ();
+include "header.php";
+include "include/verificacionUsuario.php";
+
+?>
+<!-- /////////////////////////////////////////////////////////////Eliminable si se incluye//////////////////////////////////
 <!DOCTYPE html>
-<!-- /////////////////////////////////////////////////////////////Eliminable si se incluye////////////////////////////////// -->
 <html>
 <head>
 <meta charset='utf-8' />
-<link href="../css/bootstrap.min.css" rel='stylesheet'>
-<link href='../calendario/fullcalendar.css' rel='stylesheet' />
-<link href='../calendario/fullcalendar.print.css' rel='stylesheet'
-	media='print' />
+
 <style>
 body {
 	margin-left: 8px;
@@ -22,7 +25,9 @@ body {
 </style>
 </head>
 <body>
-<!-- ///////////////////////////////////////////////////ELiminable si se incluye///////////////////////////////////////////////// -->
+ ///////////////////////////////////////////////////ELiminable si se incluye///////////////////////////////////////////////// -->
+	<link href='calendario/fullcalendar.css' rel='stylesheet' />
+	<link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
 	<div class='container-fluid'>
 		<div class='row'>
 			<div id='external-events' class='col-md-2 well well-sm'>
@@ -59,13 +64,12 @@ body {
 	</div>
 	<!-- container-fluid -->
 </body>
-<script src='../calendario/lib/moment.min.js'></script>
-<script src='../calendario/lib/jquery.min.js'></script>
-<script src='../calendario/lib/jquery-ui.custom.min.js'></script>
-<script src='../calendario/fullcalendar.min.js'></script>
-<script src='../calendario/lang/es.js'></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src='calendario/lib/moment.min.js'></script>
+<script src='calendario/lib/jquery.min.js'></script>
+<script src='calendario/lib/jquery-ui.custom.min.js'></script>
+<script src='calendario/fullcalendar.min.js'></script>
+<script src='calendario/lang/es.js'></script>
+<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script>
 	$(document).ready(function() {
