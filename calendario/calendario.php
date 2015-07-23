@@ -1,95 +1,78 @@
+<?php 
+include_once('../conexionLocal.php'); //conexion bbdd
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset='utf-8' />
+<link href="../css/bootstrap.min.css" rel='stylesheet'>
 <link href='../calendario/fullcalendar.css' rel='stylesheet' />
-<link href='../calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
-<link href='../css/fullcalendar.css' rel='stylesheet' />
-<link href="../css/bootstrap.min.css">
+<link href='../calendario/fullcalendar.print.css' rel='stylesheet'
+	media='print' />
 <style>
 body {
-	margin-top: 40px;
-	text-align: center;
+	margin-left:8px;
+	margin-top: 8px;
 	font-size: 14px;
 	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 }
 
-#wrap {
-	width: 1100px;
-	margin: 0 auto;
-}
-
-#external-events {
-	float: left;
-	width: 150px;
-	padding: 0 10px;
-	border: 1px solid #ccc;
-	background: #eee;
-	text-align: left;
-}
-
-#external-events h4 {
-	font-size: 16px;
-	margin-top: 0;
-	padding-top: 1em;
-}
-
-#external-events .fc-event {
-	margin: 10px 0;
-	cursor: pointer;
-}
-
-#external-events p {
-	margin: 1.5em 0;
-	font-size: 11px;
-	color: #666;
-}
-
-#external-events p input {
-	margin: 0;
-	vertical-align: middle;
-}
-
-#calendar {
-	float: right;
-	width: 900px;
+.fc-event {
+	margin-top: 3px;
+	marin-bottom: 3px
 }
 </style>
 </head>
 <body>
-	<div id='wrap'>
-
-		<div id='external-events'>
-			<h4>Draggable Events</h4>
-			<div class='fc-event label label-primary label-block' id="1">Juan Perez</div>
-			<div class='fc-event'>Eduardo Rojas</div>
-			<div class='fc-event'>Jorge Cabane</div>
-			<div class='fc-event'>Cesar Gonzalez</div>
-			<div class='fc-event'>Mihail Pozarski</div>
-			<p>
-				<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove
-					after drop</label>
-			</p>
-			<a href="#" class='btn btn-default'>BOTON</a>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div id='external-events' class='col-md-2 well well-sm'>
+				<h4>Listado de TM's</h4>
+				<select name='ecos' class='form-control' style='width: 100%;'>
+					<option value='eco1'>Eco1</option>
+					<option value='eco2'>Eco2</option>
+				</select>
+				<hr class='hr-sm'>
+				<input type='text' class='form-control'
+					placeholder='Filtrar por Nombre'>
+				<hr class='hr-sm'>
+				<div class='fc-event label label-info label-block'>Juan Perez</div>
+				<div class='fc-event label label-info label-block'>Eduardo
+					Rojas</div>
+				<div class='fc-event label label-info label-block'>Jorge
+					Cabane</div>
+				<div class='fc-event label label-primary label-block'>Cesar
+					Gonzalez</div>
+				<div class='fc-event label label-primary label-block'>Mihail
+					Pozarski</div>
+				<p>
+					<input type='checkbox' id='drop-remove' /> <label
+						for='drop-remove'>eliminar despues del uso</label>
+				</p>
+				<hr class="hr-sm">
+				<a href="#" class='btn btn-warning btn-block	'>BOTON</a>
+			</div>
+			<div class='col-md-10'>
+				<!-- calendario -->
+				<div id='calendar' class='well'></div>
+				<!-- calendario -->
+			</div>
+			<div style='clear: both'></div>
 		</div>
-		<div>
-		
-		
-		
-		</div>
-
-		<div id='calendar'></div>
-
-		<div style='clear: both'></div>
-
+		<!-- row -->
 	</div>
+	<!-- container-fluid -->
 </body>
 <script src='../calendario/lib/moment.min.js'></script>
 <script src='../calendario/lib/jquery.min.js'></script>
 <script src='../calendario/lib/jquery-ui.custom.min.js'></script>
 <script src='../calendario/fullcalendar.min.js'></script>
 <script src='../calendario/lang/es.js'></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script>
 	$(document).ready(function() {
@@ -125,7 +108,7 @@ body {
 				center : 'title',
 				right : 'agendaDay,agendaWeek,month'
 			},
-			defaultView: 'agendaWeek',
+			defaultView : 'agendaWeek',
 			editable : true,
 			droppable : true, // this allows things to be dropped onto the calendar
 			drop : function() {
@@ -143,8 +126,8 @@ body {
 	});
 </script>
 <script>
-////////////////////////////// formato de evento //////////////////////////////////
-evento = {
+	////////////////////////////// formato de evento //////////////////////////////////
+	evento = {
 		"title" : "Evento prueba",
 		"start" : "2015-07-22T10:14:28+00:00",
 		"end" : "2015-07-22T11:14:28+00:00",
@@ -153,12 +136,12 @@ evento = {
 		"color" : "#ff0000",
 		"className" : "ticketSrc_1",
 		"custom" : "test text here",
-		"eventDurationEditable": true
-	};  
-	
+		"eventDurationEditable" : true
+	};
+
 	$('.btn').click(function() {
 		alert('hola');
-		$('#calendar').fullCalendar( 'renderEvent', evento);
+		$('#calendar').fullCalendar('renderEvent', evento);
 	});
 </script>
 </html>
