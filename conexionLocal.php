@@ -4,7 +4,7 @@
 
 // datos para la coneccion a mysql
 define('DB_SERVER','localhost');
-define('DB_NAME','undasbd');
+define('DB_NAME','tmtecnom_undasbd');
 define('DB_USER','root');
 define('DB_PASS',''); 
  
