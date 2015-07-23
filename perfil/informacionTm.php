@@ -37,7 +37,7 @@ while ($row = mysql_fetch_array($resultado)) {
   echo  "<td>" . $row['Rut'] . "</td>";
   echo  "<td>" . $row['Mail'] . "</td>";
   echo  "<td>" . $row['Celular'] . "</td>";
-  echo  "<td>" . $row['Contrase&ntilde;a'] . "</td>";
+  echo  "<td>" . $row['Password'] . "</td>";
  
   ?>
             <td>
