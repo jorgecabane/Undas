@@ -1,16 +1,8 @@
 
 <?php
-         include_once "../conexionLocal.php";
-        
-         $rec = mysql_query("SELECT * FROM TM ") or die(mysql_error());
-         
-         $count = 0;
-         while ($row = mysql_fetch_assoc($rec)) {
-         	echo $row["Nombre"];
-         	echo " ";
-         	echo $row["Apellido"];
-         	
-         	echo "<br>";
-         }
-         
-         ?>
+include_once('getTM.php'); //funcion getTM
+$tms = getTM();
+foreach($tms as $tm){
+	echo $tm['Nombre'].' '.$tm['Apellido'].'<br>';	
+}
+?>
