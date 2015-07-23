@@ -1,10 +1,5 @@
-<?php 
-include_once('../conexionLocal.php'); //conexion bbdd
-
-
-
-?>
 <!DOCTYPE html>
+<!-- /////////////////////////////////////////////////////////////Eliminable si se incluye////////////////////////////////// -->
 <html>
 <head>
 <meta charset='utf-8' />
@@ -14,7 +9,7 @@ include_once('../conexionLocal.php'); //conexion bbdd
 	media='print' />
 <style>
 body {
-	margin-left:8px;
+	margin-left: 8px;
 	margin-top: 8px;
 	font-size: 14px;
 	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
@@ -27,6 +22,7 @@ body {
 </style>
 </head>
 <body>
+<!-- ///////////////////////////////////////////////////ELiminable si se incluye///////////////////////////////////////////////// -->
 	<div class='container-fluid'>
 		<div class='row'>
 			<div id='external-events' class='col-md-2 well well-sm'>
@@ -40,17 +36,14 @@ body {
 					placeholder='Filtrar por Nombre'>
 				<hr class='hr-sm'>
 				<div class='fc-event label label-info label-block'>Juan Perez</div>
-				<div class='fc-event label label-info label-block'>Eduardo
-					Rojas</div>
-				<div class='fc-event label label-info label-block'>Jorge
-					Cabane</div>
-				<div class='fc-event label label-primary label-block'>Cesar
-					Gonzalez</div>
+				<div class='fc-event label label-info label-block'>Eduardo Rojas</div>
+				<div class='fc-event label label-info label-block'>Jorge Cabane</div>
+				<div class='fc-event label label-primary label-block'>Cesar Gonzalez</div>
 				<div class='fc-event label label-primary label-block'>Mihail
 					Pozarski</div>
 				<p>
-					<input type='checkbox' id='drop-remove' /> <label
-						for='drop-remove'>eliminar despues del uso</label>
+					<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>eliminar
+						despues del uso</label>
 				</p>
 				<hr class="hr-sm">
 				<a href="#" class='btn btn-warning btn-block	'>BOTON</a>
@@ -140,8 +133,9 @@ body {
 	};
 
 	$('.btn').click(function() {
-		alert('hola');
-		$('#calendar').fullCalendar('renderEvent', evento);
+		$.ajax(
+				)
+		//$('#calendar').fullCalendar('renderEvent', evento);
 	});
 </script>
 </html>
