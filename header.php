@@ -36,7 +36,7 @@ if($_SESSION["usuario"]){
 <link href="css/bootstrap.min.css" rel='stylesheet'>
 
 </head>
-
+<body background="images/bg.gif">
 <div align="left">
 
 	<img src="images/logo.gif" width="400" height="80" alt="logo" />
@@ -52,7 +52,7 @@ if($_SESSION["usuario"]){
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="http://localhost/Unda/index.php">Home</a>
+			<a class="navbar-brand" href="index.php">Home</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
