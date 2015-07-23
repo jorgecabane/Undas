@@ -16,13 +16,13 @@ $resultado = mysql_query("SELECT ValorHora.Valor as Valor, ValorHora.Semana as S
 
 if($resultado){
 
-echo "<table id='t01'>"; 
-echo "<tr >";
-  echo  "<td>Centro</td>";
-  echo  "<td>Cobro</td>" ;
-  echo  "<td>Semana=1, Fin de semana=0</td>";
-  echo  "<td>Editar</td>" ;
-  echo  "<td>Eliminar</td>" ;
+echo "<table id='t01'class='table table-hover table-bordered table-condensed'>"; 
+echo "<thead><tr>";
+  echo  "<th>Centro</th>";
+  echo  "<th>Cobro</th>" ;
+  echo  "<th>Semana=1, Fin de semana=0</th>";
+  echo  "<th>Editar</th>" ;
+  echo  "<th>Eliminar</th></tr></thead><tbody>" ;
 while ($row = mysql_fetch_array($resultado)) {
     
 
@@ -37,13 +37,13 @@ while ($row = mysql_fetch_array($resultado)) {
             <td>
      <form action="edit.php" method="post">
         <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
-        <input type="submit" value="Editar" />
+        <input type="submit" value="Editar" class='btn btn-info	'/>
      </form>
  </td>
  <td>
      <form action="delete.php" method="post">
         <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
-        <input type="submit" value="Eliminar" />
+        <input type="submit" value="Eliminar" class='btn btn-danger'/>
      </form>
      </td>
      <?php 
@@ -53,7 +53,7 @@ while ($row = mysql_fetch_array($resultado)) {
   
 
 };
-echo "</table>";
+echo "</tbody></table>";
 };?>
  </div> 
 </form>
