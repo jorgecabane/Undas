@@ -15,8 +15,8 @@ $rut = $_POST ['Rut'];
 	<div class="container">
 		<ul class="nav nav-tabs">
 			<li class="nav active"><a href="#A" data-toggle="tab">Info</a></li>
-			<li class="nav"><a href="#B" data-toggle="tab">Editar datos</a></li>
-			<li class="nav"><a href="#C" data-toggle="tab">Cobros</a></li>
+			<li class="nav"><a href="#B" data-toggle="tab">Cobros</a></li>
+			<li class="nav"><a href="#C" data-toggle="tab">Horario</a></li>
 		</ul>
 
 
