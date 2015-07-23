@@ -9,11 +9,11 @@ if(isset($_SESSION["fallaste"])){
 }
 ?>
 <head>
-   <!-- css -->
- <meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
+<!-- css -->
+<meta http-equiv="Content-Type" content="text/html" ; charset=utf-8 "/>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 <?php
 function verificar_login($user, $password, &$result) {
@@ -66,50 +66,64 @@ if (isset($_POST['login'])) {
 ?>
 
 <style type="text/css">
-    *{
-        font-size: 14px;
-        font-family: sans-serif;
-    }
-    form.login {
-        background: none repeat scroll 0 0 #F1F1F1;
-        border: 1px solid #DDDDDD;
-        margin: 0 auto;
-        padding: 20px;
-        width: 278px;
-    }
-    form.login div {
-        margin-bottom: 15px;
-        overflow: hidden;
-    }
-    form.login div label {
-        display: block;
-        float: left;
-        line-height: 25px;
-    }
-    form.login div input[type="text"], form.login div input[type="password"] {
-        border: 1px solid #DCDCDC;
-        float: right;
-        padding: 4px;
-    }
-    form.login div input[type="submit"] {
-        background: none repeat scroll 0 0 #DEDEDE;
-        border: 1px solid #C6C6C6;
-        float: right;
-        font-weight: bold;
-        padding: 4px 20px;
-    }
-    .error{
-        color: red;
-        font-weight: bold;
-        margin: 10px;
-        text-align: center;
-    }
+* {
+	font-size: 14px;
+	font-family: sans-serif;
+}
+
+form.login {
+	background: none repeat scroll 0 0 #F1F1F1;
+	border: 1px solid #DDDDDD;
+	margin: 0 auto;
+	padding: 20px;
+	width: 278px;
+}
+
+form.login div {
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+
+form.login div label {
+	display: block;
+	float: left;
+	line-height: 25px;
+}
+
+form.login div input[type="text"], form.login div input[type="password"]
+	{
+	border: 1px solid #DCDCDC;
+	float: right;
+	padding: 4px;
+}
+
+form.login div input[type="submit"] {
+	background: none repeat scroll 0 0 #DEDEDE;
+	border: 1px solid #C6C6C6;
+	float: right;
+	font-weight: bold;
+	padding: 4px 20px;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+	margin: 10px;
+	text-align: center;
+}
 </style>
 
 <form action="" method="post" class="login">
-    <div><label>Nombre	: </label><input id="call" name="user" type="text" ></div>
-    <div><label>Contrase&ntilde;a: </label><input name="password" type="password" ></div>
-    <div><input name="login" type="submit" value="login"></div>
+	<div>
+		<label>Nombre : </label><input id="call" name="user" type="text">
+	</div>
+	<div>
+		<label>Contrase&ntilde;a: </label><input name="password"
+			type="password">
+	</div>
+	<div>
+		<input name="login" type="submit" value="login">
+	</div>
 </form>
 <script>
 $( document ).ready(function() {
