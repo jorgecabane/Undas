@@ -5,14 +5,6 @@ include "header.php";
 include "include/verificacionUsuario.php";
 
 ?>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-</head>
-
-<body background="images/bg.gif">
 	<div class="container">
 		<h2>Agregar Personal</h2>
 		<form role="form" action="querys/insertTmR.php" method="POST"
