@@ -16,16 +16,16 @@ $resultado = mysql_query("SELECT * from TM Where Rut=$rut") or die(mysql_error()
 
 if($resultado){
 
-echo "<table id='t01'>"; 
-echo "<tr >";
-  echo  "<td>Nombre</td>";
-  echo  "<td>Apellido</td>" ;
-  echo  "<td>Rut</td>";
-  echo  "<td>Mail</td>";
-  echo  "<td>Celular</td>";
-  echo  "<td>Contrase&ntilde;a</td>";
-  echo  "<td>Editar</td>";
-  echo  "<td>Eliminar</td>";
+echo "<table id='t01' class='table table-hover table-bordered'>"; 
+echo "<thead><tr>";
+  echo  "<th>Nombre</th>";
+  echo  "<th>Apellido</th>" ;
+  echo  "<th>Rut</th>";
+  echo  "<th>Mail</th>";
+  echo  "<th>Celular</th>";
+  echo  "<th>Contrase&ntilde;a</th>";
+  echo  "<th>Editar</th>";
+  echo  "<th>Eliminar</th></thead><tbody>";
 while ($row = mysql_fetch_array($resultado)) {
     
 
@@ -59,7 +59,7 @@ while ($row = mysql_fetch_array($resultado)) {
   
 
 };
-echo "</table>";
+echo "</tbody></table>";
 };?>
  </div> 
 </form>

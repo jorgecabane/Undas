@@ -3,41 +3,6 @@ session_start ();
 include "header.php";
 include "include/verificacionUsuario.php";
 ?>
-<html class="no-js" lang="en">
-<head>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<!-- title and meta -->
-<meta charset="utf-8">
-<meta content="width=device-width,initial-scale=1.0" name="viewport">
-
-
-<!-- css -->
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Bitter:400,700'
-	rel='stylesheet' type='text/css'>
-<link href="css/font-awesome/font-awesome.css" rel="stylesheet">
-<!--  aqui iba el css del input
-  <link href="css/base.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-
-  -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
-	rel="stylesheet">
-
-
-<!-- js -->
-<!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-<meta name="viewport" content="width=device-width" />
-</head>
 <div class="container-fluid">
 	<div class="row" id="header">
 		<!--  aqui tiene que ir el include del header  -->
@@ -105,6 +70,7 @@ $( "#header" ).load( "include/verificacionUsuario.php" );
 
 </script>
 <script>
+//Script que busca rellenar con el listado de los TMs que se encuentran en la bbdd
 $( "#listado" ).load( "querys/todosTmListado.php" );   
 
 
