@@ -59,7 +59,7 @@ foreach ( $ecos as $eco ) {
 				<option value='eco2' event-color='#5ed639'>Eco2</option> -->
 			</select>
 			<hr class='hr-sm'>
-			<input type='text' class='form-control'
+			<input type='text' class='form-control' disabled='disabled'
 				placeholder='Filtrar por Nombre'>
 			<hr class='hr-sm'>
 <?php
@@ -74,7 +74,7 @@ foreach ( $tms as $tm ) {
 					despues de usar</label>
 			</p>
 			<hr class="hr-sm">
-			<a href='#' class='btn btn-warning btn-block'>Mostrar BBDD</a>
+<!-- 			<a href='#' class='btn btn-warning btn-block'>Mostrar BBDD</a> -->
 <?php 
 //para los filtros de Eco
 ?>
