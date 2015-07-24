@@ -1,9 +1,9 @@
 <?php
 session_start ();
-include "header.php";
-$id = $_POST ['id'];
+include_once "header.php";
+$id = $_REQUEST['id'];
 
 
-include "perfil/editarTm.php";
+include_once "perfil/editarTm.php";
 ?>
 

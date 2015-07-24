@@ -1,12 +1,5 @@
 <center>
 	<section class="productList">
-
-
-
-
-
-
-
 		</head>
 		<body>
 			<div align="center">
@@ -28,7 +21,7 @@
 														?>
 														
 														<form role="form" action="querys/updateTm.php"
-					method="POST">
+					method="GET">
 					<tr>
 						<td>
 							<div class="form-group">
@@ -63,7 +56,7 @@
 						<td>
 							<div>
 								<input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
-									 <input type="submit" value="Finalizar edicion" class='btn btn-info' />
+									 <input type="submit" value="Finalizar edicion" class='btn btn-info' disabled="disabled" />
 							</div>
 						</td>
 				

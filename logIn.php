@@ -118,10 +118,16 @@ if (isset ( $_POST ['login'] )) {
 	<div class='container'>
 		<div class='col-md-4 col-md-offset-4'>
 		<form action="" method="post" class="form-singin">
-				<h2 class='form-singin-heading'>Ingreso de Usuarios</h2>
+				<h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
+				
+				
+				<h4>Nombre de usuario</h4>
 				<label for="user" class="sr-only">Nombre</label> <input id="call" name="user" type="text" class='form-control' placeholder='Nombre'>
+				<h4>Contrase&ntilde;a</h4>
 				<label for='password' class="sr-only">Contrase&ntilde;a</label> 
-				<input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a'> <input name='login' class="btn btn-lg btn-primary btn-block" type="submit"></input>
+				<input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a'>
+			    <br>
+			    <input name='login' class="btn btn-lg btn-primary btn-block" type="submit"></input>
 			</form>
 		</div>
 	</div>

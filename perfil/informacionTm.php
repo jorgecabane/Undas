@@ -39,13 +39,13 @@ while ($row = mysql_fetch_array($resultado)) {
    
   ?>
             <td>
-     <form action="edit.php" method="post">
+     <form action="editarGeneral.php" method="post">
         <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
         <input type="submit" value="Editar" class='btn btn-info'/>
      </form>
  </td>
  <td>
-     <form action="delete.php" method="post">
+     <form action="borrarTm.php" method="post">
         <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
         <input type="submit" value="Eliminar" class='btn btn-danger'/>
      </form>

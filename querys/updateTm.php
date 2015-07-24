@@ -1,11 +1,11 @@
 <?php
 include_once "../conexionLocal.php";
-$id=$_POST['id'];
-$nombre=$_POST['Nombre'];
-$apellido=$_POST['Apellido'];
-$rut=$_POST['Rut'];
-$mail=$_POST['Mail'];
-$celular=$_POST['Celular'];
+$id=$_REQUEST['id'];
+$nombre=$_REQUEST['Nombre'];
+$apellido=$_REQUEST['Apellido'];
+$rut=$_REQUEST['Rut'];
+$mail=$_REQUEST['Mail'];
+$celular=$_REQUEST['Celular'];
 
 $query="UPDATE TM SET Nombre=$nombre, Apellido=$apellido, Rut=$rut, Mail=$mail, Celular=$celular WHERE idTM=$id";
 $resultado=mysql_query($query);
