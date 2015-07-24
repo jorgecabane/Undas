@@ -23,7 +23,6 @@ echo "<thead><tr>";
   echo  "<th>Rut</th>";
   echo  "<th>Mail</th>";
   echo  "<th>Celular</th>";
-  echo  "<th>Contrase&ntilde;a</th>";
   echo  "<th>Editar</th>";
   echo  "<th>Eliminar</th></thead><tbody>";
 while ($row = mysql_fetch_array($resultado)) {
@@ -37,8 +36,7 @@ while ($row = mysql_fetch_array($resultado)) {
   echo  "<td>" . $row['Rut'] . "</td>";
   echo  "<td>" . $row['Mail'] . "</td>";
   echo  "<td>" . $row['Celular'] . "</td>";
-  echo  "<td>" . $row['Password'] . "</td>";
- 
+   
   ?>
             <td>
      <form action="edit.php" method="post">
