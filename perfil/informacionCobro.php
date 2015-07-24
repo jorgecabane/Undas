@@ -20,7 +20,7 @@ echo "<table id='t01'class='table table-hover table-bordered table-condensed'>";
 echo "<thead><tr>";
   echo  "<th>Centro</th>";
   echo  "<th>Cobro</th>" ;
-  echo  "<th>Semana=1, Fin de semana=0</th>";
+  echo  "<th>Semana/Sabado</th>";
   echo  "<th>Editar</th>" ;
   echo  "<th>Eliminar</th></tr></thead><tbody>" ;
 while ($row = mysql_fetch_array($resultado)) {
@@ -31,8 +31,14 @@ while ($row = mysql_fetch_array($resultado)) {
   echo "<tr>";
   echo  "<td>" . $row['Centro'] . "</td>";
   echo  "<td>" . $row['Valor'] . "</td>" ;
-  echo  "<td>" . $row['Semana'] . "</td>";
- 
+  if($row['Semana']==1){
+  echo  "<td> Semana </td>";
+  }
+  else {
+  	
+  	echo  "<td> Sabado </td>";
+}
+  
   ?>
             <td>
      <form action="edit.php" method="post">
