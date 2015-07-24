@@ -2,6 +2,7 @@
 session_start ();
 include "header.php";
 include "include/verificacionUsuario.php";
+
 ?>
 <div class="container-fluid">
 	<div class="row" id="header">
@@ -14,12 +15,17 @@ include "include/verificacionUsuario.php";
 			<center>Perfiles Tecnologos Medicos</center>
 		</h2>
 	</div>
+	
+	
 	<div class="row">
 
-
+ <?php // si es admin ve esto
+				if($admin==1){
+					?>
 		<div class="col-sm-2 well">
 
 			<div class="container">
+
 
 				<section>
 
@@ -32,7 +38,8 @@ include "include/verificacionUsuario.php";
 
 
 				</section>
-
+				
+ 
 			</div>
 
 <!--   <div id="fototm">      </div>  -->
@@ -44,7 +51,19 @@ include "include/verificacionUsuario.php";
 			</div>
 
 		</div>
-		<div class="col-sm-10 well  " id="perfil">
+		<?php 		}			
+?>
+
+ <?php // si no admin ve esto
+				if($admin==0){
+					?>
+		<div class="col-sm-12 well  " id="perfil">
+		<?php 		}	
+		else {?>
+			<div class="col-sm-10 well  " id="perfil">
+		<?php   }	
+?>
+		
 			<!-- aqui va perfil -->
 		</div>
 	</div>
@@ -54,13 +73,7 @@ include "include/verificacionUsuario.php";
 
 
 
-	<!-- aqui termina lo del input -->
 
-
-
-	<!-- aqui termina lo de perfil -->
-
-	<!-- aqui termina lo de abajo del header -->
 
 
 </div>
@@ -69,12 +82,14 @@ $( "#header" ).load( "include/verificacionUsuario.php" );
 
 
 </script>
+<?php // si es admin ve esto
+if($admin==1){
+					?>
 <script>
 //Script que busca rellenar con el listado de los TMs que se encuentran en la bbdd
 $( "#listado" ).load( "querys/todosTmListado.php" );   
-
-
 </script>
+
 <script>
 $( document ).ready(function() {
  $("#call").focus(); }  
@@ -127,4 +142,24 @@ $( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":idTM} );
 
 //CAMBIAR LA QUERY PARA GUARDAR LOS DATOS!
 </script>
-<!-- autocomplete comuna -->
+<?php 		}			
+?>
+<?php
+if($admin==0){
+	
+	$sessionrut=$_SESSION['idusuario'];
+	
+	$query = "SELECT Rut FROM TM WHERE idTM=$sessionrut";
+	
+	$res = mysql_query ( $query ) or die ( mysql_error () );
+	
+	 $row = mysql_fetch_assoc( $res );
+	$Rut=$row["Rut"];
+	
+	
+					?>
+<script>
+$( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":<?php echo $Rut;?>} );
+</script>
+<?php 		}			
+?>
