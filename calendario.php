@@ -20,17 +20,18 @@ body {
 	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 }
 
-.fc-event {
-	margin-top: 3px;
-	marin-bottom: 3px
-}
-</style>
+
 </head>
 <body>
  ///////////////////////////////////////////////////ELiminable si se incluye///////////////////////////////////////////////// -->
 <link href='calendario/fullcalendar.css' rel='stylesheet' />
-<link href='calendario/fullcalendar.print.css' rel='stylesheet'
-	media='print' />
+<link href='calendario/fullcalendar.print.css' rel='stylesheet'	media='print' />
+<style>
+.fc-event {
+	margin-top: 3px;
+	marin-bottom: 3px
+}
+</style>	
 <div class='container-fluid'>
 	<div class='row'>
 		<div class='col-md-4 col-md-offset-4 well well-sm'>
@@ -70,10 +71,13 @@ foreach ( $tms as $tm ) {
 			<!-- Generacion de listado de TMs -->
 			<p>
 				<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>eliminar
-					despues del uso</label>
+					despues de usar</label>
 			</p>
 			<hr class="hr-sm">
-
+			<a href='#' class='btn btn-warning btn-block'>Mostrar BBDD</a>
+<?php 
+//para los filtros de Eco
+?>
 		</div>
 		<div class='col-md-10'>
 			<!-- calendario -->
@@ -158,22 +162,30 @@ foreach ( $tms as $tm ) {
 </script>
 <script>
 	////////////////////////////// formato de evento //////////////////////////////////
-	evento = {
+	
+<?php 
+	$eventos = json_encode(getEventos($idCentro)[0]);
+	echo "evento=$eventos;";
+	
+	
+	
+?>
+	
+/* 	evento = {
 		"title" : "Evento prueba",
-		"start" : "2015-07-22T10:14:28+00:00",
-		"end" : "2015-07-22T11:14:28+00:00",
+		"start" : "2015-07-22T10:14:28",
+		"end" : "2015-07-22T11:14:28",
 		"id" : "7",
 		"userID" : "1",
 		"color" : "#ff0000",
 		"className" : "ticketSrc_1",
 		"custom" : "test text here",
 		"eventDurationEditable" : true
-	};
+	}; */
 
-	/* $('.btn').click(function() {
-		$.ajax(
-				)
-		//$('#calendar').fullCalendar('renderEvent', evento);
-	}); */
+	$('.btn').click(function() {
+		
+		$('#calendar').fullCalendar('renderEvent', evento);
+	});
 </script>
 </html>
