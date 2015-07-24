@@ -1,6 +1,7 @@
 <?php 
 include_once "querys/getTM.php"; // aqui ya se incluye la conexion local
 include_once "querys/getEcos.php";
+include_once "querys/getEventos.php";
 //include_once "conexionLocal.php"; // se incluye la conexion local arriba
 include_once "include/isAdmin.php";
 
