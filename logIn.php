@@ -1,11 +1,11 @@
 <?php
 session_start ();
 include_once "conexionLocal.php";
-//if (isset ( $_SESSION ["fallaste"] )) {
-//	echo "<h1>";
-//	echo $_SESSION ["fallaste"];
-//	echo "</h1>";
-//}
+// if (isset ( $_SESSION ["fallaste"] )) {
+// echo "<h1>";
+// echo $_SESSION ["fallaste"];
+// echo "</h1>";
+// }
 ?>
 <html>
 <head>
@@ -16,10 +16,15 @@ include_once "conexionLocal.php";
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link href="css/bootstrap.min.css" rel='stylesheet'>
 <style>
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
 .form-signin {
-  max-width: 330px;
+  max-width: 100px;
   padding: 15px;
-  margin: 0 auto;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -40,7 +45,7 @@ include_once "conexionLocal.php";
 .form-signin .form-control:focus {
   z-index: 2;
 }
-.form-signin input[type="text"] {
+.form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -110,21 +115,14 @@ if (isset ( $_POST ['login'] )) {
 }
 </style>
 <body background="images/bg.gif">
-	<div class='container-fluid' style='margin-top:50px;'>
-		<div class='row'>
-			<div class='col-md-4'></div>
-			<div class='col-md-4 well'>
-				<form action="" method="post" class="form-singin">
-					<h2 class='form-singin-heading'>Ingreso de Usuarios</h2>
-					<label for="user" class="sr-only">Nombre</label> <input id="call"
-						name="user" type="text" class='form-control' placeholder='Nombre'>
-					<label for='password' class="sr-only">Contrase&ntilde;a</label> <input
-						name="password" type="password" class='form-control'
-						placeholder='Contrase&ntilde;a'> <input name='login'
-						class="btn btn-lg btn-primary btn-block" type="submit"></input>
-				</form>
-			</div>
-			<div class='col-md-4'></div>
+	<div class='container'>
+		<div class='col-md-4 col-md-offset-4'>
+		<form action="" method="post" class="form-singin">
+				<h2 class='form-singin-heading'>Ingreso de Usuarios</h2>
+				<label for="user" class="sr-only">Nombre</label> <input id="call" name="user" type="text" class='form-control' placeholder='Nombre'>
+				<label for='password' class="sr-only">Contrase&ntilde;a</label> 
+				<input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a'> <input name='login' class="btn btn-lg btn-primary btn-block" type="submit"></input>
+			</form>
 		</div>
 	</div>
 </body>
