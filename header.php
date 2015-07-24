@@ -1,7 +1,8 @@
 <?php 
+include_once "querys/getTM.php"; // aqui ya se incluye la conexion local
+//include_once "conexionLocal.php"; // se incluye la conexion local arriba
+include_once "include/isAdmin.php";
 
-include "conexionLocal.php";
-include "include/isAdmin.php";
 
 $result=mysql_query("Select * from Centro");
 if($_SESSION["usuario"]){
@@ -71,7 +72,7 @@ if($_SESSION["usuario"]){
 					<ul class="dropdown-menu" role="menu">
 				<?php 
 				while ($row = mysql_fetch_array($result)) {?>
-					<li><a href='calendario.php?id=<?php echo $row['idCentro'] ;?>'><?php echo $row['Nombre']; ?></a>
+					<li><a href="calendario.php?idCentro=<?php echo $row['idCentro']; echo '&centro='.$row['Nombre'];?>"><?php echo $row['Nombre']; ?></a>
 							</form></li><?php 
 				}
 				
