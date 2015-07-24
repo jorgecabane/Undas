@@ -33,47 +33,47 @@ body {
 	media='print' />
 <div class='container-fluid'>
 	<div class='row'>
-		<div class='col-md-4 col-md-offset-4 well well-sm'><?php echo "<center><h4>Centro: <b>$centro</b></h4></center>";?></div>
+		<div class='col-md-4 col-md-offset-4 well well-sm'>
+			<center>
+				<h4>
+					Centro: <b><?php echo $centro;?></b>
+				</h4>
+			</center>
+		</div>
 	</div>
 	<div class='row'>
 		<div id='external-events' class='col-md-2 well well-sm'>
 			<h4>Listado de TM's</h4>
 			<select name='ecos' id='ecos' class='form-control'
 				style='width: 100%;'>
-<?php 
+<?php
+$ecos = getEcos ( $idCentro );
+foreach ( $ecos as $eco ) {
+	echo "<option value='" . $eco ['idEco'] . "'>" . $eco ['Nombre'] . "</option>";
+}
 
-
-
-?><!-- Generacion de listado de ecos como opcion -->
-				<option value='eco1' event-color='#2b95ce'>Eco1</option>
-				<option value='eco2' event-color='#5ed639'>Eco2</option>
+?>
+				<!-- Generacion de listado de ecos como opcion -->
+				<!-- <option value='eco1' event-color='#2b95ce'>Eco1</option>
+				<option value='eco2' event-color='#5ed639'>Eco2</option> -->
 			</select>
 			<hr class='hr-sm'>
 			<input type='text' class='form-control'
 				placeholder='Filtrar por Nombre'>
 			<hr class='hr-sm'>
-<?php 
-
-
-
-
-?><!-- Generacion de listado de TMs -->			
-			<div class='fc-event label label-info label-block'
-				event-color='#2b95ce'>Juan Perez</div>
-			<div class='fc-event label label-info label-block'
-				event-color='#2b95ce'>Eduardo Rojas</div>
-			<div class='fc-event label label-info label-block'
-				event-color='#2b95ce'>Jorge Cabane</div>
-			<div class='fc-event label label-primary label-block'
-				event-color='#2b95ce'>Cesar Gonzalez</div>
-			<div class='fc-event label label-primary label-block'
-				event-color='#2b95ce'>Mihail Pozarski</div>
+<?php
+$tms = getTM ();
+foreach ( $tms as $tm ) {
+	echo "<div class='fc-event label label-block' event-color='#2b95ce'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
+} // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
+?>
+			<!-- Generacion de listado de TMs -->
 			<p>
 				<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>eliminar
 					despues del uso</label>
 			</p>
 			<hr class="hr-sm">
-			
+
 		</div>
 		<div class='col-md-10'>
 			<!-- calendario -->
@@ -91,8 +91,6 @@ body {
 <script src='calendario/lib/jquery-ui.custom.min.js'></script>
 <script src='calendario/fullcalendar.min.js'></script>
 <script src='calendario/lang/es.js'></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script>
 	$(document).ready(function() {
