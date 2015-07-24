@@ -98,12 +98,14 @@ if($_SESSION["usuario"]){
 
 
 
-				<li><a href="editarClave.php">Editar Clave</a></li>
-
 			</ul>
+			
+				
+
 			<!-- aqui termina -->
 
 			<ul class="nav navbar-nav navbar-right">
+			<li><a href="editarClave.php">Editar Clave</a></li>
 				<li><a href="logOff.php"><?php echo $_SESSION['usuario'];?>  (Cerrar sesión)</a></li>
 
 			</ul>
