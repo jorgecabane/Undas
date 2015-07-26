@@ -62,8 +62,8 @@ if ($_SESSION ["usuario"]) {
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
       
-      <?php 
-// si es admin ve esto
+      <?php
+						// si es admin ve esto
 						if ($admin == 1) {
 							?>
                        <!-- este es un dropdown -->
@@ -85,8 +85,8 @@ if ($_SESSION ["usuario"]) {
       <?php } // si es admin ve esto?>
       <!-- aqui termina -->
 					<!-- este es un dropdown -->
-		 <?php 
-// si es admin ve esto
+		 <?php
+			// si es admin ve esto
 			if ($admin == 1) {
 				?>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -101,8 +101,7 @@ if ($_SESSION ["usuario"]) {
         <?php } // si es admin ve esto?>
 		 
 				<li><a href="Perfiles.php">Perfiles TM</a></li>
-
-
+					<li><a href="perfil/empresaGeneral.php">Empresas</a></li>
 
 				</ul>
 
