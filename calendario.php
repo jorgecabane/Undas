@@ -51,7 +51,7 @@ body {
 <?php
 $ecos = getEcos ( $idCentro );
 foreach ( $ecos as $eco ) {
-	echo "<option value='" . $eco ['idEcos'] . "'>" . $eco ['Nombre'] . "</option>";
+	echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
 }
 
 ?>
@@ -103,10 +103,12 @@ foreach ( $ecos as $eco ) {
 		*/
 		$('#ecos').change(function(){
 				color = $('#ecos option:selected').attr('event-color');
+				eco = $('#ecos option:selected').text();
 				$('#external-events .fc-event').each(function(){
 					$(this).attr('event-color',color); // se asigna el color de la eco correspondiente a cada elemento
 					$(this).data('event', {
-						title : $.trim($(this).text()), // use the element's text as the event title
+						title : eco, // use the element's text as the event title
+						description : $.trim($(this).text()),
 						stick : true,	// maintain when user navigates (see docs on the renderEvent method)
 						color : color, //cambia el color al color asignado
 						editable : true
@@ -115,14 +117,15 @@ foreach ( $ecos as $eco ) {
 			});
 		
 		$('#external-events .fc-event').each(function() {
-			var colorEvento = $(this).attr('event-color');
-			
+			var color = $(this).attr('event-color');
+			var eco = $('#ecos option:selected').text();
 			// store data so the calendar knows to render an event upon drop
 			$(this).data('event', {
-				title : $.trim($(this).text()), // use the element's text as the event title
-				stick : true,	// maintain when user navigates (see docs on the renderEvent method)
-				color : colorEvento, //cambia el color al color asignado
-				editable : true
+						title : eco, // use the element's text as the event title
+						description : $.trim($(this).text()),
+						stick : true,	// maintain when user navigates (see docs on the renderEvent method)
+						color : color, //cambia el color al color asignado
+						editable : true
 			});
 
 			// make the event draggable using jQuery UI
