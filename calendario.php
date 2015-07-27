@@ -63,22 +63,19 @@ foreach ( $ecos as $eco ) {
 			<input type='text' id='search' class='form-control'
 				placeholder='Filtrar por Nombre'>
 			<hr class='hr-sm'>
-<?php
-$tms = getTM ();
-foreach ( $tms as $tm ) {
-	echo "<div class='fc-event label label-block' event-color='#2b95ce'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
-} // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
-?>
+		<?php
+		$tms = getTM ();
+		foreach ( $tms as $tm ) {
+			echo "<div class='fc-event label label-block' event-color='#2b95ce'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
+		} // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
+		?>
 			<!-- Generacion de listado de TMs -->
-			<p>
-				<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>eliminar
-					despues de usar</label>
-			</p>
+
 			<hr class="hr-sm">
 			<!-- 			<a href='#' class='btn btn-warning btn-block'>Mostrar BBDD</a> -->
-<?php
-// para los filtros de Eco
-?>
+		<?php
+		// para los filtros de Eco
+		?>
 		</div>
 		<div class='col-md-10'>
 			<!-- calendario -->
@@ -102,6 +99,8 @@ foreach ( $tms as $tm ) {
 
 		/* initialize the external events
 		-----------------------------------------------------------------*/
+		/*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
+		*/
 		$('#ecos').change(function(){
 				color = $('#ecos option:selected').attr('event-color');
 				$('#external-events .fc-event').each(function(){
@@ -140,13 +139,8 @@ foreach ( $tms as $tm ) {
 		-----------------------------------------------------------------*/
 
 		$('#calendar').fullCalendar({
-			resources: [
-						{id: 1, name: "Eco1", color: "red"},
-						{id: 2, name: "Eco2", color: "blue"},
-						{id: 3, name: "Eco3", color: "green"}		
-								], //resources
-					eventSources: [{
-						url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro;?>"	
+			eventSources: [{
+				url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro;?>"	
 						}],//eventSources
 			header : {
 				left : 'prev,next today',
@@ -157,12 +151,8 @@ foreach ( $tms as $tm ) {
 			editable : true,
 			droppable : true, // this allows things to be dropped onto the calendar
 			drop : function(event) {
+				//deberiamos guardarlos en la bbdd
 				
-				// is the "remove after drop" checkbox checked?
-				if ($('#drop-remove').is(':checked')) {
-					// if so, remove the element from the "Draggable Events" list
-					$(this).remove();
-				}
 			},
 			hiddenDays : [ 0 ]			
 		});
@@ -171,21 +161,10 @@ foreach ( $tms as $tm ) {
 </script>
 <script>
 
-	$('.btn').click(function() {
+// 	$('.btn').click(function() {
 		
-		$('#calendar').fullCalendar('renderEvent', evento);
-	});
+// 		$('#calendar').fullCalendar('renderEvent', evento);
+// 	});
 </script>
-<script>
-//filtro de TMs para agregar al calendario 
-$('#search').keyup(function(){
-    $('.fc-event').hide();
-    var txt = $('#search').val();
-    $('.fc-event').each(function(){
-       if($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1){
-           $(this).show();
-       }
-    });
-});
-</script>
+<script src="include/filtro.js"></script>
 </html>
