@@ -7,7 +7,7 @@
 include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
 function getEcos($idCentro = null) {
 	if($idCentro!=null){
-	$query = "SELECT idEcos,Nombre 
+	$query = "SELECT idEcos, Nombre, color 
 				FROM Ecos
 				WHERE Centro_idCentro=$idCentro";
 	
