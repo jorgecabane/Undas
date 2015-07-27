@@ -35,7 +35,7 @@ body {
 </style>
 <div class='container-fluid'>
 	<div class='row'>
-		<div class='col-md-4 col-md-offset-4 well well-sm'>
+		<div class='col-md-4 col-md-offset-4 well well-sm well-titles'>
 			<center>
 				<h4>
 					Centro: <b><?php echo $centro;?></b>
