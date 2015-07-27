@@ -32,27 +32,41 @@
 														
 														echo "<tr>";
 														echo "<td>" . $row ['Centro'] . "</td>";
-														echo "<td>" . $row ['Valor'] . "</td>";
+														?>
+														<td>
+					<div class="form-group">
+						<input type="text" class="form-control" name="Mail"
+							value="<?php echo $row['Valor'];?>"
+							<?php if($admin==0){ echo "disabled='disabled'";       }?>
+							required>
+
+					</div>
+				</td>
+							 <?php
+														
+														
+														
+														
 														if ($row ['Semana'] == 1) {
 															echo "<td> Semana </td>";
 														} else {
 															
 															echo "<td> Sabado </td>";
 														}
-														if ($admin == 1) {													
-														?>
+														if ($admin == 1) {
+															?>
 <td>
-	<form action="edit.php" method="post">
-		<input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
-		<input type="submit" value="Editar" class='btn btn-info	' />
-	</form>
-</td>
-<td>
-	<form action="delete.php" method="post">
-		<input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
-		<input type="submit" value="Eliminar" class='btn btn-danger' />
-	</form>
-</td>
+					<form action="edit.php" method="post">
+						<input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
+						<input type="submit" value="Editar" class='btn btn-info	' />
+					</form>
+				</td>
+				<td>
+					<form action="delete.php" method="post">
+						<input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
+						<input type="submit" value="Eliminar" class='btn btn-danger' />
+					</form>
+				</td>
 <?php
 														}
 														

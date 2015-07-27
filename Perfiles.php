@@ -15,88 +15,73 @@ include_once "include/verificacionUsuario.php";
 			<center>Perfiles Tecnologos Medicos</center>
 		</h2>
 	</div>
-	
-	
+
+
 	<div class="row">
 
- <?php // si es admin ve esto
-				if($admin==1){
-					?>
+ <?php
+	// si es admin ve esto
+	if ($admin == 1) {
+		?>
 		<div class="col-sm-2 well">
 
-			<div class="container">
-
-
-				<section>
-
-
-					<h4>Busque por TM</h4>
-					<form action="test.php" action="POST">
-						<input id="call" type="text" name="valor" />
-
-					</form>
-
-
-				</section>
-				
- 
+			<h4>Busque por TM</h4>
+			<div class="form-group">
+				<input id="call" class="form-control" type="text" name="valor"  placeholder="Filtre por TM" />
 			</div>
 
-<!--   <div id="fototm">      </div>  -->
-			
-
-
-			<div id="listado" style="margin-top:60px;">
+			<div id="listado" style="margin-top: 60px;">
 				<!-- aqui iria una tabla de todos los tms en caso de lata de buscar -->
 			</div>
 
 		</div>
-		<?php 		}			
-?>
+		<?php
+	}
+	?>
 
- <?php // si no admin ve esto
-				if($admin==0){
-					?>
+ <?php
+	// si no admin ve esto
+	if ($admin == 0) {
+		?>
 		<div class="col-sm-12 well  " id="perfil">
-		<?php 		}	
-		else {?>
+		<?php
+	} else {
+		?>
 			<div class="col-sm-10 well  " id="perfil">
-		<?php   }	
-?>
+		<?php
+	}
+	?>
 		
 			<!-- aqui va perfil -->
+			</div>
 		</div>
+
+
+
+
+
+
+
+
+
 	</div>
 
-
-
-
-
-
-
-
-
-</div>
-<script>
-$( "#header" ).load( "include/verificacionUsuario.php" );   
-
-
-</script>
-<?php // si es admin ve esto
-if($admin==1){
-					?>
+<?php
+// si es admin ve esto
+if ($admin == 1) {
+	?>
 <script>
 //Script que busca rellenar con el listado de los TMs que se encuentran en la bbdd
 $( "#listado" ).load( "querys/todosTmListado.php" );   
 </script>
 
-<script>
+	<script>
 $( document ).ready(function() {
  $("#call").focus(); }  
  );
 </script>
 
-<script>
+	<script>
  $( "#call" ).autocomplete({
                              /**
                              * esta función genera el autocomplete para el campo de comuna (input)
@@ -142,24 +127,26 @@ $( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":idTM} );
 
 //CAMBIAR LA QUERY PARA GUARDAR LOS DATOS!
 </script>
-<?php 		}			
+<?php
+}
 ?>
 <?php
-if($admin==0){
+
+if ($admin == 0) {
 	
-	$sessionrut=$_SESSION['idusuario'];
+	$sessionrut = $_SESSION ['idusuario'];
 	
 	$query = "SELECT Rut FROM TM WHERE idTM=$sessionrut";
 	
 	$res = mysql_query ( $query ) or die ( mysql_error () );
 	
-	 $row = mysql_fetch_assoc( $res );
-	$Rut=$row["Rut"];
+	$row = mysql_fetch_assoc ( $res );
+	$Rut = $row ["Rut"];
 	
-	
-					?>
+	?>
 <script>
 $( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":<?php echo $Rut;?>} );
 </script>
-<?php 		}			
+<?php
+}
 ?>
