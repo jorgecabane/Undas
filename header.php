@@ -36,6 +36,7 @@ if ($_SESSION ["usuario"]) {
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link href="css/bootstrap.min.css" rel='stylesheet'>
+<link href="css/style.css" rel='stylesheet'>
 
 </head>
 <body background="images/bg.gif">
