@@ -25,13 +25,14 @@ body {
 <body>
  ///////////////////////////////////////////////////ELiminable si se incluye///////////////////////////////////////////////// -->
 <link href='calendario/fullcalendar.css' rel='stylesheet' />
-<link href='calendario/fullcalendar.print.css' rel='stylesheet'	media='print' />
+<link href='calendario/fullcalendar.print.css' rel='stylesheet'
+	media='print' />
 <style>
 .fc-event {
 	margin-top: 3px;
 	marin-bottom: 3px
 }
-</style>	
+</style>
 <div class='container-fluid'>
 	<div class='row'>
 		<div class='col-md-4 col-md-offset-4 well well-sm'>
@@ -50,7 +51,7 @@ body {
 <?php
 $ecos = getEcos ( $idCentro );
 foreach ( $ecos as $eco ) {
-	echo "<option value='" . $eco ['idEco'] . "'>" . $eco ['Nombre'] . "</option>";
+	echo "<option value='" . $eco ['idEcos'] . "'>" . $eco ['Nombre'] . "</option>";
 }
 
 ?>
@@ -59,7 +60,7 @@ foreach ( $ecos as $eco ) {
 				<option value='eco2' event-color='#5ed639'>Eco2</option> -->
 			</select>
 			<hr class='hr-sm'>
-			<input type='text' class='form-control' disabled='disabled'
+			<input type='text' id='search' class='form-control'
 				placeholder='Filtrar por Nombre'>
 			<hr class='hr-sm'>
 <?php
@@ -74,9 +75,9 @@ foreach ( $tms as $tm ) {
 					despues de usar</label>
 			</p>
 			<hr class="hr-sm">
-<!-- 			<a href='#' class='btn btn-warning btn-block'>Mostrar BBDD</a> -->
-<?php 
-//para los filtros de Eco
+			<!-- 			<a href='#' class='btn btn-warning btn-block'>Mostrar BBDD</a> -->
+<?php
+// para los filtros de Eco
 ?>
 		</div>
 		<div class='col-md-10'>
@@ -139,6 +140,14 @@ foreach ( $tms as $tm ) {
 		-----------------------------------------------------------------*/
 
 		$('#calendar').fullCalendar({
+			resources: [
+						{id: 1, name: "Eco1", color: "red"},
+						{id: 2, name: "Eco2", color: "blue"},
+						{id: 3, name: "Eco3", color: "green"}		
+								], //resources
+					eventSources: [{
+						url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro;?>"	
+						}],//eventSources
 			header : {
 				left : 'prev,next today',
 				center : 'title',
@@ -155,37 +164,28 @@ foreach ( $tms as $tm ) {
 					$(this).remove();
 				}
 			},
-			hiddenDays : [ 0 ]
+			hiddenDays : [ 0 ]			
 		});
 
 	});
 </script>
 <script>
-	////////////////////////////// formato de evento //////////////////////////////////
-	
-<?php 
-	$eventos = json_encode(getEventos($idCentro)[0]);
-	echo "evento=$eventos;";
-	
-	
-	
-?>
-	
-/* 	evento = {
-		"title" : "Evento prueba",
-		"start" : "2015-07-22T10:14:28",
-		"end" : "2015-07-22T11:14:28",
-		"id" : "7",
-		"userID" : "1",
-		"color" : "#ff0000",
-		"className" : "ticketSrc_1",
-		"custom" : "test text here",
-		"eventDurationEditable" : true
-	}; */
 
 	$('.btn').click(function() {
 		
 		$('#calendar').fullCalendar('renderEvent', evento);
 	});
+</script>
+<script>
+//filtro de TMs para agregar al calendario 
+$('#search').keyup(function(){
+    $('.fc-event').hide();
+    var txt = $('#search').val();
+    $('.fc-event').each(function(){
+       if($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1){
+           $(this).show();
+       }
+    });
+});
 </script>
 </html>
