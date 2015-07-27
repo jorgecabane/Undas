@@ -1,7 +1,7 @@
 <?php
 session_start ();
 include "header.php";
-include "include/verificacionUsuario.php";
+include_once "include/verificacionUsuario.php";
 
 ?>
 <div class="container-fluid">
