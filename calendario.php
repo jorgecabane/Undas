@@ -157,7 +157,8 @@ foreach ( $ecos as $eco ) {
 				//deberiamos guardarlos en la bbdd
 				
 			},
-			hiddenDays : [ 0 ]			
+			hiddenDays : [ 0 ],
+			allDaySlot: false			
 		});
 
 	});
