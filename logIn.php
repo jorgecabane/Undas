@@ -122,15 +122,19 @@ if (isset ( $_POST ['login'] )) {
 				
 				
 				<h4>Nombre de usuario</h4>
-				<label for="user" class="sr-only">Nombre</label> <input id="call" name="user" type="text" class='form-control' placeholder='Nombre'>
+				<label for="user" class="sr-only">Nombre</label> <input id="call" name="user" type="text" class='form-control' placeholder='Nombre' required>
 				<h4>Contrase&ntilde;a</h4>
 				<label for='password' class="sr-only">Contrase&ntilde;a</label> 
-				<input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a'>
+				<input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
 			    <br>
 			    <input name='login' class="btn btn-lg btn-primary btn-block" type="submit"></input>
 			</form>
+			<center><a href="passwordRecovery.php">(Recuperar clave)</a></center>
 		</div>
+		
 	</div>
+	
+	
 </body>
 <script>
 $( document ).ready(function() {

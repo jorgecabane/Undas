@@ -1,3 +1,5 @@
+<?php include_once dirname(__FILE__)."/../conexionLocal.php";
+		?>
 <center><section class="productList">
 
 
