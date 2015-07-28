@@ -5,11 +5,6 @@ include_once "include/verificacionUsuario.php";
 
 ?>
 <div class="container-fluid">
-	<div class="row" id="header">
-		<!--  aqui tiene que ir el include del header  -->
-
-
-	</div>
 	<div class="row">
 		<h2>
 			<center>Perfiles Tecnologos Medicos</center>
@@ -26,17 +21,18 @@ include_once "include/verificacionUsuario.php";
 		<div class="col-sm-2 well">
 
 			<h4>Busque por TM</h4>
-			
-				<input id="search" class="form-control" type="text" name="valor"  placeholder="Filtre por TM" />
-			
+
+			<input id="search" class="form-control" type="text" name="valor"
+				placeholder="Filtre por TM" />
+
 
 			<div id="listado" style="margin-top: 60px;">
 				<!-- aqui iria una tabla de todos los tms en caso de lata de buscar -->
-				<?php 
-				if($admin==1){
-					include "querys/todosTmListado.php";
-				}
-				?>
+				<?php
+		if ($admin == 1) {
+			include "querys/todosTmListado.php";
+		}
+		?>
 				
 				
 			</div>
@@ -46,57 +42,38 @@ include_once "include/verificacionUsuario.php";
 	}
 	?>
 
- <?php
-	// si no admin ve esto
-	if ($admin == 0) {
-		?>
-		<div class="col-sm-12 well  " id="perfil">
-		<?php
-	} else {
-		?>
-			<div class="col-sm-10 well  " id="perfil">
-		<?php
-	}
-	?>
+<?php
+// si no admin ve esto
+if ($admin == 0) {
+	echo '<div class="col-sm-12 well" id="perfil">';
+} else {
+	echo '<div class="col-sm-10 well" id="perfil">';
+}
+?>
 		
 			<!-- aqui va perfil -->
-			</div>
-		</div>
-
-
-
-
-
-
-
-
-
 	</div>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
 
 <?php
 // si es admin ve esto
 if ($admin == 1) {
-	?>
-<script>
-$( document ).ready(function() {
- $("#call").focus(); }  
- );
-</script>
-
-
-
-
-
-
-
-<?php
-}
-
-
-?>
-<?php
-
-if ($admin == 0) {
+	echo '<script>
+ 			$( document ).ready(function() {
+			$("#call").focus(); 
+			});
+		 </script>';
+} elseif ($admin == 0) {
 	
 	$sessionrut = $_SESSION ['idusuario'];
 	
@@ -107,12 +84,9 @@ if ($admin == 0) {
 	$row = mysql_fetch_assoc ( $res );
 	$Rut = $row ["Rut"];
 	
-	?>
-<script>
-$( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":<?php echo $Rut;?>} );
-</script>
-
-<?php
+	echo "<script>
+		$( '#perfil' ).load( 'perfil/perfilGeneral.php' , {'Rut': $Rut} ).slideDown('1000');
+	  </script>";
 }
 ?>
 
@@ -120,7 +94,7 @@ $( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":<?php echo $Rut;?>} );
 
 <script>
 $( ".fc-event" ).click(function() {
-	$( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":$(this).attr('Rut')} );
+	$( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":$(this).attr('Rut')} ).slideDown('1000');
 	
 });
 </script>

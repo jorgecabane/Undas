@@ -105,6 +105,7 @@ foreach ( $ecos as $eco ) {
 				color = $('#ecos option:selected').attr('event-color');
 				eco = $('#ecos option:selected').text();
 				$('#external-events .fc-event').each(function(){
+					$(this).css('background', color).css('border',color);
 					$(this).attr('event-color',color); // se asigna el color de la eco correspondiente a cada elemento
 					$(this).data('event', {
 						title : eco, // use the element's text as the event title
@@ -131,9 +132,8 @@ foreach ( $ecos as $eco ) {
 			// make the event draggable using jQuery UI
 			$(this).draggable({
 				zIndex : 999,
-				revert : true, // will cause the event to go back to its
+				revert : true, // will cause the event to go back to its original position after the drag
 				revertDuration : 0
-			//  original position after the drag
 			});
 
 		});
@@ -146,14 +146,21 @@ foreach ( $ecos as $eco ) {
 				url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro;?>"	
 						}],//eventSources
 				eventRender: function(event, element) { 
-		            element.find('.fc-title').append("<br/>" + event.description); 
+		            element.find('.fc-title').append("<br/>" + event.description);
 		        },
+		        eventDrop: function(event, element) {
+					 //se hacen las verificaciones del evento
+					 //se actualiza en la bbdd el elemento o se guarda si no existe
+					 console.log(event.id);
+			    },
 				header : {
 				left : 'prev,next today',
 				center : 'title',
 				right : 'agendaDay,agendaWeek,month'
 			},
+			
 			defaultView : 'agendaWeek',
+			lazyFetch: true,
 			editable : true,
 			selectable: true,
 			droppable : true, // this allows things to be dropped onto the calendar
