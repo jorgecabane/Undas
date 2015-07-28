@@ -1,5 +1,8 @@
+<?php
+session_start();
+include "header.php";
 
-
+?>
 <div align="center">
 	
 </div>
@@ -17,7 +20,7 @@
 			<div class="tab-pane fade in active" id="A">
 			<h3>Informacion Trabajador</h3>
 			 <?php
-			include "informacionEmpresas.php";
+			include "perfil/informacionEmpresas.php";
 			?>
                     </table>
 			</div>

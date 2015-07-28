@@ -102,7 +102,7 @@ if ($_SESSION ["usuario"]) {
         <?php } // si es admin ve esto?>
 		 
 				<li><a href="Perfiles.php">Perfiles TM</a></li>
-					<li><a href="perfil/empresaGeneral.php">Empresas</a></li>
+					<li><a href="empresaGeneral.php">Empresas</a></li>
 
 				</ul>
 
