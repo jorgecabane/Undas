@@ -72,7 +72,7 @@ foreach ( $ecos as $eco ) {
 			<!-- Generacion de listado de TMs -->
 
 			<hr class="hr-sm">
-			<!-- 			<a href='#' class='btn btn-warning btn-block'>Mostrar BBDD</a> -->
+			<Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a>
 		<?php
 		// para los filtros de Eco
 		?>
@@ -104,6 +104,7 @@ foreach ( $ecos as $eco ) {
 		$('#ecos').change(function(){
 				color = $('#ecos option:selected').attr('event-color');
 				eco = $('#ecos option:selected').text();
+				idEco = $('#ecos').val();
 				$('#external-events .fc-event').each(function(){
 					$(this).css('background', color).css('border',color);
 					$(this).attr('event-color',color); // se asigna el color de la eco correspondiente a cada elemento
@@ -112,21 +113,24 @@ foreach ( $ecos as $eco ) {
 						description : $.trim($(this).text()),
 						stick : true,	// maintain when user navigates (see docs on the renderEvent method)
 						color : color, //cambia el color al color asignado
-						editable : true
+						editable : true,
+						idEco: idEco
 					});
 					});// each
 			});
 		
 		$('#external-events .fc-event').each(function() {
-			var color = $(this).attr('event-color');
-			var eco = $('#ecos option:selected').text();
+			color = $(this).attr('event-color');
+			eco = $('#ecos option:selected').text();
+			idEco = $('#ecos').val();
 			// store data so the calendar knows to render an event upon drop
 			$(this).data('event', {
 						title : eco, // use the element's text as the event title
 						description : $.trim($(this).text()),
 						stick : true,	// maintain when user navigates (see docs on the renderEvent method)
 						color : color, //cambia el color al color asignado
-						editable : true
+						editable : true,
+						idEco: idEco
 			});
 
 			// make the event draggable using jQuery UI
@@ -150,10 +154,16 @@ foreach ( $ecos as $eco ) {
 		        },
 		        eventDrop: function(event, element) {
 			         //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
-			         
-					 //se hacen las verificaciones del evento
+			         alert(event.idEco+' '+event.start.format());
+			         $.ajax({
+			     		url: 'include/verificaEco.php',
+			     		async: true,
+			     		data: {"idEco":event.idEco,"start":event.start.format()},
+			     		method: 'POST'
+			     		});//ajax
+			         //se hacen las verificaciones del evento
 					 //se actualiza en la bbdd el elemento o se guarda si no existe
-					 console.log(event.id);
+					 
 			    },
 				header : {
 				left : 'prev,next today',
@@ -178,10 +188,9 @@ foreach ( $ecos as $eco ) {
 </script>
 <script>
 
-// 	$('.btn').click(function() {
-		
-// 		$('#calendar').fullCalendar('renderEvent', evento);
-// 	});
+ 	$('.btn').click(function() {
+ 		
+	});
 </script>
 <script src="include/filtro.js"></script>
 </html>

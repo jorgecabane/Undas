@@ -12,7 +12,7 @@ require_once dirname ( __FILE__ ) . '/../conexionLocal.php'; // archivo de conex
 // verificacion del tipo 1
 function verifyEco($idEco, $dateTime, $type = 'array', $display = false) {
 	if ($display == false) { // si solo se busca verificar (sin mostrar los duplicados)
-		$query = "SELECT TM_idTM FROM evento WHERE Ecos_idEcos = $idEco AND HoraInicio = '$dateTime' ";
+		$query = "SELECT TM_idTM as idTM FROM evento WHERE Ecos_idEcos = $idEco AND HoraInicio = '$dateTime' ";
 		$res = mysql_query ( $query ) or die ( mysql_error () ); // ejecutar la query
 		if (mysql_affected_rows () >= 1) { // si hay algun error
 			$result = false;
@@ -20,7 +20,7 @@ function verifyEco($idEco, $dateTime, $type = 'array', $display = false) {
 			$result = true;
 		}
 	} else {
-		$query = "SELECT TM.Nombre FROM TM, evento WHERE Ecos_idEcos = $idEco AND HoraInicio = '$dateTime' AND TM_idTM = idTM";
+		$query = "SELECT concat(TM.Nombre, TM.Apellido) as Nombre FROM TM, evento WHERE Ecos_idEcos = $idEco AND HoraInicio = '$dateTime' AND TM_idTM = idTM";
 		$res = mysql_query ( $query ) or die ( mysql_error () ); // ejecutar la query
 		if (mysql_affected_rows () >= 1) { // si hay algun error
 			while ( $row = mysql_fetch_assoc ( $res ) ) {
