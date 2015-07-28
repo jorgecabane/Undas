@@ -78,9 +78,6 @@ include_once "include/verificacionUsuario.php";
 if ($admin == 1) {
 	?>
 <script>
-
-
-	<script>
 $( document ).ready(function() {
  $("#call").focus(); }  
  );
