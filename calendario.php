@@ -145,13 +145,17 @@ foreach ( $ecos as $eco ) {
 			eventSources: [{
 				url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro;?>"	
 						}],//eventSources
-			header : {
+				eventRender: function(event, element) { 
+		            element.find('.fc-title').append("<br/>" + event.description); 
+		        },
+				header : {
 				left : 'prev,next today',
 				center : 'title',
 				right : 'agendaDay,agendaWeek,month'
 			},
 			defaultView : 'agendaWeek',
 			editable : true,
+			selectable: true,
 			droppable : true, // this allows things to be dropped onto the calendar
 			drop : function(event) {
 				//deberiamos guardarlos en la bbdd
