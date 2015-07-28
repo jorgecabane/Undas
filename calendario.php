@@ -149,6 +149,8 @@ foreach ( $ecos as $eco ) {
 		            element.find('.fc-title').append("<br/>" + event.description);
 		        },
 		        eventDrop: function(event, element) {
+			         //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
+			         
 					 //se hacen las verificaciones del evento
 					 //se actualiza en la bbdd el elemento o se guarda si no existe
 					 console.log(event.id);
