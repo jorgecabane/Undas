@@ -87,7 +87,7 @@ body {
 		<div class='col-md-10'>
 			<!-- calendario -->
 			<div class='row'>
-				<div id='calendar' class='well'></div>
+				<div id='calendar' class='well well-sm'></div>
 			</div>
 			<!-- calendario -->
 		</div>
@@ -164,10 +164,10 @@ body {
 			eventSources: [{
 				url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro;?>"	
 						}],//eventSources
-				eventRender: function(event, element) { 
+			eventRender: function(event, element) { 
 		            element.find('.fc-title').append("<br/>" + event.description);
 		        },
-		        eventDrop: function(event, element) {
+		    eventDrop: function(event, element) {
 			         //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
 			        // alert(event.idEco+' '+event.start.format());
 					$.ajax({
@@ -198,18 +198,26 @@ body {
 					//se actualiza en la bbdd el elemento o se guarda si no existe
 					 
 			    },
-				header : {
+			header : {
 				left : 'prev,next today',
 				center : 'title',
 				right : 'agendaDay,agendaWeek,month'
 			},
-			
+			businessHours:{
+			    start: '8:00', // a start time (10am in this example)
+			    end: '22:00', // an end time (6pm in this example)
+
+			    dow: [ 1, 2, 3, 4, 5, 6 ]
+			    // days of week. an array of zero-based day of week integers (0=Sunday)
+			    // (Monday-Thursday in this example)
+			},
 			defaultView : 'agendaWeek',
 			lazyFetch: true,
 			editable : true,
 			selectable: true,
 			droppable : true, // this allows things to be dropped onto the calendar
 			hiddenDays : [ 0 ],
+			contentHeight: 390,
 			allDaySlot: false			
 		});
 
