@@ -32,7 +32,12 @@ body {
 	margin-top: 3px;
 	marin-bottom: 3px
 }
+
+.alert {
+	margin-bottom: 0px;
+}
 </style>
+
 <div class='container-fluid'>
 	<div class='row'>
 		<div class='col-md-4 col-md-offset-4 well well-sm well-titles'>
@@ -43,18 +48,19 @@ body {
 			</center>
 		</div>
 	</div>
+
 	<div class='row'>
-		<div id='external-events' class='col-md-2 well well-sm'>
+		<div id='external-events' class='col-md-2 hidden-sm hidden-xs well well-sm'>
 			<h4>Listado de TM's</h4>
 			<select name='ecos' id='ecos' class='form-control'
 				style='width: 100%;'>
-<?php
-$ecos = getEcos ( $idCentro );
-foreach ( $ecos as $eco ) {
-	echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
-}
-
-?>
+		<?php
+		$ecos = getEcos ( $idCentro );
+		foreach ( $ecos as $eco ) {
+			echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
+		}
+		
+		?>
 				<!-- Generacion de listado de ecos como opcion -->
 				<!-- <option value='eco1' event-color='#2b95ce'>Eco1</option>
 				<option value='eco2' event-color='#5ed639'>Eco2</option> -->
@@ -72,20 +78,24 @@ foreach ( $ecos as $eco ) {
 			<!-- Generacion de listado de TMs -->
 
 			<hr class="hr-sm">
-			<Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a>
+			<!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
 		<?php
 		// para los filtros de Eco
 		?>
+		
 		</div>
 		<div class='col-md-10'>
 			<!-- calendario -->
-			<div id='calendar' class='well'></div>
+			<div class='row'>
+				<div id='calendar' class='well'></div>
+			</div>
 			<!-- calendario -->
 		</div>
 		<div style='clear: both'></div>
 	</div>
 	<!-- row -->
 </div>
+
 <!-- container-fluid -->
 </body>
 <script src='calendario/lib/moment.min.js'></script>
@@ -95,42 +105,47 @@ foreach ( $ecos as $eco ) {
 <script src='calendario/lang/es.js'></script>
 
 <script>
-	$(document).ready(function() {
+	$(document).ready(function(){
 
 		/* initialize the external events
 		-----------------------------------------------------------------*/
 		/*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
 		*/
 		$('#ecos').change(function(){
-				color = $('#ecos option:selected').attr('event-color');
-				eco = $('#ecos option:selected').text();
-				idEco = $('#ecos').val();
-				$('#external-events .fc-event').each(function(){
-					$(this).css('background', color).css('border',color);
-					$(this).attr('event-color',color); // se asigna el color de la eco correspondiente a cada elemento
-					$(this).data('event', {
-						title : eco, // use the element's text as the event title
-						description : $.trim($(this).text()),
-						stick : true,	// maintain when user navigates (see docs on the renderEvent method)
-						color : color, //cambia el color al color asignado
-						editable : true,
-						idEco: idEco
+			color = $('#ecos option:selected').attr('event-color');
+			eco = $('#ecos option:selected').text();
+			idEco = $('#ecos').val();
+			
+			$('#external-events .fc-event').each(function(){
+				$(this).css('background', color).css('border',color);
+				$(this).attr('event-color',color); // se asigna el color de la eco correspondiente a cada elemento
+				idTM = $(this).attr('idTM');
+				$(this).data('event', {
+					title : eco, // use the element's text as the event title
+					description : $.trim($(this).text()),
+					stick : true,	// maintain when user navigates (see docs on the renderEvent method)
+					color : color, //cambia el color al color asignado
+					editable : true,
+					idEco: idEco,
+					idTM: idTM
 					});
-					});// each
+				});// each
 			});
 		
 		$('#external-events .fc-event').each(function() {
 			color = $(this).attr('event-color');
 			eco = $('#ecos option:selected').text();
 			idEco = $('#ecos').val();
+			idTM = $(this).attr('idTM');
 			// store data so the calendar knows to render an event upon drop
 			$(this).data('event', {
-						title : eco, // use the element's text as the event title
-						description : $.trim($(this).text()),
-						stick : true,	// maintain when user navigates (see docs on the renderEvent method)
-						color : color, //cambia el color al color asignado
-						editable : true,
-						idEco: idEco
+				title : eco, // use the element's text as the event title
+				description : $.trim($(this).text()),
+				stick : true,	// maintain when user navigates (see docs on the renderEvent method)
+				color : color, //cambia el color al color asignado
+				editable : true,
+				idEco: idEco,
+				idTM: idTM
 			});
 
 			// make the event draggable using jQuery UI
@@ -154,15 +169,33 @@ foreach ( $ecos as $eco ) {
 		        },
 		        eventDrop: function(event, element) {
 			         //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
-			         alert(event.idEco+' '+event.start.format());
-			         $.ajax({
+			        // alert(event.idEco+' '+event.start.format());
+					$.ajax({
 			     		url: 'include/verificaEco.php',
 			     		async: true,
 			     		data: {"idEco":event.idEco,"start":event.start.format()},
-			     		method: 'POST'
+			     		method: 'POST',
+			     		success: function(output){
+				     		if(output){
+				     			
+					     		}
+				     		}// success
 			     		});//ajax
-			         //se hacen las verificaciones del evento
-					 //se actualiza en la bbdd el elemento o se guarda si no existe
+
+			     	$.ajax({
+			     		url: 'include/verificaTM.php',
+			     		async: true,
+			     		data: {"idTM":event.idTM,"start":event.start.format()},
+			     		method: 'POST',
+			     		success: function(output){
+				     		if(output){
+				     			
+					     		}
+			     		}// success
+				    });//ajax	
+			     		
+			        //se hacen las verificaciones del evento
+					//se actualiza en la bbdd el elemento o se guarda si no existe
 					 
 			    },
 				header : {
@@ -176,10 +209,6 @@ foreach ( $ecos as $eco ) {
 			editable : true,
 			selectable: true,
 			droppable : true, // this allows things to be dropped onto the calendar
-			drop : function(event) {
-				//deberiamos guardarlos en la bbdd
-				
-			},
 			hiddenDays : [ 0 ],
 			allDaySlot: false			
 		});
@@ -189,7 +218,7 @@ foreach ( $ecos as $eco ) {
 <script>
 
  	$('.btn').click(function() {
- 		
+ 		$('#warnings').modal('show');
 	});
 </script>
 <script src="include/filtro.js"></script>
