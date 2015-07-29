@@ -98,11 +98,13 @@ if ($_SESSION ["usuario"]) {
 							<li><a href="agregarTmR.php">Tecnologos Medicos</a></li>
 							<li><a href="agregarEmpresaR.php">Empresa nueva</a></li>
 							<li><a href="agregarCentroNuevoR.php">Centro nuevo</a></li>
+							
 						</ul></li>
+						<li><a href="empresaGeneral.php">Empresas</a></li>
         <?php } // si es admin ve esto?>
 		 
 				<li><a href="Perfiles.php">Perfiles TM</a></li>
-					<li><a href="empresaGeneral.php">Empresas</a></li>
+					
 
 				</ul>
 

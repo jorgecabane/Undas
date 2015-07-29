@@ -23,7 +23,7 @@ include "include/verificacionUsuario.php";
         </div>         
            <div class="form-group">
           <label for="nombre">Giro</label>
-          <input type="number" class="form-control" name="giro" placeholder="Agrege Giro de la empresa" required>
+          <input type="text" class="form-control" name="giro" placeholder="Agrege Giro de la empresa" required>
         </div>          
            <div class="form-group">
           <label for="nombre">Direccion</label>
