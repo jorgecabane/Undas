@@ -40,9 +40,9 @@ if ($_SESSION ["usuario"]) {
 
 </head>
 <body background="images/bg.gif">
-	<div align="left">
-
-		<img src="images/logo.gif" width="400" height="80" alt="logo" />
+	<div class='row' align="left">
+		
+		<img src="images/logo.gif" alt="logo" />
 
 	</div>
 	<nav class="navbar navbar-default ">

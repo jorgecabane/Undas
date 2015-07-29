@@ -217,7 +217,7 @@ body {
 			selectable: true,
 			droppable : true, // this allows things to be dropped onto the calendar
 			hiddenDays : [ 0 ],
-			contentHeight: 390,
+			contentHeight: 500,
 			allDaySlot: false			
 		});
 
