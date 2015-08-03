@@ -24,9 +24,6 @@ body {
 </head>
 <body>
  ///////////////////////////////////////////////////ELiminable si se incluye///////////////////////////////////////////////// -->
-<link href='calendario/fullcalendar.css' rel='stylesheet' />
-<link href='calendario/fullcalendar.print.css' rel='stylesheet'
-	media='print' />
 <style>
 .fc-event {
 	margin-top: 3px;
@@ -84,11 +81,9 @@ body {
 		?>
 		
 		</div>
-		<div class='col-md-10'>
+		<div class='col-md-10 well well-sm'>
 			<!-- calendario -->
-			<div class='row'>
-				<div id='calendar' class='well well-sm'></div>
-			</div>
+			<div id='calendar'></div>
 			<!-- calendario -->
 		</div>
 		<div style='clear: both'></div>
@@ -221,7 +216,7 @@ body {
 			allDaySlot: false			
 		});
 
-	});
+	});//document.ready
 </script>
 <script>
 
