@@ -21,22 +21,19 @@ if ($_SESSION ["usuario"]) {
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="Include/jquery-2.1.4.min.js"></script>
+<script	src="Include/bootstrap.js"></script>
+<script src="Include/jquery-ui.js"></script>
 
 
 
 
 <!-- css -->
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link href="css/bootstrap.min.css" rel='stylesheet'>
 <link href="css/style.css" rel='stylesheet'>
+<link href='calendario/fullcalendar.css' rel='stylesheet' />
+<link href='calendario/fullcalendar.print.css' rel='stylesheet'	media='print' />
 
 </head>
 <body background="images/bg.gif">
