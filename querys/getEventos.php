@@ -11,6 +11,7 @@ function getEventos($idCentro = null) {
 				FROM Evento, Ecos, TM
 				WHERE TM_idTM=idTM AND Ecos_idEcos=idEcos AND Centro_idCentro=$idCentro";
 		
+		//echo $query;
 		$res = mysql_query ( $query ) or die ( mysql_error () );
 				
 		while ( $row = mysql_fetch_assoc ( $res ) ) {

@@ -25,7 +25,7 @@ $rut = $_POST ['Rut'];
 
 		<div class="tab-pane fade" id="C">
 			<center><h3>Horario TM</h3></center>
-			<?php require_once "informacionHorario.php"//informacion del calendario personal del TM?>
+			<?php include_once "informacionHorario.php";//informacion del calendario personal del TM?>
 		</div>
 	</div>
 </div>

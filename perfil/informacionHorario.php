@@ -7,7 +7,7 @@
 $(document).ready(function(){
 	$('#calendarTM').fullCalendar({
 		eventSources: {
-			url: "Include/feedEventosCentro.php?idTM=1"
+			url: "Include/feedEventosTM.php?idTM=1"
 				},
 		header : {
 			left : 'prev,next, today',
