@@ -12,12 +12,12 @@ function getEventosTM($idTM = null) {
 				WHERE TM_idTM=$idTM AND TM_idTM=idTM AND Ecos_idEcos=idEcos AND Centro_idCentro=idCentro";
 		
 		$res = mysql_query ( $query ) or die ( mysql_error () );
-				
+		
 		while ( $row = mysql_fetch_assoc ( $res ) ) {
 			$result [] = $row;
 		} // while
 		return $result;
 	} // si se le entrega correctamente el idCentro
 }
-//var_dump ( getEventosTM ( 1 ) );
+// var_dump ( getEventosTM ( 1 ) );
 ?>
