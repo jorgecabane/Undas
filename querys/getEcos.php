@@ -22,5 +22,5 @@ function getEcos($idCentro = null) {
 	}
 	return $result;
 }
-//var_dump ( getEcos (1) );
+//var_dump ( getEcos (0) );
 ?>

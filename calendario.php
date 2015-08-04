@@ -47,15 +47,14 @@ body {
 	</div>
 
 	<div class='row'>
-		<div id='external-events'
-			class='col-md-2 hidden-sm hidden-xs well well-sm'>
+		<div id='external-events' class='col-md-2 hidden-sm hidden-xs well well-sm'>
 			<h4>Listado de TM's</h4>
 			<select name='ecos' id='ecos' class='form-control'
 				style='width: 100%;'>
 		<?php
 		$ecos = getEcos ( $idCentro );
 		foreach ( $ecos as $eco ) {
-			echo "<option value='" . $eco ['idEcos'] . "' event-color = " . $eco ['color'] . ">" . $eco ['Nombre'] . "</option>";
+			echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
 		}
 		
 		?>
