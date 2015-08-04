@@ -22,9 +22,9 @@
  *
  */
 require_once dirname ( __FILE__ ) . "/../querys/getEventosTM.php";
-if (isset ( $_REQUEST ['idTM'] )) {
+if (isset ( $_REQUEST ['Rut'] )) {
 	
-	echo json_encode ( getEventosTM ( $_REQUEST ['idTM'] ) );
+	echo json_encode ( getEventosTM ( $_REQUEST ['Rut'] ) );
 }
 
 ?>
