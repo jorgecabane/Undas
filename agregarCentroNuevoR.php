@@ -77,7 +77,7 @@ and open the template in the editor.
 	$( "#ecos" ).keyup(function(event){
 		event.preventDefault();
 	for( var i = 1 ; i<= $( "#ecos" ).val() ; i++){
-		$( "#append" ).append( "<input type='Text' class='form-control' class='ecos' Value='Eco'"+ i +"required>" );
+		$( "#append" ).append( "<input type='Text' class='form-control' class='ecos' Value='Eco"+ i +"' required>" );
 			
 	}
 	  
