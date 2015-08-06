@@ -60,13 +60,11 @@ and open the template in the editor.
 		</div>
 
 		<div class="row">
-			<div id="append" class="col-xs-2">
-			
-			</div>
+			<div id="append" class="col-xs-2"></div>
 		</div>
 		<div class="form-group">
-		    <br>
-			<input class='btn btn-info btnedit ' type='submit' value='Agregar'>
+			<br> <input class='btn btn-info btnedit ' type='submit'
+				value='Agregar'>
 		</div>
 
 </body>
@@ -74,12 +72,19 @@ and open the template in the editor.
 </html>
 <script>
 
-	$( "#ecos" ).keyup(function(event){
+	$( "#ecos" ).bind('keyup', function (event){
 		event.preventDefault();
+
+	if	( $( ".Eco1" ).val()!="Eco1"){
 	for( var i = 1 ; i<= $( "#ecos" ).val() ; i++){
-		$( "#append" ).append( "<input type='Text' class='form-control' class='ecos' Value='Eco"+ i +"' required>" );
+		$( "#append" ).append( "<input type='Text' class='form-control Eco"+ i +"'  Value='Eco"+ i +"' required>" );
 			
 	}
-	  
-   });
+	}
+	 $( ".Eco1" ).focus() ;
+  
+	  });
+
  </script>
+ 
+
