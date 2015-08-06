@@ -2,7 +2,6 @@
 session_start();
 include "header.php";
 include "include/verificacionUsuario.php";
-
 ?>
 <html>
    <head>
@@ -12,34 +11,77 @@ include "include/verificacionUsuario.php";
     <body background="images/bg.gif">
          <div class="container">
       <h2>Agregar Empresa</h2>
-      <form role="form" action="querys/insertEmpresaR.php" method="POST">
+      
         <div class="form-group">
           <label for="nombre">Nombre</label>
-          <input type="text" class="form-control" name="nombre" placeholder="Agrege nombre de la empresa" required>
+          <input type="text" class="form-control" id="nombre" placeholder="Agrege Nombre de la empresa" required>
         </div>          
            <div class="form-group">
           <label for="nombre">Rut</label>
-          <input type="number" class="form-control" name="rut" placeholder="Agrege Rut de la empresa" required>
+          <input type="number" class="form-control" id="rut" placeholder="Agrege Rut de la empresa" required>
         </div>         
            <div class="form-group">
           <label for="nombre">Giro</label>
-          <input type="text" class="form-control" name="giro" placeholder="Agrege Giro de la empresa" required>
+          <input type="text" class="form-control" id="giro" placeholder="Agrege Giro de la empresa" required>
         </div>          
            <div class="form-group">
           <label for="nombre">Direccion</label>
-          <input type="text" class="form-control" name="direccion" placeholder="Agrege direccion de la empresa" required>
+          <input type="text" class="form-control" id="direccion" placeholder="Agrege Direccion de la empresa" required>
         </div>          
            <div class="form-group">
-          <label for="nombre">comuna</label>
-          <input type="text" class="form-control" name="comuna" placeholder="Agrege comuna de la empresa" required>
+          <label for="nombre">Ciudad</label>
+          <input type="text" class="form-control" id="ciudad" placeholder="Agrege Ciudad de la empresa" >
         </div>          
            <div class="form-group">
-          <label for="nombre">ciudad</label>
-          <input type="text" class="form-control" name="ciudad" placeholder="Agrege ciudad de la empresa" required>
+          <label for="nombre">Comuna</label>
+          <input type="text" class="form-control" id="comuna" placeholder="Agrege Comuna de la empresa" required>
         </div>         
-             <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+             <input type="submit" value="Agregar" id='agregar' class='btn btn-info btnedit'/>
+		<div >
+<p id='respuesta'>
+</p>
+</div>
     </div>
  
     </body>
 </html>
+
+<script>
+$("#agregar").click(function(){
+	
+	var name= $('#nombre').val();
+	 
+			
+			
+			 jQuery.ajax({
+			       method: "POST",
+			       url: "querys/insertEmpresaR.php",
+			       data: {
+				     		'nombre':$('#nombre').val(),
+				     		'rut':$('#apellido').val(),
+				     		'giro':$('#rut').val(),
+				     		'direccion':$('#mail').val(),
+				     		'comuna':$('#celular').val(),
+		                    'ciudad':$('#contrasena').val()
+			       },
+			       
+			       error: function() {
+			    	   alert("Error Rut ya existente, intente nuevamente");
+			       },
+			       
+			       success: function(response)
+			       {
+			    	   $("#respuesta").text("Se agrego con exito a: " + name);
+			    	   $('#nombre').val('');
+			     		$('#rut').val('');
+			     		$('#giro').val('');
+			     		$('#direccion').val('');
+			     		$('#comuna').val('');
+		               $('#ciudad').val('');
+		             
+			    	   
+			       }
+			 }); 
+		
+});
+</script>

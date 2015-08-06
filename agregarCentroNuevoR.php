@@ -4,11 +4,7 @@ include "header.php";
 include "include/verificacionUsuario.php";
 ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,13 +30,13 @@ and open the template in the editor.
 										
 										$resultado = mysql_query ( $query ) or die ( mysql_error () );
 										if ($resultado) {
-											echo "<select required name='empresa' id='empresa' >";
+											echo "<select class='form-control' required name='empresa' id='empresa' >";
 											echo "<option value=''> Seleccione Empresa </option>";
 											while ( $row = mysql_fetch_assoc ( $resultado ) ) {
 												
 												echo "<option value='" . $row ['idEmpresa'] . "'>" . $row ['Nombre'] . "</option>";
 											}
-											echo "</select><br>";
+											echo "</select>";
 											
 											// echo "</form>";
 										}
@@ -57,10 +53,15 @@ and open the template in the editor.
 			<label for="Ecos">Numero de ecos</label> <input type="number"
 				class="form-control" id="ecos" placeholder="Agrege numero de ecos"
 				required>
+
+		</div>
+		<div class="form-group">
+			Modificar nombres de Ecos (Eco1,Eco2... por Default) <br> <input
+				type="checkbox" id="checkbox">
 		</div>
 
 		<div class="row">
-			<div id="append" class="col-xs-2"></div>
+			<div id="append" class="col-xs-2" style="display: none"></div>
 		</div>
 		<div class="form-group">
 			<br> <input class='btn btn-info btnedit ' type='submit'
@@ -86,5 +87,11 @@ and open the template in the editor.
 	  });
 
  </script>
- 
 
+<script>
+$('#checkbox').on('click', function() {
+
+	$('#append').toggle();
+	
+});
+</script>
