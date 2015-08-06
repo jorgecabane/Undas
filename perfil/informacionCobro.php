@@ -31,21 +31,18 @@
 													while ( $row = mysql_fetch_array ( $resultado ) ) {
 														
 														echo "<tr>";
-														echo "<td class='centro'>" . $row ['Centro'] . "</td>";
+														echo "<td class='centro'>" . $row ['Centro'] . "</td>\n";
 														?>
 														<td>
 					<div class="form-group">
-						<input class='editableCobro' type="text" class="form-control" name="Mail"
-							value="<?php echo $row['Valor'];?>"
+						<input class='editableCobro' type="text" class="form-control"
+							name="Mail" value="<?php echo $row['Valor'];?>"
 							<?php if($admin==0){ echo "disabled='disabled'";       }?>
 							required>
 
 					</div>
 				</td>
-							 <?php
-														
-														
-														
+							<?php
 														
 														if ($row ['Semana'] == 1) {
 															echo "<td class='semana'>Semana</td>";
@@ -55,17 +52,13 @@
 														}
 														if ($admin == 1) {
 															?>
-<td>
-					
-						<input type="hidden" id="idTM" name="id" value="<?php echo $row['idTM']; ?>" />
-						<input  type="submit" value="Editar" class='btn btn-info btneditable' disabled="disabled" />
-					
+<td><input type="hidden" id="idTM" name="id"
+					value="<?php echo $row['idTM']; ?>" /> <input type="submit"
+					value="Editar" class='btn btn-info btneditable' disabled="disabled" />
+
 				</td>
-				<td>
-					
-						<input type="submit" value="Eliminar" class='btn btn-danger btndelete' />
-					
-				</td>
+				<td><input type="submit" value="Eliminar"
+					class='btn btn-danger btndelete' /></td>
 <?php
 														}
 														
@@ -84,75 +77,40 @@
 <script>
 $(".editableCobro").keyup(function(){
 //$(".btneditable").removeAttr("disabled");
+//solo se buscan los elementos de la fila seleccionada
+var row = $(this).parent().parent().parent();
 
-$(this)
-.parent()
-.parent()
-.parent()
-.children()
-.children(".btneditable")
-.removeAttr("disabled");
-
-
- $(this)
- .parent()
- .parent()
- .parent()
- .addClass("danger");
-
-
-var input = 
-	 $(this)
-	 .parent()
-	 .parent()
-	 .parent()
-	 .children()
-	 .children()
-	 .children(".editableCobro");
-
-var  centro=
-	 $(this)
-	 .parent()
-	 .parent()
-	 .parent()
-	 .children(".centro");
-
-var  semana=
-	 $(this)
-	 .parent()
-	 .parent()
-	 .parent()
-	 .children(".semana");
+row.find(".btneditable").removeAttr("disabled");
+row.addClass("danger");
+});
 
 $(".btneditable").click(function(){
+	//solo se buscan los elementos de la fila seleccionada
+	var row = $(this).parent().parent().parent();
+	var input = row.find(".editableCobro");
+	var centro= row.find(".centro");
+	var semana= row.find(".semana");
 
-	 jQuery.ajax({
-	       method: "POST",
-	       url: "querys/updateCobro.php",
-	       data: {
-		     		'valor': input.val(),
-		     		'id': $("#idTM").val(),
-		     		'semana': semana.html(),
-		     		'centro':  centro.html()
+		jQuery.ajax({
+		       method: "POST",
+		       url: "querys/updateCobro.php",
+		       data: {
+			     		'valor': input.val(),
+			     		'id': $("#idTM").val(),
+			     		'semana': semana.html(),
+			     		'centro':  centro.html()
 
-	       },
-	       
-	       success: function(response)
-	       {
-	    	   $(".btneditable").attr("disabled","disabled");
-	           semana.parent()
-		       .removeClass("danger")
-		       .addClass("success");
-	       }
-
-	 });
-
-
-});
-
-
- 
-});
+		       },
+		       
+		       success: function(response)
+		       {
+		    	   $(".btneditable").attr("disabled","disabled");
+		           semana.parent()
+			       .removeClass("danger")
+			       .addClass("success");
+		       }//success
+		});//ajax
+});//click .btneditable
 </script>
 
 
@@ -165,16 +123,14 @@ $(".btndelete").click(function(){
 		 $(this)
 		 .parent()
 		 .parent()
-		 .children(".centro")
+		 .find(".centro")
 		 .html();
 
 	var input = 
 		 $(this)
 	     .parent()
 	     .parent()
-	     .children()
-	     .children()
-	     .children(".editableCobro")
+	     .find(".editableCobro")
 	     .val();
 
 	var  semana=
@@ -186,8 +142,7 @@ $(".btndelete").click(function(){
 	 
 	var r = confirm("Esta seguro que quiere eliminar la fila: "+ centro +" valor: "+ input +"?");
 	if (r == true) {
-
-		 jQuery.ajax({
+		jQuery.ajax({
 		       method: "POST",
 		       url: "querys/eraseCobro.php",
 		       data: {			     		
