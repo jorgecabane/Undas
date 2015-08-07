@@ -21,10 +21,8 @@ if ($_SESSION ["usuario"]) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="Include/jquery-2.1.4.min.js"></script>
-    <!--<script src="Include/jquery-ui.js"></script> -->
     <script src="Include/bootstrap.js"></script>
     <script src='calendario/lib/moment.min.js'></script>
-    <script src='calendario/lib/jquery.min.js'></script>
     <script src='calendario/lib/jquery-ui.custom.min.js'></script>
     <script src='calendario/fullcalendar.min.js'></script>
     <script src='calendario/lang/es.js'></script>

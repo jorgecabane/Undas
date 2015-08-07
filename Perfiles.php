@@ -33,8 +33,8 @@ include_once "include/verificacionUsuario.php";
 			include "querys/todosTmListado.php";
 		}
 		?>
-				
-				
+
+
 			</div>
 
 		</div>
@@ -50,7 +50,7 @@ if ($admin == 0) {
 	echo '<div class="col-sm-10 well" id="perfil">';
 }
 ?>
-		
+
 			<!-- aqui va perfil -->
 	</div>
 </div>
@@ -70,20 +70,20 @@ if ($admin == 0) {
 if ($admin == 1) {
 	echo '<script>
  			$( document ).ready(function() {
-			$("#call").focus(); 
+			$("#call").focus();
 			});
 		 </script>';
 } elseif ($admin == 0) {
-	
+
 	$sessionrut = $_SESSION ['idusuario'];
-	
+
 	$query = "SELECT Rut FROM TM WHERE idTM=$sessionrut";
-	
+
 	$res = mysql_query ( $query ) or die ( mysql_error () );
-	
+
 	$row = mysql_fetch_assoc ( $res );
 	$Rut = $row ["Rut"];
-	
+
 	echo "<script>
 		$( '#perfil' ).load( 'perfil/perfilGeneral.php' , {'Rut': $Rut} ).slideDown('1000');
 	  </script>";
@@ -94,7 +94,7 @@ if ($admin == 1) {
 
 <script>
 $( ".fc-event" ).click(function() {
-	$( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":$(this).attr('Rut')} ).slideDown('1000');
-	
+	$( "#perfil" ).load( "perfil/perfilGeneral.php" , {"Rut":$(this).attr('Rut'), 'nombreTM':$(this).text()} ).slideDown('1000');
+
 });
 </script>
