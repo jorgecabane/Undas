@@ -1,10 +1,10 @@
 <?php
 include_once "../conexionLocal.php";
-$rut = $_POST ['Rut'];
+$rut = $_POST['Rut'];
 
 ?>
 <div class="row">
-	<ul class="nav nav-tabs nav-pills" id='#myTabs'>
+	<ul class="nav nav-tabs nav-pills" id="myTabs">
 		<li class="nav active"><a href="#Atab" data-toggle="tab">Info</a></li>
 		<li class="nav"><a href="#Btab" data-toggle="tab">Cobros</a></li>
 		<li class="nav"><a href="#Ctab" data-toggle="tab">Horario</a></li>

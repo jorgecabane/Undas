@@ -21,7 +21,7 @@ if ($_SESSION ["usuario"]) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="Include/jquery-2.1.4.min.js"></script>
-    <script src="Include/jquery-ui.js"></script>
+    <!--<script src="Include/jquery-ui.js"></script> -->
     <script src="Include/bootstrap.js"></script>
     <script src='calendario/lib/moment.min.js'></script>
     <script src='calendario/lib/jquery.min.js'></script>
@@ -32,11 +32,11 @@ if ($_SESSION ["usuario"]) {
 
 
     <!-- css -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
     <link href="css/bootstrap.min.css" rel='stylesheet'>
+    <link href='calendario/fullcalendar.css' rel='stylesheet'/>
+    <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
     <link href="css/style.css" rel='stylesheet'>
-    <link href='calendario/fullcalendar.css' rel='stylesheet' />
-    <link href='calendario/fullcalendar.print.css' rel='stylesheet'	media='print' />
 
 </head>
 <body background="images/bg.gif">
@@ -77,14 +77,15 @@ if ($_SESSION ["usuario"]) {
                                 while ($row = mysql_fetch_array($result)) {
                                     ?>
                                     <li><a
-                                            href="calendario.php?idCentro=<?php echo $row['idCentro'];
-                            echo '&centro=' . $row['Nombre'];
-                                    ?>"><?php echo $row['Nombre']; ?></a>
+                                            href="calendario.php?idCentro=<?php
+                                            echo $row['idCentro'];
+                                            echo '&centro=' . $row['Nombre'];
+                                            ?>"><?php echo $row['Nombre']; ?></a>
                                         </form></li><?php
                                 }
                                 ?>
                             </ul></li>
-<?php } // si es admin ve esto  ?>
+                    <?php } // si es admin ve esto   ?>
                     <!-- aqui termina -->
                     <!-- este es un dropdown -->
                     <?php
@@ -99,24 +100,18 @@ if ($_SESSION ["usuario"]) {
                                 <li><a href="agregarTmR.php">Tecnologos Medicos</a></li>
                                 <li><a href="agregarEmpresaR.php">Empresa nueva</a></li>
                                 <li><a href="agregarCentroNuevoR.php">Centro nuevo</a></li>
-
-                            </ul></li>
+                            </ul>
+                        </li>
                         <li><a href="empresaGeneral.php">Empresas</a></li>
-<?php } // si es admin ve esto  ?>
+                    <?php } // si es admin ve esto   ?>
 
                     <li><a id="perfiles" href="Perfiles.php">Perfiles TM</a></li>
-
-
                 </ul>
-
-
-
                 <!-- aqui termina -->
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="editarClave.php">Editar Clave</a></li>
                     <li><a href="logOff.php"><?php echo $_SESSION['usuario']; ?>  (Cerrar sesión)</a></li>
-
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

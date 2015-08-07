@@ -1,10 +1,10 @@
-<?php 
+<?php
 if(isset($_SESSION)){
 	//si hay sesion iniciada
-	//var_dump($_POST);	
+	//var_dump($_POST);
 
 }else{
-	echo '<div class="alert alert-danger">No se ha iniciado sesion.</div>'; 
+	echo '<div class="alert alert-danger">No se ha iniciado sesion.</div>';
 }
 
 ?>
@@ -25,7 +25,7 @@ $(document).ready(function(){
 			center : 'title',
 			right : 'agendaDay,agendaWeek,month'
 		},
-		eventRender: function(event, element) { 
+		eventRender: function(event, element) {
             element.find('.fc-title').prepend(event.description + "<br/>");
         },
 		defaultView : 'agendaWeek',
@@ -39,12 +39,12 @@ $(document).ready(function(){
 		    dow: [ 1, 2, 3, 4, 5, 6 ]
 		    // days of week. an array of zero-based day of week integers (0=Sunday)
 		    // (Monday-Thursday in this example)
-		}				
+		}
 	});//fullCalendar
 
 
 
-	$('#my-tabs').tabs({
+	$('#myTabs').tabs({
 	    activate: function(event, ui) {
 	        $('#calendar').fullCalendar('render');
 	    }
