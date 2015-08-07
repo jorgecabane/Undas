@@ -54,14 +54,6 @@ include_once "include/verificacionUsuario.php";
     </div><!-- cierre perfil -->
 </div>
 
-
-
-
-
-
-
-
-
 </div>
 
 <?php
@@ -76,16 +68,18 @@ if ($admin == 1) {
 
     $sessionrut = $_SESSION ['idusuario'];
 
-    $query = "SELECT Rut FROM TM WHERE idTM=$sessionrut";
+    $query = "SELECT Rut, Nombre, Apellido FROM TM WHERE idTM=$sessionrut";
 
     $res = mysql_query($query) or die(mysql_error());
 
     $row = mysql_fetch_assoc($res);
-    $Rut = $row ["Rut"];
+    $Rut = $row["Rut"];
+    $nombreTM = $row['Nombre'].' '.$row['Apellido'];
 
     echo "<script>
-		$('#perfil').slideDown('1000').load( 'perfil/perfilGeneral.php' , {'Rut': $Rut} );
+		$('#perfil').slideDown('1000').load( 'perfil/perfilGeneral.php' , {'Rut': $Rut, 'nombreTM': '$nombreTM'} );
 	  </script>";
+
 }
 ?>
 

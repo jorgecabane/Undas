@@ -2,6 +2,7 @@
 include_once "../conexionLocal.php";
 $rut = $_POST['Rut'];
 $nombreTM = $_POST['nombreTM'];
+
 ?>
 <div class="row well well-sm">
     <ul class="nav nav-tabs nav-pills" id="myTabs">
@@ -24,7 +25,7 @@ $nombreTM = $_POST['nombreTM'];
         </div>
 
         <div class="tab-pane fade in active" id="Ctab">
-            <center><h3>Horario <?php echo "<span class='label label-info'>$nombreTM</span>";?></h3></center>
+            <center><h3>Horario <?php echo "<span class='label label-info'>$nombreTM</span>"; ?></h3></center>
             <?php include_once "informacionHorario.php"; //informacion del calendario personal del TM ?>
         </div>
     </div>
