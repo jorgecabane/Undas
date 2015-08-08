@@ -14,7 +14,6 @@ $query="SELECT * FROM TM Where Rut=$rut";
 			 	$random=rand(1000000,9999999);
 			 	$apellido=$row['Apellido'];
 			 	$nuevapassword=$apellido.$random;
-			 	echo $nuevapassword;
 			 	$query2="UPDATE TM SET Password='$nuevapassword' WHERE Rut=$rut";
 			 			$resultado2=mysql_query($query2);
 			 	if($resultado2){
@@ -26,19 +25,20 @@ $query="SELECT * FROM TM Where Rut=$rut";
 		 		$headers = "From: serviciotenico@tmtecnomed.cl" . "\r\n";
 		 	
 		 		mail($to,$subject,$txt,$headers);
-			 	}
-			 	else{
-			 		echo "no se updatea la password";
-			 	}
+			 	
 			echo "Revise el correo que le otorgo tmtecnomed";
+			?><meta http-equiv="Refresh" content="3;url=logIn.php">;<?php 
 		 	}
+			 }
 		 	else
 		 	{
 		 	echo "correo incorrecto";
+		 	?><meta http-equiv="Refresh" content="3;url=passwordRecovery.php">;<?php
 		 	}
 		}
 else {
 	echo "El mail no esta registrado en nuestra base de datos";
+	?><meta http-equiv="Refresh" content="3;url=passwordRecovery.php">;<?php
 }
 
 ?>
