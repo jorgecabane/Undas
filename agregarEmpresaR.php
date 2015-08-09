@@ -58,11 +58,11 @@ $("#agregar").click(function(){
 			       url: "querys/insertEmpresaR.php",
 			       data: {
 				     		'nombre':$('#nombre').val(),
-				     		'rut':$('#apellido').val(),
-				     		'giro':$('#rut').val(),
-				     		'direccion':$('#mail').val(),
-				     		'comuna':$('#celular').val(),
-		                    'ciudad':$('#contrasena').val()
+				     		'rut':$('#rut').val(),
+				     		'giro':$('#giro').val(),
+				     		'direccion':$('#direccion').val(),
+				     		'comuna':$('#comuna').val(),
+		                    'ciudad':$('#ciudad').val()
 			       },
 			       
 			       error: function() {

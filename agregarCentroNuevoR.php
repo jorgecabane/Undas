@@ -61,35 +61,39 @@ include "include/verificacionUsuario.php";
 		</div>
 
 		<div class="row">
-			<div id="append" class="container" style="display: none"></div>
+			<div id="append" class="col-xs-6 container" style="display: none"></div>
 			<!--	<div id="color" class="col-xs-2" style="display: none"></div> -->
 		</div>
 		<div class="form-group">
 			<br> <input class='btn btn-info btnedit ' type='submit'
 				value='Agregar'>
 		</div>
+		<div id="respuesta"></div>
 
 </body>
 
 </html>
+
+
+
+
 <script>
 
 	$( "#ecos" ).bind('keyup', function (event){
 		event.preventDefault();
 
-	if	( $( ".Eco1" ).val()!="Eco1"){
-      $("#append").html(" <table class='table'><thead><tr><th>Nombre</th><th>Color</th></tr></thead><tbody>");
-		
+
+		$('#append').empty();
+		var content = "<table class='table'><thead><tr><th>Nombre</th><th>Color</th></tr></thead><tbody>"
 	for( var i = 1 ; i<= $( "#ecos" ).val() ; i++){
-		$("#append").html("<tr><td><input type='Text' class='form-control Eco"+ i +"'  Value='Eco"+ i +"' required></td>");
-		$("#append").html("<td><input type='color' class='form-control' value='#ff0000'></td></tr>");
-	//	$( "#append" ).append( "<input type='Text' class='form-control Eco"+ i +"'  Value='Eco"+ i +"' required>" );
-		//$( "#color" ).append( "<input type='color' class='form-control' value='#ff0000'>");
-		
+		content += "<tr><td><input type='Text' class='form-control Eco"+ i +"'  Value='Eco"+ i +"' required></td>";
+		content += " <td><input type='color' class='form-control Color"+ i +"' value='#ff0000'></td></tr> ";
+			
 	}
-	$("#append").html("</tbody></table>");
-	}
-	 $( ".Eco1" ).focus() ;
+		content += "</tbody></table>";
+	$('#append').append(content);
+	
+	// $( ".Eco1" ).focus() ;
   
 	  });
 
@@ -99,7 +103,44 @@ include "include/verificacionUsuario.php";
 $('#checkbox').on('click', function() {
 
 	$('#append').toggle();
-//	$('#color').toggle();
-	
+
 });
 </script>
+
+<script>
+//ajax para guardado de datos
+$(".btnedit").click(function(){
+	var name= $('#nombre').val();
+				 jQuery.ajax({
+			       method: "POST",
+			       url: "querys/insertCentroNuevoR.php",
+			       data: {
+				     		'nombre':$('#nombre').val(),
+				     		'empresa':$('#empresa').val(),
+				     		'siglas':$('#siglas').val(),
+				     		'ecos':$('#ecos').val()
+				     		
+			       },
+			       
+			       error: function() {
+			    	   alert("Error, intente nuevamente");
+			       },
+			       
+			       success: function(response)
+			       {
+			    	   $("#respuesta").text("Se agrego con exito a: " + name);
+			    	   $('#nombre').val('');
+			     		$('#empresa').val('');
+			     		$('#ecos').val('');
+			     		$('#siglas').val('');
+			     		$('#append').empty();
+		             
+			    	   
+			       }
+			 }); 
+		
+});
+
+
+</script>
+

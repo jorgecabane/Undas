@@ -11,34 +11,32 @@
 								$siglas = $_POST ['siglas'];
 								$numeroecos = $_POST ['ecos'];
 								
+								
+								//insertando centro
 								$query = "insert into Centro values (null,$idEmpresa,'$nombre','$siglas')";
 								$resultado = mysql_query ( $query );
 								
+								//obteniendo el id del centro recien insertado
 								$querybuscar = "SELECT idCentro FROM Centro WHERE Empresa_idEmpresa=$idEmpresa";
 								$resultadobuscar = mysql_query ( $querybuscar );
 								
 								$idcentro = mysql_fetch_assoc ( $resultadobuscar );
 								$valoridcentro = $idcentro ['idCentro'];
 								
+								// insertando n ecos
+								
 								for($contador = 1; $contador <= $numeroecos; $contador ++) {
-									$query2 = "insert into Ecos values (null,$valoridcentro,$contador)";
+									$query2 = "insert into Ecos values (null,$valoridcentro,$contador,0)";
 									$resultado2 = mysql_query ( $query2 );
 								}
 								if ($resultado && $resultado2) {
 									// success
 									echo "Centro agregado con exito, redireccionando";
-									?>
-									<meta http-equiv="Refresh"
-		content="1;url=../agregarCentroNuevoR.php">;
-        <?php
+									
 								} else {
 									// failure
 									echo " El nombre o sigla ya existe, redireccionando";
-									?>
-        
-    <meta http-equiv="Refresh"
-		content="1;url=../agregarCentroNuevoR.php">;
-    <?php
+									
 								}
 								
 								?>
