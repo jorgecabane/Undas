@@ -110,6 +110,7 @@ $('#checkbox').on('click', function() {
 <script>
 //ajax para guardado de datos
 $(".btnedit").click(function(){
+
 	var name= $('#nombre').val();
 				 jQuery.ajax({
 			       method: "POST",

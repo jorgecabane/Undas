@@ -17,7 +17,7 @@
 								$resultado = mysql_query ( $query );
 								
 								//obteniendo el id del centro recien insertado
-								$querybuscar = "SELECT idCentro FROM Centro WHERE Empresa_idEmpresa=$idEmpresa";
+								$querybuscar = "SELECT idCentro FROM Centro WHERE Nombre='$nombre'";
 								$resultadobuscar = mysql_query ( $querybuscar );
 								
 								$idcentro = mysql_fetch_assoc ( $resultadobuscar );
@@ -26,7 +26,7 @@
 								// insertando n ecos
 								
 								for($contador = 1; $contador <= $numeroecos; $contador ++) {
-									$query2 = "insert into Ecos values (null,$valoridcentro,$contador,0)";
+									$query2 = "insert into Ecos values (null,$valoridcentro,'Eco". $contador ."',0)";
 									$resultado2 = mysql_query ( $query2 );
 								}
 								if ($resultado && $resultado2) {
