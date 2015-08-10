@@ -91,19 +91,25 @@ if ($_SESSION ["usuario"]) {
                     if ($admin == 1) {
                         ?>
                         <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                                data-toggle="dropdown" role="button" aria-expanded="false">Ingreso
-                                de Datos <span class="caret"></span>
+                                                data-toggle="dropdown" role="button" aria-expanded="false">Empresas<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="agregarTmR.php">Tecnologos Medicos</a></li>
-                                <li><a href="agregarEmpresaR.php">Empresa nueva</a></li>
-                                <li><a href="agregarCentroNuevoR.php">Centro nuevo</a></li>
+                                <li><a href="empresaGeneral.php">Perfiles empresas</a></li>
+                                <li><a href="agregarEmpresaR.php">Nueva empresa</a></li>
+                                <li><a href="agregarCentroNuevoR.php">Nuevo centro</a></li>
                             </ul>
                         </li>
-                        <li><a href="empresaGeneral.php">Empresas</a></li>
+                     
                     <?php } // si es admin ve esto   ?>
-
-                    <li><a id="perfiles" href="Perfiles.php">Perfiles TM</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+                                                data-toggle="dropdown" role="button" aria-expanded="false">Tecnologos medicos<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                            	 <li><a id="perfiles" href="Perfiles.php">Perfiles tecnologos medicos</a></li>
+                                <li><a href="agregarTmR.php">Nuevo tecnologos medicos</a></li>   
+                            </ul>
+                        </li>
+                    
                 </ul>
                 <!-- aqui termina -->
 
