@@ -9,37 +9,25 @@ include "include/verificacionUsuario.php";
 		<h2>Agregar Personal</h2>
 		
 			<div class="form-group">
-				<label for="Nombre">Nombre</label> <input type="text"
-					class="form-control" id="nombre" name="nombre" placeholder="Agrege nombre"
-					required>
+				<label for="Nombre">Nombre</label> <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Agrege nombre" required>
 			</div>
 			<div class="form-group">
-				<label for="Apellido">Apellido</label> <input type="text"
-					class="form-control"  id="apellido" name="apellido" placeholder="Agrege apellido"
-					required>
+				<label for="Apellido">Apellido</label> <input type="text" class="form-control"  id="apellido" name="apellido" placeholder="Agrege apellido" required>
 			</div>
 			<div class="form-group">
-				<label for="RUT">RUT</label> <input type="number"
-					class="form-control" id="rut" name="rut" placeholder="Agrege RUT" required>
+				<label for="RUT">RUT</label> <input type="text" class="form-control" id="rut" name="rut" placeholder="Agrege RUT" required>
 			</div>
 			<div class="form-group">
-				<label for="Mail">Mail</label> <input type="text"
-					class="form-control" id="mail" name="mail" placeholder="Agrege Mail" required>
+				<label for="Mail">Mail</label> <input type="text" class="form-control" id="mail" name="mail" placeholder="Agrege Mail" required>
 			</div>
 			<div class="form-group">
-				<label for="Celular">Celular</label> <input type="number"
-					class="form-control" id="celular" name="celular" placeholder="Agrege Celular"
-					required>
+				<label for="Celular">Celular</label> <input type="number" class="form-control" id="celular" name="celular" placeholder="Agrege Celular" required>
 			</div>
 			<div class="form-group">
-				<label for="contrase�a">Contraseña</label> <input type="password"
-					class="form-control" id="contrasena" name="contrasena"
-					placeholder="Elegir Contraseña" required>
+				<label for="contrase�a">Contraseña</label> <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Elegir Contraseña" required>
 			</div>
 			<div class="form-group">
-				<label for="Repetircontrase�a">Repetir Contraseña</label> <input
-					type="password" class="form-control" id="repetircontrasena" name="repetircontrasena"
-					placeholder="Reescribir Contraseña" required>
+				<label for="Repetircontrase�a">Repetir Contraseña</label> <input type="password" class="form-control" id="repetircontrasena" name="repetircontrasena" placeholder="Reescribir Contraseña" required>
 			</div>
 			<br>
 			<input type="submit" value="Agregar" id='agregar' class='btn btn-info btnedit'/>
@@ -97,7 +85,7 @@ $("#agregar").click(function(){
 		}
 
 		else{
-	     alert("Las contrase�as no coinciden, intente nuevamente");
+	     alert("Las contrase�as no coinciden, intente nuevamente");
 		}
 
 });

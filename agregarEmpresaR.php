@@ -18,7 +18,7 @@ include "include/verificacionUsuario.php";
         </div>          
            <div class="form-group">
           <label for="nombre">Rut</label>
-          <input type="number" class="form-control" id="rut" placeholder="Agrege Rut de la empresa" required>
+          <input type="text" class="form-control" id="rut" placeholder="Agrege Rut de la empresa" required>
         </div>         
            <div class="form-group">
           <label for="nombre">Giro</label>
@@ -51,8 +51,6 @@ $("#agregar").click(function(){
 	
 	var name= $('#nombre').val();
 	 
-			
-			
 			 jQuery.ajax({
 			       method: "POST",
 			       url: "querys/insertEmpresaR.php",
@@ -78,8 +76,7 @@ $("#agregar").click(function(){
 			     		$('#direccion').val('');
 			     		$('#comuna').val('');
 		               $('#ciudad').val('');
-		             
-			    	   
+		                
 			       }
 			 }); 
 		
