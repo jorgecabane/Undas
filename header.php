@@ -106,7 +106,10 @@ if ($_SESSION ["usuario"]) {
                             </a>
                             <ul class="dropdown-menu" role="menu">
                             	 <li><a id="perfiles" href="Perfiles.php">Perfiles tecnologos medicos</a></li>
-                                <li><a href="agregarTmR.php">Nuevo tecnologos medicos</a></li>   
+                            	<?php if ($admin == 1) {
+                        ?>
+                                <li><a href="agregarTmR.php">Nuevos tecnologos medicos</a></li>   
+                                    <?php } // si es admin ve esto   ?>
                             </ul>
                         </li>
                     
