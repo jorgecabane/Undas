@@ -10,8 +10,8 @@
 								$nombre = $_POST ['nombre'];
 								$siglas = $_POST ['siglas'];
 								$numeroecos = $_POST ['ecos'];
-								
-								
+								$nombreEcos = $_POST['nombreEcos'];
+								$coloresEcos = $_POST['coloresEcos'];
 								//insertando centro
 								$query = "insert into Centro values (null,$idEmpresa,'$nombre','$siglas')";
 								$resultado = mysql_query ( $query );
@@ -25,8 +25,8 @@
 								
 								// insertando n ecos
 								
-								for($contador = 1; $contador <= $numeroecos; $contador ++) {
-									$query2 = "insert into Ecos values (null,$valoridcentro,'Eco". $contador ."',0)";
+								for($contador = 0; $contador < $numeroecos; $contador ++) {
+									$query2 = "insert into Ecos values (null,$valoridcentro,'$nombreEcos[$contador]','$coloresEcos[$contador]')";
 									$resultado2 = mysql_query ( $query2 );
 								}
 								if ($resultado && $resultado2) {

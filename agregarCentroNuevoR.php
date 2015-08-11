@@ -69,8 +69,8 @@ include "include/verificacionUsuario.php";
 		$('#append').empty();
 		var content = "<table class='table'><thead><tr><th>Nombre</th><th>Color</th></tr></thead><tbody>"
 	for( var i = 1 ; i<= $( "#ecos" ).val() ; i++){
-		content += "<tr><td><input type='Text' class='form-control Eco"+ i +"'  Value='Eco"+ i +"' required></td>";
-		content += " <td><input type='color' class='form-control Color"+ i +"' value='#ff0000'></td></tr> ";
+		content += "<tr><td><input type='Text' class='form-control Eco'  Value='Eco"+ i +"' required></td>";
+		content += " <td><input type='color' class='form-control Color' value='#ff0000'></td></tr> ";
 			
 	}
 		content += "</tbody></table>";
@@ -93,33 +93,45 @@ $('#checkbox').on('click', function() {
 $(".btnedit").click(function(){
 
 	var name= $('#nombre').val();
-				 jQuery.ajax({
-			       method: "POST",
-			       url: "querys/insertCentroNuevoR.php",
-			       data: {
-				     		'nombre':$('#nombre').val(),
-				     		'empresa':$('#empresa').val(),
-				     		'siglas':$('#siglas').val(),
-				     		'ecos':$('#ecos').val()
-				     		
-			       },
-			       
-			       error: function() {
-			    	   alert("Error, intente nuevamente");
-			       },
-			       
-			       success: function(response)
-			       {
-			    	   $("#respuesta").text("Se agrego con exito a: " + name);
-			    	   $('#nombre').val('');
-			     		$('#empresa').val('');
-			     		$('#ecos').val('');
-			     		$('#siglas').val('');
-			     		$('#append').empty();
-		             
-			    	   
-			       }
-			 }); 
+	var nombreEcos = [];
+	$(".Eco").each(function(){
+		nombreEcos.push($(this).val());
+	});
+	var colores =[];
+	$(".Color").each(function(){
+		colores.push($(this).val());
+		});
+
+
+	 jQuery.ajax({
+	       method: "POST",
+	       url: "querys/insertCentroNuevoR.php",
+	       data: {
+		     		'nombre':$('#nombre').val(),
+		     		'empresa':$('#empresa').val(),
+		     		'siglas':$('#siglas').val(),
+		     		'ecos':$('#ecos').val(),
+		     		'nombreEcos': nombreEcos,
+		     		'coloresEcos': colores
+		     		
+	       },
+	       
+	       error: function() {
+	    	   alert("Error, intente nuevamente");
+	       },
+	       
+	       success: function(response)
+	       {
+	    	   $("#respuesta").text("Se agrego con exito a: " + name);
+	    	   $('#nombre').val('');
+	     		$('#empresa').val('');
+	     		$('#ecos').val('');
+	     		$('#siglas').val('');
+	     		$('#append').empty();
+         
+	    	   
+	       }
+	 }); 
 		
 });
 
