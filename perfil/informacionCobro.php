@@ -14,7 +14,7 @@
 													}
 												}
 												
-												$resultado = mysql_query ( "SELECT ValorHora.Valor as Valor, ValorHora.Semana as Semana, Centro.Nombre as Centro, TM.idTM as idTM from TM inner join ValorHora on TM.idTM = ValorHora.Tm_idTM inner join Centro on Centro.idCentro = ValorHora.Centro_idCentro Where TM.Rut=$rut" ) or die ( mysql_error () );
+												$resultado = mysql_query ( "SELECT ValorHora.Valor as Valor, ValorHora.Semana as Semana, Centro.Nombre as Centro, TM.idTM as idTM from TM inner join ValorHora on TM.idTM = ValorHora.Tm_idTM inner join Centro on Centro.idCentro = ValorHora.Centro_idCentro Where TM.Rut='$rut'" ) or die ( mysql_error () );
 												
 												if ($resultado) {
 													

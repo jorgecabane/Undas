@@ -1,7 +1,8 @@
 <div align="center">
     <?php
-				include_once "../include/isAdmin.php";
 				session_start ();
+				include_once "../include/isAdmin.php";
+				
 				if ($_SESSION ["usuario"]) {
 					if (isAdmin ( $_SESSION ["idusuario"] ) == 1) {
 						$admin = 1;
@@ -10,7 +11,7 @@
 					}
 				}
 				
-				$resultado = mysql_query ( "SELECT * from TM Where Rut=$rut" ) or die ( mysql_error () );
+				$resultado = mysql_query ( "SELECT * from TM Where Rut='$rut'" ) or die ( mysql_error () );
 				
 				if ($resultado) {
 					
@@ -22,7 +23,7 @@
 					echo "<th>Mail</th>";
 					echo "<th>Celular</th>";
 					echo "<th>Banco</th>";
-					echo "<th>Cuenta</th>";
+					echo "<th>Cta Corriente</th>";
 					if ($admin == 1) {
 						echo "<th>Editar</th>";
 						echo "<th>Eliminar</th>";
@@ -39,7 +40,7 @@
 					name="Nombre" value="<?php echo $row['Nombre']; ?>"
 					<?php
 						
-if ($admin == 0) {
+						if ($admin == 0) {
 							echo "disabled='disabled'";
 						}
 						?>
@@ -52,7 +53,7 @@ if ($admin == 0) {
 					name="Apellido" value="<?php echo $row['Apellido']; ?>"
 					<?php
 						
-if ($admin == 0) {
+						if ($admin == 0) {
 							echo "disabled='disabled'";
 						}
 						?>
@@ -61,11 +62,11 @@ if ($admin == 0) {
 		</td>
 		<td>
 			<div class="form-group">
-				<input id="rut" type="number" class="form-control editable"
-					name="Rut" value="<?php echo $row['Rut']; ?>"
+				<input id="rut" type="text" class="form-control editable" name="Rut"
+					value="<?php echo $row['Rut']; ?>"
 					<?php
 						
-if ($admin == 0) {
+						if ($admin == 0) {
 							echo "disabled='disabled'";
 						}
 						?>
@@ -78,7 +79,7 @@ if ($admin == 0) {
 					name="Mail" value="<?php echo $row['Mail']; ?>"
 					<?php
 						
-if ($admin == 0) {
+						if ($admin == 0) {
 							echo "disabled='disabled'";
 						}
 						?>
@@ -91,33 +92,33 @@ if ($admin == 0) {
 					name="Celular" value="<?php echo $row['Celular']; ?>"
 					<?php
 						
-if ($admin == 0) {
+						if ($admin == 0) {
 							echo "disabled='disabled'";
 						}
 						?>
 					required>
 			</div>
 		</td>
-			<td>
+		<td>
 			<div class="form-group">
 				<input id="banco" type="text" class="form-control editable"
 					name="banco" value="<?php echo $row['Banco']; ?>"
 					<?php
 						
-if ($admin == 0) {
+						if ($admin == 0) {
 							echo "disabled='disabled'";
 						}
 						?>
 					required>
 			</div>
 		</td>
-			<td>
+		<td>
 			<div class="form-group">
-				<input id="cuenta" type="number" class="form-control editable"
+				<input id="cuenta" type="text" class="form-control editable"
 					name="cuenta" value="<?php echo $row['Cuentacorriente']; ?>"
 					<?php
 						
-if ($admin == 0) {
+						if ($admin == 0) {
 							echo "disabled='disabled'";
 						}
 						?>
