@@ -1,107 +1,155 @@
 <div align="center">
     <?php
-    include_once "../include/isAdmin.php";
-    session_start();
-    if ($_SESSION ["usuario"]) {
-        if (isAdmin($_SESSION ["idusuario"]) == 1) {
-            $admin = 1;
-        } else {
-            $admin = 0;
-        }
-    }
-
-    $resultado = mysql_query("SELECT * from TM Where Rut=$rut") or die(mysql_error());
-
-    if ($resultado) {
-
-        echo "<table id='t01' class='table table-hover table-bordered'>";
-        echo "<thead><tr>";
-        echo "<th>Nombre</th>";
-        echo "<th>Apellido</th>";
-        echo "<th>Rut</th>";
-        echo "<th>Mail</th>";
-        echo "<th>Celular</th>";
-        if ($admin == 1) {
-            echo "<th>Editar</th>";
-            echo "<th>Eliminar</th>";
-        }
-        echo "</thead><tbody>";
-        while ($row = mysql_fetch_array($resultado)) {
-            ?>
+				include_once "../include/isAdmin.php";
+				session_start ();
+				if ($_SESSION ["usuario"]) {
+					if (isAdmin ( $_SESSION ["idusuario"] ) == 1) {
+						$admin = 1;
+					} else {
+						$admin = 0;
+					}
+				}
+				
+				$resultado = mysql_query ( "SELECT * from TM Where Rut=$rut" ) or die ( mysql_error () );
+				
+				if ($resultado) {
+					
+					echo "<table id='t01' class='table table-hover table-bordered'>";
+					echo "<thead><tr>";
+					echo "<th>Nombre</th>";
+					echo "<th>Apellido</th>";
+					echo "<th>Rut</th>";
+					echo "<th>Mail</th>";
+					echo "<th>Celular</th>";
+					echo "<th>Banco</th>";
+					echo "<th>Cuenta</th>";
+					if ($admin == 1) {
+						echo "<th>Editar</th>";
+						echo "<th>Eliminar</th>";
+					}
+					echo "</thead><tbody>";
+					while ( $row = mysql_fetch_array ( $resultado ) ) {
+						?>
 
 
             <tr>
-                <td>
-                    <div class="form-group">
-                        <input id="nombre" type="text" class="form-control editable"
-                               name="Nombre" value="<?php echo $row['Nombre']; ?>"
-                               <?php if ($admin == 0) {
-                                   echo "disabled='disabled'";
-                               } ?> required>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input id="apellido" type="text" class="form-control editable"
-                               name="Apellido" value="<?php echo $row['Apellido']; ?>"
-        <?php if ($admin == 0) {
-            echo "disabled='disabled'";
-        } ?> required>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input id="rut" type="number" class="form-control editable"
-                               name="Rut" value="<?php echo $row['Rut']; ?>"
-        <?php if ($admin == 0) {
-            echo "disabled='disabled'";
-        } ?> required>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input id="mail" type="text" class="form-control editable"
-                               name="Mail" value="<?php echo $row['Mail']; ?>"
-                               <?php if ($admin == 0) {
-                                   echo "disabled='disabled'";
-                               } ?> required>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input id="celular" type="number" class="form-control editable"
-                               name="Celular" value="<?php echo $row['Celular']; ?>"
-        <?php if ($admin == 0) {
-            echo "disabled='disabled'";
-        } ?> required>
-                    </div>
-                </td>
+		<td>
+			<div class="form-group">
+				<input id="nombre" type="text" class="form-control editable"
+					name="Nombre" value="<?php echo $row['Nombre']; ?>"
+					<?php
+						
+if ($admin == 0) {
+							echo "disabled='disabled'";
+						}
+						?>
+					required>
+			</div>
+		</td>
+		<td>
+			<div class="form-group">
+				<input id="apellido" type="text" class="form-control editable"
+					name="Apellido" value="<?php echo $row['Apellido']; ?>"
+					<?php
+						
+if ($admin == 0) {
+							echo "disabled='disabled'";
+						}
+						?>
+					required>
+			</div>
+		</td>
+		<td>
+			<div class="form-group">
+				<input id="rut" type="number" class="form-control editable"
+					name="Rut" value="<?php echo $row['Rut']; ?>"
+					<?php
+						
+if ($admin == 0) {
+							echo "disabled='disabled'";
+						}
+						?>
+					required>
+			</div>
+		</td>
+		<td>
+			<div class="form-group">
+				<input id="mail" type="text" class="form-control editable"
+					name="Mail" value="<?php echo $row['Mail']; ?>"
+					<?php
+						
+if ($admin == 0) {
+							echo "disabled='disabled'";
+						}
+						?>
+					required>
+			</div>
+		</td>
+		<td>
+			<div class="form-group">
+				<input id="celular" type="number" class="form-control editable"
+					name="Celular" value="<?php echo $row['Celular']; ?>"
+					<?php
+						
+if ($admin == 0) {
+							echo "disabled='disabled'";
+						}
+						?>
+					required>
+			</div>
+		</td>
+			<td>
+			<div class="form-group">
+				<input id="banco" type="text" class="form-control editable"
+					name="banco" value="<?php echo $row['Banco']; ?>"
+					<?php
+						
+if ($admin == 0) {
+							echo "disabled='disabled'";
+						}
+						?>
+					required>
+			</div>
+		</td>
+			<td>
+			<div class="form-group">
+				<input id="cuenta" type="number" class="form-control editable"
+					name="cuenta" value="<?php echo $row['Cuentacorriente']; ?>"
+					<?php
+						
+if ($admin == 0) {
+							echo "disabled='disabled'";
+						}
+						?>
+					required>
+			</div>
+		</td>
         <?php
-        if ($admin == 1) {
-            ?>
+						if ($admin == 1) {
+							?>
 
                     <td>
-                        <div>
-                            <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
-                            <input type="submit" value="Finalizar edicion"
-                                   class='btn btn-info btnedit' disabled="disabled" />
-                        </div>
-                    </td>
+			<div>
+				<input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
+				<input type="submit" value="Finalizar edicion"
+					class='btn btn-info btnedit' disabled="disabled" />
+			</div>
+		</td>
 
 
-                    </td>
-                    <td><input type="submit" value="Eliminar TM"
-                               class='btn btn-danger btnerase'></td>
-                </tr> <?php } ?>
+		</td>
+		<td><input type="submit" value="Eliminar TM"
+			class='btn btn-danger btnerase'></td>
+	</tr> <?php } ?>
         <?php
-    }
-    ?>
+					}
+					?>
 
     </tbody>
-    </table>
+	</table>
     <?php
-}
-?>
+				}
+				?>
 
 </div>
 
@@ -131,7 +179,9 @@
                 'apellido': $('#apellido').val(),
                 'rut': $('#rut').val(),
                 'mail': $('#mail').val(),
-                'celular': $('#celular').val()
+                'celular': $('#celular').val(),
+                'banco': $('#banco').val(),
+                'cuenta': $('#cuenta').val()
 
             },
             success: function(response)
