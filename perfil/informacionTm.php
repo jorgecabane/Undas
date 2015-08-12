@@ -101,7 +101,7 @@
 		</td>
 		<td>
 			<div class="form-group">
-				<input id="banco" type="text" class="form-control editable"
+				<textarea id="banco" class="form-control editable"  rows="2" cols="30"
 					name="banco" value="<?php echo $row['Banco']; ?>"
 					<?php
 						
@@ -109,7 +109,7 @@
 							echo "disabled='disabled'";
 						}
 						?>
-					required>
+					required> <?php echo $row['Banco']; ?></textarea>
 			</div>
 		</td>
 		<td>
