@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "header.php";
-
+include_once "include/verificacionUsuario.php";
 ?>
     <div class="container">
       <h2>Editar Clave</h2>
