@@ -21,19 +21,19 @@
          
     if($repetirclave == $clavenueva){
                       
-    $query="UPDATE TM SET Password=$clavenueva WHERE idTM=$id";    
+    $query="UPDATE TM SET Password='$clavenueva' WHERE idTM=$id";    
     $resultado=mysql_query($query) ;
     if($resultado) { 
     //success 
         echo"Actualizado con exito, redireccionando";
-        ?><meta http-equiv="Refresh" content="4;url=index.php">
+        ?><meta http-equiv="Refresh" content="4;url=../index.php">
         <?php
 } else { 
     //failure
     echo " Se produjo un error en la actualizacion, redireccionando";
     ?>
         
-    <meta http-equiv="Refresh" content="4;'url=editarClave.php">
+    <meta http-equiv="Refresh" content="4;'url=../editarClave.php">
     <?php
 }   
     }   
@@ -41,7 +41,7 @@ else{
 	echo "Las claves nuevas no coinciden";
         		?>
         
-    <meta http-equiv="Refresh" content="4;url=editarClave.php">
+    <meta http-equiv="Refresh" content="4;url=../editarClave.php">
     <?php
 }
          }
@@ -49,7 +49,7 @@ else{
          	echo "La clave antigua es incorrecta, intente denuevo";
         		?>
         
-    <meta http-equiv="Refresh" content="4;url=editarClave.php">
+    <meta http-equiv="Refresh" content="4;url=../editarClave.php">
     <?php
          }
     ?>

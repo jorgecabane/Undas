@@ -6,7 +6,7 @@ include_once "include/verificacionUsuario.php";
 <div class="container-fluid">
     <div class="row well well-titles">
         <h3>
-            <center>Perfiles Tecnologos Medicos</center>
+            <center>Perfiles Tecn&oacute;logos M&eacute;dicos</center>
         </h3>
     </div>
 

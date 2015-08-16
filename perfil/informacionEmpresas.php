@@ -1,15 +1,7 @@
 <?php include_once dirname(__FILE__)."/../conexionLocal.php";
 		?>
-<center><section class="productList">
-
-
-
-
-
      
-        
-    </head>
-    <body>
+  
         <div align="center" >
             <?php
 
@@ -44,31 +36,31 @@ while ($row = mysql_fetch_array($resultado)) {
    
   ?>
             <td>
-     <form action="editarGeneral.php" method="post">
+    
         <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
         <input type="submit" value="Editar Empresa" class='btn btn-info'/>
-     </form>
+     
  </td>
   <td>
-     <form action="editarGeneral.php" method="post">
+  
         <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
         <input type="submit" value="Editar Centros" class='btn btn-info'/>
-     </form>
+   
  </td>
  <td>
-     <form action="borrarTm.php" method="post">
+    
         <input type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
         <input type="submit" value="Eliminar" class='btn btn-danger'/>
-     </form>
+    
      </td>
      <?php 
      
   echo  "</tr>" ;
- 
+
   
 
-};
+}
 echo "</tbody></table>";
-};?>
+}
+?>
  </div> 
-</form>

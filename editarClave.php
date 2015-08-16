@@ -1,19 +1,11 @@
 <?php
 session_start();
-include "header.php";
-
+include_once "header.php";
 
 ?>
-<html>
-  <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  </head>
-
-  <body background="images/bg.gif">
     <div class="container">
       <h2>Editar Clave</h2>
-      <form role="form" action="updateClaveTm.php" method="POST" enctype="multipart/form-data">
+      <form role="form" action="querys/updateClaveTm.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="Nombre">Ingrese Clave Antigua</label>
           <input type="password" class="form-control" name="claveantigua"  placeholder="Ingrese clave antigua" required>
@@ -24,16 +16,15 @@ include "header.php";
         </div>
           <div class="form-group">
           <label for="Repetircontraseña">Repetir Clave Nueva</label>
-          <input type="password"  class="form-control" name="repetirclave" placeholder="Reescribir clave" required>
+          <input type="password"  class="form-control" name="repetirclave" placeholder="Reescribir clave nueva" required>
         </div>
         <div>
           <input type="hidden" name="id" value="<?php echo $_SESSION['idusuario'];?>"
         </div>
           <br>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-info">Cambiar</button>
       </form>
     </div>
       
 
-  </body>
-</html>
+

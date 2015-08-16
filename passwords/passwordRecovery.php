@@ -1,6 +1,6 @@
 <?php
 session_start ();
-include_once "conexionLocal.php";
+//include_once "../conexionLocal.php";
 ?>
 <html>
 <head>
@@ -9,7 +9,7 @@ include_once "conexionLocal.php";
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link href="css/bootstrap.min.css" rel='stylesheet'>
+<link href="../css/bootstrap.min.css" rel='stylesheet'>
 <style>
 body {
   padding-top: 40px;
@@ -59,11 +59,11 @@ body {
 	text-align: center;
 }
 </style>
-<body background="images/bg.gif">
+<body background="../images/bg.gif">
 	<div class='container'>
 		<div class='col-md-4 col-md-offset-4'>
 		<form action="enviarPassword.php" method="post" class="form-singin">
-				<h2 class='form-singin-heading'>Recuperac&iacute;on de clave</h2>
+				<h2 class='form-singin-heading'>Recuperaci&oacute;n de clave</h2>
 				
 				
 				<h4>Ingrese el mail de la cuenta</h4>
@@ -74,7 +74,7 @@ body {
 			    <br>
 			    <input name='recover' class="btn btn-lg btn-primary btn-block" type="submit"></input>
 			</form>
-			<form action="logIn.php" method="post" class="form-singin">
+			<form action="../logIn.php" method="post" class="form-singin">
 			    <input name='recover' class="btn btn-lg btn-danger btn-block" type="submit" value="Cancelar"></input>
 			    </form>
 		</div>

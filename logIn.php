@@ -129,7 +129,7 @@ if (isset ( $_POST ['login'] )) {
 			    <br>
 			    <input name='login' class="btn btn-lg btn-primary btn-block" type="submit"></input>
 			</form>
-			<center><a href="passwordRecovery.php">(Recuperar clave)</a></center>
+			<center><a href="passwords/passwordRecovery.php">(Recuperar clave)</a></center>
 		</div>
 		
 	</div>

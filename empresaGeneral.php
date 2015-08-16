@@ -9,7 +9,7 @@ include "header.php";
 
 	<div class="container">
 
-		<h2>Informacion Trabajador</h2>
+		<h2>Informaci&oacute;n Trabajador</h2>
 			 <?php
 				include "perfil/informacionEmpresas.php";
 				?>

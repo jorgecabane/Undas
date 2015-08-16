@@ -1,11 +1,11 @@
 <?php 
 session_start();
-include_once "conexionLocal.php";
+include_once "../conexionLocal.php";
 
 $email=$_POST['email'];
 $rut=$_POST['rut'];
 
-$query="SELECT * FROM TM Where Rut=$rut";
+$query="SELECT * FROM TM Where Rut='$rut'";
 		$result=mysql_query($query);
 		if($result){
 			$row=mysql_fetch_assoc($result);
@@ -14,7 +14,7 @@ $query="SELECT * FROM TM Where Rut=$rut";
 			 	$random=rand(1000000,9999999);
 			 	$apellido=$row['Apellido'];
 			 	$nuevapassword=$apellido.$random;
-			 	$query2="UPDATE TM SET Password='$nuevapassword' WHERE Rut=$rut";
+			 	$query2="UPDATE TM SET Password='$nuevapassword' WHERE Rut='$rut'";
 			 			$resultado2=mysql_query($query2);
 			 	if($resultado2){
 			 
@@ -27,7 +27,7 @@ $query="SELECT * FROM TM Where Rut=$rut";
 		 		mail($to,$subject,$txt,$headers);
 			 	
 			echo "Revise el correo que le otorgo tmtecnomed";
-			?><meta http-equiv="Refresh" content="3;url=logIn.php">;<?php 
+			?><meta http-equiv="Refresh" content="3;url=../logIn.php">;<?php 
 		 	}
 			 }
 		 	else
