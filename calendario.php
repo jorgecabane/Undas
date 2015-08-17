@@ -40,7 +40,7 @@ body {
             <center>
                 <h2>
                     <span class="label label-info">
-                    Centro: <b><?php echo $centro; ?></b>
+                        Centro: <b><?php echo $centro; ?></b>
                     </span>
                 </h2>
             </center>
@@ -89,7 +89,7 @@ body {
 
 <!-- container-fluid -->
 </body>
-<?php include_once dirname(__FILE__).'/Include/modalVerificaciones.php';//modal para los mensajes de verificacion?>
+<?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion?>
 
 <script>
     $(document).ready(function() {
@@ -163,8 +163,9 @@ body {
                     data: {"idEco": event.idEco, "start": event.start.format()},
                     method: 'POST',
                     success: function(output) {
-                        if (output) {
-
+                        if (output=='false') {
+                            $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>')
+                            $("#myModal").modal('show');
                         }
                     }// success
                 });//ajax
