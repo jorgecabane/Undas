@@ -12,9 +12,10 @@
           $direccion=$_POST['direccion'];
             $comuna=$_POST['comuna'];
              $ciudad=$_POST['ciudad'];
+             $razon=$_POST['razon'];
               
               
-    $query="insert into empresa values (null,'$nombre',$rut,'$giro','$direccion','$comuna','$ciudad')";    
+    $query="insert into Empresa values (null,'$nombre',$rut,'$giro','$direccion','$comuna','$ciudad','$razon')";    
     $resultado=mysql_query($query) ;
     if($resultado) { 
     //success 

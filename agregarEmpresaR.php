@@ -35,7 +35,11 @@ include "include/verificacionUsuario.php";
            <div class="form-group">
           <label for="nombre">Comuna</label>
           <input type="text" class="form-control" id="comuna" placeholder="Agrege Comuna de la empresa" required>
-        </div>         
+        </div>    
+        <div class="form-group">
+          <label for="nombre">Razon Social</label>
+          <input type="text" class="form-control" id="razon" placeholder="Agrege Razon Social de la empresa" required>
+        </div>              
              <input type="submit" value="Agregar" id='agregar' class='btn btn-info btnedit'/>
 		<div >
 <p id='respuesta'>
@@ -60,6 +64,7 @@ $("#agregar").click(function(){
 				     		'giro':$('#giro').val(),
 				     		'direccion':$('#direccion').val(),
 				     		'comuna':$('#comuna').val(),
+				     		'razon':$('#razon').val(),
 		                    'ciudad':$('#ciudad').val()
 			       },
 			       
@@ -76,6 +81,7 @@ $("#agregar").click(function(){
 			     		$('#direccion').val('');
 			     		$('#comuna').val('');
 		               $('#ciudad').val('');
+		               $('#razon').val('');
 		                
 			       }
 			 }); 
