@@ -23,6 +23,12 @@ include "include/verificacionUsuario.php";
 			<div class="form-group">
 				<label for="Celular">Celular</label> <input type="number" class="form-control" id="celular" name="celular" placeholder="Agrege Celular" required>
 			</div>
+				<div class="form-group">
+				<label for="Celular">Banco</label> <input type="text" class="form-control" id="banco" name="banco" placeholder="Agrege Banco" required>
+			</div>
+				<div class="form-group">
+				<label for="Celular">Cuenta Corriente</label> <input type="text" class="form-control" id="cuenta" name="cuenta" placeholder="Agrege Cuenta Corriente" required>
+			</div>
 			<div class="form-group">
 				<label for="contrase�a">Contraseña</label> <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Elegir Contraseña" required>
 			</div>
@@ -60,6 +66,8 @@ $("#agregar").click(function(){
 				     		'rut':$('#rut').val(),
 				     		'mail':$('#mail').val(),
 				     		'celular':$('#celular').val(),
+				     		'banco':$('#banco').val(),
+				     		'cuenta':$('#cuenta').val(),
 		                    'contrasena':$('#contrasena').val()
 			       },
 			       
@@ -75,6 +83,8 @@ $("#agregar").click(function(){
 			     		$('#rut').val('');
 			     		$('#mail').val('');
 			     		$('#celular').val('');
+			     		$('#banco').val('');
+			     		$('#cuenta').val('');
 		               $('#contrasena').val('');
 		               $('#repetircontrasena').val('');
 			    	  
