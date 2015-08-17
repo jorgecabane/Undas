@@ -5,7 +5,7 @@ include_once "../conexionLocal.php";
 $rut=$_POST['rut'];
 
 
-$query="Delete from TM WHERE Rut='$rut'";
+$query="Delete from Empresa WHERE Rut='$rut'";
 
 $resultado=mysql_query($query);
 if($resultado) {

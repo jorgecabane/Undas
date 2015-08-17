@@ -2,14 +2,14 @@
 include_once "../conexionLocal.php";
 
 $nombre=$_POST['nombre'];
-$apellido=$_POST['apellido'];
 $rut=$_POST['rut'];
-$mail=$_POST['mail'];
-$celular=$_POST['celular'];
-$banco=$_POST['banco'];
-$cuenta=$_POST['cuenta'];
+$giro=$_POST['giro'];
+$direccion=$_POST['direccion'];
+$comuna=$_POST['comuna'];
+$ciudad=$_POST['ciudad'];
+$razon=$_POST['razon'];
 
-$query="UPDATE TM SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular=$celular, Banco='$banco', Cuentacorriente=$cuenta WHERE Rut='$rut'";
+$query="UPDATE Empresa SET Nombre='$nombre', Rut='$rut', Giro='$giro', Direccion='$direccion', Comuna='$comuna', Ciudad='$ciudad', RazonSocial='$razon' WHERE Rut=$rut";
 
 $resultado=mysql_query($query);
 if($resultado) {
