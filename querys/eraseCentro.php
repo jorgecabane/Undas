@@ -2,14 +2,10 @@
 include_once "../conexionLocal.php";
 
 
-$rut=$_POST['rut'];
+$nombre=$_POST['nombre'];
 
 
-<<<<<<< HEAD
-$query="Delete from Empresa WHERE Rut='$rut'";
-=======
-$query="DELETE FROM Empresa WHERE Rut=$rut";
->>>>>>> origin/master
+$query="DELETE FROM Centro WHERE Nombre=$nombre";
 
 $resultado=mysql_query($query);
 if($resultado) {

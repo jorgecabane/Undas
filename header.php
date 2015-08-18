@@ -2,10 +2,10 @@
 include_once "querys/getTM.php"; // aqui ya se incluye la conexion local
 include_once "querys/getEcos.php";
 include_once "querys/getEventos.php";
+include_once "querys/getCentrosGroup.php";
 // include_once "conexionLocal.php"; // se incluye la conexion local arriba
 include_once "include/isAdmin.php";
 
-$result = mysql_query("Select * from Centro");
 if ($_SESSION ["usuario"]) {
     if (isAdmin($_SESSION ["idusuario"]) == 1) {
         $admin = 1;
@@ -62,36 +62,53 @@ if ($_SESSION ["usuario"]) {
                 <ul class="nav navbar-nav">
 
                     <?php
-                    // si es admin ve esto
+                    // MENU HORARIOS
                     if ($admin == 1) {
-                        ?>
-                        <!-- este es un dropdown -->
-                        <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                                data-toggle="dropdown" role="button" aria-expanded="false">Horarios
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <?php
-                                while ($row = mysql_fetch_array($result)) {
-                                    ?>
-                                    <li><a
-                                            href="calendario.php?idCentro=<?php
-                                            echo $row['idCentro'];
-                                            echo '&centro=' . $row['Nombre'];
-                                            ?>"><?php echo $row['Nombre']; ?></a>
-                                        </form></li><?php
+                        echo '<li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" role="button">Horarios<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu multi-level" role="menu"><!-- empresas -->
+                    <!-- <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#">More options</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" tabindex="-1">Second level link</a></li>
+                            <li><a href="#" tabindex="-1">Second level link</a></li>
+                            <li><a href="#" tabindex="-1">Second level link</a></li>
+                            <li><a href="#" tabindex="-1">Second level link</a></li>
+                            <li><a href="#" tabindex="-1">Second level link</a></li>
+                        </ul>
+                    </li> -->
+                        ';
+                        foreach (getCentrosGroup() as $empresa => $centros) {
+                            echo '<li class="dropdown-submenu"><a href="#" tabindex="-1">' . $empresa . '</a><!-- $empresa  -->
+                            <ul class="dropdown-menu"><!-- menu $empresa -->
+                                    ';
+                            foreach ($centros as $centro) {
+                                foreach ($centro as $datosCentro) {
+                                    //echo $datosCentro['Nombre'] . '<br>';
+                                    echo '<li><a href="calendario.php?idCentro='.$datosCentro['idCentro'].'&centro='.$datosCentro['Nombre'].'('.$datosCentro['Siglas'].')" tabindex="-1">'.$datosCentro['Nombre'].' <b>('.$datosCentro['Siglas'].')</b></a></li>
+                                        ';
                                 }
-                                ?>
-                            </ul></li>
-                    <?php } // si es admin ve esto   ?>
-                    <!-- aqui termina -->
-                    <!-- este es un dropdown -->
-                    <?php
-                    // si es admin ve esto
+                            }
+                            echo '</ul><!-- menu $empresa-->
+                                  </li><!-- dropdown-submenu -->
+                                  ';
+                        }
+                        echo '</ul><!-- empresas -->
+                          </li><!-- menu horarios-->
+                          ';
+                        /* while ($row = mysql_fetch_array($result)) {
+                          echo "<li><a href='calendario.php?idCentro=" . $row['idCentro'] . "'>" . $row['Nombre'] . "</a></li>\n";
+                          }
+                          echo "</ul>\n</li>\n <!-- Dropdown honorarios -->\n";
+                         */
+                    } // si es admin ve esto
+                    //MENU EMPRESAS
                     if ($admin == 1) {
                         ?>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                                data-toggle="dropdown" role="button" aria-expanded="false">Empresas<span class="caret"></span>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button" aria-expanded="false">Empresas<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="empresas.php">Perfiles empresas</a></li>
@@ -99,20 +116,21 @@ if ($_SESSION ["usuario"]) {
                                 <li><a href="agregarCentroNuevoR.php">Nuevo centro</a></li>
                             </ul>
                         </li>
-                     
-                    <?php } // si es admin ve esto   ?>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-                                                data-toggle="dropdown" role="button" aria-expanded="false">Tecnologos medicos<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                            	 <li><a id="perfiles" href="Perfiles.php">Perfiles tecnologos medicos</a></li>
-                            	<?php if ($admin == 1) {
-                        ?>
-                                <li><a href="agregarTmR.php">Nuevos tecnologos medicos</a></li>   
-                                    <?php } // si es admin ve esto   ?>
-                            </ul>
-                        </li>
-                    
+
+                    <?php } // si es admin ve esto     ?>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                            data-toggle="dropdown" role="button" aria-expanded="false">Tecnologos medicos<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id="perfiles" href="Perfiles.php">Perfiles tecnologos medicos</a></li>
+                            <?php
+                            if ($admin == 1) {
+                                echo "<li><a href='agregarTmR.php'>Nuevos tecnologos medicos</a></li>";
+                            } // si es admin ve esto
+                            ?>
+                        </ul>
+                    </li>
+
                 </ul>
                 <!-- aqui termina -->
 
