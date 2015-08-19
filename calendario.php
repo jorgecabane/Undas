@@ -5,28 +5,10 @@ include_once "include/verificacionUsuario.php";
 $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>
-<!-- /////////////////////////////////////////////////////////////Eliminable si se incluye//////////////////////////////////
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='utf-8' />
-
-<style>
-body {
-        margin-left: 8px;
-        margin-top: 8px;
-        font-size: 14px;
-        font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
-}
-
-
-</head>
-<body>
- ///////////////////////////////////////////////////ELiminable si se incluye///////////////////////////////////////////////// -->
 <style>
     .fc-event {
         margin-top: 3px;
-        marin-bottom: 3px
+        margin-bottom: 3px
     }
 
     .alert {
@@ -69,7 +51,7 @@ body {
             <?php
             $tms = getTM();
             foreach ($tms as $tm) {
-                echo "<div class='fc-event label label-block' event-color='#3fabe9'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
+                echo "<div class='fc-event label label-block' event-color='#6ebfee'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
             } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
             ?>
             <!-- Generacion de listado de TMs -->
@@ -114,7 +96,8 @@ body {
                     color: color, //cambia el color al color asignado
                     editable: true,
                     idEco: idEco,
-                    idTM: idTM
+                    idTM: idTM,
+                    fromBd: 0
                 });
             });// each
         });
@@ -132,7 +115,8 @@ body {
                 color: color, //cambia el color al color asignado
                 editable: true,
                 idEco: idEco,
-                idTM: idTM
+                idTM: idTM,
+                fromBD: 0
             });
 
             // make the event draggable using jQuery UI
@@ -143,51 +127,68 @@ body {
             });
 
         });
+    });
+</script>
+<script>
+    var saveBD = function(event, element) {
+        element.find('.fc-title').append("<br/>" + event.description);
+        if(event.fromBD===0){
+            //si el evento no se encuentra guardado en la bbdd
+            //armado de JSON para envio de datos
+            data = {
+                idTM: event.idTM,
+                idEco: event.idEco,
+                start: event.start.format(),
+                end: event.end.format()
+            }
+        }
+    };
+</script>
+<script>
+    var verify = function(event) {
+        //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
+        // alert(event.idEco+' '+event.start.format());
+        $.ajax({
+            url: 'include/verificaEco.php',
+            async: true,
+            data: {"idEco": event.idEco, "start": event.start.format()},
+            method: 'POST',
+            success: function(output) {
+                if (output === 'false') {
+                    $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
+                    $("#myModal").modal('show');
+                }
+            }// success
+        });//ajax
 
-        /* initialize the calendar
-         -----------------------------------------------------------------*/
+        $.ajax({
+            url: 'include/verificaTM.php',
+            async: true,
+            data: {"idTM": event.idTM, "start": event.start.format()},
+            method: 'POST',
+            success: function(output) {
+                if (output) {
 
+                }
+            }// success
+        });//ajax
+
+        //se hacen las verificaciones del evento
+        //se actualiza en la bbdd el elemento o se guarda si no existe
+    };
+</script>
+<script>
+    /* initialize the calendar
+     -----------------------------------------------------------------*/
+    $(document).ready(function() {
         $('#calendar').fullCalendar({
             eventSources: [{
                     url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
                 }], //eventSources
-            eventRender: function(event, element) {
-                element.find('.fc-title').append("<br/>" + event.description);
-            },
-            eventDrop: function(event, element) {
-                //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
-                // alert(event.idEco+' '+event.start.format());
-                $.ajax({
-                    url: 'include/verificaEco.php',
-                    async: true,
-                    data: {"idEco": event.idEco, "start": event.start.format()},
-                    method: 'POST',
-                    success: function(output) {
-                        if (output=='false') {
-                            $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>')
-                            $("#myModal").modal('show');
-                        }
-                    }// success
-                });//ajax
-
-                $.ajax({
-                    url: 'include/verificaTM.php',
-                    async: true,
-                    data: {"idTM": event.idTM, "start": event.start.format()},
-                    method: 'POST',
-                    success: function(output) {
-                        if (output) {
-
-                        }
-                    }// success
-                });//ajax
-
-                //se hacen las verificaciones del evento
-                //se actualiza en la bbdd el elemento o se guarda si no existe
-
-            },
+            eventRender: saveBD,
+            eventDrop: verify,
             header: {
-                left: 'prev,next, today',
+                left: 'prev,today,next',
                 center: 'title',
                 right: 'agendaDay,agendaWeek,month'
             },
@@ -199,6 +200,8 @@ body {
                         // days of week. an array of zero-based day of week integers (0=Sunday)
                         // (Monday-Thursday in this example)
             },
+            minTime: '08:00:00',
+            maxTime: '21:00:00',
             defaultView: 'agendaWeek',
             lazyFetch: true,
             editable: true,
