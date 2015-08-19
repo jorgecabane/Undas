@@ -38,7 +38,10 @@
 														?>
 														<td>
 					<div class="form-group">
-						<input class='form-control editableCobro' type="text" name="cobro" value="<?php echo $row['Valor'];?>" 	<?php if($admin==0){ echo "disabled='disabled'";       }?>	required>
+						<input class='form-control editableCobro' type="text" name="cobro"
+							value="<?php echo $row['Valor'];?>"
+							<?php if($admin==0){ echo "disabled='disabled'";       }?>
+							required>
 
 					</div>
 				</td>
@@ -64,7 +67,7 @@
 														
 														echo "</tr>";
 													}
-												
+													
 													echo "</tbody></table>";
 												}
 												
@@ -162,29 +165,27 @@ $(".btndelete").click(function(){
 });
 
 </script>
+
 <script>
 
 	$( ".btncobro" ).click(function(){
 		var content = "<tr><td><select class='form-control Centro' required name='Centro'>";
-		content+= "<option value=''> Seleccione Centro </option>";
+		content+= "<option value='' disabled selected> Seleccione Centro </option>";
 		content+= "</select></td>";
-		content+= "	<td> <input class='form-control editableCobro' type='text' name='cobro' value='Ingrese Cobro'> </td>";
+		content+= "	<td> <input class='form-control editableCobro' type='text' name='cobro' placeholder='Ingrese Cobro'> </td>";
 		content+= "<td><select class='form-control Semana' required name='Semana'>";
 		content+= "<option value='1'> Semana </option>";
 		content+= "<option value='1'> Sabado </option>";
 		content+= "</select></td>";
 		content+= "<td><input type='submit' value='Guardar' class='btn btn-info btnguardar' /></td>";
 		content+= "<td><input type='submit' value='Cancelar' class='btn btn-danger btncancelar' /></td></tr>";
-        $('#append').prepend(content);
+        $('#append').find('tbody').prepend(content);
+        $('.btncancelar').bind('click', function(){
+        	$(this).parent().parent().remove();
+           });
+              
   	  });
-
  </script>
-
-
-
-
-
-
 
 
 
