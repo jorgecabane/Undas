@@ -67,7 +67,7 @@ include "include/verificacionUsuario.php";
 
 
 		$('#append').empty();
-		var content = "<table class='table'><thead><tr><th>Nombre</th><th>Color</th></tr></thead><tbody>"
+		var content = "<table class='table'><thead><tr><th>Nombre</th><th>Color</th></tr></thead><tbody>";
 	for( var i = 1 ; i<= $( "#ecos" ).val() ; i++){
 		content += "<tr><td><input type='Text' class='form-control Eco'  Value='Eco"+ i +"' required></td>";
 		content += " <td><input type='color' class='form-control Color' value='#0080ff'></td></tr> ";

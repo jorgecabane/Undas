@@ -17,8 +17,10 @@
 												$resultado = mysql_query ( "SELECT ValorHora.Valor as Valor, ValorHora.Semana as Semana, Centro.Nombre as Centro, TM.idTM as idTM from TM inner join ValorHora on TM.idTM = ValorHora.Tm_idTM inner join Centro on Centro.idCentro = ValorHora.Centro_idCentro Where TM.Rut='$rut'" ) or die ( mysql_error () );
 												
 												if ($resultado) {
-													
-													echo "<table id='t01'class='table table-hover table-bordered table-condensed'>";
+													?>  <input type="submit" value="Agregar Cobro"
+					class='btn btn-info btncobro' />
+											<?php
+													echo "<table id='append' class='table table-hover table-bordered table-condensed'>";
 													echo "<thead><tr>";
 													echo "<th>Centro</th>";
 													echo "<th>Cobro</th>";
@@ -27,7 +29,8 @@
 														echo "<th>Editar</th>";
 														echo "<th>Eliminar</th></tr>";
 													}
-													echo "</thead><tbody>";
+													echo "</thead><tbody >";
+													
 													while ( $row = mysql_fetch_array ( $resultado ) ) {
 														
 														echo "<tr>";
@@ -35,10 +38,7 @@
 														?>
 														<td>
 					<div class="form-group">
-						<input class='editableCobro' type="text" class="form-control"
-							name="Mail" value="<?php echo $row['Valor'];?>"
-							<?php if($admin==0){ echo "disabled='disabled'";       }?>
-							required>
+						<input class='form-control editableCobro' type="text" name="cobro" value="<?php echo $row['Valor'];?>" 	<?php if($admin==0){ echo "disabled='disabled'";       }?>	required>
 
 					</div>
 				</td>
@@ -64,7 +64,7 @@
 														
 														echo "</tr>";
 													}
-													
+												
 													echo "</tbody></table>";
 												}
 												
@@ -162,7 +162,23 @@ $(".btndelete").click(function(){
 });
 
 </script>
+<script>
 
+	$( ".btncobro" ).click(function(){
+		var content = "<tr><td><select class='form-control Centro' required name='Centro'>";
+		content+= "<option value=''> Seleccione Centro </option>";
+		content+= "</select></td>";
+		content+= "	<td> <input class='form-control editableCobro' type='text' name='cobro' value='Ingrese Cobro'> </td>";
+		content+= "<td><select class='form-control Semana' required name='Semana'>";
+		content+= "<option value='1'> Semana </option>";
+		content+= "<option value='1'> Sabado </option>";
+		content+= "</select></td>";
+		content+= "<td><input type='submit' value='Guardar' class='btn btn-info btnguardar' /></td>";
+		content+= "<td><input type='submit' value='Cancelar' class='btn btn-danger btncancelar' /></td></tr>";
+        $('#append').prepend(content);
+  	  });
+
+ </script>
 
 
 
