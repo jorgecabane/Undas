@@ -132,16 +132,24 @@ $centro = $_GET ['centro'];
 <script>
     var saveBD = function(event, element) {
         element.find('.fc-title').append("<br/>" + event.description);
-        if(event.fromBD===0){
+        if (event.fromBD === 0) {
             //si el evento no se encuentra guardado en la bbdd
             //armado de JSON para envio de datos
-            data = {
-                idTM: event.idTM,
-                idEco: event.idEco,
-                start: event.start.format(),
-                end: event.end.format()
-            }
-        }
+
+            $.ajax({
+                data: {
+                    "idTM": event.idTM,
+                    "idEco": event.idEco,
+                    "start": event.start.format(),
+                    "end": event.end.format()
+                },
+                url: 'Include/insertarEvento.php',
+                method: 'POST',
+                success: function(output) {
+                    alert(output);
+                }//success
+            });//ajax
+        }//if
     };
 </script>
 <script>
