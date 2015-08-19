@@ -6,7 +6,10 @@
             <?php
 
 
-$resultado = mysql_query("SELECT * from Centro where Empresa_idEmpresa=$idEmpresa") or die(mysql_error());
+$resultado = mysql_query("SELECT Centro.nombre as nombrecentro, Centro.siglas as siglas, Ecos.nombre as nombreeco, Ecos.color as coloreco
+						  from Centro
+						  Inner join Ecos on (Centro.idCentro=Ecos.Centro_idCentro)
+						  where Empresa_idEmpresa=$idEmpresa") or die(mysql_error());
 
 if($resultado){
 
@@ -14,6 +17,8 @@ echo "<table id='t01' class='table table-hover table-bordered'>";
 echo "<thead><tr>";
   echo  "<th>Nombre</th>";
   echo  "<th>Siglas</th>";
+  echo  "<th>Ecos</th>";
+  echo  "<th>Color</th>";
 if ($admin == 1) {
 						echo "<th>Editar</th>";
 						echo "<th>Eliminar</th>";
@@ -24,7 +29,7 @@ while ($row = mysql_fetch_array($resultado)) {
 	            <tr>
 			<td>
 				<div class="form-group">
-					<input id="nombre" type="text" class="form-control editable" name="Nombre" value="<?php echo $row['Nombre']; ?>"
+					<input id="nombre" type="text" class="form-control editable" name="Nombre" value="<?php echo $row['nombrecentro']; ?>"
 						<?php
 							if ($admin == 0) {
 								echo "disabled='disabled'";
@@ -35,7 +40,29 @@ while ($row = mysql_fetch_array($resultado)) {
 			</td>
 			<td>
 				<div class="form-group">
-					<input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $row['Siglas']; ?>"
+					<input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $row['siglas']; ?>"
+						<?php
+							if ($admin == 0) {
+								echo "disabled='disabled'";
+							}
+							?>
+						required>
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input id="ecos" type="text" class="form-control editable" name="Ecos" value="<?php echo $row['nombreeco']; ?>"
+						<?php
+							if ($admin == 0) {
+								echo "disabled='disabled'";
+							}
+							?>
+						required>
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $row['coloreco']; ?>"
 						<?php
 							if ($admin == 0) {
 								echo "disabled='disabled'";
@@ -51,7 +78,7 @@ while ($row = mysql_fetch_array($resultado)) {
 				<div>
 					<input type="hidden" name="id" value="<?php echo $row['idCentro']; ?>" />
 					<input type="submit" value="Finalizar edicion"
-						class='btn btn-info btnedit' disabled="disabled" />
+						class='btn btn-info btneditcentro' disabled="disabled" />
 				</div>
 			</td>
 			</td>
@@ -68,7 +95,7 @@ while ($row = mysql_fetch_array($resultado)) {
 	</div>
 	<script>
 	    $(".editable").keyup(function() {
-	        $(".btnedit").removeAttr("disabled");
+	        $(".btneditcentro").removeAttr("disabled");
 	
 	        $(this)
 	                .parent()
@@ -78,18 +105,18 @@ while ($row = mysql_fetch_array($resultado)) {
 	    });
 	</script>
 	<script>
-	    $(".btnedit").click(function() {
+	    $(".btneditcentro").click(function() {
 				jQuery.ajax({
 	            method: "POST",
 	            url: "querys/updateCentro.php",
 	            data: {
 	                'nombre': $('#nombre').val(),
-	                'siglas': $('#siglas').val(),
+	                'siglas': $('#siglas').val()
 	            },
 	            success: function(response)
 	            {
-	                $(".btnedit").attr("disabled", "disabled");
-	                $(".btnedit")
+	                $(".btneditcentro").attr("disabled", "disabled");
+	                $(".btneditcentro")
 	                        .parent()
 	                        .parent()
 	                        .parent()
