@@ -5,7 +5,7 @@
             <div align="center">
                 <?php
                 include_once "../include/isAdmin.php";
-
+                include_once "../querys/getCentros.php";
                 if ($_SESSION ["usuario"]) {
                     if (isAdmin($_SESSION ["idusuario"]) == 1) {
                         $admin = 1;
@@ -165,19 +165,25 @@
 
     $(".btncobro").click(function() {
         var content = "<tr><td><select class='form-control Centro' required name='Centro'>";
-        content += "<option disabled='disabled'> Seleccione Centro </option><?php
-        echo "<option value=''> Hola Jorgitoooo </option>";
+        content += "<option selected='true' disabled='disabled'> Seleccione Centro </option><?php
+       foreach( getCentros() as $centro) {
+       	echo "<option value='".$centro["idCentro"]."'> ".$centro["Nombre"]."    <b>(".$centro["Siglas"].")</b> </option>";
+       }
+        
 
         ?>";
         content += "</select></td>";
-        content += "	<td> <input class='form-control editableCobro' type='text' name='cobro' value='Ingrese Cobro'> </td>";
+        content += "	<td> <input class='form-control editableCobro' type='text' name='cobro' placeholder='Ingrese Cobro'> </td>";
         content += "<td><select class='form-control Semana' required name='Semana'>";
         content += "<option value='1'> Semana </option>";
-        content += "<option value='1'> Sabado </option>";
+        content += "<option value='0'> Sabado </option>";
         content += "</select></td>";
         content += "<td><input type='submit' value='Guardar' class='btn btn-info btnguardar' /></td>";
         content += "<td><input type='submit' value='Cancelar' class='btn btn-danger btncancelar' /></td></tr>";
         $('#append').prepend(content);
+        $(".btncancelar").bind('click', function() {
+         $(this).parent().parent().remove();
+        });
     });
 
 </script>
