@@ -21,5 +21,4 @@ $empresa=$idCentroAssoc['idEmpresa'];
 	$resultado2 = mysql_query ( $query );
 	if ($resultado2) {
 		echo "Perfecto, redireccionando";
-	}
-	
+	}	
