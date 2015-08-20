@@ -184,6 +184,10 @@
         $(".btncancelar").bind('click', function() {
          $(this).parent().parent().remove();
         });
+
+        $(".btnguardar").bind('click', function() {
+            $(this).parent().parent().remove();
+           });
     });
 
 </script>
