@@ -19,7 +19,7 @@ if (isset($_SESSION)) {
                 url: "Include/feedEventosTM.php?Rut=<?php echo $_POST['Rut']; ?>"
             },
             header: {
-                left: 'prev,next, today',
+                left: 'prev,today,next',
                 center: 'title',
                 right: 'agendaDay,agendaWeek,month'
             },
@@ -30,6 +30,9 @@ if (isset($_SESSION)) {
             lazyFetch: true,
             hiddenDays: [0],
             allDaySlot: false,
+            minTime:'08:00:00',
+            maxTime:'21:00:00',
+            slotDuration:'00:15:00',
             businessHours: {
                 start: '8:00', // a start time (10am in this example)
                 end: '22:00', // an end time (6pm in this example)
