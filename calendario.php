@@ -135,15 +135,10 @@ $centro = $_GET ['centro'];
         if (event.fromBD === 0) {
             //si el evento no se encuentra guardado en la bbdd
             //armado de JSON para envio de datos
-
+            alert(event.title);
             $.ajax({
-                data: {
-                    "idTM": event.idTM,
-                    "idEco": event.idEco,
-                    "start": event.start.format(),
-                    "end": event.end.format()
-                },
-                url: 'Include/insertarEvento.php',
+                data: {"idTM": event.idTM, "idEco": event.idEco, "start": event.start.format(), "end": event.end.format()},
+                url: 'include/insertarEvento.php',
                 method: 'POST',
                 success: function(output) {
                     alert(output);

@@ -66,7 +66,7 @@ if ($admin == 1) {
 		 </script>';
 } elseif ($admin == 0) {
 
-    $sessionrut = $_SESSION ['idusuario'];
+    $sessionrut = $_SESSION['idusuario'];
 
     $query = "SELECT Rut, Nombre, Apellido FROM TM WHERE idTM=$sessionrut";
 
@@ -74,12 +74,11 @@ if ($admin == 1) {
 
     $row = mysql_fetch_assoc($res);
     $Rut = $row["Rut"];
-    $nombreTM = $row['Nombre'].' '.$row['Apellido'];
+    $nombreTM = $row['Nombre'] . ' ' . $row['Apellido'];
 
     echo "<script>
-		$('#perfil').slideDown('1000').load( 'perfil/perfilGeneral.php' , {'Rut': $Rut, 'nombreTM': '$nombreTM'} );
+		$('#perfil').slideDown('1000').load( 'perfil/perfilGeneral.php' , {'Rut': '$Rut', 'nombreTM': '$nombreTM'} );
 	  </script>";
-
 }
 ?>
 
