@@ -8,11 +8,11 @@ include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion l
 function getTM($idTM = null) {
 	if ($idTM == null) { // si se utilizo la funcion sin un id especifico
 		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
-				FROM TM order by Apellido asc	";
+				FROM TM where Doctor=0 order by Apellido asc	";
 	} else { // si se indico un id para buscar solo los datos de dicha persona
 		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
 				FROM TM
-				WHERE idTM=$idTM order by Apellido asc	"	;
+				WHERE idTM=$idTM and Doctor=0 order by Apellido asc	"	;
 	}
 	$res = mysql_query ( $query ) or die ( mysql_error () );
 	
