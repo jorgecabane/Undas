@@ -142,7 +142,7 @@ $centro = $_GET ['centro'];
             eventRender: function(event, element) {
                 element.find('.fc-title').append("<br/>" + event.description);
             },
-            eventAfterRender: saveBD,
+            //eventAfterRender: saveBD,
             eventResize: update,
             eventDrop: update,
             header: {
@@ -175,6 +175,7 @@ $centro = $_GET ['centro'];
     });//document.ready
 </script>
 <script>
+    /*
     var saveBD = function(event, element) {
         idTM = event.idTM;
         idEco = event.idEco;
@@ -203,6 +204,7 @@ $centro = $_GET ['centro'];
             }//si ya se guardo previamente
         }// si el evento viene de la bbdd
     };//function saveBD
+    */
 </script><!-- SAVEBD -->
 <script>
     var update = function(event, element) {
@@ -219,56 +221,56 @@ $centro = $_GET ['centro'];
         $.ajax({
             url: 'include/updatearEvento.php',
             async: true,
-            data: {"idTM": idTM, "idEco": idEco, "start": start, "newStart":newStart, "end": end},
-                        method: 'POST',
-                success: function(output) {
-                    if (output === '1') {
-                        //console.log(output);
+            data: {"idTM": idTM, "idEco": idEco, "start": start, "newStart": newStart, "end": end},
+            method: 'POST',
+            success: function(output) {
+                if (output === '1') {
+                    //console.log(output);
 
 
-                    }
-                }//success
-            });//ajax
+                }
+            }//success
+        });//ajax
 
-        };
+    };
 </script><!-- update -->
 <script>
-        var verify = function(event) {
-            //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
-            // alert(event.idEco+' '+event.start.format());
-            $.ajax({
-                url: 'include/verificaEco.php',
-                async: true,
-                data: {"idEco": event.idEco, "start": event.start.format()},
-                method: 'POST',
-                success: function(output) {
-                    if (output === 'false') {
-                        $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
-                        $("#myModal").modal('show');
-                    }
-                }// success
-            });//ajax
+    var verify = function(event) {
+        //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
+        // alert(event.idEco+' '+event.start.format());
+        $.ajax({
+            url: 'include/verificaEco.php',
+            async: true,
+            data: {"idEco": event.idEco, "start": event.start.format()},
+            method: 'POST',
+            success: function(output) {
+                if (output === 'false') {
+                    $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
+                    $("#myModal").modal('show');
+                }
+            }// success
+        });//ajax
 
-            $.ajax({
-                url: 'include/verificaTM.php',
-                async: true,
-                data: {"idTM": event.idTM, "start": event.start.format()},
-                method: 'POST',
-                success: function(output) {
-                    if (output) {
+        $.ajax({
+            url: 'include/verificaTM.php',
+            async: true,
+            data: {"idTM": event.idTM, "start": event.start.format()},
+            method: 'POST',
+            success: function(output) {
+                if (output) {
 
-                    }
-                }// success
-            });//ajax
+                }
+            }// success
+        });//ajax
 
-            //se hacen las verificaciones del evento
-            //se actualiza en la bbdd el elemento o se guarda si no existe
-        };
+        //se hacen las verificaciones del evento
+        //se actualiza en la bbdd el elemento o se guarda si no existe
+    };
 </script><!-- verify -->
 <script>
-        $('.btn').click(function() {
-            $('#warnings').modal('show');
-        });
+    $('.btn').click(function() {
+        $('#warnings').modal('show');
+    });
 </script>
 <script src="include/filtro.js"></script>
 </html>

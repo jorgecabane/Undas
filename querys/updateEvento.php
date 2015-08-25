@@ -17,8 +17,8 @@ function updateEvento($idTM, $idEco, $start, $newStart, $end) {
 
     $query = "UPDATE evento SET Ecos_idEcos='$idEco', TM_idTM='$idTM', HoraInicio='$newStart', HoraTermino='$end' WHERE Ecos_idEcos='$idEco' AND TM_idTM='$idTM' AND HoraInicio='$start'";
     $result = mysql_query($query);
-    if ($result) {
-        return $query;
+    if (mysql_affected_rows()==1) {
+        return 1;
     } else {
         return $query;
     }
