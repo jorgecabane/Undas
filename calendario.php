@@ -51,7 +51,7 @@ $centro = $_GET ['centro'];
             <?php
             $tms = getTM();
             foreach ($tms as $tm) {
-                echo "<div class='fc-event label label-block' event-color='#6ebfee'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
+                echo "<div class='fc-event label label-block' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
             } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
             ?>
             <!-- Generacion de listado de TMs -->
@@ -97,7 +97,8 @@ $centro = $_GET ['centro'];
                     editable: true,
                     idEco: idEco,
                     idTM: idTM,
-                    fromBd: 0
+                    fromBd: 0,
+                    saved: 0
                 });
             });// each
         });
@@ -116,7 +117,8 @@ $centro = $_GET ['centro'];
                 editable: true,
                 idEco: idEco,
                 idTM: idTM,
-                fromBD: 0
+                fromBD: 0,
+                saved: 0
             });
 
             // make the event draggable using jQuery UI
@@ -129,24 +131,7 @@ $centro = $_GET ['centro'];
         });
     });
 </script>
-<script>
-    var saveBD = function(event, element) {
-        element.find('.fc-title').append("<br/>" + event.description);
-        if (event.fromBD === 0) {
-            //si el evento no se encuentra guardado en la bbdd
-            //armado de JSON para envio de datos
-            alert(event.title);
-            $.ajax({
-                data: {"idTM": event.idTM, "idEco": event.idEco, "start": event.start.format(), "end": event.end.format()},
-                url: 'include/insertarEvento.php',
-                method: 'POST',
-                success: function(output) {
-                    alert(output);
-                }//success
-            });//ajax
-        }//if
-    };
-</script>
+
 <script>
     var verify = function(event) {
         //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
@@ -188,7 +173,10 @@ $centro = $_GET ['centro'];
             eventSources: [{
                     url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
                 }], //eventSources
-            eventRender: saveBD,
+            eventRender: function(event, element) {
+                element.find('.fc-title').append("<br/>" + event.description);
+            },
+            eventAfterRender: saveBD,
             eventDrop: verify,
             header: {
                 left: 'prev,today,next',
@@ -211,11 +199,41 @@ $centro = $_GET ['centro'];
             selectable: true,
             droppable: true, // this allows things to be dropped onto the calendar
             hiddenDays: [0],
-            contentHeight: 500,
+            contentHeight: 600,
             allDaySlot: false
         });
 
     });//document.ready
+</script>
+<script>
+    var saveBD = function(event, element) {
+
+        idTM = event.idTM;
+        idEco = event.idEco;
+        start = event.start.format();
+        end = event.start.format();
+        if (event.fromBD === 0) {
+            if (event.saved === 0) {
+                //si el evento no se encuentra guardado en la bbdd
+                //armado de JSON para envio de datos
+                $.ajax({
+                    url: 'include/insertarEvento.php',
+                    async: true,
+                    data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
+                    method: 'POST',
+                    success: function(output) {
+                        if (output === '1') {
+                            //console.log(event.saved);
+                            event.saved = 1;
+                            $('#calendar').fullCalendar('updateEvent', event);
+                            //console.log(event.saved);
+
+                        }
+                    }//success
+                });//ajax
+            }//if
+        }//if
+    };//function saveBD
 </script>
 <script>
     $('.btn').click(function() {
