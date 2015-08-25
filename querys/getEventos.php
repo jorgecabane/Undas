@@ -10,10 +10,10 @@ function getEventos($idCentro = null) {
 		$query = "SELECT Ecos.Nombre as title, concat(TM.Nombre,' ' ,TM.Apellido) as description, idEvento as id, HoraInicio as start, HoraTermino as end, color, idEcos as idEco, idTM
 				FROM Evento, Ecos, TM
 				WHERE TM_idTM=idTM AND Ecos_idEcos=idEcos AND Centro_idCentro=$idCentro";
-		
+
 		//echo $query;
 		$res = mysql_query ( $query ) or die ( mysql_error () );
-				
+
 		while ( $row = mysql_fetch_assoc ( $res ) ) {
 			$result [] = $row;
 		} // while
