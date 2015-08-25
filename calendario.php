@@ -131,40 +131,6 @@ $centro = $_GET ['centro'];
         });
     });
 </script>
-
-<script>
-    var verify = function(event) {
-        //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
-        // alert(event.idEco+' '+event.start.format());
-        $.ajax({
-            url: 'include/verificaEco.php',
-            async: true,
-            data: {"idEco": event.idEco, "start": event.start.format()},
-            method: 'POST',
-            success: function(output) {
-                if (output === 'false') {
-                    $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
-                    $("#myModal").modal('show');
-                }
-            }// success
-        });//ajax
-
-        $.ajax({
-            url: 'include/verificaTM.php',
-            async: true,
-            data: {"idTM": event.idTM, "start": event.start.format()},
-            method: 'POST',
-            success: function(output) {
-                if (output) {
-
-                }
-            }// success
-        });//ajax
-
-        //se hacen las verificaciones del evento
-        //se actualiza en la bbdd el elemento o se guarda si no existe
-    };
-</script>
 <script>
     /* initialize the calendar
      -----------------------------------------------------------------*/
@@ -177,7 +143,8 @@ $centro = $_GET ['centro'];
                 element.find('.fc-title').append("<br/>" + event.description);
             },
             eventAfterRender: saveBD,
-            eventDrop: verify,
+            eventResize: update,
+            eventDrop: update,
             header: {
                 left: 'prev,today,next',
                 center: 'title',
@@ -191,6 +158,8 @@ $centro = $_GET ['centro'];
                         // days of week. an array of zero-based day of week integers (0=Sunday)
                         // (Monday-Thursday in this example)
             },
+            slotEventOverlap: false,
+            defaultTimedEventDuration: '03:00:00',
             minTime: '08:00:00',
             maxTime: '21:00:00',
             defaultView: 'agendaWeek',
@@ -207,11 +176,11 @@ $centro = $_GET ['centro'];
 </script>
 <script>
     var saveBD = function(event, element) {
-
         idTM = event.idTM;
         idEco = event.idEco;
         start = event.start.format();
-        end = event.start.format();
+        end = event.end.format();
+
         if (event.fromBD === 0) {
             if (event.saved === 0) {
                 //si el evento no se encuentra guardado en la bbdd
@@ -231,14 +200,75 @@ $centro = $_GET ['centro'];
                         }
                     }//success
                 });//ajax
-            }//if
-        }//if
+            }//si ya se guardo previamente
+        }// si el evento viene de la bbdd
     };//function saveBD
-</script>
+</script><!-- SAVEBD -->
 <script>
-    $('.btn').click(function() {
-        $('#warnings').modal('show');
-    });
+    var update = function(event, element) {
+        idTM = event.idTM;
+        idEco = event.idEco;
+        start = event.start.format();
+
+        //$('#calendar').fullCalendar('updateEvent', event);
+
+        end = event.end.format();
+        newStart = event.start.format();
+
+
+        $.ajax({
+            url: 'include/updatearEvento.php',
+            async: true,
+            data: {"idTM": idTM, "idEco": idEco, "start": start, "newStart":newStart, "end": end},
+                        method: 'POST',
+                success: function(output) {
+                    if (output === '1') {
+                        //console.log(output);
+
+
+                    }
+                }//success
+            });//ajax
+
+        };
+</script><!-- update -->
+<script>
+        var verify = function(event) {
+            //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
+            // alert(event.idEco+' '+event.start.format());
+            $.ajax({
+                url: 'include/verificaEco.php',
+                async: true,
+                data: {"idEco": event.idEco, "start": event.start.format()},
+                method: 'POST',
+                success: function(output) {
+                    if (output === 'false') {
+                        $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
+                        $("#myModal").modal('show');
+                    }
+                }// success
+            });//ajax
+
+            $.ajax({
+                url: 'include/verificaTM.php',
+                async: true,
+                data: {"idTM": event.idTM, "start": event.start.format()},
+                method: 'POST',
+                success: function(output) {
+                    if (output) {
+
+                    }
+                }// success
+            });//ajax
+
+            //se hacen las verificaciones del evento
+            //se actualiza en la bbdd el elemento o se guarda si no existe
+        };
+</script><!-- verify -->
+<script>
+        $('.btn').click(function() {
+            $('#warnings').modal('show');
+        });
 </script>
 <script src="include/filtro.js"></script>
 </html>
