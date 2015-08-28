@@ -159,6 +159,7 @@ $centro = $_GET ['centro'];
                         // (Monday-Thursday in this example)
             },
             slotEventOverlap: false,
+            forceEventDuration: true,
             defaultTimedEventDuration: '03:00:00',
             minTime: '08:00:00',
             maxTime: '21:00:00',
@@ -175,7 +176,7 @@ $centro = $_GET ['centro'];
     });//document.ready
 </script>
 <script>
-    /*
+
     var saveBD = function(event, element) {
         idTM = event.idTM;
         idEco = event.idEco;
@@ -196,15 +197,16 @@ $centro = $_GET ['centro'];
                             //console.log(event.saved);
                             event.saved = 1;
                             $('#calendar').fullCalendar('updateEvent', event);
-                            //console.log(event.saved);
+                            console.log(event.saved);
 
                         }
                     }//success
                 });//ajax
             }//si ya se guardo previamente
         }// si el evento viene de la bbdd
+
     };//function saveBD
-    */
+
 </script><!-- SAVEBD -->
 <script>
     var update = function(event, element) {
