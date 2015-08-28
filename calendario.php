@@ -176,7 +176,6 @@ $centro = $_GET ['centro'];
     });//document.ready
 </script>
 <script>
-
     var saveBD = function(event, element) {
         idTM = event.idTM;
         idEco = event.idEco;
@@ -197,7 +196,7 @@ $centro = $_GET ['centro'];
                             //console.log(event.saved);
                             event.saved = 1;
                             $('#calendar').fullCalendar('updateEvent', event);
-                            console.log(event.saved);
+                            //console.log(event.saved);
 
                         }
                     }//success
