@@ -1,18 +1,11 @@
 <?php include_once dirname(__FILE__)."/../conexionLocal.php";
-		?>
-     
+include_once dirname(__FILE__)."/../querys/getEcosGroup.php";
+var_dump((getEcosGroup($idEmpresa)));		
+?>
+
   
         <div align="center" >
             <?php
-
-
-$resultado = mysql_query("SELECT Centro.nombre as nombrecentro, Centro.siglas as siglas, Ecos.nombre as nombreeco, Ecos.color as coloreco
-						  from Centro
-						  Inner join Ecos on (Centro.idCentro=Ecos.Centro_idCentro)
-						  where Empresa_idEmpresa=$idEmpresa") or die(mysql_error());
-
-if($resultado){
-
 echo "<table id='t01' class='table table-hover table-bordered'>"; 
 echo "<thead><tr>";
   echo  "<th>Nombre</th>";
@@ -24,12 +17,24 @@ if ($admin == 1) {
 						echo "<th>Eliminar</th>";
 					}
   echo "</thead><tbody>";
-while ($row = mysql_fetch_array($resultado)) {
-	?>
+//while ($row = mysql_fetch_array($resultado)) {
+foreach(getEcosGroup($idEmpresa) as $centro=>$datacentro){
+	foreach($datacentro as $ecos){
+?>
+	<table id='t01' class='table table-hover table-bordered'>
+	<thead><tr>
+	<th>Nombre Centro</th>
+	<th>Siglas</th>
+	<?php 
+	if ($admin == 1) {
+		echo "<th>Editar</th>";
+		echo "<th>Eliminar</th>";
+	}?>
+	</thead><tbody>
 	            <tr>
 			<td>
 				<div class="form-group">
-					<input id="nombre" type="text" class="form-control editable" name="Nombre" value="<?php echo $row['nombrecentro']; ?>"
+					<input id="nombre" type="text" class="form-control editable" name="Nombre" value="<?php echo $ecos['Nombre']; ?>"
 						<?php
 							if ($admin == 0) {
 								echo "disabled='disabled'";
@@ -40,7 +45,7 @@ while ($row = mysql_fetch_array($resultado)) {
 			</td>
 			<td>
 				<div class="form-group">
-					<input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $row['siglas']; ?>"
+					<input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $ecos['Siglas']; ?>"
 						<?php
 							if ($admin == 0) {
 								echo "disabled='disabled'";
@@ -49,30 +54,8 @@ while ($row = mysql_fetch_array($resultado)) {
 						required>
 				</div>
 			</td>
-			<td>
-				<div class="form-group">
-					<input id="ecos" type="text" class="form-control editable" name="Ecos" value="<?php echo $row['nombreeco']; ?>"
-						<?php
-							if ($admin == 0) {
-								echo "disabled='disabled'";
-							}
-							?>
-						required>
-				</div>
-			</td>
-			<td>
-				<div class="form-group">
-					<input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $row['coloreco']; ?>"
-						<?php
-							if ($admin == 0) {
-								echo "disabled='disabled'";
-							}
-							?>
-						required>
-				</div>
-			</td>
-	            <?php
-				if ($admin == 1) {
+			<?php 
+			if ($admin == 1) {
 				?>
 	            <td>
 				<div>
@@ -84,14 +67,47 @@ while ($row = mysql_fetch_array($resultado)) {
 			</td>
 			<td><input type="submit" value="Eliminar TM"
 				class='btn btn-danger btnerase'></td>
-		</tr> <?php }
+		</tr> <?php }?>
+			</tr>
+	<thead><tr>
+	<th>Nombres Ecos</th>
+	<th>Color</th>
+	</thead><tbody>
+	<?php
+	
+		foreach($ecos as $datosecos){ ?>
+		<tr>
+			<td>
+				<div class="form-group">
+					<input id="ecos" type="text" class="form-control editable" name="Ecos" value="<?php echo $datosecos['Nombre']; ?>"
+						<?php
+							if ($admin == 0) {
+								echo "disabled='disabled'";
+							}
+							?>
+						required>
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $datosecos['color']; ?>"
+						<?php
+							if ($admin == 0) {
+								echo "disabled='disabled'";
+							}
+							?>
+						required>
+				</div>
+			</td>
+			</tr>
+	            <?php
 					}
+	}
+}
+					
 				?>
 	    </tbody>
 		</table>
-		    <?php
-				}
-				?>
 	</div>
 	<script>
 	    $(".editable").keyup(function() {
