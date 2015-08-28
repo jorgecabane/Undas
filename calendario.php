@@ -143,7 +143,7 @@ $centro = $_GET ['centro'];
                 element.find('.fc-title').append("<br/>" + event.description);
             },
             eventAfterRender: saveBD,
-            //eventResize: update,
+            eventResize: update,
             //eventDrop: update,
             header: {
                 left: 'prev,today,next',
@@ -166,7 +166,6 @@ $centro = $_GET ['centro'];
             defaultView: 'agendaWeek',
             lazyFetch: true,
             editable: true,
-            selectable: true,
             droppable: true, // this allows things to be dropped onto the calendar
             hiddenDays: [0],
             contentHeight: 600,
@@ -192,11 +191,12 @@ $centro = $_GET ['centro'];
                     data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
                     method: 'POST',
                     success: function(output) {
-                        if (output === '1') {
+                        if (output !== '0') {
                             //console.log(event.saved);
                             event.saved = 1;
+                            event.id = output;
                             $('#calendar').fullCalendar('updateEvent', event);
-                            //console.log(event.saved);
+                            //console.log(output);
 
                         }
                     }//success
@@ -209,24 +209,21 @@ $centro = $_GET ['centro'];
 </script><!-- SAVEBD -->
 <script>
     var update = function(event, element) {
-        idTM = event.idTM;
-        idEco = event.idEco;
-        start = event.start.format();
-
+        idEvento = event.id;
         //$('#calendar').fullCalendar('updateEvent', event);
 
         end = event.end.format();
-        newStart = event.start.format();
-
+        start = event.start.format();
+        //alert(idEvento);
 
         $.ajax({
             url: 'include/updatearEvento.php',
             async: true,
-            data: {"idTM": idTM, "idEco": idEco, "start": start, "newStart": newStart, "end": end},
+            data: {"idEvento": idEvento, "start": start, "end": end},
             method: 'POST',
             success: function(output) {
                 if (output === '1') {
-                    //console.log(output);
+                    console.log(output);
 
 
                 }

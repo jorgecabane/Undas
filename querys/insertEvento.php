@@ -14,7 +14,7 @@ function insertEvento($idTM, $idEco, $start, $end){
     $query = "INSERT INTO evento (TM_idTM, Ecos_idEcos, HoraInicio, HoraTermino) VALUES ($idTM,$idEco,'$newStart', '$newEnd')";
     $result = mysql_query($query);
     if($result){
-        return 1;
+        return mysql_insert_id();
     }
     else{
         return $query;
