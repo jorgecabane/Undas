@@ -142,9 +142,9 @@ $centro = $_GET ['centro'];
             eventRender: function(event, element) {
                 element.find('.fc-title').append("<br/>" + event.description);
             },
-            //eventAfterRender: saveBD,
-            eventResize: update,
-            eventDrop: update,
+            eventAfterRender: saveBD,
+            //eventResize: update,
+            //eventDrop: update,
             header: {
                 left: 'prev,today,next',
                 center: 'title',
