@@ -1,26 +1,15 @@
 <?php
 include_once dirname(__FILE__) . "/../conexionLocal.php";
 include_once dirname(__FILE__) . "/../querys/getEcosGroup.php";
-print_r((getEcosGroup($idEmpresa)));
+
 ?>
 
 
 <div align="center" >
-    <?php
-    echo "<table id='t01' class='table table-hover table-bordered'>";
-    echo "<thead><tr>";
-    echo "<th>Nombre</th>";
-    echo "<th>Siglas</th>";
-    echo "<th>Ecos</th>";
-    echo "<th>Color</th>";
-    if ($admin == 1) {
-        echo "<th>Editar</th>";
-        echo "<th>Eliminar</th>";
-    }
-    echo "</thead><tbody>";
+    <?php    
 //while ($row = mysql_fetch_array($resultado)) {
-    $datosEmpresa = getEcosGroup($idEmpresa);
-
+    $datosCentro = getEcosGroup($idEmpresa);
+foreach($datosCentro AS $Centro){
         ?>
         <table id='t01' class='table table-hover table-bordered'>
             <thead><tr>
@@ -32,10 +21,10 @@ print_r((getEcosGroup($idEmpresa)));
                     }
                     ?>
             </thead><tbody>
-                <tr>
+                <tr idCentro="<?php echo $Centro['idCentro'];?>" class="trCentro">
                     <td>
                         <div class="form-group">
-                            <input id="nombre" type="text" class="form-control editable" name="Nombre" value="<?php echo $datosEmpresa['Nombre']; ?>"
+                            <input type="text" class="form-control editable" name="Nombre" value="<?php echo $Centro['Nombre']; ?>"
                             <?php
                             if ($admin == 0) {
                                 echo "disabled='disabled'";
@@ -46,7 +35,7 @@ print_r((getEcosGroup($idEmpresa)));
                     </td>
                     <td>
                         <div class="form-group">
-                            <input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $datosEmpresa['Siglas']; ?>"
+                            <input type="text" class="form-control editable" name="Siglas" value="<?php echo $Centro['Siglas']; ?>"
                             <?php
                             if ($admin == 0) {
                                 echo "disabled='disabled'";
@@ -60,7 +49,7 @@ print_r((getEcosGroup($idEmpresa)));
                         ?>
                         <td>
                             <div>
-                                <input type="hidden" name="id" value="<?php echo $row['idCentro']; ?>" />
+                                <input type="hidden" name="id" value="<?php echo $Centro['idCentro']; ?>" />
                                 <input type="submit" value="Finalizar edicion"
                                        class='btn btn-info btneditcentro' disabled="disabled" />
                             </div>
@@ -74,11 +63,13 @@ print_r((getEcosGroup($idEmpresa)));
                     <th>Nombres Ecos</th>
                     <th>Color</th>
             </thead><tbody>
-                <?php foreach ($datosEmpresa as $datoEco) { ?>
-                    <tr>
+            
+        <?php	foreach ($Centro['Ecos'] as $dataEco) { 
+                		?>
+                    <tr idEco=<?php echo $dataEco['idEcos'];?> class="trEco">
                         <td>
                             <div class="form-group">
-                                <input id="ecos" type="text" class="form-control editable" name="Ecos" value="<?php echo $datoEcos['Nombre']; ?>"
+                                <input id="ecos" type="text" class="form-control editable" name="Ecos" value="<?php echo $dataEco['Nombre']; ?>"
                                 <?php
                                 if ($admin == 0) {
                                     echo "disabled='disabled'";
@@ -89,7 +80,7 @@ print_r((getEcosGroup($idEmpresa)));
                         </td>
                         <td>
                             <div class="form-group">
-                                <input id="siglas" type="text" class="form-control editable" name="Siglas" value="<?php echo $datoEcos['color']; ?>"
+                                <input type="color" class="form-control editable" name="Siglas" value="<?php echo $dataEco['color']; ?>"
                                        <?php
                                        if ($admin == 0) {
                                            echo "disabled='disabled'";
@@ -98,10 +89,24 @@ print_r((getEcosGroup($idEmpresa)));
                                        required>
                             </div>
                         </td>
+                         <?php
+                    if ($admin == 1) {
+                        ?>
+                        <td>
+                            <div>
+                                <input type="hidden" name="id" value="<?php echo $row['idCentro']; ?>" />
+                                <input type="submit" value="Finalizar edicion"
+                                       class='btn btn-info btnediteco' disabled="disabled" />
+                            </div>
+                        </td>
+                        </td>
+                        <td><input type="submit" value="Eliminar TM"
+                                   class='btn btn-danger btnerase'></td>
+                    </tr> <?php } ?>
                     </tr>
                     <?php
                 }
-            
+			}	
             ?>
         </tbody>
     </table>
@@ -119,7 +124,9 @@ print_r((getEcosGroup($idEmpresa)));
 </script>
 <script>
     $(".btneditcentro").click(function() {
-        jQuery.ajax({
+    	row=$(this).find('.trCentro');
+    	console.log(row);
+       /* jQuery.ajax({
             method: "POST",
             url: "querys/updateCentro.php",
             data: {
@@ -136,14 +143,14 @@ print_r((getEcosGroup($idEmpresa)));
                         .removeClass("danger")
                         .addClass("success");
             }
-        });
+        });*/
     });
 </script>
 <script>
     $(".btnerase").click(function() {
         var r = confirm("Esta seguro que quiere eliminar a: " + $('#nombre').val() + "?");
         if (r == true) {
-            jQuery.ajax({
+          /*  jQuery.ajax({
                 method: "POST",
                 url: "querys/eraseCentro.php",
                 data: {
@@ -153,7 +160,7 @@ print_r((getEcosGroup($idEmpresa)));
                 {
                     location.reload();
                 }
-            });
+            });*/
         }
     });
 </script>
