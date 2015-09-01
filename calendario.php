@@ -144,7 +144,7 @@ $centro = $_GET ['centro'];
                     editable: true,
                     idEco: idEco,
                     idTM: idTM,
-                    fromBd: 0,
+                    fromBD: 0,
                     saved: 0
                 });
             });// each
@@ -230,7 +230,7 @@ $centro = $_GET ['centro'];
         idEco = event.idEco;
         start = event.start.format();
         end = event.end.format();
-
+        
         if (event.fromBD === 0) {
             if (event.saved === 0) {
                 //si el evento no se encuentra guardado en la bbdd

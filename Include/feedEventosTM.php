@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Script que genera los eventos desde la base de datos indicandole el id del TM
  * en formato json para cargarlos en el calendario
@@ -21,10 +22,9 @@
  *
  *
  */
-require_once dirname ( __FILE__ ) . "/../querys/getEventosTM.php";
-if (isset ( $_REQUEST ['Rut'] )) {
-	
-	echo json_encode ( getEventosTM ( $_REQUEST ['Rut'] ) );
-}
+require_once dirname(__FILE__) . "/../querys/getEventosTM.php";
+if (isset($_REQUEST['Rut'])) {
 
+    echo json_encode(getEventosTM($_REQUEST['Rut']));
+}
 ?>

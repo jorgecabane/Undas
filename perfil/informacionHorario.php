@@ -2,6 +2,7 @@
 if (isset($_SESSION)) {
     //si hay sesion iniciada
     //var_dump($_POST);
+
 } else {
     echo '<div class="alert alert-danger">No se ha iniciado sesion.</div>';
 }
@@ -16,7 +17,7 @@ if (isset($_SESSION)) {
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             eventSources: {
-                url: "Include/feedEventosTM.php?Rut=<?php echo $_POST['Rut']; ?>"
+                url: "Include/feedEventosTM.php?Rut=<?php echo $rut; ?>"
             },
             header: {
                 left: 'prev,today,next',

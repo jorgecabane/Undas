@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "header.php";
+require_once "header.php";
 include_once "include/verificacionUsuario.php";
 ?>
 <div class="container-fluid">
@@ -16,37 +16,31 @@ include_once "include/verificacionUsuario.php";
         <?php
         // si es admin ve esto
         if ($admin == 1) {
-            ?>
-            <div class="col-sm-2 well well-sm">
-
+            echo '
+                <div class="col-sm-2 well well-sm">
                 <h4>Busque por TM</h4>
 
                 <input id="search" class="form-control" type="text" name="valor"
                        placeholder="Filtre por TM" />
 
                 <hr><!-- divisor-->
-                <div id="listado">
+                <div id="listado">';
+            include_once "querys/todosTmListado.php";
 
-                    <!-- aqui iria una tabla de todos los tms en caso de lata de buscar -->
-                    <?php
-                    if ($admin == 1) {
-                        include "querys/todosTmListado.php";
-                    }
-                    ?>
-                </div>
-
-            </div>
-            <?php
+            echo '</div>
+                </div><!-- well-sm -->';
         }
-        ?>
 
-        <?php
 // si no admin ve esto
         if ($admin == 0) {
             echo '<div class="col-sm-12" id="perfil">';
         } else {
             echo '<div class="col-sm-10" id="perfil">
-            <div class="alert alert-info"><center><h4>Por favor seleccione un TM del listado de la izquierda para ver su informaci&oacute;n</h4></center></div>';
+            <div class="alert alert-info">
+            <center>
+            <h4>Por favor seleccione un TM del listado de la izquierda para ver su informaci&oacute;n</h4>
+            </center>
+            </div>';
         }
         ?>
 
@@ -68,7 +62,7 @@ if ($admin == 1) {
 
     $sessionrut = $_SESSION['idusuario'];
 
-    $query = "SELECT Rut, Nombre, Apellido FROM TM WHERE idTM=$sessionrut";
+    $query = "SELECT Rut, Nombre, Apellido FROM TM WHERE Rut='$sessionrut'";
 
     $res = mysql_query($query) or die(mysql_error());
 
@@ -77,7 +71,7 @@ if ($admin == 1) {
     $nombreTM = $row['Nombre'] . ' ' . $row['Apellido'];
 
     echo "<script>
-		$('#perfil').slideDown('1000').load( 'perfil/perfilGeneral.php' , {'Rut': '$Rut', 'nombreTM': '$nombreTM'} );
+		$('#perfil').slideDown('1000').load('perfil/perfilGeneral.php', {'Rut': '$Rut', 'nombreTM': '$nombreTM'});
 	  </script>";
 }
 ?>
@@ -86,7 +80,9 @@ if ($admin == 1) {
 
 <script>
     $(".fc-event").click(function() {
-        $("#perfil").slideDown('2000').load("perfil/perfilGeneral.php", {"Rut": $(this).attr('Rut'), 'nombreTM': $(this).text()});
+        rut = $(this).attr('Rut');
+        nombreTM = $(this).text();
+        $("#perfil").slideDown('2000').load("perfil/perfilGeneral.php", {"Rut": rut , 'nombreTM': nombreTM});
 
     });
 </script>
