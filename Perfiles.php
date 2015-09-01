@@ -66,10 +66,11 @@ if ($admin == 1) {
 			});
 		 </script>';
 } elseif ($admin == 0) {
+    print_r($_SESSION);
 
     $sessionrut = $_SESSION['idusuario'];
 
-    $query = "SELECT Rut, Nombre, Apellido FROM TM WHERE Rut='$sessionrut'";
+    $query = "SELECT Rut, Nombre, Apellido FROM TM WHERE idTM='$sessionrut'";
 
     $res = mysql_query($query) or die(mysql_error());
 
