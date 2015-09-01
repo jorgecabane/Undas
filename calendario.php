@@ -14,6 +14,48 @@ $centro = $_GET ['centro'];
     .alert {
         margin-bottom: 0px;
     }
+    @-webkit-keyframes progress-bar-stripes {
+        from {
+        background-position: 40px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+    }
+    @keyframes progress-bar-stripes {
+        from {
+        background-position: 40px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+    }
+    /* Popover */
+    .popover {
+        border: 2px dotted #6EBFEE;
+    }
+
+    /* Popover Header */
+    .popover-title {
+        background-color: #6EBFEE;
+        color: #FFFFFF;
+        font-size: 16px;
+        text-align:center;
+        width: 200px;
+    }
+
+    /* Popover Body */
+    .popover-content {
+        background-color: white;
+        color: #6EBFEE;
+        padding: 1px;
+        text-align: justify;
+    }
+
+    /* Popover Arrow */
+    .arrow {
+        border-right-color: #6EBFEE !important;
+    }
 </style>
 
 <div class='container-fluid'>
@@ -60,6 +102,11 @@ $centro = $_GET ['centro'];
             <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
         </div>
         <div class='col-md-10 well well-sm'>
+            <div class="progress" style="display:none">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+            </div>
             <!-- calendario -->
             <div id='calendar'></div>
             <!-- calendario -->
@@ -92,7 +139,7 @@ $centro = $_GET ['centro'];
                 $(this).data('event', {
                     title: eco, // use the element's text as the event title
                     description: $.trim($(this).text()),
-                    stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                    //stick: true, // maintain when user navigates (see docs on the renderEvent method)
                     color: color, //cambia el color al color asignado
                     editable: true,
                     idEco: idEco,
@@ -112,7 +159,7 @@ $centro = $_GET ['centro'];
             $(this).data('event', {
                 title: eco, // use the element's text as the event title
                 description: $.trim($(this).text()),
-                stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                //stick: true, // maintain when user navigates (see docs on the renderEvent method)
                 color: color, //cambia el color al color asignado
                 editable: true,
                 idEco: idEco,
@@ -135,6 +182,7 @@ $centro = $_GET ['centro'];
     /* initialize the calendar
      -----------------------------------------------------------------*/
     $(document).ready(function() {
+
         $('#calendar').fullCalendar({
             eventSources: [{
                     url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
@@ -144,7 +192,8 @@ $centro = $_GET ['centro'];
             },
             eventAfterRender: saveBD,
             eventResize: update,
-            //eventDrop: update,
+            eventDrop: update,
+            eventClick: clickEvent,
             header: {
                 left: 'prev,today,next',
                 center: 'title',
@@ -176,6 +225,7 @@ $centro = $_GET ['centro'];
 </script>
 <script>
     var saveBD = function(event, element) {
+
         idTM = event.idTM;
         idEco = event.idEco;
         start = event.start.format();
@@ -190,12 +240,16 @@ $centro = $_GET ['centro'];
                     async: true,
                     data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
                     method: 'POST',
+                    beforeSend: function() {
+                        $('.progress').slideDown();
+                    },
                     success: function(output) {
                         if (output !== '0') {
                             //console.log(event.saved);
                             event.saved = 1;
                             event.id = output;
                             $('#calendar').fullCalendar('updateEvent', event);
+                            $('.progress').slideUp();
                             //console.log(output);
 
                         }
@@ -221,10 +275,13 @@ $centro = $_GET ['centro'];
             async: true,
             data: {"idEvento": idEvento, "start": start, "end": end},
             method: 'POST',
+            beforeSend: function() {
+                $('.progress').slideDown();
+            },
             success: function(output) {
                 if (output === '1') {
                     console.log(output);
-
+                    $('.progress').slideUp();
 
                 }
             }//success
@@ -265,6 +322,17 @@ $centro = $_GET ['centro'];
         //se actualiza en la bbdd el elemento o se guarda si no existe
     };
 </script><!-- verify -->
+<script>
+    var clickEvent = function(event) {
+        $('.fc-v-event').popover({
+            title: event.title + ': ' + event.description,
+            content: '<div class="alert alert-primary">Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</div>',
+            html: true,
+            animation: true,
+            trigger: 'hover'
+        });
+    };
+</script>
 <script>
     $('.btn').click(function() {
         $('#warnings').modal('show');
