@@ -1,15 +1,15 @@
 .well-titles{
-	padding: 1px;
-	margin-top: 2px;
-	margin-bottom: 2px;
+    padding: 1px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 .well-titles h2,h3,h4{
-	margin-top:5px;
-	margin-bottom:5px;
+    margin-top:5px;
+    margin-bottom:5px;
 }
 .navbar{
-	margin-bottom: 3px;
+    margin-bottom: 3px;
 }
 .dropdown-submenu {
     position: relative;
@@ -57,4 +57,21 @@
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
+}
+
+@-webkit-keyframes progress-bar-stripes {
+    from {
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
+}
+@keyframes progress-bar-stripes {
+    from {
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
 }

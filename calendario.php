@@ -14,22 +14,6 @@ $centro = $_GET ['centro'];
     .alert {
         margin-bottom: 0px;
     }
-    @-webkit-keyframes progress-bar-stripes {
-        from {
-        background-position: 40px 0;
-    }
-    to {
-        background-position: 0 0;
-    }
-    }
-    @keyframes progress-bar-stripes {
-        from {
-        background-position: 40px 0;
-    }
-    to {
-        background-position: 0 0;
-    }
-    }
     /* Popover */
     .popover {
         border: 2px dotted #6EBFEE;
@@ -230,7 +214,7 @@ $centro = $_GET ['centro'];
         idEco = event.idEco;
         start = event.start.format();
         end = event.end.format();
-        
+
         if (event.fromBD === 0) {
             if (event.saved === 0) {
                 //si el evento no se encuentra guardado en la bbdd

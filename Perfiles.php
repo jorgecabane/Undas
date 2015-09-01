@@ -35,11 +35,18 @@ include_once "include/verificacionUsuario.php";
         if ($admin == 0) {
             echo '<div class="col-sm-12" id="perfil">';
         } else {
-            echo '<div class="col-sm-10" id="perfil">
+            echo '<div class="col-sm-10">
+            <div class="progress" style="display:none">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+            </div>
+            <div id="perfil">
             <div class="alert alert-info">
-            <center>
-            <h4>Por favor seleccione un TM del listado de la izquierda para ver su informaci&oacute;n</h4>
-            </center>
+                <center>
+                <h4>Por favor seleccione un TM del listado de la izquierda para ver su informaci&oacute;n</h4>
+                </center>
+            </div>
             </div>';
         }
         ?>
@@ -82,7 +89,10 @@ if ($admin == 1) {
     $(".fc-event").click(function() {
         rut = $(this).attr('Rut');
         nombreTM = $(this).text();
-        $("#perfil").slideDown('2000').load("perfil/perfilGeneral.php", {"Rut": rut , 'nombreTM': nombreTM});
+        $('.progress').slideDown();
+        $("#perfil").slideDown('2000').load("perfil/perfilGeneral.php", {"Rut": rut , 'nombreTM': nombreTM}, function(){
+            $('.progress').slideUp();
+        });
 
     });
 </script>

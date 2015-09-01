@@ -2,7 +2,6 @@
 if (isset($_SESSION)) {
     //si hay sesion iniciada
     //var_dump($_POST);
-
 } else {
     echo '<div class="alert alert-danger">No se ha iniciado sesion.</div>';
 }
@@ -31,17 +30,10 @@ if (isset($_SESSION)) {
             lazyFetch: true,
             hiddenDays: [0],
             allDaySlot: false,
-            minTime:'08:00:00',
-            maxTime:'21:00:00',
-            slotDuration:'00:15:00',
-            businessHours: {
-                start: '8:00', // a start time (10am in this example)
-                end: '22:00', // an end time (6pm in this example)
-
-                dow: [1, 2, 3, 4, 5, 6]
-                        // days of week. an array of zero-based day of week integers (0=Sunday)
-                        // (Monday-Thursday in this example)
-            }
+            minTime: '08:00:00',
+            maxTime: '21:00:00',
+            slotDuration: '00:15:00',
+            contentHeight: 700,
         });//fullCalendar
     });//ready
 </script>
