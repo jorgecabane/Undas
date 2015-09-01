@@ -66,7 +66,7 @@ if ($admin == 1) {
 			});
 		 </script>';
 } elseif ($admin == 0) {
-    print_r($_SESSION);
+    //print_r($_SESSION);
 
     $sessionrut = $_SESSION['idusuario'];
 
