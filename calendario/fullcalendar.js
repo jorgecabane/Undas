@@ -3413,7 +3413,7 @@ var Grid = fc.Grid = RowRenderer.extend({
 	headHtml: function() {
 		return '' +
 			'<div class="fc-row ' + this.view.widgetHeaderClass + '">' +
-				'<table>' +
+				'<table id="datatable">' +
 					'<thead>' +
 						this.rowHtml('head') + // leverages RowRenderer
 					'</thead>' +
@@ -4583,7 +4583,7 @@ var DayGrid = Grid.extend({
 					'</table>' +
 				'</div>' +
 				'<div class="fc-content-skeleton">' +
-					'<table>' +
+					'<table >' +
 						(this.numbersVisible ?
 							'<thead>' +
 								this.rowHtml('number', row) + // leverages RowRenderer. View will define render method
@@ -4948,7 +4948,7 @@ var DayGrid = Grid.extend({
 
 		skeletonEl = $(
 			'<div class="fc-' + className + '-skeleton">' +
-				'<table><tr/></table>' +
+				'<table ><tr/></table>' +
 			'</div>'
 		);
 		trEl = skeletonEl.find('tr');
@@ -5710,12 +5710,12 @@ var TimeGrid = Grid.extend({
 	renderHtml: function() {
 		return '' +
 			'<div class="fc-bg">' +
-				'<table>' +
+				'<table >' +
 					this.rowHtml('slotBg') + // leverages RowRenderer, which will call slotBgCellHtml
 				'</table>' +
 			'</div>' +
 			'<div class="fc-slats">' +
-				'<table>' +
+				'<table >' +
 					this.slatRowHtml() +
 				'</table>' +
 			'</div>';

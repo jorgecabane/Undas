@@ -5,6 +5,7 @@ include_once "include/verificacionUsuario.php";
 $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>
+<script type="text/javascript" src="include/excellentexport.min.js"></script>
 <style>
     #external-events .fc-event {
         margin-top: 3px;
@@ -57,6 +58,7 @@ $centro = $_GET ['centro'];
                 <h2>
                     <span class="label label-info label-block">
                         Centro: <b><?php echo $centro; ?></b>
+                        <a download="horario.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Horario');">Export to Excel</a>
                     </span>
                 </h2>
             </center>
