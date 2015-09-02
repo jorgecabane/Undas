@@ -57,7 +57,7 @@ $centro = $_GET ['centro'];
 
     <div class='row'>
         <div id='external-events' class='col-md-2 hidden-sm hidden-xs well well-sm'>
-            <h4>Listado de TM's</h4>
+            <h4>Seleccionar Eco</h4>
             <select name='ecos' id='ecos' class='form-control'
                     style='width: 100%;'>
                         <?php
@@ -71,6 +71,7 @@ $centro = $_GET ['centro'];
                 <option value='eco2' event-color='#5ed639'>Eco2</option> -->
             </select>
             <hr class='hr-sm'>
+            <h4>Listado TMs</h4>
             <input type='text' id='search' class='form-control'
                    placeholder='Filtrar por Nombre'>
             <hr class='hr-sm'>
@@ -172,12 +173,25 @@ $centro = $_GET ['centro'];
                     url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
                 }], //eventSources
             eventRender: function(event, element) {
+                //se agrega la descripcion al evento
                 element.find('.fc-title').append("<br/>" + event.description);
+                //al hacer click se puede ver el detalle
+                element.popover({
+                    title: 'Detalles del Evento',
+                    content: '<div><b>Eco: </b>' + event.title + '<br>\n\
+                             <b>TM: </b>' + event.description + '<br>\n\
+                             <b>Inicia: </b>' + event.start.format() + '<br>\n\
+                             <b>Termina: </b>' + event.end.format() + '<br>\n\
+                             <input type="checkbox" class="repeatEvento" disabled="disabled">Repetir evento\n\
+                             <center><a class="btn btn-danger deleteEvento" disabled="disabled">Eliminar</a></center>\n\
+                             </div>',
+                    html: true,
+                    animation: true
+                });//popover
             },
             eventAfterRender: saveBD,
             eventResize: update,
             eventDrop: update,
-            eventClick: clickEvent,
             header: {
                 left: 'prev,today,next',
                 center: 'title',
@@ -307,20 +321,12 @@ $centro = $_GET ['centro'];
     };
 </script><!-- verify -->
 <script>
-    var clickEvent = function(event) {
-        $('.fc-v-event').popover({
-            title: event.title + ': ' + event.description,
-            content: '<div class="alert alert-primary">Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</div>',
-            html: true,
-            animation: true,
-            trigger: 'hover'
-        });
-    };
+
 </script>
 <script>
-    $('.btn').click(function() {
-        $('#warnings').modal('show');
-    });
+    /*$('.btn').click(function() {
+     $('#warnings').modal('show');
+     });*/
 </script>
 <script src="include/filtro.js"></script>
 </html>
