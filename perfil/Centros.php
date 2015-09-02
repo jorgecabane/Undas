@@ -1,10 +1,7 @@
 <?php
 include_once dirname(__FILE__) . "/../conexionLocal.php";
 include_once dirname(__FILE__) . "/../querys/getEcosGroup.php";
-
 ?>
-
-
 <div align="center" >
     <?php    
 //while ($row = mysql_fetch_array($resultado)) {
