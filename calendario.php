@@ -207,6 +207,7 @@ $centro = $_GET ['centro'];
             },
             slotEventOverlap: false,
             forceEventDuration: true,
+            slotDuration: '00:15:00',
             defaultTimedEventDuration: '03:00:00',
             minTime: '08:00:00',
             maxTime: '21:00:00',
