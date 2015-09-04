@@ -6,9 +6,11 @@ $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>
 <style>
-    .fc-event {
+    #external-events .fc-event {
         margin-top: 3px;
-        margin-bottom: 3px
+        margin-bottom: 3px;
+        cursor: pointer;
+
     }
 
     .alert {
@@ -44,13 +46,35 @@ $centro = $_GET ['centro'];
 
 <div class='container-fluid'>
     <div class='row'>
-        <div class='col-md-4 col-md-offset-4 well well-sm well-titles'>
+        <div class="col-md-1 col-md-offset-3 well well-sm well-titles">
+            <a class="btn btn-danger btn-block active" data-toggle="tooltip" data-placement="left" title="Arraste evento para eliminar">
+                Eliminar
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class='col-md-4 well well-sm well-titles'>
             <center>
                 <h2>
-                    <span class="label label-info">
+                    <span class="label label-info label-block">
                         Centro: <b><?php echo $centro; ?></b>
                     </span>
                 </h2>
+            </center>
+        </div>
+        <!-- Single button -->
+        <div class="col-md-1 well well-sm well-titles">
+            <center>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Repetir
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Repetir semana</a></li>
+                        <li><a href="#">Repetir mes anterior</a></li>
+                    </ul>
+                </div>
             </center>
         </div>
     </div>
@@ -182,8 +206,6 @@ $centro = $_GET ['centro'];
                              <b>TM: </b>' + event.description + '<br>\n\
                              <b>Inicia: </b>' + event.start.format() + '<br>\n\
                              <b>Termina: </b>' + event.end.format() + '<br>\n\
-                             <input type="checkbox" class="repeatEvento" disabled="disabled">Repetir evento\n\
-                             <center><a class="btn btn-danger deleteEvento" disabled="disabled">Eliminar</a></center>\n\
                              </div>',
                     html: true,
                     animation: true
@@ -193,13 +215,13 @@ $centro = $_GET ['centro'];
             eventResize: update,
             eventDrop: update,
             header: {
-                left: 'prev,today,next',
+                left: 'prev,today,next myCustomButton',
                 center: 'title',
                 right: 'agendaDay,agendaWeek,month'
             },
             businessHours: {
                 start: '8:00', // a start time (10am in this example)
-                end: '22:00', // an end time (6pm in this example)
+                end: '21:00', // an end time (6pm in this example)
 
                 dow: [1, 2, 3, 4, 5, 6]
                         // days of week. an array of zero-based day of week integers (0=Sunday)

@@ -4,114 +4,114 @@ html, * {padding:0; margin:0;} //defining 0 margin and padding for all elements
 
 a {color:#000;text-decoration:none;}
 
-a:hover{text-decoration:underline;} 
+a:hover{text-decoration:underline;}
 
 #frame {width:960px; margin:0 auto;} //Frame Container's CSS
 
 /* Logo CSS Starts */
-  #logo {width:200px; height:80px; }
+#logo {width:200px; height:80px; }
 /* Logo CSS ENDS*/
 
 /* Navigation and Search  CSS Starts*/
 
- .nav {width:100%;height:30px;background:#fff; -moz-box-shadow:0 0 8px #666; -webkit-box-shadow:0 0 8px #666; box-shadow:0 0 8px #666;}
-  .nav ul {list-style:none;}
-  .nav ul li {float:left;font-size:16px; margin:13px 22px;}
-  .nav div {float:right;}
-  .nav p {margin:15px; float:left;}
-  #search {float:right;border:none;}
+.nav {width:100%;height:30px;background:#fff; -moz-box-shadow:0 0 8px #666; -webkit-box-shadow:0 0 8px #666; box-shadow:0 0 8px #666;}
+.nav ul {list-style:none;}
+.nav ul li {float:left;font-size:16px; margin:13px 22px;}
+.nav div {float:right;}
+.nav p {margin:15px; float:left;}
+#search {float:right;border:none;}
 
-  #search input {
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-  border-radius: 7px;
-  border: 1px solid #CCCCCC;
-  float: left;
-  padding: 1px;
-  width: 285px;
-  margin:5px;
-  }
-  #search input.btn {
-  background: none repeat scroll 0 0 transparent;
-  border: 0 none;
-  margin: 10px 0 0 -40px;
-  padding: 0;
-  width: auto;
-  }
+#search input {
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    border: 1px solid #CCCCCC;
+    float: left;
+    padding: 1px;
+    width: 285px;
+    margin:5px;
+}
+#search input.btn {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    margin: 10px 0 0 -40px;
+    padding: 0;
+    width: auto;
+}
 /* Navigation and Search CSS Ends */
 #primary_nav_wrap
 {
-	margin-top:6px
+    margin-top:6px
 }
 
 #primary_nav_wrap ul
 {
-	list-style:none;
-	position:relative;
-	float:left;
-	margin:0;
-	padding:0
+    list-style:none;
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0
 }
 
 #primary_nav_wrap ul a
 {
-	display:block;
-	color:#333;
-	text-decoration:none;
-	font-weight:70;
-	font-size:15px;
-	line-height:30px;
-	padding:0 15px;
+    display:block;
+    color:#333;
+    text-decoration:none;
+    font-weight:70;
+    font-size:15px;
+    line-height:30px;
+    padding:0 15px;
 
 }
 
 #primary_nav_wrap ul li
 {
-	position:relative;
-	float:left;
-	margin:0;
-	padding:0
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0
 }
 
 #primary_nav_wrap ul li.current-menu-item
 {
-	background:#ddd
+    background:#ddd
 }
 
 #primary_nav_wrap ul li:hover
 {
-	background:#f6f6f6
+    background:#f6f6f6
 }
 
 #primary_nav_wrap ul ul
 {
-	display:none;
-	position:absolute;
-	top:100%;
-	left:0;
-	background:#fff;
-	padding:0
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    background:#fff;
+    padding:0
 }
 
 #primary_nav_wrap ul ul li
 {
-	float:none;
-	width:200px
+    float:none;
+    width:200px
 }
 
 #primary_nav_wrap ul ul a
 {
-	line-height:120%;
-	padding:10px 15px
+    line-height:120%;
+    padding:10px 15px
 }
 
 #primary_nav_wrap ul ul ul
 {
-	top:0;
-	left:100%
+    top:0;
+    left:100%
 }
 
 #primary_nav_wrap ul li:hover > ul
 {
-	display:block
+    display:block
 }
