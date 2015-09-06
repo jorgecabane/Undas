@@ -19,6 +19,7 @@ $centro = $_GET ['centro'];
     /* Popover */
     .popover {
         border: 2px dotted #6EBFEE;
+        z-index: 9999;
     }
 
     /* Popover Header */
@@ -72,8 +73,8 @@ $centro = $_GET ['centro'];
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Repetir semana</a></li>
-                        <li><a href="#">Repetir mes anterior</a></li>
+                        <li><a href="#" id="repeatWeek">Repetir semana</a></li>
+                        <li><a href="#" id="repeatMonth">Repetir mes anterior</a></li>
                     </ul>
                 </div>
             </center>
@@ -112,11 +113,14 @@ $centro = $_GET ['centro'];
             <hr class="hr-sm">
             <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
         </div>
-        <div class='col-md-10 well well-sm'>
+        <div class='col-md-10 well well-sm' >
             <div class="progress" style="display:none">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
                     <span class="sr-only">Cargando...</span>
                 </div>
+            </div>
+            <div id="horarioContent" class="alert alert-info" style="display:none">
+
             </div>
             <!-- calendario -->
             <div id='calendar'></div>
@@ -186,9 +190,9 @@ $centro = $_GET ['centro'];
                                         revertDuration: 0
                                     });
 
-                                });
-                            });
-</script>
+                                });//each
+                            });//ready
+</script><!-- cambio de las ecos -->
 <script>
     /* initialize the calendar
      -----------------------------------------------------------------*/
@@ -198,21 +202,7 @@ $centro = $_GET ['centro'];
             eventSources: [{
                     url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
                 }], //eventSources
-            eventRender: function(event, element) {
-                //se agrega la descripcion al evento
-                element.find('.fc-title').append("<br/>" + event.description);
-                //al hacer click se puede ver el detalle
-                element.popover({
-                    title: 'Detalles del Evento',
-                    content: '<div><b>Eco: </b>' + event.title + '<br>\n\
-                             <b>TM: </b>' + event.description + '<br>\n\
-                             <b>Inicia: </b>' + event.start.format() + '<br>\n\
-                             <b>Termina: </b>' + event.end.format() + '<br>\n\
-                             </div>',
-                    html: true,
-                    animation: true
-                });//popover
-            },
+            eventRender: renderEvent,
             eventAfterRender: saveBD,
             eventResize: update,
             eventDrop: update,
@@ -242,11 +232,12 @@ $centro = $_GET ['centro'];
             droppable: true, // this allows things to be dropped onto the calendar
             hiddenDays: [0],
             contentHeight: 600,
-            allDaySlot: false
+            allDaySlot: false,
+            displayEventEnd: true
         });
 
     });//document.ready
-</script>
+</script><!-- fullCalendar -->
 <script>
     var saveBD = function(event, element) {
 
@@ -380,11 +371,36 @@ $centro = $_GET ['centro'];
         }//si se arrojo evento en trashcan
     };//deleteEvent
 
-</script>
+</script><!-- deleteEvent -->
 <script>
-    /*$('.btn').click(function() {
-     $('#warnings').modal('show');
-     });*/
+    var renderEvent = function(event, element) {
+        //se agrega la descripcion al evento
+        element.find('.fc-title').append("<br/>" + event.description);
+        //al hacer click se puede ver el detalle
+        element.popover({
+            title: 'Detalles del Evento',
+            content: '<div><b>Eco: </b>' + event.title + '<br>\n\
+                             <b>TM: </b>' + event.description + '<br>\n\
+                             <b>Fecha: </b>' + event.start.format('LL') + '<br>\n\
+                             <b>Inicio: </b>' + event.start.format("HH:mm") + '<br>\n\
+                             <b>Termino: </b>' + event.end.format("HH:mm") + '\n\
+                             </div>',
+            html: true,
+            animation: true
+        });//popover
+    };
+</script><!-- renderEvent -->
+<script>
+    $(document).ready(function() {
+        $('#repeatWeek').click(function() {
+            $('#calendar').slideUp('slow'); //oculto el calendario
+            $('.progress').slideDown(); //barra de progreso
+            $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown(); //mensaje
+
+            var moment = $('#calendar').fullCalendar('getDate');
+            //alert("The current date of the calendar is " + moment.format());
+        });//click
+    });//ready
 </script>
 <script src="include/filtro.js"></script>
 </html>
