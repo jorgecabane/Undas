@@ -11,7 +11,6 @@ $centro = $_GET ['centro'];
         margin-top: 3px;
         margin-bottom: 3px;
         cursor: pointer;
-
     }
 
     .alert {
@@ -47,11 +46,11 @@ $centro = $_GET ['centro'];
 
 <div class='container-fluid'>
     <div class='row'>
-        <div class="col-md-1 col-md-offset-3 well well-sm well-titles">
-            <a class="btn btn-danger btn-block active" data-toggle="tooltip" data-placement="left" title="Arraste evento para eliminar">
-                Eliminar
+        <div class="col-md-1 col-md-offset-3 well well-sm well-titles" >
+            <div id="deleteArea" class="alert alert-danger" style="padding-bottom: 6px; padding-top: 6px;" data-toggle="tooltip" data-placement="left" title="Arraste evento para eliminar">
+                <b>Eliminar</b>
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </a>
+            </div>
         </div>
         <div class='col-md-4 well well-sm well-titles'>
             <center>
@@ -82,7 +81,7 @@ $centro = $_GET ['centro'];
     </div>
 
     <div class='row'>
-        <div id='external-events' class='col-md-2 hidden-sm hidden-xs well well-sm'>
+        <div class='col-md-2 hidden-sm hidden-xs well well-sm'>
             <h4>Seleccionar Eco</h4>
             <select name='ecos' id='ecos' class='form-control'
                     style='width: 100%;'>
@@ -101,14 +100,15 @@ $centro = $_GET ['centro'];
             <input type='text' id='search' class='form-control'
                    placeholder='Filtrar por Nombre'>
             <hr class='hr-sm'>
-            <?php
-            $tms = getTM();
-            foreach ($tms as $tm) {
-                echo "<div class='fc-event label label-block' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
-            } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
-            ?>
-            <!-- Generacion de listado de TMs -->
-
+            <div  id='external-events'>
+                <?php
+                $tms = getTM();
+                foreach ($tms as $tm) {
+                    echo "<div class='label fc-event' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
+                } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
+                ?>
+                <!-- Generacion de listado de TMs -->
+            </div>
             <hr class="hr-sm">
             <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
         </div>
@@ -132,62 +132,62 @@ $centro = $_GET ['centro'];
 <?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion?>
 
 <script>
-    $(document).ready(function() {
+                            $(document).ready(function() {
 
-        /* initialize the external events
-         -----------------------------------------------------------------*/
-        /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
-         */
-        $('#ecos').change(function() {
-            color = $('#ecos option:selected').attr('event-color');
-            eco = $('#ecos option:selected').text();
-            idEco = $('#ecos').val();
+                                /* initialize the external events
+                                 -----------------------------------------------------------------*/
+                                /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
+                                 */
+                                $('#ecos').change(function() {
+                                    color = $('#ecos option:selected').attr('event-color');
+                                    eco = $('#ecos option:selected').text();
+                                    idEco = $('#ecos').val();
 
-            $('#external-events .fc-event').each(function() {
-                $(this).css('background', color).css('border', color);
-                $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
-                idTM = $(this).attr('idTM');
-                $(this).data('event', {
-                    title: eco, // use the element's text as the event title
-                    description: $.trim($(this).text()),
-                    //stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                    color: color, //cambia el color al color asignado
-                    editable: true,
-                    idEco: idEco,
-                    idTM: idTM,
-                    fromBD: 0,
-                    saved: 0
-                });
-            });// each
-        });
+                                    $('#external-events .fc-event').each(function() {
+                                        $(this).css('background', color).css('border', color);
+                                        $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
+                                        idTM = $(this).attr('idTM');
+                                        $(this).data('event', {
+                                            title: eco, // use the element's text as the event title
+                                            description: $.trim($(this).text()),
+                                            //stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                                            color: color, //cambia el color al color asignado
+                                            editable: true,
+                                            idEco: idEco,
+                                            idTM: idTM,
+                                            fromBD: 0,
+                                            saved: 0
+                                        });
+                                    });// each
+                                });
 
-        $('#external-events .fc-event').each(function() {
-            color = $(this).attr('event-color');
-            eco = $('#ecos option:selected').text();
-            idEco = $('#ecos').val();
-            idTM = $(this).attr('idTM');
-            // store data so the calendar knows to render an event upon drop
-            $(this).data('event', {
-                title: eco, // use the element's text as the event title
-                description: $.trim($(this).text()),
-                //stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                color: color, //cambia el color al color asignado
-                editable: true,
-                idEco: idEco,
-                idTM: idTM,
-                fromBD: 0,
-                saved: 0
-            });
+                                $('#external-events .fc-event').each(function() {
+                                    color = $(this).attr('event-color');
+                                    eco = $('#ecos option:selected').text();
+                                    idEco = $('#ecos').val();
+                                    idTM = $(this).attr('idTM');
+                                    // store data so the calendar knows to render an event upon drop
+                                    $(this).data('event', {
+                                        title: eco, // use the element's text as the event title
+                                        description: $.trim($(this).text()),
+                                        //stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                                        color: color, //cambia el color al color asignado
+                                        editable: true,
+                                        idEco: idEco,
+                                        idTM: idTM,
+                                        fromBD: 0,
+                                        saved: 0
+                                    });
 
-            // make the event draggable using jQuery UI
-            $(this).draggable({
-                zIndex: 999,
-                revert: true, // will cause the event to go back to its original position after the drag
-                revertDuration: 0
-            });
+                                    // make the event draggable using jQuery UI
+                                    $(this).draggable({
+                                        zIndex: 999,
+                                        revert: true, // will cause the event to go back to its original position after the drag
+                                        revertDuration: 0
+                                    });
 
-        });
-    });
+                                });
+                            });
 </script>
 <script>
     /* initialize the calendar
@@ -216,6 +216,7 @@ $centro = $_GET ['centro'];
             eventAfterRender: saveBD,
             eventResize: update,
             eventDrop: update,
+            eventDragStop: deleteEvent,
             header: {
                 left: 'prev,today,next myCustomButton',
                 center: 'title',
@@ -303,7 +304,7 @@ $centro = $_GET ['centro'];
             },
             success: function(output) {
                 if (output === '1') {
-                    console.log(output);
+                    //console.log(output);
                     $('.progress').slideUp();
 
                 }
@@ -346,6 +347,38 @@ $centro = $_GET ['centro'];
     };
 </script><!-- verify -->
 <script>
+    var deleteEvent = function(event, jsEvent) {
+        var trashEl = jQuery('#deleteArea');
+        var ofs = trashEl.offset();
+
+        var x1 = ofs.left;
+        var x2 = ofs.left + trashEl.outerWidth(true);
+        var y1 = ofs.top;
+        var y2 = ofs.top + trashEl.outerHeight(true);
+
+        if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
+                jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
+            var confirma = confirm('Seguro que desea eliminar el evento?');
+            if (confirma) {
+                //console.log(event.id);
+                $('#calendar').fullCalendar('removeEvents', event._id);
+                $.ajax({
+                    url: 'include/eliminarEvento.php',
+                    async: true,
+                    data: {"idEvento": event.id},
+                    method: 'POST',
+                    beforeSend: function() {
+                        $('.progress').slideDown();
+                    },
+                    success: function(output) {
+                        if (output === '1') {
+                            $('.progress').slideUp();
+                        }//si se borro de la base de datos
+                    }//success
+                });//ajax */
+            }//si confirma
+        }//si se arrojo evento en trashcan
+    };//deleteEvent
 
 </script>
 <script>

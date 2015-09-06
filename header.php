@@ -22,6 +22,7 @@ if ($_SESSION ["usuario"]) {
 
     <script src="Include/jquery-2.1.4.min.js"></script>
     <script src="Include/bootstrap.js"></script>
+    <script src="Include/jquery-ui.js"></script>
     <script src='calendario/lib/moment.min.js'></script>
     <script src='calendario/lib/jquery-ui.custom.min.js'></script>
     <script src='calendario/fullcalendar.min.js'></script>
@@ -130,7 +131,7 @@ if ($_SESSION ["usuario"]) {
                             ?>
                         </ul>
                     </li>
-                    
+
                   <?php   if ($admin == 1) {  ?>
                    <li class="dropdown"><a href="#" class="dropdown-toggle"
                                             data-toggle="dropdown" role="button" aria-expanded="false">Doctores<span class="caret"></span>
