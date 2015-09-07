@@ -28,20 +28,19 @@
 				echo Mes ( $resultado ['Mes'] );
 				echo " " . $resultado ['Year'];
 				echo " </th>";
-				echo "</thead>";
+				echo "</thead></tr>";
 				
 				echo "<thead><tr>";
 				echo "<th>TM: ";
 				echo $resultado ['TMNombre'];
 				echo " " . $resultado ['TMApellido'];
 				echo " </th>";
-				echo "</thead>";
+				echo "</thead></tr>";
 				
 				echo "<thead><tr>";
-				
 				echo "<th>Centro</th>";
 				echo "<th>Horas Realizadas</th>";
-				echo "</thead><tbody>";
+				echo "</thead></tr><tbody>";
 				
 				while ( $row = mysql_fetch_assoc ( $query ) ) {
 					?>
@@ -70,6 +69,39 @@
 						<?php
 				}
 				?>
+				</tbody>
+					
+				<?php 
+ $honorarios = mysql_query("SELECT ValorHora.Valor as Valor, ValorHora.Semana as Semana, Centro.Nombre as Centro, TM.idTM as idTM from TM inner join ValorHora on TM.idTM = ValorHora.Tm_idTM inner join Centro on Centro.idCentro = ValorHora.Centro_idCentro Where TM.Rut='$rut' order by Centro asc") or die(mysql_error());
 
+ echo "<thead><tr>";
+ echo "<th>Centro</th>";
+ echo "<th>Valor Hora</th>";
+ echo "</thead></tr><tbody>";
+ while ( $cobro = mysql_fetch_assoc ( $honorarios ) ) {
+ 	?>
+  <tr>
+  
+		<td>
+			<div class="form-group">
+				<p class="form-control-static" id="nombre"><?php echo $row['Centro'];
+				echo " ";
+				echo $row['Semana'];
+				?></p>
+			</div>
+		</td>
+		
+		<td>
+			<div class="form-group">
+				<p class="form-control-static" id="nombre"><?php echo $row['Valor']; ?></p>
+			</div>
+		</td>
+ 
+ 
+ </tr>
+ 
+		<?php
+				}
+				?>
 			</tbody>
 	</table>
