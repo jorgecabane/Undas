@@ -73,8 +73,8 @@ $centro = $_GET ['centro'];
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" id="repeatWeek">Repetir semana</a></li>
-                        <li><a href="#" id="repeatMonth">Repetir mes anterior</a></li>
+                        <li><a href="#" class="btn" id="repeatWeek">Repetir semana</a></li>
+                        <li><a href="#" class="btn" id="repeatMonth">Repetir mes anterior</a></li>
                     </ul>
                 </div>
             </center>
@@ -395,16 +395,16 @@ $centro = $_GET ['centro'];
     var switchView = function(view) {
         switch (view.name) {
             case 'month':
-                $('#repeatWeek').hide();
-                $('#repeatMonth').show();
+                $('#repeatWeek').addClass('disabled');
+                $('#repeatMonth').removeClass('disabled');
                 break;
             case 'agendaWeek':
-                $('#repeatWeek').show();
-                $('#repeatMonth').hide();
+                $('#repeatWeek').removeClass('disabled');
+                $('#repeatMonth').addClass('disabled');
                 break;
             case 'agendaDay':
-                $('#repeatWeek').hide();
-                $('#repeatMonth').hide();
+                $('#repeatWeek').addClass('disabled');
+                $('#repeatMonth').addClass('disabled');
         }
     };
 </script><!-- switchView -->
