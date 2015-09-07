@@ -11,6 +11,9 @@ $centro = $_GET ['centro'];
         margin-top: 3px;
         margin-bottom: 3px;
         cursor: pointer;
+        background-color: #3FABE9;
+        border-color: #3FABE9;
+        border-width: 1px;
     }
 
     .alert {
@@ -43,6 +46,18 @@ $centro = $_GET ['centro'];
     .arrow {
         border-right-color: #6EBFEE !important;
     }
+    .panel{
+        padding: 2px;
+        margin-bottom: 5px;
+    }
+    .panel-body{
+        padding:2px;
+    }
+    .panel-heading{
+        padding-left:4px;
+        padding-right:4px;
+        text-align: center;
+    }
 </style>
 
 <div class='container-fluid'>
@@ -58,7 +73,7 @@ $centro = $_GET ['centro'];
                 <h2>
                     <span class="label label-info label-block">
                         Centro: <b><?php echo $centro; ?></b>
-                        <a download="horario.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Horario');">Export to Excel</a>
+                        <a data-toggle="tooltip" data-placement="left" title="Descargar!" class="btn btn-success" download="horario.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Horario');"><span class="glyphicon glyphicon-save-file"></span></a>
                     </span>
                 </h2>
             </center>
@@ -83,35 +98,47 @@ $centro = $_GET ['centro'];
 
     <div class='row'>
         <div class='col-md-2 hidden-sm hidden-xs well well-sm'>
-            <h4>Seleccionar Eco</h4>
-            <select name='ecos' id='ecos' class='form-control'
-                    style='width: 100%;'>
-                        <?php
-                        $ecos = getEcos($idCentro);
-                        foreach ($ecos as $eco) {
-                            echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
-                        }
-                        ?>
-                <!-- Generacion de listado de ecos como opcion -->
-                <!-- <option value='eco1' event-color='#2b95ce'>Eco1</option>
-                <option value='eco2' event-color='#5ed639'>Eco2</option> -->
-            </select>
-            <hr class='hr-sm'>
-            <h4>Listado TMs</h4>
-            <input type='text' id='search' class='form-control'
-                   placeholder='Filtrar por Nombre'>
-            <hr class='hr-sm'>
-            <div  id='external-events'>
-                <?php
-                $tms = getTM();
-                foreach ($tms as $tm) {
-                    echo "<div class='label fc-event' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
-                } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
-                ?>
-                <!-- Generacion de listado de TMs -->
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4>Seleccionar Eco</h4></div>
+                <div class="panel-body">
+                    <select name='ecos' id='ecos' class='form-control'
+                            style='width: 100%;'>
+                                <?php
+                                $ecos = getEcos($idCentro);
+                                foreach ($ecos as $eco) {
+                                    echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
+                                }
+                                ?>
+                        <!-- Generacion de listado de ecos como opcion -->
+                        <!-- <option value='eco1' event-color='#2b95ce'>Eco1</option>
+                        <option value='eco2' event-color='#5ed639'>Eco2</option> -->
+                    </select>
+                </div>
             </div>
-            <hr class="hr-sm">
-            <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
+            <div class='panel panel-info'>
+                <div class="panel-heading">
+                    <select class="form-control">
+                        <option value="TM">Listado TMs</option>
+                        <option value="doctores">Listado Doctores</option>
+                        <option value="feriado">Feriado</option>
+                    </select>
+                </div>
+                <div class="panel-body">
+                    <input type='text' id='search' class='form-control'
+                           placeholder='Filtrar por Nombre'>
+                    <hr class='hr-sm'>
+                    <div  id='external-events'>
+                        <?php
+                        $tms = getTM();
+                        foreach ($tms as $tm) {
+                            echo "<div class='label fc-event' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
+                        } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
+                        ?>
+                        <!-- Generacion de listado de TMs -->
+                    </div>
+                    <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
+                </div>
+            </div>
         </div>
         <div class='col-md-10 well well-sm' >
             <div class="progress" style="display:none">
