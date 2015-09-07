@@ -33,7 +33,12 @@ include_once "include/verificacionUsuario.php";
 
 // si no admin ve esto
         if ($admin == 0) {
-            echo '<div class="col-sm-12" id="perfil">';
+            echo '<div class="col-sm-12" id="perfil">
+                <div class="progress" style="display:none">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
+                    <span class="sr-only">Cargando...</span>
+                    </div>
+                </div>';
         } else {
             echo '<div class="col-sm-10">
             <div class="progress" style="display:none">
@@ -79,7 +84,10 @@ if ($admin == 1) {
     $nombreTM = $row['Nombre'] . ' ' . $row['Apellido'];
 
     echo "<script>
-		$('#perfil').slideDown('1000').load('perfil/perfilGeneral.php', {'Rut': '$Rut', 'nombreTM': '$nombreTM'});
+            $('.progress').slideDown('slow');
+            $('#perfil').slideDown('slow').load('perfil/perfilGeneral.php', {'Rut': '$Rut', 'nombreTM': '$nombreTM'}, function(){
+                $('.progress').slideUp('slow');
+            });
 	  </script>";
 }
 ?>
@@ -90,9 +98,9 @@ if ($admin == 1) {
     $(".fc-event").click(function() {
         rut = $(this).attr('Rut');
         nombreTM = $(this).text();
-        $('.progress').slideDown();
-        $("#perfil").slideDown('2000').load("perfil/perfilGeneral.php", {"Rut": rut , 'nombreTM': nombreTM}, function(){
-            $('.progress').slideUp();
+        $('.progress').slideDown('slow');
+        $("#perfil").slideDown('slow').load("perfil/perfilGeneral.php", {"Rut": rut, 'nombreTM': nombreTM}, function() {
+            $('.progress').slideUp('slow');
         });
 
     });

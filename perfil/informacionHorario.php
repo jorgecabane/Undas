@@ -34,6 +34,7 @@ if (isset($_SESSION)) {
             maxTime: '21:00:00',
             slotDuration: '00:15:00',
             contentHeight: 700,
+            displayEventEnd: true
         });//fullCalendar
     });//ready
 </script>
