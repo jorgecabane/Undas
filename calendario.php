@@ -393,14 +393,56 @@ $centro = $_GET ['centro'];
 <script>
     $(document).ready(function() {
         $('#repeatWeek').click(function() {
-            $('#calendar').slideUp('slow'); //oculto el calendario
-            $('.progress').slideDown(); //barra de progreso
-            $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown(); //mensaje
+            var weeks = prompt('Cuantas semanas?');
+            weeks = parseInt(weeks);
+            cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a repetir
+            if (cantidad !== 0 && Math.floor(weeks) === weeks && $.isNumeric(weeks)) {
+                $('#calendar').slideUp('slow'); //oculto el calendario
+                $('.progress').slideDown('slow').children('.progress-bar').css('width', '0%'); //barra de progreso
+                $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown('slow'); //mensaje
 
-            var moment = $('#calendar').fullCalendar('getDate');
-            //alert("The current date of the calendar is " + moment.format());
+                count = 0;//contador de repeticiones
+
+                $('#calendar').fullCalendar('clientEvents', function(evento) {
+                    week = $('#calendar').fullCalendar('getView').start.format('w');//la semana que se esta viendo
+                    if (evento.start.format('w') === week) {
+                        for (i = 0; i < weeks; i++) {
+                            start = evento.start.add(1, 'week').format(); //el dia mas una semana
+                            end = evento.end.add(1, 'week').format();
+                            idEco = evento.idEco;
+                            idTM = evento.idTM;
+
+                            $.ajax({
+                                url: 'include/insertarEvento.php',
+                                async: true,
+                                data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
+                                method: 'POST',
+                                success: function(output) {
+                                    if (output !== '0') {
+                                        count++;
+                                        avance = (count / cantidad) * 100;
+                                        if (avance === 100) {
+                                            $('.progress-bar').css('width', avance + '%');
+                                            $('.progress').slideUp('slow');
+                                            $('#horarioContent').slideUp('slow');
+                                            $('#calendar').slideDown('slow');
+
+                                        } else {
+                                            $('.progress-bar').css('width', avance + '%');
+                                        }
+
+                                    }//if
+                                }//success
+                            });//ajax */
+                        }//for
+                    }//solo para los eventos de la semana en curso
+                });//clientEvents callback
+            }//if
+            else {
+
+            }
         });//click
     });//ready
-</script>
+</script><!-- repeatWeek -->
 <script src="include/filtro.js"></script>
 </html>
