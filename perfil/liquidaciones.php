@@ -94,4 +94,18 @@ foreach ($ValorHoras as $valores) {
 }
 ?>
 </tbody>
+<?php
+echo "<thead><tr class='bg-success'>";
+echo "<th>Valor Honorarios Base: <span id='totalHonorarios'></span></th><th>Total Horas Mes: <span id='totalHoras'></span></th>";
+echo "</thead></tr><tbody>";
+?>
 </table>
+
+
+<script>
+var suma =0 ;
+$( ".HorasRealizadas" ).each(function( index ) {
+	suma += parseFloat( $(this).text());
+});
+$('#totalHoras').html(suma);
+</script>
