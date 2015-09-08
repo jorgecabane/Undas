@@ -259,7 +259,7 @@ $centro = $_GET ['centro'];
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar
             hiddenDays: [0],
-            contentHeight: 600,
+            contentHeight: 800,
             allDaySlot: false,
             displayEventEnd: true
         });
