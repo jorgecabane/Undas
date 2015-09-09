@@ -31,7 +31,7 @@ if ($_SESSION ["usuario"]) {
 
 
     <!-- css -->
-    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
     <link href="css/bootstrap.min.css" rel='stylesheet'>
     <link href='calendario/fullcalendar.css' rel='stylesheet'/>
     <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
@@ -87,7 +87,7 @@ if ($_SESSION ["usuario"]) {
                             foreach ($centros as $centro) {
                                 foreach ($centro as $datosCentro) {
                                     //echo $datosCentro['Nombre'] . '<br>';
-                                    echo '<li><a href="calendario.php?idCentro='.$datosCentro['idCentro'].'&centro='.$datosCentro['Nombre'].'('.$datosCentro['Siglas'].')" tabindex="-1">'.$datosCentro['Nombre'].' <b>('.$datosCentro['Siglas'].')</b></a></li>
+                                    echo '<li><a href="calendario.php?idCentro=' . $datosCentro['idCentro'] . '&centro=' . $datosCentro['Nombre'] . '(' . $datosCentro['Siglas'] . ')" tabindex="-1">' . $datosCentro['Nombre'] . ' <b>(' . $datosCentro['Siglas'] . ')</b></a></li>
                                         ';
                                 }
                             }
@@ -132,14 +132,14 @@ if ($_SESSION ["usuario"]) {
                         </ul>
                     </li>
 
-                  <?php   if ($admin == 1) {  ?>
-                   <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                            data-toggle="dropdown" role="button" aria-expanded="false">Doctores<span class="caret"></span>
-                    </a>
-                   <ul class="dropdown-menu" role="menu">
-                            <li><a id="perfiles" href="agregarDoctor.php">Nuevos Medicos</a></li>
+                    <?php if ($admin == 1) { ?>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                                data-toggle="dropdown" role="button" aria-expanded="false">Doctores<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a id="perfiles" href="agregarDoctor.php">Nuevos Medicos</a></li>
                             </ul>
-                  <?php }?>
+                        <?php } ?>
 
                 </ul>
                 <!-- aqui termina -->
