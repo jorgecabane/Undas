@@ -75,7 +75,7 @@ if ($admin == 1) {
 
     $sessionrut = $_SESSION['idusuario'];
 
-    $query = "SELECT Rut, Nombre, Apellido FROM TM WHERE idTM='$sessionrut'";
+    $query = "SELECT Rut, Nombre, Apellido FROM tm WHERE idTM='$sessionrut'";
 
     $res = mysql_query($query) or die(mysql_error());
 

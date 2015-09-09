@@ -7,13 +7,13 @@
 include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
 function getHoras($rutTM,$mes) {
 
-		$query = "Select TM.Nombre as TMNombre, Tm.Apellido as TMApellido, Centro.Nombre as NombreCentro, MONTH(evento.HoraInicio) as Mes, Year(evento.HoraInicio) as Year,
+		$query = "Select tm.Nombre as TMNombre, tm.Apellido as TMApellido, centro.Nombre as NombreCentro, MONTH(evento.HoraInicio) as Mes, Year(evento.HoraInicio) as Year,
 				sum((TIME_TO_SEC(evento.HoraTermino)/3600)-time_to_sec(evento.HoraInicio)/3600) as Horas
 				from evento
-				inner join Ecos on (evento.Ecos_idEcos = Ecos.idEcos)
-				inner join Centro on ( Ecos.Centro_idCentro= Centro.idCentro)
-				inner join TM on (TM.idTM = evento.TM_idTM)
-				where Tm.Rut = '$rutTM' and MONTH(evento.HoraInicio) = $mes
+				inner join ecos on (evento.Ecos_idEcos = ecos.idEcos)
+				inner join centro on ( ecos.Centro_idCentro= centro.idCentro)
+				inner join tm on (tm.idTM = evento.TM_idTM)
+				where tm.Rut = '$rutTM' and MONTH(evento.HoraInicio) = $mes
 				group by NombreCentro, MES
 				order by NombreCentro asc";
 

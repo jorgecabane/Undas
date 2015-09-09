@@ -7,12 +7,13 @@
 include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
 function getValorHora($rutTM) {
 
-		$query = "SELECT ValorHora.Valor as Valor, ValorHora.Semana as Semana, Centro.Nombre as Centro,
-                    TM.idTM as idTM from TM
-                    inner join ValorHora on (TM.idTM = ValorHora.Tm_idTM )
-                    inner join Centro on (Centro.idCentro = ValorHora.Centro_idCentro)
-                    Where TM.Rut='$rutTM'
-                    order by Centro asc";
+		$query = "SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, centro.Nombre as Centro,
+                    tm.idTM as idTM
+                    FROM tm
+                    inner join valorhora on (tm.idTM = valorHora.TM_idTM )
+                    inner join centro on (centro.idCentro = valorhora.centro_idCentro)
+                    WHERE tm.Rut='$rutTM'
+                    ORDER BY Centro asc";
 
 	$res = mysql_query ( $query ) or die ( mysql_error () );
 

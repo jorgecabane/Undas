@@ -27,7 +27,7 @@ if ($_SESSION ["usuario"]) {
     <script src='calendario/lib/jquery-ui.custom.min.js'></script>
     <script src='calendario/fullcalendar.min.js'></script>
     <script src='calendario/lang/es.js'></script>
-    <script src='chart-master/chart.js'></script>
+    <script src='chart-master/Chart.js'></script>
 
 
 

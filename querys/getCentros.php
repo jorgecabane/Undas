@@ -8,18 +8,18 @@ include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion l
 function getCentros($idCentro = null) {
 	if ($idCentro == null) { // si se utilizo la funcion sin un id especifico
 		$query = "SELECT idCentro, Nombre, Siglas, Empresa_idEmpresa
-				FROM Centro order by Nombre asc	";
+				FROM centro order by Nombre asc	";
 	} else { // si se indico un id para buscar solo los datos de dicha persona
 		$query = "SELECT idCentro, Nombre, Siglas, Empresa_idEmpresa
-				FROM Centro
+				FROM centro
 				WHERE idCentro=$idCentro order by Nombre asc	"	;
 	}
 	$res = mysql_query ( $query ) or die ( mysql_error () );
-	
+
 	while ( $row = mysql_fetch_assoc ( $res ) ) {
 		$result[] = $row;
 	}
-	
+
 	return $result;
 }
 
