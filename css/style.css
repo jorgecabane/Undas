@@ -127,3 +127,8 @@ to {
     padding-right:4px;
     text-align: center;
 }
+.alert-sm{
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}

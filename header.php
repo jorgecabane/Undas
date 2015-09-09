@@ -27,11 +27,12 @@ if ($_SESSION ["usuario"]) {
     <script src='calendario/lib/jquery-ui.custom.min.js'></script>
     <script src='calendario/fullcalendar.min.js'></script>
     <script src='calendario/lang/es.js'></script>
+    <script src='chart-master/chart.js'></script>
 
 
 
     <!-- css -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="css/bootstrap.min.css" rel='stylesheet'>
     <link href='calendario/fullcalendar.css' rel='stylesheet'/>
     <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
