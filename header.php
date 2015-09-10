@@ -12,6 +12,9 @@ if ($_SESSION ["usuario"]) {
     } else {
         $admin = 0;
     }
+}else{
+    //si no hay sesion se envi al login
+    header('location: logIn.php');
 }
 ?>
 <head>
