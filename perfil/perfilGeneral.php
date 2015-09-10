@@ -33,7 +33,7 @@ $nombreTM = $_POST['nombreTM'];
 
         <div class="tab-pane fade" id="Dtab">
             <center><h3>Liquidaciones</h3></center>
-            <?php include_once "Liquidaciones.php"; ?>
+            <?php include_once "liquidaciones.php"; ?>
         </div>
     </div>
 </div>

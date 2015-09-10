@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "header.php";
-include_once "include/verificacionUsuario.php";
+include_once dirname(__FILE__) . "/header.php";
+include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid">
     <div class="row well well-titles">

@@ -1,9 +1,7 @@
-<!--  !OOJOOO!REVISAR HEADER! COLAPSA CON <script src="js/bootstrap.min.js"></script> -->
 <?php
-session_start ();
-include "header.php";
-include "include/verificacionUsuario.php";
-
+session_start();
+include_once dirname(__FILE__) . "/header.php";
+include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container">
 	<h2>Agregar M&eacute;dicos</h2>
@@ -31,7 +29,7 @@ include "include/verificacionUsuario.php";
 
 <script>
 $("#agregar").click(function(){
-	
+
 	var name= $('#nombre').val();
 	var lastname = $('#apellido').val();
 				 jQuery.ajax({
@@ -41,22 +39,22 @@ $("#agregar").click(function(){
 				     		'nombre':$('#nombre').val(),
 				     		'apellido':$('#apellido').val()
 			       },
-			       
+
 			       error: function() {
 			    	   alert("Error Rut ya existente, intente nuevamente");
 			       },
-			       
+
 			       success: function(response)
 			       {
 			    	   $("#respuesta").text("Se agrego con exito a: " + name+ " " + lastname);
 			    	   $('#nombre').val('');
 			     		$('#apellido').val('');
-			     		   	  
-			    	   
+
+
 			       }
 
-			 }); 
-	
+			 });
+
 
 });
 

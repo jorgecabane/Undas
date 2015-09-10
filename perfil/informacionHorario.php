@@ -1,11 +1,3 @@
-<?php
-if (isset($_SESSION)) {
-    //si hay sesion iniciada
-    //var_dump($_POST);
-} else {
-    echo '<div class="alert alert-danger">No se ha iniciado sesion.</div>';
-}
-?>
 <!-- archivo de carga del calendario personal del TM sin opcion de modificar (solo exportacion) -->
 
 

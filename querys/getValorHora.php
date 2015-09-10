@@ -12,7 +12,7 @@ function getValorHora($rutTM) {
     $query = "SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, centro.Nombre as Centro,
                     tm.idTM as idTM
                     FROM tm
-                    inner join valorhora on (tm.idTM = valorHora.TM_idTM )
+                    inner join valorhora on (tm.idTM = valorhora.TM_idTM )
                     inner join centro on (centro.idCentro = valorhora.centro_idCentro)
                     WHERE tm.Rut='$rutTM'
                     ORDER BY Centro asc";

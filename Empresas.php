@@ -1,7 +1,7 @@
 <?php
 session_start ();
-include "header.php";
-include_once "include/verificacionUsuario.php";
+include_once dirname(__FILE__) . "/header.php";
+include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid">
 	<div class="row well well-titles">
@@ -29,9 +29,9 @@ include_once "include/verificacionUsuario.php";
 																				if ($admin == 1) {
 																					include "querys/getEmpresa.php";
 																					$empresas = getEmpresa();
-																					
+
 																					echo '<ul class="nav nav-pills nav-stacked">';
-																					
+
 																					foreach ($empresas as $emp) {
 																						echo '<li class="active fc-event" idEmpresa="' . $emp['idEmpresa'] . '"><a href="#">' . $emp['Nombre'] . '</a></li>';
 																					}
@@ -42,7 +42,7 @@ include_once "include/verificacionUsuario.php";
                 </div>
 
 		</div>
-     
+
         <?php
 								// si no admin ve esto
 								if ($admin == 1) {
@@ -66,7 +66,7 @@ if ($admin == 1) {
 			$("#call").focus();
 			});
 		 </script>';
-} 
+}
 ?>
 
 <script src="include/filtro.js"></script>

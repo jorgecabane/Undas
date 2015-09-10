@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once "../Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {

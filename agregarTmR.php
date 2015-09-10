@@ -1,13 +1,12 @@
-<!--  !OOJOOO!REVISAR HEADER! COLAPSA CON <script src="js/bootstrap.min.js"></script> -->
 <?php
-session_start ();
-include "header.php";
-include "include/verificacionUsuario.php";
+session_start();
+include_once dirname(__FILE__) . "/header.php";
+include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 
 ?>
 	<div class="container">
 		<h2>Agregar Personal</h2>
-		
+
 			<div class="form-group">
 				<label for="Nombre">Nombre</label> <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Agrege nombre" required>
 			</div>
@@ -49,14 +48,14 @@ include "include/verificacionUsuario.php";
 
 <script>
 $("#agregar").click(function(){
-	
+
 	var name= $('#nombre').val();
 	var lastname = $('#apellido').val();
 	var contra= $('#contrasena').val();
 	var repitecontra= $('#repetircontrasena').val();
 		if(contra==repitecontra){
-			
-			
+
+
 			 jQuery.ajax({
 			       method: "POST",
 			       url: "querys/insertTmR.php",
@@ -70,11 +69,11 @@ $("#agregar").click(function(){
 				     		'cuenta':$('#cuenta').val(),
 		                    'contrasena':$('#contrasena').val()
 			       },
-			       
+
 			       error: function() {
 			    	   alert("Error Rut ya existente, intente nuevamente");
 			       },
-			       
+
 			       success: function(response)
 			       {
 			    	   $("#respuesta").text("Se agrego con exito a: " + name+ " " + lastname);
@@ -87,11 +86,11 @@ $("#agregar").click(function(){
 			     		$('#cuenta').val('');
 		               $('#contrasena').val('');
 		               $('#repetircontrasena').val('');
-			    	  
-			    	   
+
+
 			       }
 
-			 }); 
+			 });
 		}
 
 		else{
