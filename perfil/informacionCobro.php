@@ -14,7 +14,7 @@
                     }
                 }
 
-                $resultado = mysql_query("SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, centro.Nombre as centro, tm.idTM as idTM from tm inner join valorhora on tm.idTM = valorhora.Tm_idTM inner join centro on centro.idCentro = valorhora.Centro_idCentro WHERE tm.Rut='$rut'") or die(mysql_error());
+                $resultado = mysql_query("SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, centro.Nombre as Centro, tm.idTM as idTM from tm inner join valorhora on tm.idTM = valorhora.Tm_idTM inner join centro on centro.idCentro = valorhora.Centro_idCentro WHERE tm.Rut='$rut'") or die(mysql_error());
 
                 if ($resultado) {
                     if ($admin == 1) {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "../include/isAdmin.php";
-echo '<div align="center">';
+
 if ($_SESSION ["usuario"]) {
     if (isAdmin($_SESSION ["idusuario"]) == 1) {
         $admin = 1;
@@ -11,7 +11,7 @@ if ($_SESSION ["usuario"]) {
 }
 
 $resultado = mysql_query("SELECT * from tm WHERE Rut='$rut'") or die(mysql_error());
-
+echo '<div align="center">';
 if ($resultado) {
 
     echo "<table id='t01' class='table table-hover table-bordered'>";
