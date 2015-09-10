@@ -1,7 +1,7 @@
 <?php
 session_start ();
-include "header.php";
-include "include/verificacionUsuario.php";
+require_once dirname(__FILE__)."/header.php";
+include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 ?>
 <!DOCTYPE html>
 
@@ -22,12 +22,12 @@ include "include/verificacionUsuario.php";
 		</div>
 		<div class="form-group">
 			<label>Empresa a la que pertenece</label> <br>
-         
+
           <?php
 		include_once "conexionLocal.php";
-										
-		$query = "SELECT * from Empresa order by Nombre asc ";
-										
+
+		$query = "SELECT * from empresa order by Nombre asc ";
+
 			$resultado = mysql_query ( $query ) or die ( mysql_error () );
 				if ($resultado) {
 					echo "<select class='form-control' required name='empresa' id='empresa' >";
@@ -71,13 +71,13 @@ include "include/verificacionUsuario.php";
 	for( var i = 1 ; i<= $( "#ecos" ).val() ; i++){
 		content += "<tr><td><input type='Text' class='form-control Eco'  Value='Eco"+ i +"' required></td>";
 		content += " <td><input type='color' class='form-control Color' value='#0080ff'></td></tr> ";
-			
+
 	}
 		content += "</tbody></table>";
 	$('#append').append(content);
-	
+
 	// $( ".Eco1" ).focus() ;
-  
+
 	  });
 
  </script>
@@ -113,13 +113,13 @@ $(".btnedit").click(function(){
 		     		'ecos':$('#ecos').val(),
 		     		'nombreEcos': nombreEcos,
 		     		'coloresEcos': colores
-		     		
+
 	       },
-	       
+
 	       error: function() {
 	    	   alert("Error, intente nuevamente");
 	       },
-	       
+
 	       success: function(response)
 	       {
 	    	   $("#respuesta").text("Se agrego con exito a: " + name);
@@ -128,11 +128,11 @@ $(".btnedit").click(function(){
 	     		$('#ecos').val('');
 	     		$('#siglas').val('');
 	     		$('#append').empty();
-         
-	    	   
+
+
 	       }
-	 }); 
-		
+	 });
+
 });
 
 

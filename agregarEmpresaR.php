@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "header.php";
-include "include/verificacionUsuario.php";
+require_once dirname(__FILE__)."/header.php";
+include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 ?>
 <html>
    <head>
@@ -11,50 +11,50 @@ include "include/verificacionUsuario.php";
     <body background="images/bg.gif">
          <div class="container">
       <h2>Agregar Empresa</h2>
-      
+
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" id="nombre" placeholder="Agrege Nombre de la empresa" required>
-        </div>          
+        </div>
            <div class="form-group">
           <label for="nombre">Rut</label>
           <input type="text" class="form-control" id="rut" placeholder="Agrege Rut de la empresa" required>
-        </div>         
+        </div>
            <div class="form-group">
           <label for="nombre">Giro</label>
           <input type="text" class="form-control" id="giro" placeholder="Agrege Giro de la empresa" required>
-        </div>          
+        </div>
            <div class="form-group">
           <label for="nombre">Direccion</label>
           <input type="text" class="form-control" id="direccion" placeholder="Agrege Direccion de la empresa" required>
-        </div>          
+        </div>
            <div class="form-group">
           <label for="nombre">Ciudad</label>
           <input type="text" class="form-control" id="ciudad" placeholder="Agrege Ciudad de la empresa" >
-        </div>          
+        </div>
            <div class="form-group">
           <label for="nombre">Comuna</label>
           <input type="text" class="form-control" id="comuna" placeholder="Agrege Comuna de la empresa" required>
-        </div>    
+        </div>
         <div class="form-group">
           <label for="nombre">Razon Social</label>
           <input type="text" class="form-control" id="razon" placeholder="Agrege Razon Social de la empresa" required>
-        </div>              
+        </div>
              <input type="submit" value="Agregar" id='agregar' class='btn btn-info btnedit'/>
 		<div >
 <p id='respuesta'>
 </p>
 </div>
     </div>
- 
+
     </body>
 </html>
 
 <script>
 $("#agregar").click(function(){
-	
+
 	var name= $('#nombre').val();
-	 
+
 			 jQuery.ajax({
 			       method: "POST",
 			       url: "querys/insertEmpresaR.php",
@@ -67,11 +67,11 @@ $("#agregar").click(function(){
 				     		'razon':$('#razon').val(),
 		                    'ciudad':$('#ciudad').val()
 			       },
-			       
+
 			       error: function() {
 			    	   alert("Error Rut ya existente, intente nuevamente");
 			       },
-			       
+
 			       success: function(response)
 			       {
 			    	   $("#respuesta").text("Se agrego con exito a: " + name);
@@ -82,9 +82,9 @@ $("#agregar").click(function(){
 			     		$('#comuna').val('');
 		               $('#ciudad').val('');
 		               $('#razon').val('');
-		                
+
 			       }
-			 }); 
-		
+			 });
+
 });
 </script>
