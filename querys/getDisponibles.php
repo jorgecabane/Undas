@@ -13,21 +13,27 @@ function getDisponibles($start, $end) {
     $res = mysql_query($query);
     $result[] = mysql_fetch_assoc($res);
 
+    $newStart = explode(' ', $start);
+    $newEnd = explode(' ', $end);
     //manejo de la fecha para indicar el formato
-    $query = "SELECT concat(tm.Nombre, ' ', tm.Apellido) as nombreTM
+    $query1 = "SELECT concat(tm.Nombre, ' ', tm.Apellido) as nombreTM
               FROM tm
               WHERE idTM NOT IN (SELECT DISTINCT(TM_idTM)
                                  FROM tm, evento
-                                 WHERE tm.idTM = TM_idTM AND (HoraInicio BETWEEN '$start' AND '$end') OR (HoraTermino BETWEEN '$start' AND '$end'))";
-    $res = mysql_query($query) OR DIE(mysql_error());
-    if ($res) {
-        $res = mysql_query($query) or die(mysql_error());
+                                 WHERE tm.idTM = TM_idTM AND (DATE(HoraInicio) BETWEEN '" . $newStart[0] . "' AND '" . $newEnd[0] . "') OR (TIME(HoraInicio) BETWEEN '" . $newStart[1] . "' AND '" . $newEnd[1] . "'))";
+    
+    $res1 = mysql_query($query1) OR DIE(mysql_error());
+    if (mysql_affected_rows() >= 1) {
+        $res1 = mysql_query($query1) or die(mysql_error());
 
-        while ($row = mysql_fetch_assoc($res)) {
+        while ($row = mysql_fetch_assoc($res1)) {
             $result[] = $row;
         }//while
-        return $result;
     }//if
+    else {
+        $result[] = $query1;
+    }
+    return $result;
 }
 
 ?>
