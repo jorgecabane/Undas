@@ -1,7 +1,7 @@
 <div align="center">
     <?php
-    include_once "../include/isAdmin.php";
-    include_once "../include/meses.php";
+    include_once "../Include/isAdmin.php";
+    include_once "../Include/meses.php";
     include_once "../querys/getHoras.php";
     include_once "../querys/getValorHora.php";
     if ($_SESSION ["usuario"]) {

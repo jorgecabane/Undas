@@ -1,6 +1,6 @@
 <div align="center">
     <?php
-				include_once "../include/isAdmin.php";
+				include_once "../Include/isAdmin.php";
 				if ($_SESSION ["usuario"]) {
 					if (isAdmin ( $_SESSION ["idusuario"] ) == 1) {
 						$admin = 1;
@@ -12,7 +12,7 @@ $resultado = mysql_query("SELECT * from Empresa where idEmpresa=$idEmpresa") or 
 
 if($resultado){
 
-echo "<table id='t01' class='table table-hover table-bordered'>"; 
+echo "<table id='t01' class='table table-hover table-bordered'>";
 echo "<thead><tr>";
   echo  "<th>Nombre</th>";
   echo  "<th>Rut</th>";
@@ -131,7 +131,7 @@ while ($row = mysql_fetch_array($resultado)) {
 	<script>
 	    $(".editable").keyup(function() {
 	        $(".btnedit").removeAttr("disabled");
-	
+
 	        $(this)
 	                .parent()
 	                .parent()

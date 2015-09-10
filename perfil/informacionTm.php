@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../include/isAdmin.php";
+include_once "../Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {
     if (isAdmin($_SESSION ["idusuario"]) == 1) {

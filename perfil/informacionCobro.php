@@ -4,7 +4,7 @@
         <body>
             <div align="center">
                 <?php
-                include_once "../include/isAdmin.php";
+                include_once "../Include/isAdmin.php";
                 include_once "../querys/getCentros.php";
                 if ($_SESSION ["usuario"]) {
                     if (isAdmin($_SESSION ["idusuario"]) == 1) {
