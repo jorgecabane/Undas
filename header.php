@@ -19,6 +19,7 @@ if ($_SESSION ["usuario"]) {
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TMTECNOMED APP</title>
 
     <script src="Include/jquery-2.1.4.min.js"></script>
     <script src="Include/bootstrap.js"></script>
@@ -29,9 +30,13 @@ if ($_SESSION ["usuario"]) {
     <script src='calendario/lang/es.js'></script>
     <script src='chart-master/Chart.js'></script>
 
+    <!-- favico-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon
 
 
     <!-- css -->
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link href="css/bootstrap.min.css" rel='stylesheet'>
     <link href='calendario/fullcalendar.css' rel='stylesheet'/>
