@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once "header.php";
-include_once "include/verificacionUsuario.php";
+require_once dirname(__FILE__)."/header.php";
+include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 ?>
     <div class="container">
       <h2>Editar Clave</h2>
@@ -11,11 +11,11 @@ include_once "include/verificacionUsuario.php";
           <input type="password" class="form-control" name="claveantigua"  placeholder="Ingrese clave antigua" required>
         </div>
           <div class="form-group">
-          <label for="contraseña">Nueva Clave</label>
+          <label for="contraseï¿½a">Nueva Clave</label>
           <input type="password"  class="form-control" name="clavenueva" placeholder="Ingrese nueva clave" required>
         </div>
           <div class="form-group">
-          <label for="Repetircontraseña">Repetir Clave Nueva</label>
+          <label for="Repetircontraseï¿½a">Repetir Clave Nueva</label>
           <input type="password"  class="form-control" name="repetirclave" placeholder="Reescribir clave nueva" required>
         </div>
         <div>
@@ -25,6 +25,6 @@ include_once "include/verificacionUsuario.php";
         <button type="submit" class="btn btn-info">Cambiar</button>
       </form>
     </div>
-      
+
 
 

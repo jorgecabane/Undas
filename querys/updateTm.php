@@ -18,6 +18,6 @@ if ($resultado) {
     echo "Actualizado con exito, redireccionando";
 } else {
     //failure
-    echo "Se produjo un error en la actualizacion ".$query;
+    echo "Se produjo un error en la actualizacion " . $query;
 }
 

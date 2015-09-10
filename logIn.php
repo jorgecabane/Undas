@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "conexionLocal.php";
+include_once dirname(__FILE__)."/conexionLocal.php";
 
 function verificar_login($user, $password) {
     $rec = mysql_query("SELECT * FROM tm WHERE Nombre = '$user' AND Password = '$password'") or die(mysql_error());

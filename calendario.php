@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "header.php";
-include_once "Include/verificacionUsuario.php";
+require_once dirname(__FILE__)."/header.php";
+include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>

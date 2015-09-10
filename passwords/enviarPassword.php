@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../conexionLocal.php";
+include_once dirname(__FILE__)."/../conexionLocal.php";
 
 $email=$_POST['email'];
 $rut=$_POST['rut'];

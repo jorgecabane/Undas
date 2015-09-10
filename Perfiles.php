@@ -25,7 +25,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 
                 <hr><!-- divisor-->
                 <div id="listado">';
-            include_once "querys/todosTmListado.php";
+            include_once dirname(__FILE__)."/querys/todosTmListado.php";
 
             echo '</div>
                 </div><!-- well-sm -->';

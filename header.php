@@ -1,10 +1,10 @@
 <?php
-include_once "querys/getTM.php"; // aqui ya se incluye la conexion local
-include_once "querys/getEcos.php";
-include_once "querys/getEventos.php";
-include_once "querys/getCentrosGroup.php";
+include_once dirname(__FILE__)."/querys/getTM.php"; // aqui ya se incluye la conexion local
+include_once dirname(__FILE__)."/querys/getEcos.php";
+include_once dirname(__FILE__)."/querys/getEventos.php";
+include_once dirname(__FILE__)."/querys/getCentrosGroup.php";
 // include_once "conexionLocal.php"; // se incluye la conexion local arriba
-include_once "Include/isAdmin.php";
+include_once dirname(__FILE__)."/Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {
     if (isAdmin($_SESSION ["idusuario"]) == 1) {
