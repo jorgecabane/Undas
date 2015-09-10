@@ -50,7 +50,7 @@ function verifyTM($idTM, $dateTime, $type = 'array', $display = false) {
 			$result = true;
 		}
 	} else {
-		$query = "SELECT Ecos.Nombre, Centro.Nombre FROM evento, ecos, centro WHERE TM_idTM = $idTM AND HoraInicio = '$dateTime' AND Ecos_idEcos = idEcos AND Centro_idCentro = idCentro";
+		$query = "SELECT ecos.Nombre, centro.Nombre FROM evento, ecos, centro WHERE TM_idTM = $idTM AND HoraInicio = '$dateTime' AND Ecos_idEcos = idEcos AND Centro_idCentro = idCentro";
 		// var_dump($query);
 		$res = mysql_query ( $query ) or die ( mysql_error () ); // ejecutar la query
 		if (mysql_affected_rows () >= 1) { // si hay algun error
