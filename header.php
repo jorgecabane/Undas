@@ -3,7 +3,6 @@ include_once dirname(__FILE__) . "/querys/getTM.php"; // aqui ya se incluye la c
 include_once dirname(__FILE__) . "/querys/getEcos.php";
 include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
-// include_once "conexionLocal.php"; // se incluye la conexion local arriba
 include_once dirname(__FILE__) . "/Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {
@@ -156,8 +155,9 @@ if ($_SESSION ["usuario"]) {
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="editarClave.php">Editar Clave</a></li>
-                    <li><a href="logOff.php"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</a></li>
+                    <li><button onClick="window.location.href = 'logOff.php'" class="btn btn-danger navbar-btn"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
                 </ul>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
