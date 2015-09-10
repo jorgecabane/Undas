@@ -1,11 +1,9 @@
 <?php
 session_start ();
 include "header.php";
-include "include/verificacionUsuario.php";
 
-session_start();
 include_once dirname(__FILE__)."/header.php";
-include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
+include_once dirname(__FILE__)."/include/verificacionUsuario.php";
 ?>
 <div class="container-fluid well">
 	<div class="row">
