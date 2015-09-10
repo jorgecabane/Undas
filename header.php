@@ -13,8 +13,9 @@ if ($_SESSION ["usuario"]) {
         $admin = 0;
     }
 }else{
+    //print_r($_SESSION);
     //si no hay sesion se envi al login
-    header('location: logIn.php');
+    header('Location:logIn.php');
 }
 ?>
 <head>
@@ -35,7 +36,7 @@ if ($_SESSION ["usuario"]) {
 
     <!-- favico-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
 
     <!-- css -->
