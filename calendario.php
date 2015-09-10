@@ -8,7 +8,7 @@ $centro = $_GET ['centro'];
 
 <div class='container-fluid'>
     <div class='row'>
-        <div class="col-md-1 col-md-offset-3 well well-sm well-titles" >
+        <div class="col-md-1 col-md-offset-3 well well-sm well-titles hidden-print" >
             <div id="deleteArea" class="alert alert-danger" style="padding-bottom: 6px; padding-top: 6px;" data-toggle="tooltip" data-placement="left" title="Arraste evento para eliminar">
                 <b>Eliminar</b>
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -25,15 +25,15 @@ $centro = $_GET ['centro'];
                         </h2>
                     </center>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 hidden-print">
                     <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
-                        <span class="glyphicon glyphicon-save-file"></span>
+                        <span class="glyphicon glyphicon-print"></span>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Single button -->
-        <div class="col-md-1 well well-sm well-titles">
+        <div class="col-md-1 well well-sm well-titles hidden-print">
             <center>
                 <div class="btn-group">
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -108,6 +108,7 @@ $centro = $_GET ['centro'];
             <!-- calendario -->
         </div>
         <div style='clear: both'></div>
+        <div class='alert alert-warning visible-print-block'>Informacion adicional para la impresion</div>
     </div>
     <!-- row -->
 </div>
