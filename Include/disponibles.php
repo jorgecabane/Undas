@@ -4,6 +4,7 @@
  * se muestra el listado de personas disponibles con la funcion getDisponibles($start,$end);
  */
 require_once dirname ( __FILE__ ) . "/../querys/getDisponibles.php";
+require_once dirname ( __FILE__ ) . "/../querys/getDisponiblesHora.php";
 if(isset($_POST['start'])){
 $start = $_POST['start'];
 $end = $_POST['end'];
