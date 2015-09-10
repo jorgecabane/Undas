@@ -5,7 +5,6 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>
-<script type="text/javascript" src="Include/excellentexport.min.js"></script>
 
 <div class='container-fluid'>
     <div class='row'>
@@ -27,14 +26,9 @@ $centro = $_GET ['centro'];
                     </center>
                 </div>
                 <div class="col-sm-2">
-                    <form action="Include/toPDF.php" method="POST">
-                        <input id="pdf" type="hidden" name="pdf" value="">
-                        <input type="hidden" name="idCentro" value="<?php echo $_GET['idCentro'] ?>">
-                        <input type="hidden" name="centro" value="<?php echo $_GET['centro'] ?>">
-                        <button type="submit"  class="btn btn-danger btn-block" target="blank" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
-                            <span class="glyphicon glyphicon-save-file"></span>
-                        </button>
-                    </form>
+                    <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
+                        <span class="glyphicon glyphicon-save-file"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -393,7 +387,7 @@ $centro = $_GET ['centro'];
                 $('#repeatWeek').addClass('disabled');
                 $('#repeatMonth').addClass('disabled');
         }
-        $('#pdf').val($('.fc-view-container').html());
+        //$('#pdf').val($('.fc-view-container').html());
     };
 </script><!-- switchView -->
 <script>

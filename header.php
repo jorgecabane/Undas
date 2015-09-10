@@ -1,10 +1,10 @@
 <?php
-include_once dirname(__FILE__)."/querys/getTM.php"; // aqui ya se incluye la conexion local
-include_once dirname(__FILE__)."/querys/getEcos.php";
-include_once dirname(__FILE__)."/querys/getEventos.php";
-include_once dirname(__FILE__)."/querys/getCentrosGroup.php";
+include_once dirname(__FILE__) . "/querys/getTM.php"; // aqui ya se incluye la conexion local
+include_once dirname(__FILE__) . "/querys/getEcos.php";
+include_once dirname(__FILE__) . "/querys/getEventos.php";
+include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
 // include_once "conexionLocal.php"; // se incluye la conexion local arriba
-include_once dirname(__FILE__)."/Include/isAdmin.php";
+include_once dirname(__FILE__) . "/Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {
     if (isAdmin($_SESSION ["idusuario"]) == 1) {
@@ -12,7 +12,7 @@ if ($_SESSION ["usuario"]) {
     } else {
         $admin = 0;
     }
-}else{
+} else {
     //print_r($_SESSION);
     //si no hay sesion se envi al login
     header('Location:logIn.php');
@@ -41,11 +41,11 @@ if ($_SESSION ["usuario"]) {
 
     <!-- css -->
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link href="css/bootstrap.min.css" rel='stylesheet'>
+    <link href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' rel='stylesheet'>
+    <link href='css/bootstrap.min.css' rel='stylesheet'>
     <link href='calendario/fullcalendar.css' rel='stylesheet'/>
     <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
-    <link href="css/style.css" rel='stylesheet'>
+    <link href='css/style.css' rel='stylesheet'>
 
 </head>
 <body background="images/bg.gif">
