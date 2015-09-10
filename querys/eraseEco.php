@@ -2,15 +2,15 @@
 include_once "../conexionLocal.php";
 
 
-$id=$_POST['idcentro'];
+$id=$_POST['ideco'];
 
 
-$query="DELETE FROM Centro WHERE idCentro=$id";
+$query="DELETE FROM Ecos WHERE idEcos=$id";
 
 $resultado=mysql_query($query);
 if($resultado) {
 	//success
-	echo"success";
+	echo "success";
 	
 } else { 
     //failure

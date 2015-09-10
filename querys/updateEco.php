@@ -1,10 +1,10 @@
 <?php
 include_once "../conexionLocal.php";
-$id=$_POST['idcentro'];
+$id=$_POST['ideco'];
 $nombre=$_POST['nombre'];
-$siglas=$_POST['siglas'];
+$color=$_POST['color'];
 
-$query="UPDATE Centro SET Nombre='$nombre', Siglas='$siglas' WHERE idCentro=$id";
+$query="UPDATE Ecos SET Nombre='$nombre', Color='$color' WHERE idEcos=$id";
 
 $resultado=mysql_query($query);
 if($resultado) {
