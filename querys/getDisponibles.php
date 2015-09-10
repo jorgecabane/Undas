@@ -11,14 +11,14 @@ include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion
 function getDisponibles($start, $end) {
     $query = "SELECT count(idTM) as tms FROM tm";
     $res = mysql_query($query);
-    $result[]= mysql_fetch_assoc($res);
+    $result[] = mysql_fetch_assoc($res);
 
     //manejo de la fecha para indicar el formato
     $query = "SELECT concat(tm.Nombre, ' ', tm.Apellido) as nombreTM
               FROM tm
               WHERE idTM NOT IN (SELECT DISTINCT(TM_idTM)
                                  FROM tm, evento
-                                 WHERE tm.idTM = TM_idTM AND (DATE(HoraInicio) BETWEEN '$start' AND '$end') )";
+                                 WHERE tm.idTM = TM_idTM AND (HoraInicio BETWEEN '$start' AND '$end') OR (HoraTermino BETWEEN '$start' AND '$end'))";
     $res = mysql_query($query) OR DIE(mysql_error());
     if ($res) {
         $res = mysql_query($query) or die(mysql_error());

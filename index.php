@@ -29,9 +29,9 @@ include_once dirname(__FILE__) . "/include/verificacionUsuario.php";
 
                         <div class="col-sm-10 col-sm-offset-1">
                             <h4>De
-                            <span id="rangoStart">8:30</span> a
-                            <span id="rangoEnd">20:00</span>
-                            Horas
+                                <span id="rangoStart">8:30</span> a
+                                <span id="rangoEnd">20:00</span>
+                                Horas
                             </h4>
                             <div id="slider"></div>
                             <br>
@@ -101,7 +101,7 @@ include_once dirname(__FILE__) . "/include/verificacionUsuario.php";
 </body>
 <script>
     $(function() {
-        var hoy = moment().format('YYYY-DD-MM');
+        var hoy = moment().format('YYYY-MM-DD');
         $('#start').val(hoy);
         $('#end').val(hoy);
 
@@ -123,28 +123,6 @@ include_once dirname(__FILE__) . "/include/verificacionUsuario.php";
             dateFormat: "yy-mm-dd"
         });
     });
-    $("#slider").slider({
-        range: true,
-        min: 480,
-        max: 1260,
-        step: 15,
-        values: [510, 1200],
-        slide: function(e, ui) {
-            var hours1 = Math.floor(ui.values[0] / 60);
-            var minutes1 = ui.values[0] - (hours1 * 60);
-
-            var hours2 = Math.floor(ui.values[1] / 60);
-            var minutes2 = ui.values[1] - (hours2 * 60);
-
-            if(hours1.toString().length === 1) {hours1 = '0' + hours1;}
-            if(minutes1.toString().length === 1) {minutes1 = '0' + minutes1;}
-            if(hours2.toString().length === 1) {hours2 = '0' + hours2;}
-            if(minutes2.toString().length === 1) {minutes2 = '0' + minutes2;}
-
-            $('#rangoStart').html(hours1+':'+minutes1);
-            $('#rangoEnd').html(hours2+':'+minutes2);
-        }
-    });
 </script>
 <!-- creacion del datepicker -->
 <script>
@@ -165,9 +143,7 @@ include_once dirname(__FILE__) . "/include/verificacionUsuario.php";
     Grafico = new Chart(ctx).Doughnut(data, {
         animateScale: true,
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
-//Boolean - Whether we should show a stroke on each segment
         segmentShowStroke: true,
-//String - The colour of each segment stroke
         segmentStrokeColor: "#fff",
         percentageInnerCutout: 30,
         responsive: true,
@@ -180,9 +156,10 @@ include_once dirname(__FILE__) . "/include/verificacionUsuario.php";
 <!-- inicializacion del chart -->
 <script>
     $(document).ready(function() {
-        $('#start, #end').change(function() {
-            start = $.datepicker.formatDate('yy-mm-dd', $('#start').datepicker('getDate'));
-            end = $.datepicker.formatDate('yy-mm-dd', $('#end').datepicker('getDate'));
+        var getDisponibles = function() {
+            start = $.datepicker.formatDate('yy-mm-dd', $('#start').datepicker('getDate')) + ' ' + $('#rangoStart').text() + ':00';
+            end = $.datepicker.formatDate('yy-mm-dd', $('#end').datepicker('getDate')) + ' ' + $('#rangoEnd').text() + ':00';
+
             $.ajax({
                 url: 'Include/disponibles.php',
                 async: true,
@@ -216,7 +193,39 @@ include_once dirname(__FILE__) . "/include/verificacionUsuario.php";
                 }//success
             });//ajax
 
-        });//change
+        };
+        $('#start, #end, #slider').change(getDisponibles);//change
+        $("#slider").slider({
+            range: true,
+            min: 480,
+            max: 1260,
+            step: 15,
+            values: [510, 1200],
+            slide: function(e, ui) {
+                var hours1 = Math.floor(ui.values[0] / 60);
+                var minutes1 = ui.values[0] - (hours1 * 60);
+
+                var hours2 = Math.floor(ui.values[1] / 60);
+                var minutes2 = ui.values[1] - (hours2 * 60);
+
+                if (hours1.toString().length === 1) {
+                    hours1 = '0' + hours1;
+                }
+                if (minutes1.toString().length === 1) {
+                    minutes1 = '0' + minutes1;
+                }
+                if (hours2.toString().length === 1) {
+                    hours2 = '0' + hours2;
+                }
+                if (minutes2.toString().length === 1) {
+                    minutes2 = '0' + minutes2;
+                }
+
+                $('#rangoStart').html(hours1 + ':' + minutes1);
+                $('#rangoEnd').html(hours2 + ':' + minutes2);
+            },
+            change: getDisponibles
+        });
     });//ready
 </script>
 
