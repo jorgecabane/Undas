@@ -113,7 +113,7 @@ if ($_SESSION ["usuario"]) {
                                data-toggle="dropdown" role="button" aria-expanded="false">Empresas<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="empresas.php">Perfiles empresas</a></li>
+                                <li><a href="Empresas.php">Perfiles empresas</a></li>
                                 <li><a href="agregarEmpresaR.php">Nueva empresa</a></li>
                                 <li><a href="agregarCentroNuevoR.php">Nuevo centro</a></li>
                             </ul>
