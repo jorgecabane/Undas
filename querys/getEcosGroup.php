@@ -16,7 +16,7 @@ function getEcosGroup($idEmpresa) {
         $centro['Siglas'] = $row['Siglas'];
         $idCentro = $row['idCentro'];
         //datos de cada centro
-        $query2 = "SELECT idEcos, Nombre, color FROM Ecos WHERE Centro_idCentro = $idCentro";
+        $query2 = "SELECT idEcos, Nombre, color FROM ecos WHERE Centro_idCentro = $idCentro";
         $res2 = mysql_query($query2) or die(mysql_error());
         $Ecos = array(); //inicializa array centros
         while ($row2 = mysql_fetch_assoc($res2)) {
