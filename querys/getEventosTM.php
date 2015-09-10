@@ -9,8 +9,8 @@ include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion
 
 function getEventosTM($Rut = null) {
     if ($Rut != null) {
-        $query = "SELECT idEvento as id, HoraInicio as start, HoraTermino as end, color, idEcos as idEco, Ecos.Nombre as title, concat(Centro.Nombre, ' (', Centro.Siglas,')') as description
-				FROM Evento, Ecos, TM, Centro
+        $query = "SELECT idEvento as id, HoraInicio as start, HoraTermino as end, color, idEcos as idEco, Ecos.Nombre as title, concat(centro.Nombre, ' (', centro.Siglas,')') as description
+				FROM evento, ecos, tm, centro
 				WHERE RUT='$Rut' AND TM_idTM=idTM AND Ecos_idEcos=idEcos AND Centro_idCentro=idCentro";
 
         $res = mysql_query($query) or die(mysql_error());

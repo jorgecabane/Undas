@@ -4,7 +4,7 @@ include_once "querys/getEcos.php";
 include_once "querys/getEventos.php";
 include_once "querys/getCentrosGroup.php";
 // include_once "conexionLocal.php"; // se incluye la conexion local arriba
-include_once "include/isAdmin.php";
+include_once "Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {
     if (isAdmin($_SESSION ["idusuario"]) == 1) {

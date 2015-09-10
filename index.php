@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "header.php";
-include "include/verificacionUsuario.php";
+include_once dirname(__FILE__)."/header.php";
+include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid well">
     <div class="row">
@@ -106,7 +106,7 @@ include "include/verificacionUsuario.php";
             start = $.datepicker.formatDate('yy-mm-dd', $('#start').datepicker('getDate'));
             end = $.datepicker.formatDate('yy-mm-dd', $('#end').datepicker('getDate'));
             $.ajax({
-                url: 'include/disponibles.php',
+                url: 'Include/disponibles.php',
                 async: true,
                 data: {"start": start, "end": end},
                 method: 'POST',

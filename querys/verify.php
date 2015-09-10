@@ -8,7 +8,7 @@
  * 2..... Un TM no puede tener 2 eventos a la misma fecha hora (independiente del lugar)
  */
 require_once dirname ( __FILE__ ) . '/../conexionLocal.php'; // archivo de conexion local
-                                                             
+
 // verificacion del tipo 1
 function verifyEco($idEco, $dateTime, $type = 'array', $display = false) {
 	if ($display == false) { // si solo se busca verificar (sin mostrar los duplicados)
@@ -20,7 +20,7 @@ function verifyEco($idEco, $dateTime, $type = 'array', $display = false) {
 			$result = true;
 		}
 	} else {
-		$query = "SELECT concat(TM.Nombre, TM.Apellido) as Nombre FROM TM, evento WHERE Ecos_idEcos = $idEco AND HoraInicio = '$dateTime' AND TM_idTM = idTM";
+		$query = "SELECT concat(tm.Nombre, tm.Apellido) as Nombre FROM tm, evento WHERE Ecos_idEcos = $idEco AND HoraInicio = '$dateTime' AND TM_idTM = idTM";
 		$res = mysql_query ( $query ) or die ( mysql_error () ); // ejecutar la query
 		if (mysql_affected_rows () >= 1) { // si hay algun error
 			while ( $row = mysql_fetch_assoc ( $res ) ) {
@@ -30,7 +30,7 @@ function verifyEco($idEco, $dateTime, $type = 'array', $display = false) {
 			$result = true;
 		}
 	}
-	
+
 	if ($type = 'json') {
 		return json_encode ( $result );
 	} else {
@@ -61,7 +61,7 @@ function verifyTM($idTM, $dateTime, $type = 'array', $display = false) {
 			$result = true;
 		}
 	}
-	
+
 	if ($type = 'json') {
 		return json_encode ( $result );
 	} else {

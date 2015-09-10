@@ -92,7 +92,7 @@ if ($admin == 1) {
 }
 ?>
 
-<script src="include/filtro.js"></script>
+<script src="Include/filtro.js"></script>
 
 <script>
     $(".fc-event").click(function() {

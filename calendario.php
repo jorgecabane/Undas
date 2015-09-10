@@ -1,11 +1,11 @@
 <?php
 session_start();
 require_once "header.php";
-include_once "include/verificacionUsuario.php";
+include_once "Include/verificacionUsuario.php";
 $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>
-<script type="text/javascript" src="include/excellentexport.min.js"></script>
+<script type="text/javascript" src="Include/excellentexport.min.js"></script>
 
 <div class='container-fluid'>
     <div class='row'>
@@ -226,7 +226,7 @@ $centro = $_GET ['centro'];
                 //si el evento no se encuentra guardado en la bbdd
                 //armado de JSON para envio de datos
                 $.ajax({
-                    url: 'include/insertarEvento.php',
+                    url: 'Include/insertarEvento.php',
                     async: true,
                     data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
                     method: 'POST',
@@ -261,7 +261,7 @@ $centro = $_GET ['centro'];
         //alert(idEvento);
 
         $.ajax({
-            url: 'include/updatearEvento.php',
+            url: 'Include/updatearEvento.php',
             async: true,
             data: {"idEvento": idEvento, "start": start, "end": end},
             method: 'POST',
@@ -284,7 +284,7 @@ $centro = $_GET ['centro'];
         //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
         // alert(event.idEco+' '+event.start.format());
         $.ajax({
-            url: 'include/verificaEco.php',
+            url: 'Include/verificaEco.php',
             async: true,
             data: {"idEco": event.idEco, "start": event.start.format()},
             method: 'POST',
@@ -297,7 +297,7 @@ $centro = $_GET ['centro'];
         });//ajax
 
         $.ajax({
-            url: 'include/verificaTM.php',
+            url: 'Include/verificaTM.php',
             async: true,
             data: {"idTM": event.idTM, "start": event.start.format()},
             method: 'POST',
@@ -329,7 +329,7 @@ $centro = $_GET ['centro'];
                 //console.log(event.id);
                 $('#calendar').fullCalendar('removeEvents', event._id);
                 $.ajax({
-                    url: 'include/eliminarEvento.php',
+                    url: 'Include/eliminarEvento.php',
                     async: true,
                     data: {"idEvento": event.id},
                     method: 'POST',
@@ -407,7 +407,7 @@ $centro = $_GET ['centro'];
                                 idTM = evento.idTM;
 
                                 $.ajax({
-                                    url: 'include/insertarEvento.php',
+                                    url: 'Include/insertarEvento.php',
                                     async: true,
                                     data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
                                     method: 'POST',
@@ -442,5 +442,5 @@ $centro = $_GET ['centro'];
         });//click
     });//ready
 </script><!-- repeatWeek -->
-<script src="include/filtro.js"></script>
+<script src="Include/filtro.js"></script>
 </html>
