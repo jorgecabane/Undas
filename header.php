@@ -49,19 +49,17 @@ if ($_SESSION ["usuario"]) {
 </head>
 <body background="images/bg.gif">
     <div class='row' align="left">
-
         <img src="images/logo.gif" alt="logo" />
-
     </div>
     <nav class="navbar navbar-default ">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed"
-                        data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> <span
-                        class="icon-bar"></span> <span class="icon-bar"></span> <span
-                        class="icon-bar"></span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.php">Home</a>
             </div>
@@ -117,8 +115,8 @@ if ($_SESSION ["usuario"]) {
                     if ($admin == 1) {
                         ?>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle"
-                               data-toggle="dropdown" role="button" aria-expanded="false">Empresas<span class="caret"></span>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Empresas<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="Empresas.php">Perfiles empresas</a></li>
@@ -128,25 +126,27 @@ if ($_SESSION ["usuario"]) {
                         </li>
 
                     <?php } // si es admin ve esto     ?>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                            data-toggle="dropdown" role="button" aria-expanded="false">Tecnologos medicos<span class="caret"></span>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Tecn&oacute;logos m&eacute;dicos<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="perfiles" href="Perfiles.php">Perfiles tecnologos medicos</a></li>
+                            <li><a id="perfiles" href="Perfiles.php">Perfiles tecn&oacute;logos m&eacute;dicos</a></li>
                             <?php
                             if ($admin == 1) {
-                                echo "<li><a href='agregarTmR.php'>Nuevos tecnologos medicos</a></li>";
+                                echo "<li><a href='agregarTmR.php'>Nuevo tecn&oacute;logo m&eacute;dico</a></li>";
                             } // si es admin ve esto
                             ?>
                         </ul>
                     </li>
 
                     <?php if ($admin == 1) { ?>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                                data-toggle="dropdown" role="button" aria-expanded="false">Doctores<span class="caret"></span>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                M&eacute;dicos<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a id="perfiles" href="agregarDoctor.php">Nuevos Medicos</a></li>
+                                <li><a id="perfiles" href="agregarDoctor.php">Nuevo M&eacute;dicos</a></li>
                             </ul>
                         <?php } ?>
 
