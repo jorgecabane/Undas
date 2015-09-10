@@ -156,7 +156,7 @@ if ($_SESSION ["usuario"]) {
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="editarClave.php">Editar Clave</a></li>
-                    <li><a href="logOff.php"><?php echo $_SESSION['usuario']; ?>  (Cerrar sesión)</a></li>
+                    <li><a href="logOff.php"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
