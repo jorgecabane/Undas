@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "../conexionLocal.php";
 $rut = $_POST['Rut'];
 //$_POST['Rut'] = '16.954.490-5';

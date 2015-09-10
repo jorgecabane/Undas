@@ -1,8 +1,8 @@
 <?php
 include_once "../Include/isAdmin.php";
 
-if ($_SESSION ["usuario"]) {
-    if (isAdmin($_SESSION ["idusuario"]) == 1) {
+if ($_SESSION["usuario"]) {
+    if (isAdmin($_SESSION["idusuario"]) == 1) {
         $admin = 1;
     } else {
         $admin = 0;
