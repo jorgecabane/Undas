@@ -43,7 +43,7 @@ $centro = $_GET ['centro'];
                     </button>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="btn" id="repeatWeek">Repetir semana</a></li>
-                        <li><a href="#" class="btn" id="repeatMonth">Repetir mes anterior</a></li>
+                        <li><a href="#" class="btn" id="repeatMonth">Repetir mes</a></li>
                     </ul>
                 </div>
             </center>
@@ -118,62 +118,62 @@ $centro = $_GET ['centro'];
 <?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion?>
 
 <script>
-    $(document).ready(function() {
+                        $(document).ready(function() {
 
-        /* initialize the external events
-         -----------------------------------------------------------------*/
-        /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
-         */
-        $('#ecos').change(function() {
-            color = $('#ecos option:selected').attr('event-color');
-            eco = $('#ecos option:selected').text();
-            idEco = $('#ecos').val();
+                            /* initialize the external events
+                             -----------------------------------------------------------------*/
+                            /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
+                             */
+                            $('#ecos').change(function() {
+                                color = $('#ecos option:selected').attr('event-color');
+                                eco = $('#ecos option:selected').text();
+                                idEco = $('#ecos').val();
 
-            $('#external-events .fc-event').each(function() {
-                $(this).css('background', color).css('border', color);
-                $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
-                idTM = $(this).attr('idTM');
-                $(this).data('event', {
-                    title: eco, // use the element's text as the event title
-                    description: $.trim($(this).text()),
-                    //stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                    color: color, //cambia el color al color asignado
-                    editable: true,
-                    idEco: idEco,
-                    idTM: idTM,
-                    fromBD: 0,
-                    saved: 0
-                });
-            });// each
-        });
+                                $('#external-events .fc-event').each(function() {
+                                    $(this).css('background', color).css('border', color);
+                                    $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
+                                    idTM = $(this).attr('idTM');
+                                    $(this).data('event', {
+                                        title: eco, // use the element's text as the event title
+                                        description: $.trim($(this).text()),
+                                        //stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                                        color: color, //cambia el color al color asignado
+                                        editable: true,
+                                        idEco: idEco,
+                                        idTM: idTM,
+                                        fromBD: 0,
+                                        saved: 0
+                                    });
+                                });// each
+                            });
 
-        $('#external-events .fc-event').each(function() {
-            color = $(this).attr('event-color');
-            eco = $('#ecos option:selected').text();
-            idEco = $('#ecos').val();
-            idTM = $(this).attr('idTM');
-            // store data so the calendar knows to render an event upon drop
-            $(this).data('event', {
-                title: eco, // use the element's text as the event title
-                description: $.trim($(this).text()),
-                //stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                color: color, //cambia el color al color asignado
-                editable: true,
-                idEco: idEco,
-                idTM: idTM,
-                fromBD: 0,
-                saved: 0
-            });
+                            $('#external-events .fc-event').each(function() {
+                                color = $(this).attr('event-color');
+                                eco = $('#ecos option:selected').text();
+                                idEco = $('#ecos').val();
+                                idTM = $(this).attr('idTM');
+                                // store data so the calendar knows to render an event upon drop
+                                $(this).data('event', {
+                                    title: eco, // use the element's text as the event title
+                                    description: $.trim($(this).text()),
+                                    //stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                                    color: color, //cambia el color al color asignado
+                                    editable: true,
+                                    idEco: idEco,
+                                    idTM: idTM,
+                                    fromBD: 0,
+                                    saved: 0
+                                });
 
-            // make the event draggable using jQuery UI
-            $(this).draggable({
-                zIndex: 999,
-                revert: true, // will cause the event to go back to its original position after the drag
-                revertDuration: 0
-            });
+                                // make the event draggable using jQuery UI
+                                $(this).draggable({
+                                    zIndex: 999,
+                                    revert: true, // will cause the event to go back to its original position after the drag
+                                    revertDuration: 0
+                                });
 
-        });//each
-    });//ready
+                            });//each
+                        });//ready
 </script><!-- cambio de las ecos -->
 <script>
     /* initialize the calendar
@@ -332,7 +332,8 @@ $centro = $_GET ['centro'];
 
         if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
                 jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
-            var confirma = confirm('Seguro que desea eliminar el evento?');
+            //var confirma = confirm('Seguro que desea eliminar el evento?');
+            confirma = true;//para pruebas
             if (confirma) {
                 //console.log(event.id);
                 $('#calendar').fullCalendar('removeEvents', event._id);
@@ -396,24 +397,24 @@ $centro = $_GET ['centro'];
         $('#repeatWeek').click(function() {
             cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a repetir
             if (cantidad !== 0) {// si hay
-                var weeks = prompt('Cuantas semanas?');
-                weeks = parseInt(weeks);
+                var weeks = prompt('Cuantas semanas?'); //se pregunta cuantas semanas ahead
+                weeks = parseInt(weeks); //transforma en num
 
-                if (Math.floor(weeks) === weeks && $.isNumeric(weeks)) {
+                if (Math.floor(weeks) === weeks && $.isNumeric(weeks)) { //si el valor es entero
                     $('#calendar').slideUp('slow'); //oculto el calendario
                     $('.progress').slideDown('slow').children('.progress-bar').css('width', '0%'); //barra de progreso
                     $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown('slow'); //mensaje
 
                     count = 0;//contador de repeticiones
 
-                    $('#calendar').fullCalendar('clientEvents', function(evento) {
-                        week = $('#calendar').fullCalendar('getView').start.format('w');//la semana que se esta viendo
-                        if (evento.start.format('w') === week) {
+                    $('#calendar').fullCalendar('clientEvents', function(evento) {//array con los eventos del calendario
+                        week = $('#calendar').fullCalendar('getView').intervalStart.format('w');//la semana que se esta viendo
+                        if (evento.start.format('w') === week) { //si los eventos son de la semana
                             for (i = 0; i < weeks; i++) {
-                                start = evento.start.add(1, 'week').format(); //el dia mas una semana
-                                end = evento.end.add(1, 'week').format();
-                                idEco = evento.idEco;
-                                idTM = evento.idTM;
+                                start = evento.start.add(1, 'week').format(); //el horario mas una semana
+                                end = evento.end.add(1, 'week').format(); //el horario mas una semana
+                                idEco = evento.idEco; //en que eco se esta ejecutando
+                                idTM = evento.idTM; //que tm es el evento
 
                                 $.ajax({
                                     url: 'Include/insertarEvento.php',
@@ -422,18 +423,17 @@ $centro = $_GET ['centro'];
                                     method: 'POST',
                                     success: function(output) {
                                         if (output !== '0') {
-                                            count++;
-                                            avance = (count / cantidad) * 100;
-                                            if (avance === 100) {
-                                                $('.progress-bar').css('width', avance + '%');
-                                                $('.progress').slideUp('slow');
-                                                $('#horarioContent').slideUp('slow');
-                                                $('#calendar').slideDown('slow');
+                                            count++; //contador cuando un evento se inserta
+                                            avance = (count / cantidad) * 100; //se calcula el % de avance
+                                            if (avance === 100) { //si se termino de insertar todos (100%)
+                                                $('.progress-bar').css('width', avance + '%'); //se aumenta la barra
+                                                $('.progress').slideUp('slow'); //se esconde
+                                                $('#horarioContent').slideUp('slow'); //se esconde
+                                                $('#calendar').slideDown('slow'); //se muestra el calendario
 
                                             } else {
-                                                $('.progress-bar').css('width', avance + '%');
+                                                $('.progress-bar').css('width', avance + '%'); // cambia el % de avance
                                             }
-
                                         }//if
                                     }//success
                                 });//ajax */
@@ -451,5 +451,55 @@ $centro = $_GET ['centro'];
         });//click
     });//ready
 </script><!-- repeatWeek -->
+<script>
+    $(document).ready(function() {
+        $('#repeatMonth').click(function() {
+            cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a repetir
+            if (cantidad !== 0) {
+                $('#calendar').slideUp('slow'); //oculto el calendario
+                $('.progress').slideDown('slow').children('.progress-bar').css('width', '0%'); //barra de progreso
+                $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown('slow'); //mensaje
+
+                count = 0;//contador de repeticiones
+
+                $('#calendar').fullCalendar('clientEvents', function(evento) {//array con los eventos del calendario
+                    month = $('#calendar').fullCalendar('getView').intervalStart.format('M');
+
+                    if (evento.start.format('M') === month) {
+                        start = evento.start.add(1, 'M').format(); //el horario mas mes
+                        end = evento.end.add(1, 'M').format(); //el horario mas un mes
+                        idEco = evento.idEco; //en que eco se esta ejecutando
+                        idTM = evento.idTM; //que tm es el evento
+                        console.log('idEco:'+idEco+' idTM:'+idTM+' start:'+start+' end:'+end);
+                        $.ajax({
+                            url: 'Include/insertarEvento.php',
+                            async: false,
+                            data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
+                            method: 'POST',
+                            success: function(output) {
+                                console.log('idEvento:'+output);
+                                if (output !== '0') {
+                                    count++; //contador cuando un evento se inserta
+                                    avance = (count / cantidad) * 100; //se calcula el % de avance
+                                    if (avance === 100) { //si se termino de insertar todos (100%)
+                                        $('.progress-bar').css('width', avance + '%'); //se aumenta la barra
+                                        $('.progress').slideUp('slow'); //se esconde
+                                        $('#horarioContent').slideUp('slow'); //se esconde
+                                        $('#calendar').slideDown('slow'); //se muestra el calendario
+
+                                    } else {
+                                        $('.progress-bar').css('width', avance + '%'); // cambia el % de avance
+                                    }
+                                }//if
+                            }//success
+                        });//ajax */
+                    }//si corresponde al mismo mes
+                });//"foreach" eventos del calendario
+
+            }//if
+        });//click
+    });//ready
+</script><!-- repeatMonth-->
+
 <script src="Include/filtro.js"></script>
 </html>
