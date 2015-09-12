@@ -65,11 +65,11 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 <?php
 // si es admin ve esto
 if ($admin == 1) {
-    echo '<script>
- 			$( document ).ready(function() {
-			$("#call").focus();
+    echo "<script>
+ 			$(document).ready(function() {
+			$('#search').focus();
 			});
-		 </script>';
+		 </script>";
 } elseif ($admin == 0) {
     //print_r($_SESSION);
 

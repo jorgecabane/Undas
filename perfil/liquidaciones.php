@@ -96,9 +96,16 @@ foreach ($ValorHoras as $valores) {
 </tbody>
 <?php
 echo "<thead><tr class='bg-success'>";
-echo "<th>Valor Honorarios Base: <span id='totalHonorarios'></span></th><th>Total Horas Mes: <span id='totalHoras'></span></th>";
-echo "</thead></tr><tbody>";
+echo "<th>Valor Honorarios Base: $ <span id='totalHonorarios'></span></th>";
+echo "<th>Total Horas Mes: <span id='totalHoras'></span></th>";
+echo "</tr>";
+echo "<tr><th class='bg-info'><center>Boleta de Honorarios <center></th></tr>";
+echo "<tr><th class='bg-success'>Total Bruto: $ <span id='bruto'></span></th></tr>";
+echo "<tr><th class='bg-success'>10% de retencion: $ <span id='retencion'></span></th></tr>";
+echo "<tr><th class='bg-success'>Total liquido honorarios: $ <span id='liquido'></span></th></tr>";
+echo "</thead>";
 ?>
+
 </table>
 
 
@@ -130,4 +137,12 @@ if(horasRealizadas == centroValorHora)
  });
 });
 $('#totalHonorarios').html(contador);
+</script>
+<script>
+var bruto = $('#totalHonorarios').text();
+$('#bruto').html(bruto);
+var retencion = bruto*0.1;
+$('#retencion').html(retencion);
+var liquido = parseFloat(bruto)+parseFloat(retencion);
+$('#liquido').html(liquido);
 </script>
