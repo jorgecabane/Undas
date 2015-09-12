@@ -10,6 +10,9 @@
                 if ($_SESSION ["usuario"]) {
                     if (isAdmin($_SESSION ["idusuario"]) == 1) {
                         $admin = 1;
+                        ?>  <input type="submit" value="Agregar Honorario"
+                                                       class='btn btn-info btncobro' />
+                                                   <?php
                     } else {
                         $admin = 0;
                     }
@@ -19,9 +22,7 @@
 
                 if ($resultado) {
                     if ($admin == 1) {
-                        ?>  <input type="submit" value="Agregar Honorario"
-                               class='btn btn-info btncobro' />
-                           <?php
+                 
                            }
                            echo "<table id='append' class='table table-hover table-bordered table-condensed'>";
                            echo "<thead><tr>";
