@@ -29,7 +29,7 @@ echo " </th>";
 echo "</thead></tr>";
 
 echo "<thead><tr class='bg-info'>";
-echo "<th>Centro</th>";
+echo "<th>Empresa</th>";
 echo "<th>Horas Realizadas</th>";
 echo "</thead></tr><tbody>";
 
@@ -40,11 +40,11 @@ foreach ($Horas as $informacion) {
     <tr>
         <td>
 
-            <span class="CentroHoraRealizada"><?php echo $informacion['NombreCentro']; ?> </span>
+            <span class="CentroHoraRealizada"><?php echo $informacion['NombreEmpresa']; ?></span>
 
         </td>
         <td>
-            <span class='label label-info' ><span  class="HorasRealizadas"><?php echo number_format($informacion['Horas'], 2); ?> </span> horas </span>
+            <span class='label label-info' ><span  class="HorasRealizadas"><?php echo number_format($informacion['Horas'], 2); ?></span> horas </span>
 
         </td>
     </tr>
@@ -55,7 +55,7 @@ foreach ($Horas as $informacion) {
 
 <?php
 echo "<thead><tr class='bg-info'>";
-echo "<th>Centro</th>";
+echo "<th>Empresa</th>";
 echo "<th>Valor Hora</th>";
 echo "</thead></tr><tbody>";
 $ValorHoras = getValorHora($rut);
@@ -66,20 +66,24 @@ foreach ($ValorHoras as $valores) {
         <td>
 
             <span class="CentroValorHora"><?php
-                echo $valores['Centro'];
+            echo "<span class='nombreEmpresa' >";
+                echo $valores['Empresa'];
+                echo "</span>";
                 echo " ";
+                echo "<span class='semana'>";
                 if ($valores['Semana'] == 1) {
                     echo 'Semana';
                 } else {
                     echo 'Sabado';
                 }
+                echo "</span>";
                 ?> </span>
 
         </td>
 
         <td>
 
-            <span  class='label label-success'>$ <span class='ValoHora' ><?php echo $valores['Valor']; ?></span></span>
+            <span  class='label label-success'>$ <span class='Valor' ><?php echo $valores['Valor']; ?></span></span>
 
         </td>
 
@@ -104,4 +108,26 @@ echo "</thead></tr><tbody>";
         suma += parseFloat($(this).text());
     });
     $('#totalHoras').html(suma);
+</script>
+
+<script>
+var contador = 0;
+$(".CentroHoraRealizada").each(function() {
+ var horasRealizadas= $(this).text();
+ var horas = $(this).parent().parent().find('.HorasRealizadas').text(); 
+ //alert(horas);
+ //alert(horasRealizadas);
+ $(".nombreEmpresa").each(function() {
+	var centroValorHora = $(this).text();
+    var valorhora= $(this).parent().parent().parent().find('.Valor').html();
+   // alert(valorhora);
+	//alert(centroValorHora);
+if(horasRealizadas == centroValorHora)
+{
+	contador= (contador + parseFloat(horas*valorhora));
+}
+	
+ });
+});
+$('#totalHonorarios').html(contador);
 </script>

@@ -9,7 +9,7 @@ $nombreTM = $_POST['nombreTM'];
 <div class="row well well-sm">
     <ul class="nav nav-tabs nav-pills" id="myTabs">
         <li class="nav"><a href="#Atab" data-toggle="tab">Info</a></li>
-        <li class="nav"><a href="#Btab" data-toggle="tab">Cobros</a></li>
+        <li class="nav"><a href="#Btab" data-toggle="tab">Honorarios</a></li>
         <li class="nav active"><a href="#Ctab" data-toggle="tab">Horario</a></li>
         <li class="nav"><a href="#Dtab" data-toggle="tab">Liquidaciones</a></li>
     </ul>
@@ -23,7 +23,7 @@ $nombreTM = $_POST['nombreTM'];
         </div>
 
         <div class="tab-pane fade" id="Btab">
-            <center><h3>Cobros por Centro</h3></center>
+            <center><h3>Honorarios por Empresa</h3></center>
             <?php include_once "informacionCobro.php"; ?>
         </div>
 

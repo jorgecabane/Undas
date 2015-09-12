@@ -5,7 +5,8 @@
             <div align="center">
                 <?php
                 include_once "../Include/isAdmin.php";
-                include_once "../querys/getCentros.php";
+                include_once "../querys/getEmpresa.php";
+                include_once "../querys/getValorHora.php";
                 if ($_SESSION ["usuario"]) {
                     if (isAdmin($_SESSION ["idusuario"]) == 1) {
                         $admin = 1;
@@ -14,18 +15,18 @@
                     }
                 }
 
-                $resultado = mysql_query("SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, centro.Nombre as Centro, tm.idTM as idTM from tm inner join valorhora on tm.idTM = valorhora.Tm_idTM inner join centro on centro.idCentro = valorhora.Centro_idCentro WHERE tm.Rut='$rut'") or die(mysql_error());
+             $resultado = getValorHora($rut);
 
                 if ($resultado) {
                     if ($admin == 1) {
-                        ?>  <input type="submit" value="Agregar Cobro"
+                        ?>  <input type="submit" value="Agregar Honorario"
                                class='btn btn-info btncobro' />
                            <?php
                            }
                            echo "<table id='append' class='table table-hover table-bordered table-condensed'>";
                            echo "<thead><tr>";
-                           echo "<th>Centro</th>";
-                           echo "<th>Cobro</th>";
+                           echo "<th>Empresa</th>";
+                           echo "<th>Honorario</th>";
                            echo "<th>Semana/Sabado</th>";
                            if ($admin == 1) {
                                echo "<th>Editar</th>";
@@ -33,10 +34,10 @@
                            }
                            echo "</thead><tbody >";
 
-                           while ($row = mysql_fetch_array($resultado)) {
+                           foreach ($resultado as $row) {
 
                                echo "<tr>";
-                               echo "<td class='centro'>" . $row ['Centro'] . "</td>\n";
+                               echo "<td class='centro'>" . $row ['Empresa'] . "</td>\n";
                                ?>
                         <td>
                             <div class="form-group">
@@ -93,10 +94,11 @@
 
     $(".btneditable").click(function() {
         //solo se buscan los elementos de la fila seleccionada
-        var row = $(this).parent().parent().parent();
+        var row = $(this).parent().parent();
         var input = row.find(".editableCobro");
         var centro = row.find(".centro");
         var semana = row.find(".semana");
+       
 
         jQuery.ajax({
             method: "POST",
@@ -105,15 +107,15 @@
                 'valor': input.val(),
                 'id': $("#idTM").val(),
                 'semana': semana.html(),
-                'centro': centro.html()
+                'empresa': centro.html()
 
             },
             success: function(response)
             {
                 $(".btneditable").attr("disabled", "disabled");
-                semana.parent()
-                        .removeClass("danger")
-                        .addClass("success");
+                row   
+                     .removeClass("danger")
+                     .addClass("success");
             }//success
         });//ajax
     });//click .btneditable
@@ -156,7 +158,7 @@
                     'valor': input,
                     'id': $("#idTM").val(),
                     'semana': semana,
-                    'centro': centro
+                    'empresa': centro
                 },
                 success: function(response)
                 {
@@ -173,13 +175,13 @@
 
     $(".btncobro").click(function() {
         var content = "<tr><td><select class='form-control Centro' required name='Centro'>";
-        content += "<option selected='true' disabled='disabled'> Seleccione Centro </option><?php
-                    foreach (getCentros() as $centro) {
-                        echo "<option value='" . $centro ["idCentro"] . "'> " . $centro ["Nombre"] . "    <b>(" . $centro ["Siglas"] . ")</b> </option>";
+        content += "<option selected='true' disabled='disabled'> Seleccione Empresa </option><?php
+                    foreach (getEmpresa() as $empresa) {
+                        echo "<option value='" . $empresa ["idEmpresa"] . "'> " . $empresa ["Nombre"]. "</option>";
                     }
                     ?>";
         content += "</select></td>";
-        content += "	<td> <input class='form-control ValorCobro' type='text' name='cobro' placeholder='Ingrese Cobro'> </td>";
+        content += "	<td> <input class='form-control ValorCobro' type='text' name='cobro' placeholder='Ingrese Honorario'> </td>";
         content += "<td><select class='form-control Semana' required name='Semana'>";
         content += "<option value='1'> Semana </option>";
         content += "<option value='0'> Sabado </option>";
@@ -199,14 +201,14 @@
             var select = $(this).parent().parent().find('.Centro');
             var input = $(this).parent().parent().find('.ValorCobro');
             var inputsemana = $(this).parent().parent().find('.Semana');
-            var idCentro = $(this).parent().parent().find(".Centro").val();
+            var idEmpresa = $(this).parent().parent().find(".Centro").val();
             var cobro = $(this).parent().parent().find(".ValorCobro").val();
             var semana = $(this).parent().parent().find(".Semana").val();
             jQuery.ajax({
                 method: "POST",
                 url: "querys/insertCobro.php",
                 data: {
-                    "idCentro": idCentro,
+                    "idEmpresa": idEmpresa,
                     "cobro": cobro,
                     "semana": semana,
                     "idTM": "<?php echo $rut; ?>"

@@ -4,25 +4,25 @@ include_once "../conexionLocal.php";
 
 $idTM=$_POST['id'];
 $valor=$_POST['valor'];
-$centro=$_POST['centro'];
+$empresa=$_POST['empresa'];
 $semana=$_POST['semana'];
 
-$queryIdCentro="Select idCentro from Centro where Nombre='$centro'";
-$resultadoIdCentro= mysql_query($queryIdCentro);
-$idCentroAssoc= mysql_fetch_assoc($resultadoIdCentro);
-$idCentro=$idCentroAssoc['idCentro'];
+$queryId="Select idEmpresa from empresa where Nombre='$empresa'";
+$resultadoId= mysql_query($queryId);
+$Assoc= mysql_fetch_assoc($resultadoId);
+$idEmpresa=$Assoc['idEmpresa'];
 
 if($semana=="Semana"){
-$query="Delete from ValorHora WHERE TM_idTM=$idTM and Centro_idCentro=$idCentro and Semana=1 ";
+$query="Delete from ValorHora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=1 ";
 }
 else {
-$query="Delete from ValorHora WHERE TM_idTM=$idTM and Centro_idCentro=$idCentro and Semana=0";	
+$query="Delete from ValorHora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=0";	
 }
 
 
 
-$resultado=mysql_query($query);
-if($resultado) {
+$resultadoborrar=mysql_query($query);
+if($resultadoborrar) {
 	//success
 	echo"Borrado con exito";
 	

@@ -3,20 +3,20 @@ include_once "../conexionLocal.php";
 
 $idTM=$_POST['id'];
 $valor=$_POST['valor'];
-$centro=$_POST['centro'];
+$empresa=$_POST['empresa'];
 $semana=$_POST['semana'];
 
 
-$queryIdCentro="Select idCentro from Centro where Nombre='$centro'";
-$resultadoIdCentro= mysql_query($queryIdCentro);
-$idCentroAssoc= mysql_fetch_assoc($resultadoIdCentro);
-$idCentro=$idCentroAssoc['idCentro'];
+$query="Select idEmpresa from empresa where Nombre='$empresa'";
+$resultado= mysql_query($query);
+$Assoc= mysql_fetch_assoc($resultado);
+$idEmpresa=$Assoc['idEmpresa'];
 
 if($semana=="Semana"){
-$query="UPDATE ValorHora SET Valor=$valor WHERE TM_idTM=$idTM and Centro_idCentro=$idCentro and Semana=1 ";
+$query="UPDATE ValorHora SET Valor=$valor WHERE TM_idTM=$idTM and Empresa_idEmpresa=$idEmpresa and Semana=1 ";
 }
 else {
-$query="UPDATE ValorHora SET Valor=$valor WHERE TM_idTM=$idTM and Centro_idCentro=$idCentro and Semana=0";	
+$query="UPDATE ValorHora SET Valor=$valor WHERE TM_idTM=$idTM and Empresa_idEmpresa=$idEmpresa and Semana=0";	
 }
 
 $resultado=mysql_query($query);

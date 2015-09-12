@@ -1,21 +1,19 @@
 <?php
 
 /*
- * getHoras funcion que se conecta a la base de datos para entregar la informacion de las horas hechas por un TM
- * en cada centro, dado un mes.
+ * getHoras funcion que se conecta a la base de datos para entregar la informacion del valor hora hechas de un TM
+ * 
  *
  */
 include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion local
 
 function getValorHora($rutTM) {
 
-    $query = "SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, centro.Nombre as Centro,
-                    tm.idTM as idTM
-                    FROM tm
-                    inner join valorhora on (tm.idTM = valorhora.TM_idTM )
-                    inner join centro on (centro.idCentro = valorhora.centro_idCentro)
-                    WHERE tm.Rut='$rutTM'
-                    ORDER BY Centro asc";
+    $query = "SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, empresa.Nombre as Empresa, tm.idTM as idTM from tm 
+				inner join valorhora on tm.idTM = valorhora.Tm_idTM
+				inner join empresa on empresa.idEmpresa = valorhora.Empresa_idEmpresa
+				WHERE tm.Rut='$rutTM'
+                ORDER BY Empresa asc";
 
     $res = mysql_query($query) or die(mysql_error());
 
@@ -30,5 +28,6 @@ function getValorHora($rutTM) {
     }
 }
 
-//var_dump ( getTM () );
+
 ?>
+
