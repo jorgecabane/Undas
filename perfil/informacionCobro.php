@@ -10,30 +10,32 @@
                 if ($_SESSION ["usuario"]) {
                     if (isAdmin($_SESSION ["idusuario"]) == 1) {
                         $admin = 1;
-                        ?>  <input type="submit" value="Agregar Honorario"
-                                                       class='btn btn-info btncobro' />
-                                                   <?php
+                       
                     } else {
                         $admin = 0;
                     }
                 }
 
+        
+             echo "<table id='append' class='table table-hover table-bordered table-condensed'>";
+             echo "<thead><tr>";
+             echo "<th>Empresa</th>";
+             echo "<th>Honorario</th>";
+             echo "<th>Semana/Sabado</th>";
+             if ($admin == 1) {
+             	echo "<th>Editar</th>";
+             	echo "<th>Eliminar</th></tr>";
+             }
+             echo "</thead><tbody >";
+             if ($admin == 1) {
+             echo "<input type='submit' value='Agregar Honorario' class='btn btn-info btncobro' />";
+             	                                                   
+             }
+             
              $resultado = getValorHora($rut);
-
                 if ($resultado) {
-                    if ($admin == 1) {
-                 
-                           }
-                           echo "<table id='append' class='table table-hover table-bordered table-condensed'>";
-                           echo "<thead><tr>";
-                           echo "<th>Empresa</th>";
-                           echo "<th>Honorario</th>";
-                           echo "<th>Semana/Sabado</th>";
-                           if ($admin == 1) {
-                               echo "<th>Editar</th>";
-                               echo "<th>Eliminar</th></tr>";
-                           }
-                           echo "</thead><tbody >";
+                    
+                           
 
                            foreach ($resultado as $row) {
 
@@ -75,9 +77,11 @@
                             echo "</tr>";
                         }
 
-                        echo "</tbody></table>";
+                       
                     }
+                    echo "</tbody></table>";
                     ?>
+                    
             </div>
         </body>
     </section>
