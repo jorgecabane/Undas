@@ -9,7 +9,7 @@ include_once dirname(__FILE__) . "/../querys/getEcosGroup.php";
 foreach($datosCentro AS $Centro){
         ?>
         <table id='t01' class='table table-hover table-bordered'>
-            <thead><tr>
+            <thead><tr class='bg-info'>
                     <th>Nombre Centro</th>
                     <th>Siglas</th>
                     <?php
