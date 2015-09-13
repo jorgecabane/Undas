@@ -30,7 +30,7 @@
 <script>
 $("#start").change(function() {
 	var mes = $('#start').val();
-$("#Liquidaciones").slideDown('slow').load("perfil/liquidaciones.php", {"rut": <?php echo "'$rut'";?>, "mes": mes}, 
+$("#Liquidaciones").slideDown('slow').load("perfil/liquidaciones.php", {"rut": <?php echo $rut;?>, "mes": mes}, 
 		function() {
     $('.progress').slideUp('slow');
 });
