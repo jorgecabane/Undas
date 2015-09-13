@@ -4,7 +4,7 @@ $id=$_POST['ideco'];
 $nombre=$_POST['nombre'];
 $color=$_POST['color'];
 
-$query="UPDATE Ecos SET Nombre='$nombre', Color='$color' WHERE idEcos=$id";
+$query="UPDATE ecos SET Nombre='$nombre', Color='$color' WHERE idEcos=$id";
 
 $resultado=mysql_query($query);
 if($resultado) {

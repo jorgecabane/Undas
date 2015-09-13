@@ -4,7 +4,7 @@ $id=$_POST['idcentro'];
 $nombre=$_POST['nombre'];
 $siglas=$_POST['siglas'];
 
-$query="UPDATE Centro SET Nombre='$nombre', Siglas='$siglas' WHERE idCentro=$id";
+$query="UPDATE centro SET Nombre='$nombre', Siglas='$siglas' WHERE idCentro=$id";
 
 $resultado=mysql_query($query);
 if($resultado) {
