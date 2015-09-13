@@ -17,7 +17,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         // si es admin ve esto
         if ($admin == 1) {
             echo '
-                <div class="col-sm-2 well well-sm">
+                <div class="col-sm-2 well well-sm hidden-print">
                 <h4>Busque por TM</h4>
 
                 <input id="search" class="form-control" type="text" name="valor"

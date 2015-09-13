@@ -24,7 +24,7 @@ function getValorHora($rutTM) {
 
         return $result;
     } else {
-        return 0;
+        return false;
     }
 }
 

@@ -3,25 +3,20 @@ include_once "../Include/isAdmin.php";
 include_once "../Include/meses.php";
 include_once "../querys/getHoras.php";
 include_once "../querys/getValorHora.php";
-if ($_SESSION ["usuario"]) {
-    if (isAdmin($_SESSION ["idusuario"]) == 1) {
-        $admin = 1;
-    } else {
-        $admin = 0;
-    }
-}
-$mes = 9;
+
+$mes = $_POST['mes'];
+$rut = $_POST['rut'];
 
 $Horas = getHoras($rut, $mes);
-echo "<table id='t01' class='table table-hover table-bordered'>";
-echo "<thead><tr class='bg-primary'>";
+echo "<table id='t01' class='table table-hover table-bordered table-condensed table-responsive' style='max-width:80%; white-space: nowrap'>";
+echo "<thead><tr class='bg-primary' colspan='2'>";
 echo "<th>Fecha: ";
 echo Mes($Horas[0]['Mes']);
 echo " " . $Horas[0]['Year'];
 echo " </th>";
 echo "</thead></tr>";
 
-echo "<thead><tr class='bg-primary'>";
+echo "<thead><tr class='bg-primary' colspan='2'>";
 echo "<th>TM: ";
 echo $Horas[0]['TMNombre'];
 echo " " . $Horas[0]['TMApellido'];
@@ -32,7 +27,7 @@ echo "<thead><tr class='bg-info'>";
 echo "<th>Empresa</th>";
 echo "<th>Horas Realizadas</th>";
 echo "</thead></tr><tbody>";
-
+if($Horas){
 foreach ($Horas as $informacion) {
     ?>
 
@@ -49,6 +44,13 @@ foreach ($Horas as $informacion) {
         </td>
     </tr>
     <?php
+}}
+else 
+{
+	echo '<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Error!</strong> Tm no tiene Horas realizadas asociadas.
+</div>';
 }
 ?>
 </tbody>
@@ -59,6 +61,9 @@ echo "<th>Empresa</th>";
 echo "<th>Valor Hora</th>";
 echo "</thead></tr><tbody>";
 $ValorHoras = getValorHora($rut);
+if($ValorHoras){
+	
+
 foreach ($ValorHoras as $valores) {
     ?>
     <tr>
@@ -91,18 +96,25 @@ foreach ($ValorHoras as $valores) {
     </tr>
 
     <?php
+}}
+else 
+{
+	echo '<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Error!</strong> TM no tiene Valores Horas asociados.
+</div>';
 }
 ?>
 </tbody>
 <?php
-echo "<thead><tr class='bg-success'>";
+echo "<thead><tr class='bg-success' colspan='2'>";
 echo "<th>Valor Honorarios Base: $ <span id='totalHonorarios'></span></th>";
 echo "<th>Total Horas Mes: <span id='totalHoras'></span></th>";
 echo "</tr>";
-echo "<tr><th class='bg-info'><center>Boleta de Honorarios <center></th></tr>";
-echo "<tr><th class='bg-success'>Total Bruto: $ <span id='bruto'></span></th></tr>";
-echo "<tr><th class='bg-success'>10% de retencion: $ <span id='retencion'></span></th></tr>";
-echo "<tr><th class='bg-success'>Total liquido honorarios: $ <span id='liquido'></span></th></tr>";
+echo "<tr><th class='bg-info' colspan='2'><center>Boleta de Honorarios <center></th></tr>";
+echo "<tr><th class='bg-warning' colspan='2'>Total Bruto: $ <span id='bruto'></span></th></tr>";
+echo "<tr><th class='bg-warning' colspan='2'>10% de retencion: $ <span id='retencion'></span></th></tr>";
+echo "<tr><th class='bg-warning' colspan='2'>Total liquido honorarios: $ <span id='liquido'></span></th></tr>";
 echo "</thead>";
 ?>
 

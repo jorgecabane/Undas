@@ -7,17 +7,19 @@
  */
 include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion local
 
-function getHoras($rutTM, $mes) {
-
+function getHoras($rutTM, $date) {
+$date = explode ("-",$date);
+	
     $query = "Select tm.Nombre as TMNombre, tm.Apellido as TMApellido, empresa.Nombre as NombreEmpresa, 
                 MONTH(evento.HoraInicio) as Mes, Year(evento.HoraInicio) as Year,
-				sum((TIME_TO_SEC(evento.HoraTermino)/3600)-time_to_sec(evento.HoraInicio)/3600) as Horas
+				sum((TIME_TO_SEC(evento.HoraTermino)/3600)-time_to_sec(evento.HoraInicio)/3600) as Horas,
+				DAYOFWEEK(HoraInicio) as Semana
 				from evento
 				inner join ecos on (evento.Ecos_idEcos = ecos.idEcos)
 				inner join centro on ( ecos.Centro_idCentro= centro.idCentro)
                 inner join empresa on (empresa.idEmpresa = centro.Empresa_idEmpresa)
 				inner join tm on (tm.idTM = evento.TM_idTM)
-				where tm.Rut = '$rutTM' and MONTH(evento.HoraInicio) = $mes
+				where tm.Rut = '$rutTM' and MONTH(evento.HoraInicio) = $date[1] and YEAR(evento.HoraInicio) = $date[0]  
 				group by NombreEmpresa, MES
 				order by NombreEmpresa asc";
 
