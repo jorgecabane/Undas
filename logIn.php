@@ -1,16 +1,7 @@
 <?php
 session_start();
 include_once dirname(__FILE__)."/conexionLocal.php";
-
-function verificar_login($user, $password) {
-    $rec = mysql_query("SELECT * FROM tm WHERE Nombre = '$user' AND Password = '$password'") or die(mysql_error());
-
-    if (mysql_affected_rows() == 1) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+include_once dirname(__FILE__) . "/querys/verification.php";
 
 // $tipo = mysql_query("SELECT * FROM usuarios WHERE usuario = '$user' and password = '$password'") or die(mysql_error());
 // $resultadotipo= mysql_fetch_assoc($tipo);
@@ -19,9 +10,9 @@ if (isset($_POST ['login'])) {
         $user1 = $_POST ['user'];
         // $query = mysql_query("SELECT usuario FROM usuarios WHERE usuario = '$user'") or die(mysql_error());
         // $row2 = mysql_fetch_assoc($query);
-        $_SESSION ["usuario"] = $user1;
+     
 
-        $queryoli = "Select idTM from tm where Nombre='$user1'";
+        $queryoli = "Select idTM, Nombre from tm where Rut='$user1'";
         // echo $queryoli;
         $resultado33 = mysql_query($queryoli) or die(mysql_error());
 
@@ -29,6 +20,7 @@ if (isset($_POST ['login'])) {
             $resultado34 = mysql_fetch_assoc($resultado33);
             if ($resultado34) {
                 $_SESSION ['idusuario'] = $resultado34 ['idTM'];
+                $_SESSION ["usuario"] = $resultado34 ['Nombre'];
                 // echo $_SESSION['idusuario'];
             }
         } else {
@@ -109,8 +101,8 @@ if (isset($_POST ['login'])) {
                     <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
 
 
-                    <h4>Nombre de usuario</h4>
-                    <label for="user" class="sr-only">Nombre</label> <input id="call" name="user" type="text" class='form-control' placeholder='Nombre' required>
+                    <h4>Rut usuario</h4>
+                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control' placeholder='Nombre' required>
                     <h4>Contrase&ntilde;a</h4>
                     <label for='password' class="sr-only">Contrase&ntilde;a</label>
                     <input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
