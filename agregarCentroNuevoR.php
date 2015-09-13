@@ -68,11 +68,18 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 
 		$('#append').empty();
 		var content = "<table class='table'><thead><tr><th>Nombre</th><th>Color</th></tr></thead><tbody>";
+		var colores = new Array("#001AFF", "#FF0000", "#00FF00", "#FFF700", "#FF8D00","#00FFD5", "#FF04EF", "#006903", "#9E00FF", "#06FF7B");
+		var a = 0;
+		console.log(a);
 	for( var i = 1 ; i<= $( "#ecos" ).val() ; i++){
 		content += "<tr><td><input type='Text' class='form-control Eco'  Value='Eco"+ i +"' required></td>";
-		content += " <td><input type='color' class='form-control Color' value='#0080ff'></td></tr> ";
-
-	}
+		content += " <td><input type='color' class='form-control Color' value='"+ colores[a] +"'></td></tr> ";
+		a++;
+		if(a === 9){
+			a = 0;
+			}
+		}
+	console.log(a);
 		content += "</tbody></table>";
 	$('#append').append(content);
 
