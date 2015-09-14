@@ -32,14 +32,10 @@ $date = explode ("-",$date);
 
         return $result;
     } else {
-       // return 0;
-    	$result[0]['Mes'] = $date[1];
-    	$result[0]['Year'] = $date[0];
-    	$query= mysql_query("Select Nombre, Apellido from TM where rut='$rutTM'");
-    	$assoc= mysql_fetch_assoc($query);
-    	$result[0]['TMNombre'] = $assoc['Nombre'];
-    	$result[0]['TMApellido'] = $assoc['Apellido'];
+        return false;
+    
     }
+   
 }
 
 //var_dump ( getTM () );
