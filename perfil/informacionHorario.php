@@ -22,14 +22,14 @@
             eventRender: function(event, element) {
                 element.find('.fc-title').prepend(event.description + "<br/>");
             },
-            defaultView: 'agendaWeek',
+            defaultView: 'month',
             lazyFetch: true,
             hiddenDays: [0],
             allDaySlot: false,
             minTime: '08:00:00',
             maxTime: '21:00:00',
             slotDuration: '00:15:00',
-            contentHeight: 700,
+            contentHeight: 800,
             displayEventEnd: true
         });//fullCalendar
     });//ready
