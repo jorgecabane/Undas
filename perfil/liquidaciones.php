@@ -74,7 +74,7 @@ if($ValorHoras){
 
 foreach ($ValorHoras as $valores) {
     ?>
-    <tr>
+    <tr class="hidden-print" style="display:none">
 
         <td>
 
@@ -150,6 +150,7 @@ $(".CentroHoraRealizada").each(function() {
  //alert(horas);
  //alert(horasRealizadas);
  $(".nombreEmpresa").each(function() {
+	 var tr = $(this).parent().parent().parent();
 	var centroValorHora = $(this).text();
     var valorhora= $(this).parent().parent().parent().find('.Valor').html();
     var semanavalorhora= $(this).parent().parent().parent().find('.semanavalorhora').text();
@@ -157,6 +158,8 @@ $(".CentroHoraRealizada").each(function() {
 	//alert(centroValorHora);
 if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 {
+	tr.show();
+	tr.removeClass("hidden-print");
 	contador= (contador + parseFloat(horas*valorhora));
 }
 	
