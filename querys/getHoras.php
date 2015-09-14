@@ -20,18 +20,47 @@ $date = explode ("-",$date);
                 inner join empresa on (empresa.idEmpresa = centro.Empresa_idEmpresa)
 				inner join tm on (tm.idTM = evento.TM_idTM)
 				where tm.Rut = '$rutTM' and MONTH(evento.HoraInicio) = $date[1] and YEAR(evento.HoraInicio) = $date[0]  
-				group by NombreEmpresa, MES, Semana
+				and DAYOFWEEK(HoraInicio) not in (7)
+				group by NombreEmpresa, MES
 				order by NombreEmpresa asc";
+    $querysabado = "Select tm.Nombre as TMNombre, tm.Apellido as TMApellido, empresa.Nombre as NombreEmpresa,
+    MONTH(evento.HoraInicio) as Mes, Year(evento.HoraInicio) as Year,
+    sum((TIME_TO_SEC(evento.HoraTermino)/3600)-time_to_sec(evento.HoraInicio)/3600) as Horas,
+    DAYOFWEEK(HoraInicio) as Semana
+    from evento
+    inner join ecos on (evento.Ecos_idEcos = ecos.idEcos)
+    inner join centro on ( ecos.Centro_idCentro= centro.idCentro)
+    inner join empresa on (empresa.idEmpresa = centro.Empresa_idEmpresa)
+    inner join tm on (tm.idTM = evento.TM_idTM)
+    where tm.Rut = '$rutTM' and MONTH(evento.HoraInicio) = $date[1] and YEAR(evento.HoraInicio) = $date[0]
+    and DAYOFWEEK(HoraInicio) in (7)
+    group by NombreEmpresa, MES
+    order by NombreEmpresa asc";
+  
 
     $res = mysql_query($query) or die(mysql_error());
+    $ressabado = mysql_query($querysabado) or die(mysql_error());
 
-    if (mysql_affected_rows() >= 1) {
+    if (mysql_num_rows($res) >= 1 ) {
         while ($row = mysql_fetch_assoc($res)) {
             $result[] = $row;
         }
-
-        return $result;
-    } else {
+      
+           }
+    if(mysql_num_rows($ressabado)>=1)
+    {
+    	while ($fila = mysql_fetch_assoc($ressabado)) {
+    		$result[] = $fila;
+    	}
+    	
+    }
+    
+    if(mysql_num_rows($res) >= 1 || mysql_num_rows($ressabado)>=1)
+    { 
+    	sort($result , SORT_ASC );
+    	return $result;
+    }
+    else {
         return false;
     
     }
