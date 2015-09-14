@@ -1,7 +1,11 @@
 <!-- archivo de carga del calendario personal del TM sin opcion de modificar (solo exportacion) -->
 
-
-<div id='calendar' class='col-sm-12'></div>
+ <div class="col-sm-2 hidden-print">
+                    <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
+                        <span class="glyphicon glyphicon-print"></span>
+                    </button>
+                </div>
+<div id='calendar' ></div>
 
 
 <script>
