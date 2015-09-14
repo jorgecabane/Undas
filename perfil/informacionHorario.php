@@ -1,6 +1,6 @@
 <!-- archivo de carga del calendario personal del TM sin opcion de modificar (solo exportacion) -->
 
- <div class="col-sm-2 hidden-print">
+ <div class="col-sm-1 hidden-print">
                     <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
                         <span class="glyphicon glyphicon-print"></span>
                     </button>
