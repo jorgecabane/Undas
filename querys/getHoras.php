@@ -20,7 +20,7 @@ $date = explode ("-",$date);
                 inner join empresa on (empresa.idEmpresa = centro.Empresa_idEmpresa)
 				inner join tm on (tm.idTM = evento.TM_idTM)
 				where tm.Rut = '$rutTM' and MONTH(evento.HoraInicio) = $date[1] and YEAR(evento.HoraInicio) = $date[0]  
-				group by NombreEmpresa, MES
+				group by NombreEmpresa, MES, Semana
 				order by NombreEmpresa asc";
 
     $res = mysql_query($query) or die(mysql_error());

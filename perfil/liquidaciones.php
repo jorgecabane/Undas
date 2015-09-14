@@ -36,6 +36,14 @@ foreach ($Horas as $informacion) {
         <td>
 
             <span class="CentroHoraRealizada"><?php echo $informacion['NombreEmpresa']; ?></span>
+            <span class="semanahorarealizada"><?php if($informacion['Semana']==7)
+            {
+            	echo "Sabado";
+            }
+            else{
+            	echo "Semana";
+            }
+            	?></span>
 
         </td>
         <td>
@@ -75,7 +83,7 @@ foreach ($ValorHoras as $valores) {
                 echo $valores['Empresa'];
                 echo "</span>";
                 echo " ";
-                echo "<span class='semana'>";
+                echo "<span class='semanavalorhora'>";
                 if ($valores['Semana'] == 1) {
                     echo 'Semana';
                 } else {
@@ -134,14 +142,16 @@ var contador = 0;
 $(".CentroHoraRealizada").each(function() {
  var horasRealizadas= $(this).text();
  var horas = $(this).parent().parent().find('.HorasRealizadas').text(); 
+ var semanahorarealizada = $(this).parent().parent().find('.semanahorarealizada').text(); 
  //alert(horas);
  //alert(horasRealizadas);
  $(".nombreEmpresa").each(function() {
 	var centroValorHora = $(this).text();
     var valorhora= $(this).parent().parent().parent().find('.Valor').html();
+    var semanavalorhora= $(this).parent().parent().parent().find('.semanavalorhora').text();
    // alert(valorhora);
 	//alert(centroValorHora);
-if(horasRealizadas == centroValorHora)
+if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 {
 	contador= (contador + parseFloat(horas*valorhora));
 }
@@ -150,6 +160,7 @@ if(horasRealizadas == centroValorHora)
 });
 $('#totalHonorarios').html(contador);
 </script>
+
 <script>
 var bruto = $('#totalHonorarios').text();
 $('#bruto').html(bruto);
