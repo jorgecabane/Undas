@@ -4,7 +4,7 @@ include_once dirname(__FILE__) . "/header.php";
 include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid">
-    <div class="row well well-titles">
+    <div class="row well well-titles hidden-print">
         <h3>
             <center>Perfiles Tecn&oacute;logos M&eacute;dicos</center>
         </h3>

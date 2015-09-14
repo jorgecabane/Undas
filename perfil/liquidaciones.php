@@ -127,7 +127,11 @@ echo "</thead>";
 ?>
 
 </table>
-
+ <div class='alert alert-warning visible-print-block'>Enviar Boleta de honorarios a nombre de :<br>
+ TMTECNOMED S.A. <br>
+ RUT: 76.022.465-0 <br>
+ Direcci&#243n: Valle del Maipo poniente N&ordm 3617. Pe&ntildealolen, Stgo. 
+ </div>
 
 <script>
     var suma = 0;

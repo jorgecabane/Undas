@@ -7,7 +7,7 @@ $nombreTM = $_POST ['nombreTM'];
 // $nombreTM = 'Andrea Amaro Mandolini'
 ?>
 <div class="row well well-sm">
-	<ul class="nav nav-tabs nav-pills" id="myTabs">
+	<ul class="nav nav-tabs nav-pills hidden-print" id="myTabs">
 		<li class="nav"><a href="#Atab" data-toggle="tab">Info</a></li>
 		<li class="nav"><a href="#Btab" data-toggle="tab">Honorarios</a></li>
 		<li class="nav active"><a href="#Ctab" data-toggle="tab">Horario</a></li>
@@ -38,9 +38,9 @@ $nombreTM = $_POST ['nombreTM'];
             <?php include_once "informacionHorario.php"; //informacion del calendario personal del TM  ?>
         </div>
 
-		<div class="tab-pane fade" id="Dtab">
+		<div class="tab-pane fade " id="Dtab">
 			<center>
-				<h3>Liquidaciones</h3>
+				<h3 class="hidden-print">Liquidaciones</h3>
 			</center>
 			<div class="container-fluid">
             <?php include_once "SelectMes.php"; ?>
