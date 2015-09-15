@@ -88,7 +88,7 @@ if ($_SESSION ["usuario"]) {
                     </li> -->
                         ';
                         foreach (getCentrosGroup() as $empresa => $centros) {
-                            echo '<li class="dropdown-submenu"><a href="#" tabindex="-1">' . $empresa . '</a><!-- $empresa  -->
+                            echo '<li class="dropdown-submenu  disabled"><a href="#" tabindex="-1">' . $empresa . '</a><!-- $empresa  -->
                             <ul class="dropdown-menu"><!-- menu $empresa -->
                                     ';
                             foreach ($centros as $centro) {

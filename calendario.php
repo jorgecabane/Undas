@@ -8,28 +8,30 @@ $centro = $_GET ['centro'];
 
 <div class='container-fluid'>
     <div class='row'>
-        <div class="col-md-1 col-md-offset-3 well well-sm well-titles hidden-print" >
-            <div id="deleteArea" class="alert alert-danger" style="padding-bottom: 6px; padding-top: 6px;" data-toggle="tooltip" data-placement="left" title="Arraste evento para eliminar">
-                <b>Eliminar</b>
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </div>
+        <div class="col-md-1 col-md-offset-3 well well-sm well-titles hidden-print">
+            <center>
+                <div class="btn-group">
+                    <button id="deleteArea" class="btn btn-danger dropdown-toggle btn-block" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Borrar <span class="glyphicon glyphicon-trash"></span> <span class="caret"></span>
+
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a id="deleteWeek" class="btn">Borrar esta semana</a></li>
+                        <li><a id="deleteMonth" class="btn">Borrar este mes</a></li>
+                    </ul>
+                </div>
+            </center>
         </div>
         <div class='col-md-4 well well-sm well-titles'>
             <div class="row">
-                <div class="col-sm-10">
-                    <center>
-                        <h2>
-                            <span class="label label-info label-block">
-                                Centro: <b><?php echo $centro; ?></b>
-                            </span>
-                        </h2>
-                    </center>
-                </div>
-                <div class="col-sm-2 hidden-print">
-                    <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
-                        <span class="glyphicon glyphicon-print"></span>
-                    </button>
-                </div>
+                <center>
+                    <h2>
+                        <span class="label label-info label-block">
+                            Centro: <b><?php echo $centro; ?></b>
+                        </span>
+                    </h2>
+                </center>
+
             </div>
         </div>
         <!-- Single button -->
@@ -104,6 +106,11 @@ $centro = $_GET ['centro'];
 
             </div>
             <!-- calendario -->
+            <div class="col-sm-1 hidden-print">
+                <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
             <div id='calendar'></div>
             <!-- calendario -->
         </div>
@@ -118,41 +125,21 @@ $centro = $_GET ['centro'];
 <?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion?>
 
 <script>
-                        $(document).ready(function() {
+                    $(document).ready(function() {
 
-                            /* initialize the external events
-                             -----------------------------------------------------------------*/
-                            /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
-                             */
-                            $('#ecos').change(function() {
-                                color = $('#ecos option:selected').attr('event-color');
-                                eco = $('#ecos option:selected').text();
-                                idEco = $('#ecos').val();
-
-                                $('#external-events .fc-event').each(function() {
-                                    $(this).css('background', color).css('border', color);
-                                    $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
-                                    idTM = $(this).attr('idTM');
-                                    $(this).data('event', {
-                                        title: eco, // use the element's text as the event title
-                                        description: $.trim($(this).text()),
-                                        //stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                                        color: color, //cambia el color al color asignado
-                                        editable: true,
-                                        idEco: idEco,
-                                        idTM: idTM,
-                                        fromBD: 0,
-                                        saved: 0
-                                    });
-                                });// each
-                            });
+                        /* initialize the external events
+                         -----------------------------------------------------------------*/
+                        /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
+                         */
+                        $('#ecos').change(function() {
+                            color = $('#ecos option:selected').attr('event-color');
+                            eco = $('#ecos option:selected').text();
+                            idEco = $('#ecos').val();
 
                             $('#external-events .fc-event').each(function() {
-                                color = $(this).attr('event-color');
-                                eco = $('#ecos option:selected').text();
-                                idEco = $('#ecos').val();
+                                $(this).css('background', color).css('border', color);
+                                $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
                                 idTM = $(this).attr('idTM');
-                                // store data so the calendar knows to render an event upon drop
                                 $(this).data('event', {
                                     title: eco, // use the element's text as the event title
                                     description: $.trim($(this).text()),
@@ -164,16 +151,36 @@ $centro = $_GET ['centro'];
                                     fromBD: 0,
                                     saved: 0
                                 });
+                            });// each
+                        });
 
-                                // make the event draggable using jQuery UI
-                                $(this).draggable({
-                                    zIndex: 999,
-                                    revert: true, // will cause the event to go back to its original position after the drag
-                                    revertDuration: 0
-                                });
+                        $('#external-events .fc-event').each(function() {
+                            color = $(this).attr('event-color');
+                            eco = $('#ecos option:selected').text();
+                            idEco = $('#ecos').val();
+                            idTM = $(this).attr('idTM');
+                            // store data so the calendar knows to render an event upon drop
+                            $(this).data('event', {
+                                title: eco, // use the element's text as the event title
+                                description: $.trim($(this).text()),
+                                //stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                                color: color, //cambia el color al color asignado
+                                editable: true,
+                                idEco: idEco,
+                                idTM: idTM,
+                                fromBD: 0,
+                                saved: 0
+                            });
 
-                            });//each
-                        });//ready
+                            // make the event draggable using jQuery UI
+                            $(this).draggable({
+                                zIndex: 999,
+                                revert: true, // will cause the event to go back to its original position after the drag
+                                revertDuration: 0
+                            });
+
+                        });//each
+                    });//ready
 </script><!-- cambio de las ecos -->
 <script>
     /* initialize the calendar
@@ -191,7 +198,7 @@ $centro = $_GET ['centro'];
             eventDragStop: deleteEvent,
             viewRender: switchView,
             header: {
-                left: 'prev,today,next myCustomButton',
+                left: 'prev,today,next',
                 center: 'title',
                 right: 'agendaDay,agendaWeek,month'
             },
@@ -209,7 +216,7 @@ $centro = $_GET ['centro'];
             defaultTimedEventDuration: '03:00:00',
             minTime: '08:00:00',
             maxTime: '21:00:00',
-            defaultView: 'agendaWeek',
+            defaultView: 'month',
             lazyFetch: true,
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar
@@ -378,16 +385,15 @@ $centro = $_GET ['centro'];
     var switchView = function(view) {
         switch (view.name) {
             case 'month':
-                $('#repeatWeek').addClass('disabled');
-                $('#repeatMonth').removeClass('disabled');
+                $('#repeatWeek, #deleteWeek').addClass('disabled');
+                $('#repeatMonth, #deleteMonth').removeClass('disabled');
                 break;
             case 'agendaWeek':
-                $('#repeatWeek').removeClass('disabled');
-                $('#repeatMonth').addClass('disabled');
+                $('#repeatWeek, #deleteWeek').removeClass('disabled');
+                $('#repeatMonth, #deleteMonth').addClass('disabled');
                 break;
             case 'agendaDay':
-                $('#repeatWeek').addClass('disabled');
-                $('#repeatMonth').addClass('disabled');
+                $('#repeatWeek, #repeatMonth, #deleteWeek, #deleteMonth').addClass('disabled');
         }
         //$('#pdf').val($('.fc-view-container').html());
     };
@@ -470,14 +476,14 @@ $centro = $_GET ['centro'];
                         end = evento.end.add(1, 'M').format(); //el horario mas un mes
                         idEco = evento.idEco; //en que eco se esta ejecutando
                         idTM = evento.idTM; //que tm es el evento
-                        console.log('idEco:'+idEco+' idTM:'+idTM+' start:'+start+' end:'+end);
+                        console.log('idEco:' + idEco + ' idTM:' + idTM + ' start:' + start + ' end:' + end);
                         $.ajax({
                             url: 'Include/insertarEvento.php',
                             async: false,
                             data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
                             method: 'POST',
                             success: function(output) {
-                                console.log('idEvento:'+output);
+                                console.log('idEvento:' + output);
                                 if (output !== '0') {
                                     count++; //contador cuando un evento se inserta
                                     avance = (count / cantidad) * 100; //se calcula el % de avance
