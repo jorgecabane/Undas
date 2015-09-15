@@ -73,7 +73,7 @@ if ($_SESSION ["usuario"]) {
                     // MENU HORARIOS
                     if ($admin == 1) {
                         echo '<li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" role="button">Horarios<span class="caret"></span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" role="button">Agenda<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu multi-level" role="menu"><!-- empresas -->
                     <!-- <li class="dropdown-submenu">
