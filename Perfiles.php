@@ -93,9 +93,16 @@ if ($admin == 1) {
 ?>
 
 <script src="Include/filtro.js"></script>
+<script>
+$(document).ready(function() {
+$('.fc-event').css( "line-height", "1.8" );
+});
 
+</script>
 <script>
     $(".fc-event").click(function() {
+    	$(this).siblings().css( "background-color", "#3a87ad" );    	
+    	$(this).css( "background-color", "gray" );
         rut = $(this).attr('Rut');
         nombreTM = $(this).text();
         $('.progress').slideDown('slow');
