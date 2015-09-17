@@ -11,6 +11,7 @@ $nombreTM = $_POST ['nombreTM'];
 		<li class="nav"><a href="#Atab" data-toggle="tab">Info</a></li>
 		<li class="nav"><a href="#Btab" data-toggle="tab">Honorarios</a></li>
 		<li class="nav active"><a href="#Ctab" data-toggle="tab">Horario</a></li>
+		<li class="nav"><a href="#Etab" data-toggle="tab">Prestaciones</a></li>
 		<li class="nav"><a href="#Dtab" data-toggle="tab">Liquidaciones</a></li>
 	</ul>
 
@@ -44,6 +45,15 @@ $nombreTM = $_POST ['nombreTM'];
 			</center>
 			<div class="container-fluid">
             <?php include_once "SelectMes.php"; ?>
+        </div>
+		</div>
+
+		<div class="tab-pane fade" id="Etab">
+			<center>
+				<h3 class="hidden-print">Prestaciones por Empresa</h3>
+			</center>
+			<div class="container-fluid empresa">
+            <?php include_once "selectEmpresa.php"; ?>
         </div>
 		</div>
 	</div>

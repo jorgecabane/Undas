@@ -6,16 +6,18 @@
 	</div>
 </div>
 <div class="row   ">
-<div class="col-xs-2  col-xs-offset-5 text-center hidden-print">
-	<label for="start">Seleccione Mes</label> <input
-		class="form-control text-center" type="text" id="start" name="from">
-		
-</div>
-<div class="col-sm-2 hidden-print exporta" style="display: none">
-                    <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!" >
-                        <span class="glyphicon glyphicon-print"></span>
-                    </button>
-                </div>
+	<div class="col-xs-2  col-xs-offset-5 text-center hidden-print">
+		<label for="start">Seleccione Mes</label> <input
+			class="form-control text-center" type="text" id="start" name="from">
+
+	</div>
+	<div class="col-sm-2 hidden-print exporta" style="display: none">
+		<button class="btn btn-danger btn-block" onClick="window.print()"
+			id="descargar" data-toggle="tooltip" data-placement="left"
+			title="Descargar PDF!">
+			<span class="glyphicon glyphicon-print"></span>
+		</button>
+	</div>
 </div>
 
 <div id="Liquidaciones" class="row"></div>
