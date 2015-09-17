@@ -96,12 +96,13 @@ if ($admin == 1) {
 <script>
 $(document).ready(function() {
 $('.fc-event').css( "line-height", "1.8" );
+$('.fc-event').css( "background-color", "rgb(51, 122, 183);" );  
 });
 
 </script>
 <script>
     $(".fc-event").click(function() {
-    	$(this).siblings().css( "background-color", "#3a87ad" );    	
+    	$(this).siblings().css( "background-color", "rgb(51, 122, 183);" );    	
     	$(this).css( "background-color", "gray" );
         rut = $(this).attr('Rut');
         nombreTM = $(this).text();
