@@ -95,7 +95,7 @@ if ($admin == 1) {
 <script src="Include/filtro.js"></script>
 <script>
 $(document).ready(function() {
-$('.fc-event').css( "line-height", "1.8" );
+$('.fc-event').css( "line-height", "2" );
 $('.fc-event').css( "background-color", "rgb(51, 122, 183);" );  
 });
 
