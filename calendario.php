@@ -87,7 +87,8 @@ $centro = $_GET ['centro'];
                         <?php
                         $tms = getTM();
                         foreach ($tms as $tm) {
-                            echo "<div class='label fc-event' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</div>";
+                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#" . $tm['Nombre'] . "' aria-expanded='false' aria-controls='" . $tm['Nombre'] . "' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
+                                <div id='" . $tm['Nombre'] . "' class='collapse'>prestaciones de " . $tm['Nombre'] . "</div>";
                         } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
                         ?>
                         <!-- Generacion de listado de TMs -->
@@ -395,7 +396,6 @@ $centro = $_GET ['centro'];
             case 'agendaDay':
                 $('#repeatWeek, #repeatMonth, #deleteWeek, #deleteMonth').addClass('disabled');
         }
-        //$('#pdf').val($('.fc-view-container').html());
     };
 </script><!-- switchView -->
 <script>
@@ -403,53 +403,55 @@ $centro = $_GET ['centro'];
         $('#repeatWeek').click(function() {
             cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a repetir
             if (cantidad !== 0) {// si hay
-                var weeks = prompt('Cuantas semanas?'); //se pregunta cuantas semanas ahead
-                weeks = parseInt(weeks); //transforma en num
+                if (confirm('Verifique que no está repitiendo eventos!, desea continuar?')) {
+                    var weeks = prompt('Cuantas semanas?'); //se pregunta cuantas semanas ahead
+                    weeks = parseInt(weeks); //transforma en num
 
-                if (Math.floor(weeks) === weeks && $.isNumeric(weeks)) { //si el valor es entero
-                    $('#calendar').slideUp('slow'); //oculto el calendario
-                    $('.progress').slideDown('slow').children('.progress-bar').css('width', '0%'); //barra de progreso
-                    $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown('slow'); //mensaje
+                    if (Math.floor(weeks) === weeks && $.isNumeric(weeks)) { //si el valor es entero
+                        $('#calendar').slideUp('slow'); //oculto el calendario
+                        $('.progress').slideDown('slow').children('.progress-bar').css('width', '0%'); //barra de progreso
+                        $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown(); //mensaje
 
-                    count = 0;//contador de repeticiones
+                        count = 0;//contador de repeticiones
 
-                    $('#calendar').fullCalendar('clientEvents', function(evento) {//array con los eventos del calendario
-                        week = $('#calendar').fullCalendar('getView').intervalStart.format('w');//la semana que se esta viendo
-                        if (evento.start.format('w') === week) { //si los eventos son de la semana
-                            for (i = 0; i < weeks; i++) {
-                                start = evento.start.add(1, 'week').format(); //el horario mas una semana
-                                end = evento.end.add(1, 'week').format(); //el horario mas una semana
-                                idEco = evento.idEco; //en que eco se esta ejecutando
-                                idTM = evento.idTM; //que tm es el evento
+                        $('#calendar').fullCalendar('clientEvents', function(evento) {//array con los eventos del calendario
+                            week = $('#calendar').fullCalendar('getView').intervalStart.format('w');//la semana que se esta viendo
+                            if (evento.start.format('w') === week) { //si los eventos son de la semana
+                                for (i = 0; i < weeks; i++) {
+                                    start = evento.start.add(1, 'week').format(); //el horario mas una semana
+                                    end = evento.end.add(1, 'week').format(); //el horario mas una semana
+                                    idEco = evento.idEco; //en que eco se esta ejecutando
+                                    idTM = evento.idTM; //que tm es el evento
 
-                                $.ajax({
-                                    url: 'Include/insertarEvento.php',
-                                    async: true,
-                                    data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
-                                    method: 'POST',
-                                    success: function(output) {
-                                        if (output !== '0') {
-                                            count++; //contador cuando un evento se inserta
-                                            avance = (count / cantidad) * 100; //se calcula el % de avance
-                                            if (avance === 100) { //si se termino de insertar todos (100%)
-                                                $('.progress-bar').css('width', avance + '%'); //se aumenta la barra
-                                                $('.progress').slideUp('slow'); //se esconde
-                                                $('#horarioContent').slideUp('slow'); //se esconde
-                                                $('#calendar').slideDown('slow'); //se muestra el calendario
+                                    $.ajax({
+                                        url: 'Include/insertarEvento.php',
+                                        async: true,
+                                        data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
+                                        method: 'POST',
+                                        success: function(output) {
+                                            if (output !== '0') {
+                                                count++; //contador cuando un evento se inserta
+                                                avance = (count / cantidad) * 100; //se calcula el % de avance
+                                                if (avance === 100) { //si se termino de insertar todos (100%)
+                                                    $('.progress-bar').css('width', avance + '%'); //se aumenta la barra
+                                                    $('.progress').slideUp('slow'); //se esconde
+                                                    $('#horarioContent').slideUp('slow'); //se esconde
+                                                    $('#calendar').slideDown('slow'); //se muestra el calendario
 
-                                            } else {
-                                                $('.progress-bar').css('width', avance + '%'); // cambia el % de avance
-                                            }
-                                        }//if
-                                    }//success
-                                });//ajax */
-                            }//for
-                        }//solo para los eventos de la semana en curso
-                    });//clientEvents callback
-                }//si el valor ingresado es numero
-                else {
-                    alert('Debe ingresar un valor numerico');
-                }
+                                                } else {
+                                                    $('.progress-bar').css('width', avance + '%'); // cambia el % de avance
+                                                }
+                                            }//if
+                                        }//success
+                                    });//ajax */
+                                }//for
+                            }//solo para los eventos de la semana en curso
+                        });//clientEvents callback
+                    }//si el valor ingresado es numero
+                    else {
+                        alert('Debe ingresar un valor numerico');
+                    }
+                }//si confirma
             }//si hay eventos
             else {
                 alert('No hay eventos que repetir!');
@@ -505,7 +507,46 @@ $centro = $_GET ['centro'];
             }//if
         });//click
     });//ready
-</script><!-- repeatMonth-->
+</script><!-- repeatMonth -->
+<script>
+    $('#external-events').collapse({
+        parent: '.fc-event'
+    });
+</script><!-- collapse prestaciones -->
+<script>
+    $(document).ready(function() {
+        $('#deleteWeek').click(function() {
+            var confirmar = confirm('Está seguro que quiere eliminar todos los eventos de esta semana?');
+            if (confirmar) {
+                cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a borrar
+                contador = 0; //contador para saber cuando cerrar el progressbar
+                $('.progress').slideDown('slow');//progress bar
+                $('#calendar').fullCalendar('clientEvents', function(evento) {//each evento en el cliente
+                    week = $('#calendar').fullCalendar('getView').intervalStart.format('w');//la semana que se esta viendo
+                    if (evento.start.format('w') === week) { //si los eventos son de la semana
+                        $('#calendar').fullCalendar('removeEvents', evento._id);
+                        $.ajax({
+                            url: 'Include/eliminarEvento.php',
+                            async: true,
+                            data: {"idEvento": evento.id},
+                            method: 'POST',
+                            success: function(output) {
+                                if (output === '1') {
+                                    contador++;
+                                    if (contador === cantidad) {
+                                        $('.progress').slideUp();
+                                    }
 
+                                }//si se borro de la base de datos
+                            }//success
+                        });//ajax */
+                    }//si los eventos son del a semana
+                });
+            } else {
+
+            }
+        });//click #deleteWeek
+    });//ready
+</script><!-- deleteWeek -->
 <script src="Include/filtro.js"></script>
 </html>
