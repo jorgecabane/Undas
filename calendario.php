@@ -138,7 +138,7 @@ $centro = $_GET ['centro'];
                             idEco = $('#ecos').val();
 
                             $('#external-events .fc-event').each(function() {
-                                $(this).css('background', color).css('border', color);
+                                $(this).css('background', color).css('border', color).css("line-height", "1.45");
                                 $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
                                 idTM = $(this).attr('idTM');
                                 $(this).data('event', {
