@@ -60,6 +60,7 @@ else
   <strong>Error!</strong> Tm no tiene Horas realizadas asociadas.
 </div>';
 }
+
 ?>
 </tbody>
 
@@ -109,8 +110,15 @@ else
 {
 	echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Error!</strong> TM no tiene Valores Horas asociados.
+  <strong>Error!</strong> TM no tiene Valores Hora asociados.
 </div>';
+}
+if(count($Horas) != count($ValorHoras)){
+	echo '<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Error!</strong> Falta agregar Valores Hora para calcular Honorario.
+</div>';
+	
 }
 ?>
 </tbody>
