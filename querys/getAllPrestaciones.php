@@ -1,7 +1,7 @@
 <?php
 /*
- * getPrestaciones funcion que se conecta a la base de datos para entregar la informacion de todas
- * las prestaciones de un tm especifico, dado su Rut
+ * getPrestacion funcion que se conecta a la base de datos para entregar la informacion de todas
+ * las prestaciones de un tm especifico, dado su Rut y dado que el no este asociado anteriormente a esta prestacion
  *
  */
 include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
