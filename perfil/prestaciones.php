@@ -62,7 +62,7 @@ session_start();
        
         var content = "<tr><td><select class='form-control Prestacion' required name='Prestacion'>";
         content += "<option selected='true' disabled='disabled'> Seleccione Prestacion </option><?php
-                    foreach (getPrestacion() as $contenido) {
+                    foreach (getPrestacion($rut,$empresa) as $contenido) {
                         echo "<option value='" . $contenido["idPrestacion"] . "'> " . $contenido["Grupo"] . " " . $contenido["Especifico"] . '</option>'; 
                     }
                     ?>";
