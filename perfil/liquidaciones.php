@@ -3,6 +3,7 @@ include_once "../Include/isAdmin.php";
 include_once "../Include/meses.php";
 include_once "../querys/getHoras.php";
 include_once "../querys/getValorHora.php";
+include_once "../querys/getExtras.php";
 
 $mes = $_POST['mes'];
 $rut = $_POST['rut'];
@@ -11,8 +12,9 @@ $Horas = getHoras($rut, $mes);
 echo "<table id='t01' class='table table-hover table-bordered table-condensed table-responsive' style='max-width:80%; white-space: nowrap'>";
 echo "<thead><tr class='bg-primary' colspan='2'>";
 echo "<th>Fecha: ";
-echo Mes($Horas[0]['Mes']);
-echo " " . $Horas[0]['Year'];
+echo "<span id='mes'>".Mes($Horas[0]['Mes'])."</span>";
+echo " " ;
+echo "<span id='year'>".$Horas[0]['Year']."</span>";
 echo " </th>";
 echo "</thead></tr>";
 
@@ -120,10 +122,36 @@ if(count($Horas) != count($ValorHoras)){
 </div>';
 	
 }
+echo "<thead ><tr colspan='2' class='bg-info'>";
+echo "<th>Extras <input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' /></th>";
+echo "<th>Monto Total</th>";
+echo "</thead >";
+echo "<tbody id='appendExtra'>";
+$extras = getExtras($rut, $mes);
+if($extras){
+	foreach ($extras as $extra) {
+		?>
+		<tr>
+		<td>
+		<?php echo $extra['Titulo'];?>
+		</td>
+		<td>
+		<?php echo $extra['Monto'];?>
+		</td>
+		
+		
+		</tr>
+		<?php 
+	}
+	
+}
+
+echo "</tbody>";
+
 ?>
 </tbody>
 <?php
-echo "<thead><tr class='bg-success' colspan='2'>";
+echo "<thead><tr class='bg-success' >";
 echo "<th>Valor Honorarios Base: $ <span id='totalHonorarios'></span></th>";
 echo "<th>Total Horas Mes: <span id='totalHoras'></span></th>";
 echo "</tr>";
@@ -183,4 +211,50 @@ var retencion = bruto*0.1;
 $('#retencion').html(retencion);
 var liquido = parseFloat(bruto)+parseFloat(retencion);
 $('#liquido').html(liquido);
+</script>
+
+
+<script>
+
+    $(".btnextra").click(function() {
+       
+        var content = "<tr class= 'Extra'><td><input type='text' class= 'Extra form-control' required name='Extra'></td>";
+        content += "<td><input type='text' class='montoExtra form-control' required name='montoExtra'>";
+        content += "<button class='btn btn-info btnguardarExtra hidden-print'>Guardar</button>";
+        content += "<button class='btn btn-danger btncancelarExtra hidden-print'>Cancelar</button>";
+        content += "</td></tr>";
+        $('#appendExtra').append(content);
+        $(".btncancelarExtra").bind('click', function() {
+            $(this).parent().parent().remove();
+        });
+        $(".btnguardarExtra").bind('click', function() {
+            $(this).parent().parent().find('.btnguardarExtra').attr("value", "Guardado Exitoso");
+            $(this).parent().parent().find('.btnguardarExtra').attr("disabled", "disabled");
+            $(this).parent().parent().find('.btnguardarExtra').attr("class", "btn btn-success btnguardarExtra");
+            $(this).parent().parent().find('.btncancelarExtra').attr("disabled", "disabled");
+            var input = $(this).parent().parent().find(".Extra");
+            var inputmonto = $(this).parent().parent().find(".montoExtra");
+               var year = moment($('#start').val()+'-01').format('YYYY-MM-DD');
+               var titulo = input.val();
+               var monto = inputmonto.val();
+                jQuery.ajax({
+                method: "POST",
+                url: "querys/insertExtra.php",
+                data: {
+                    "fecha": year,
+                    "rutTM": "<?php echo $rut; ?>",
+                    "titulo": titulo,
+                    "monto": monto   
+                },
+                success: function(response)
+                {
+                    input.attr("disabled", "disabled");
+                    inputmonto.attr("disabled", "disabled");
+                }
+            }); 
+        });
+
+  
+    });
+
 </script>
