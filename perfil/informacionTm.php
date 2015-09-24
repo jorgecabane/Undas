@@ -123,7 +123,7 @@ if ($resultado) {
             <th>Comentario</th>
             <td>
                 <div class="form-group">
-                    <textarea id="comentario" class="form-control editable"  rows="2" cols="30"
+                    <textarea id="comentario" class="form-control editable"  rows="4" cols="30"
                               name="comentario"
                               <?php
                               if ($admin == 0) {
