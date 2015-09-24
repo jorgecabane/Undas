@@ -143,6 +143,8 @@ if ($resultado) {
                         <input id="id" type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
                         <input type="submit" value="Finalizar edicion"
                                class='btn btn-info btnedit' disabled="disabled" />
+						<input type="submit" value="Cancelar edicion"
+                               class='btn btn-warning btncancel' disabled="disabled" />                        
                     </div>
                 </td>
             <td><input type="submit" value="Eliminar TM"
@@ -161,6 +163,7 @@ if ($resultado) {
 <script>
     $(".editable").keyup(function() {
         $(".btnedit").removeAttr("disabled");
+		$(".btncancel").removeAttr("disabled");
         $(this)
                 .parent()
                 .parent()
