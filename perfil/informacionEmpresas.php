@@ -13,22 +13,11 @@
     if ($resultado) {
 
         echo "<table id='t01' class='table table-hover table-bordered'>";
-        echo "<thead><tr>";
-        echo "<th>Nombre</th>";
-        echo "<th>Rut</th>";
-        echo "<th>Giro</th>";
-        echo "<th>Direccion</th>";
-        echo "<th>Comuna</th>";
-        echo "<th>Ciudad</th>";
-        echo "<th>Razon social</th>";
-        if ($admin == 1) {
-            echo "<th>Editar</th>";
-            echo "<th>Eliminar</th>";
-        }
-        echo "</thead><tbody>";
+        echo "<tbody>";
         while ($row = mysql_fetch_array($resultado)) {
             ?>
             <tr>
+            <th>Nombre</th>
                 <td>
                     <div class="form-group">
                         <input id="nombre" type="text" class="form-control editable" name="Nombre" value="<?php echo $row['Nombre']; ?>"
@@ -40,6 +29,9 @@
                                required>
                     </div>
                 </td>
+                </tr>
+                <tr>
+                <th>Rut</th>
                 <td>
                     <div class="form-group">
                         <input id="rut" type="text" class="form-control editable" name="Rut" value="<?php echo $row['Rut']; ?>"
@@ -51,6 +43,9 @@
                                required>
                     </div>
                 </td>
+                </tr>
+                <tr>
+                <th>Giro</th>
                 <td>
                     <div class="form-group">
                         <input id="giro" type="text" class="form-control editable" name="Giro" value="<?php echo $row['Giro']; ?>"
@@ -62,6 +57,9 @@
                                required>
                     </div>
                 </td>
+                </tr>
+                <tr>
+                <th>Direccion</th>
                 <td>
                     <div class="form-group">
                         <input id="direccion" type="text" class="form-control editable" name="Direccion" value="<?php echo $row['Direccion']; ?>"
@@ -73,6 +71,9 @@
                                required>
                     </div>
                 </td>
+                </tr>
+                <tr>
+                <th>Comuna</th>
                 <td>
                     <div class="form-group">
                         <input id="comuna" type="text" class="form-control editable" name="Comuna" value="<?php echo $row['Comuna']; ?>"
@@ -84,6 +85,9 @@
                                required>
                     </div>
                 </td>
+                </tr>
+                <tr>
+                <th>Ciudad</th>
                 <td>
                     <div class="form-group">
                         <input id="ciudad" type="text" class="form-control editable" name="Ciudad" value="<?php echo $row['Ciudad']; ?>"
@@ -95,6 +99,9 @@
                                required>
                     </div>
                 </td>
+                </tr>
+                <tr>
+                <th>Razon social</th>
                 <td>
                     <div class="form-group">
                         <input id="razonsocial" type="text" class="form-control editable" name="Razonsocial" value="<?php echo $row['RazonSocial']; ?>"
@@ -106,9 +113,11 @@
                                required>
                     </div>
                 </td>
+                </tr>
                 <?php
                 if ($admin == 1) {
                     ?>
+                    <tr>
                     <td>
                         <div>
                             <input type="hidden" name="id" value="<?php echo $row['idEmpresa']; ?>" />
@@ -157,12 +166,7 @@
             success: function(response)
             {
                 $(".btnedit").attr("disabled", "disabled");
-                $(".btnedit")
-                        .parent()
-                        .parent()
-                        .parent()
-                        .removeClass("danger")
-                        .addClass("success");
+                $('tr.danger').removeClass("danger").addClass("success");
             }
         });
     });
