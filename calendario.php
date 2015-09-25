@@ -338,12 +338,12 @@ $centro = $_GET ['centro'];
          */
         //view = $('#calendar').fullCalendar('getView').name;
         if (!event.start.hasTime()) {//si no tiene hora asignada
-            $('#eventDate').html(event.start.format());
-            $("#modalEvento").modal('show');//
+            $('#eventDate').html(event.start.format());//se obtiene la fecha ingresada
+            $("#modalEvento").modal('show');//se muestra el modal
             $("#asignTime").click(function() {
                 //obtencion de los valores seleccionados
-                start = event.start.format()+' '+$('#rangoStart').text()+':00';
-                end = event.start.format()+' '+$('#rangoEnd').text()+':00';
+                start = event.start.format() + ' ' + $('#rangoStart').text() + ':00';
+                end = event.start.format() + ' ' + $('#rangoEnd').text() + ':00';
 
                 //se crea un evento con datos correctos
                 evento = {
@@ -359,10 +359,10 @@ $centro = $_GET ['centro'];
                     editable: true
                 };
                 //render del evento
-                $('#calendar').fullCalendar('renderEvent', evento);
+                //$('#calendar').fullCalendar('renderEvent', evento);
 
                 //finalizacion (cerrado del modal)
-                //console.log(evento);
+                console.log(evento);
                 $("#modalEvento").modal('hide');
             });
         }
