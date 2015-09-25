@@ -154,45 +154,47 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 </script>
 <!-- inicializacion del chart -->
 <script>
+    var getDisponibles = function() {
+        start = $.datepicker.formatDate('yy-mm-dd', $('#start').datepicker('getDate')) + ' ' + $('#rangoStart').text() + ':00';
+        end = $.datepicker.formatDate('yy-mm-dd', $('#end').datepicker('getDate')) + ' ' + $('#rangoEnd').text() + ':00';
+
+        $.ajax({
+            url: 'Include/disponibles.php',
+            async: true,
+            data: {"start": start, "end": end},
+            method: 'POST',
+            beforeSend: function() {
+                $('.progress').slideDown('slow');
+            },
+            success: function(output) {
+                $('.progress').slideUp('slow');
+                output = $.parseJSON(output);
+                libres = 0;
+
+                $('#libres').html('');
+                $.each(output, function(index, value) {
+                    if (index !== 0) {
+                        libres++; //cantidad de TMs disponibles o libres en el intervalo seleccionado
+
+                        $('#libres').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
+                    } else {
+                        total = value.tms;
+                    }
+                });
+                //console.log(libres);
+                //console.log(total);
+                Grafico.segments[0].value = libres;
+                Grafico.segments[1].value = total - libres;
+                Grafico.update();
+
+
+            }//success
+        });//ajax
+
+    };//function getDisponibles
+</script>
+<script>
     $(document).ready(function() {
-        var getDisponibles = function() {
-            start = $.datepicker.formatDate('yy-mm-dd', $('#start').datepicker('getDate')) + ' ' + $('#rangoStart').text() + ':00';
-            end = $.datepicker.formatDate('yy-mm-dd', $('#end').datepicker('getDate')) + ' ' + $('#rangoEnd').text() + ':00';
-
-            $.ajax({
-                url: 'Include/disponibles.php',
-                async: true,
-                data: {"start": start, "end": end},
-                method: 'POST',
-                beforeSend: function() {
-                    $('.progress').slideDown('slow');
-                },
-                success: function(output) {
-                    $('.progress').slideUp('slow');
-                    output = $.parseJSON(output);
-                    libres = 0;
-
-                    $('#libres').html('');
-                    $.each(output, function(index, value) {
-                        if (index !== 0) {
-                            libres++; //cantidad de TMs disponibles o libres en el intervalo seleccionado
-
-                            $('#libres').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
-                        } else {
-                            total = value.tms;
-                        }
-                    });
-                    //console.log(libres);
-                    //console.log(total);
-                    Grafico.segments[0].value = libres;
-                    Grafico.segments[1].value = total - libres;
-                    Grafico.update();
-
-
-                }//success
-            });//ajax
-
-        };
         $('#start, #end, #slider').change(getDisponibles);//change
         $("#slider").slider({
             range: true,
@@ -224,7 +226,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 $('#rangoEnd').html(hours2 + ':' + minutes2);
             },
             change: getDisponibles
-        });
+        });//slider
     });//ready
 </script>
 
