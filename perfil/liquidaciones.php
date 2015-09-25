@@ -137,8 +137,11 @@ if($extras){
 		</td>
 		<td>
 		<?php
+		echo "<span class='label label-warning' >";
+		echo "$ ";
 		echo"<span class='montoExtra'>";
 		echo $extra['Monto'];
+		echo"</span>";
 		echo"</span>";
 		?>
 		</td>
