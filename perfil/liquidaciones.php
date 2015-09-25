@@ -238,8 +238,8 @@ $('#liquido').html(liquido);
 //script que añade un campo Extra
     $(".btnextra").click(function() {
        
-        var content = "<tr class= 'Extra'><td><input type='text' class= 'Extra form-control' required name='Extra'></td>";
-        content += "<td><input type='text' class='montoExtra form-control' required name='montoExtra'>";
+        var content = "<tr class= 'Extra'><td><input type='text' class= 'Extra form-control' required name='Extra' placeholder='Ingrese Titulo del Extra'></td>";
+        content += "<td><input type='text' class='montoExtra form-control' required name='montoExtra' placeholder='Ingrese Monto Total (hora*valor)'>";
         content += "<button class='btn btn-info btnguardarExtra hidden-print'>Guardar</button>";
         content += "<button class='btn btn-danger btncancelarExtra hidden-print'>Cancelar</button>";
         content += "</td></tr>";
