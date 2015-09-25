@@ -136,7 +136,11 @@ if($extras){
 		<?php echo $extra['Titulo'];?>
 		</td>
 		<td>
-		<?php echo $extra['Monto'];?>
+		<?php
+		echo"<span class='montoExtra'>";
+		echo $extra['Monto'];
+		echo"</span>";
+		?>
 		</td>
 		
 		
@@ -169,7 +173,10 @@ echo "</thead>";
  Direcci&#243n: Valle del Maipo poniente N&ordm 3617. Pe&ntildealolen, Stgo. 
  </div>
 
+
+
 <script>
+//script que suma las horas realizadas
     var suma = 0;
     $(".HorasRealizadas").each(function(index) {
         suma += parseFloat($(this).text());
@@ -178,6 +185,7 @@ echo "</thead>";
 </script>
 
 <script>
+//script para sumar la multiplicacion de las horas hechas por su valor hora ( dependiendo de si es semana o sabado)
 var contador = 0;
 $(".CentroHoraRealizada").each(function() {
  var horasRealizadas= $(this).text();
@@ -203,19 +211,28 @@ if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 });
 $('#totalHonorarios').html(contador);
 </script>
-
 <script>
+//script para sumar los Extras
+var suma = $('#totalHonorarios').text();
+$(".montoExtra").each(function(index) {
+    suma = parseFloat(suma)+ parseFloat($(this).text());
+});
+$('#totalHonorarios').html(suma);
+</script>
+<script>
+//script para calcular los honorarios brutos, retencion y liquido
 var bruto = $('#totalHonorarios').text();
 $('#bruto').html(bruto);
 var retencion = bruto*0.1;
-$('#retencion').html(retencion);
-var liquido = parseFloat(bruto)+parseFloat(retencion);
+var sindecimales = parseFloat(retencion).toFixed(0);
+$('#retencion').html(sindecimales);
+var liquido = parseFloat(bruto)+parseFloat(sindecimales);
 $('#liquido').html(liquido);
 </script>
 
 
 <script>
-
+//script que añade un campo Extra
     $(".btnextra").click(function() {
        
         var content = "<tr class= 'Extra'><td><input type='text' class= 'Extra form-control' required name='Extra'></td>";
