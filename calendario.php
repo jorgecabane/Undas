@@ -87,7 +87,7 @@ $centro = $_GET ['centro'];
                         <?php
                         $tms = getTM();
                         foreach ($tms as $tm) {
-                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#" . $tm['Nombre'] . "' aria-expanded='false' aria-controls='" . $tm['Nombre'] . "' event-color='#6ebfee' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
+                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#" . $tm['Nombre'] . "' aria-expanded='false' aria-controls='" . $tm['Nombre'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
                                 <div id='" . $tm['Nombre'] . "' class='collapse'>prestaciones de " . $tm['Nombre'] . "</div>";
                         } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
                         ?>
@@ -124,7 +124,7 @@ $centro = $_GET ['centro'];
 <!-- container-fluid -->
 </body>
 <?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion?>
-
+<?php include_once dirname(__FILE__) . '/Include/modalEvento.php'; //modal para los eventos desde vista mes?>
 <script>
                     $(document).ready(function() {
 
@@ -198,6 +198,7 @@ $centro = $_GET ['centro'];
             eventDrop: update,
             eventDragStop: deleteEvent,
             viewRender: switchView,
+            eventReceive: receive,
             header: {
                 left: 'prev,today,next',
                 center: 'title',
@@ -211,6 +212,7 @@ $centro = $_GET ['centro'];
                         // days of week. an array of zero-based day of week integers (0=Sunday)
                         // (Monday-Thursday in this example)
             },
+            //eventConstraint:"businessHours" ,
             slotEventOverlap: false,
             forceEventDuration: true,
             slotDuration: '00:15:00',
@@ -306,7 +308,7 @@ $centro = $_GET ['centro'];
             method: 'POST',
             success: function(output) {
                 if (output === 'false') {
-                    $(".modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
+                    $("#myModal.modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
                     $("#myModal").modal('show');
                 }
             }// success
@@ -328,6 +330,45 @@ $centro = $_GET ['centro'];
         //se actualiza en la bbdd el elemento o se guarda si no existe
     };
 </script><!-- verify -->
+<script>
+    var receive = function(event) {
+        /*
+         * funcion que se corre si el evento no tiene hora asignada
+         * (creado desde la vista mensual)
+         */
+        //view = $('#calendar').fullCalendar('getView').name;
+        if (!event.start.hasTime()) {//si no tiene hora asignada
+            $('#eventDate').html(event.start.format());
+            $("#modalEvento").modal('show');//
+            $("#asignTime").click(function() {
+                //obtencion de los valores seleccionados
+                start = event.start.format()+' '+$('#rangoStart').text()+':00';
+                end = event.start.format()+' '+$('#rangoEnd').text()+':00';
+
+                //se crea un evento con datos correctos
+                evento = {
+                    title: event.title,
+                    start: start,
+                    end: end,
+                    idEco: event.idEco,
+                    idTM: event.idTM,
+                    saved: event.saved,
+                    color: event.color,
+                    description: event.description,
+                    fromBD: event.fromBD,
+                    editable: true
+                };
+                //render del evento
+                $('#calendar').fullCalendar('renderEvent', evento);
+
+                //finalizacion (cerrado del modal)
+                //console.log(evento);
+                $("#modalEvento").modal('hide');
+            });
+        }
+
+    };//function drop
+</script><!-- receive -->
 <script>
     var deleteEvent = function(event, jsEvent) {
         var trashEl = jQuery('#deleteArea');
@@ -366,20 +407,24 @@ $centro = $_GET ['centro'];
 </script><!-- deleteEvent -->
 <script>
     var renderEvent = function(event, element) {
-        //se agrega la descripcion al evento
-        element.find('.fc-title').append("<br/>" + event.description);
-        //al hacer click se puede ver el detalle
-        element.popover({
-            title: 'Detalles del Evento',
-            content: '<div><b>Eco: </b>' + event.title + '<br>\n\
+        if (event.start.hasTime()) {
+            //se agrega la descripcion al evento
+            element.find('.fc-title').append("<br/>" + event.description);
+            //al hacer click se puede ver el detalle
+            element.popover({
+                title: 'Detalles del Evento',
+                content: '<div><b>Eco: </b>' + event.title + '<br>\n\
                              <b>TM: </b>' + event.description + '<br>\n\
                              <b>Fecha: </b>' + event.start.format('LL') + '<br>\n\
                              <b>Inicio: </b>' + event.start.format("HH:mm") + '<br>\n\
                              <b>Termino: </b>' + event.end.format("HH:mm") + '\n\
                              </div>',
-            html: true,
-            animation: true
-        });//popover
+                html: true,
+                animation: true
+            });//popover
+        } else {
+            return false;// si el evento no tiene hora que no se incluya en el calendar
+        }
     };
 </script><!-- renderEvent -->
 <script>

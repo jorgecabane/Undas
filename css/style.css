@@ -84,7 +84,9 @@ to {
     border-color: #3FABE9;
     border-width: 1px;
 }
-
+.fc-event {
+    cursor: pointer;
+}
 .alert {
     margin-bottom: 0px;
 }
