@@ -1,10 +1,18 @@
 <?php
+session_start();
 include_once "../Include/isAdmin.php";
 include_once "../Include/meses.php";
 include_once "../querys/getHoras.php";
 include_once "../querys/getValorHora.php";
 include_once "../querys/getExtras.php";
-
+if ($_SESSION ["usuario"]) {
+	if (isAdmin($_SESSION ["idusuario"]) == 1) {
+		$admin = 1;
+		 
+	} else {
+		$admin = 0;
+	}
+}
 $mes = $_POST['mes'];
 $rut = $_POST['rut'];
 
@@ -123,7 +131,12 @@ if(count($Horas) != count($ValorHoras)){
 	
 }
 echo "<thead ><tr colspan='2' class='bg-info'>";
-echo "<th>Extras <input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' /></th>";
+echo "<th>Extras";
+if($admin==1)
+{
+echo "<input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' />";
+}
+echo "</th>";
 echo "<th>Monto Total</th>";
 echo "</thead >";
 echo "<tbody id='appendExtra'>";
