@@ -10,7 +10,7 @@ if (isset($_POST ['login'])) {
         $user1 = $_POST ['user'];
         // $query = mysql_query("SELECT usuario FROM usuarios WHERE usuario = '$user'") or die(mysql_error());
         // $row2 = mysql_fetch_assoc($query);
-     
+
 
         $queryoli = "Select idTM, Nombre from tm where Rut='$user1'";
         // echo $queryoli;
@@ -102,7 +102,7 @@ if (isset($_POST ['login'])) {
 
 
                     <h4>Rut usuario</h4>
-                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control' placeholder='Nombre' required>
+                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control' placeholder='RUT' required>
                     <h4>Contrase&ntilde;a</h4>
                     <label for='password' class="sr-only">Contrase&ntilde;a</label>
                     <input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
