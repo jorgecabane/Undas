@@ -1,7 +1,7 @@
 <?php
 session_start ();
-include_once dirname(__FILE__) . "/header.php";
-include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
+include_once dirname ( __FILE__ ) . "/header.php";
+include_once dirname ( __FILE__ ) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid">
 	<div class="row well well-titles">
@@ -26,19 +26,20 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 
 				<!-- aqui iria una tabla de todos los tms en caso de lata de buscar -->
                     <?php
-																				if ($admin == 1) {
-																					include "querys/getEmpresa.php";
-																					$empresas = getEmpresa();
+if ($admin == 1) {
+include "querys/getEmpresa.php";
+$empresas = getEmpresa ();
+																			
+echo '<ul class="nav nav-pills nav-stacked">';
+							
+foreach ( $empresas as $emp ) {
+echo '<li class="active fc-event" idEmpresa="' . $emp ['idEmpresa'] . '"><center>' . $emp ['Nombre'] . '</center></li>';
+}
+echo '</ul>';
 
-																					echo '<ul class="nav nav-pills nav-stacked">';
-
-																					foreach ($empresas as $emp) {
-																						echo '<li class="active fc-event" idEmpresa="' . $emp['idEmpresa'] . '"><a href="#">' . $emp['Nombre'] . '</a></li>';
-																					}
-																					echo '</ul>';
-																					?>
-																			<?php 	}
-																				?>
+														
+}
+?>
                 </div>
 
 		</div>
@@ -70,9 +71,17 @@ if ($admin == 1) {
 ?>
 
 <script src="include/filtro.js"></script>
+<script>
+$(document).ready(function() {
+$('.fc-event').css( "line-height", "2" );
+$('.fc-event').css( "background-color", "rgb(51, 122, 183);" );  
+});
 
+</script>
 <script>
     $(".fc-event").click(function() {
+    	$(this).siblings().css( "background-color", "rgb(51, 122, 183);" );    	
+    	$(this).css( "background-color", "gray" );
         $("#perfil").slideDown('2000').load("perfil/perfilEmpresa.php", {"idEmpresa": $(this).attr('idEmpresa'), 'nombreEmpresa': $(this).text()});
 
     });
