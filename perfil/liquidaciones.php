@@ -1,35 +1,34 @@
 <?php
-session_start();
+session_start ();
 include_once "../Include/isAdmin.php";
 include_once "../Include/meses.php";
 include_once "../querys/getHoras.php";
 include_once "../querys/getValorHora.php";
 include_once "../querys/getExtras.php";
 if ($_SESSION ["usuario"]) {
-	if (isAdmin($_SESSION ["idusuario"]) == 1) {
+	if (isAdmin ( $_SESSION ["idusuario"] ) == 1) {
 		$admin = 1;
-		 
 	} else {
 		$admin = 0;
 	}
 }
-$mes = $_POST['mes'];
-$rut = $_POST['rut'];
+$mes = $_POST ['mes'];
+$rut = $_POST ['rut'];
 
-$Horas = getHoras($rut, $mes);
+$Horas = getHoras ( $rut, $mes );
 echo "<table id='t01' class='table table-hover table-bordered table-condensed table-responsive' style='max-width:80%; white-space: nowrap'>";
 echo "<thead><tr class='bg-primary' colspan='2'>";
 echo "<th>Fecha: ";
-echo "<span id='mes'>".Mes($Horas[0]['Mes'])."</span>";
-echo " " ;
-echo "<span id='year'>".$Horas[0]['Year']."</span>";
+echo "<span id='mes'>" . Mes ( $Horas [0] ['Mes'] ) . "</span>";
+echo " ";
+echo "<span id='year'>" . $Horas [0] ['Year'] . "</span>";
 echo " </th>";
 echo "</thead></tr>";
 
 echo "<thead><tr class='bg-primary' colspan='2'>";
 echo "<th>TM: ";
-echo $Horas[0]['TMNombre'];
-echo " " . $Horas[0]['TMApellido'];
+echo $Horas [0] ['TMNombre'];
+echo " " . $Horas [0] ['TMApellido'];
 echo " </th>";
 echo "</thead></tr>";
 
@@ -37,34 +36,27 @@ echo "<thead><tr class='bg-info'>";
 echo "<th>Empresa</th>";
 echo "<th>Horas Realizadas</th>";
 echo "</thead></tr><tbody>";
-if($Horas){
-foreach ($Horas as $informacion) {
-    ?>
+if ($Horas) {
+	foreach ( $Horas as $informacion ) {
+		?>
 
 
-    <tr>
-        <td>
-
-            <span class="CentroHoraRealizada"><?php echo $informacion['NombreEmpresa']; ?></span>
-            <span class="semanahorarealizada"><?php if($informacion['Semana']==7)
-            {
-            	echo "Sabado";
-            }
-            else{
-            	echo "Semana";
-            }
-            	?></span>
-
-        </td>
-        <td>
-            <span class='label label-info' ><span  class="HorasRealizadas"><?php echo number_format($informacion['Horas'], 2); ?></span> horas </span>
-
-        </td>
-    </tr>
-    <?php
-}}
-else 
-{
+<tr>
+	<td><span class="CentroHoraRealizada"><?php echo $informacion['NombreEmpresa']; ?></span>
+		<span class="semanahorarealizada"><?php
+		
+if ($informacion ['Semana'] == 7) {
+			echo "Sabado";
+		} else {
+			echo "Semana";
+		}
+		?></span></td>
+	<td><span class='label label-info'><span class="HorasRealizadas"><?php echo number_format($informacion['Horas'], 2); ?></span>
+			horas </span></td>
+</tr>
+<?php
+	}
+} else {
 	echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Error!</strong> Tm no tiene Horas realizadas asociadas.
@@ -79,91 +71,80 @@ echo "<thead><tr class='bg-info'>";
 echo "<th>Empresa</th>";
 echo "<th>Valor Hora</th>";
 echo "</thead></tr><tbody>";
-$ValorHoras = getValorHora($rut);
-if($ValorHoras){
+$ValorHoras = getValorHora ( $rut );
+if ($ValorHoras) {
 	
+	foreach ( $ValorHoras as $valores ) {
+		?>
+<tr class="hidden-print" style="display: none">
 
-foreach ($ValorHoras as $valores) {
-    ?>
-    <tr class="hidden-print" style="display:none">
+	<td><span class="CentroValorHora"><?php
+		echo "<span class='nombreEmpresa' >";
+		echo $valores ['Empresa'];
+		echo "</span>";
+		echo " ";
+		echo "<span class='semanavalorhora'>";
+		if ($valores ['Semana'] == 1) {
+			echo 'Semana';
+		} else {
+			echo 'Sabado';
+		}
+		echo "</span>";
+		?> </span></td>
 
-        <td>
+	<td><span class='label label-success'>$ <span class='Valor'><?php echo $valores['Valor']; ?></span></span>
 
-            <span class="CentroValorHora"><?php
-            echo "<span class='nombreEmpresa' >";
-                echo $valores['Empresa'];
-                echo "</span>";
-                echo " ";
-                echo "<span class='semanavalorhora'>";
-                if ($valores['Semana'] == 1) {
-                    echo 'Semana';
-                } else {
-                    echo 'Sabado';
-                }
-                echo "</span>";
-                ?> </span>
-
-        </td>
-
-        <td>
-
-            <span  class='label label-success'>$ <span class='Valor' ><?php echo $valores['Valor']; ?></span></span>
-
-        </td>
+	</td>
 
 
-    </tr>
+</tr>
 
-    <?php
-}}
-else 
-{
+<?php
+	}
+} else {
 	echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Error!</strong> TM no tiene Valores Hora asociados.
 </div>';
 }
-if(count($Horas) != count($ValorHoras)){
+if (count ( $Horas ) > count ( $ValorHoras )) {
 	echo '<div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Error!</strong> Falta agregar Valores Hora para calcular Honorario.
 </div>';
-	
 }
 echo "<thead ><tr colspan='2' class='bg-info'>";
 echo "<th>Extras";
-if($admin==1)
-{
-echo "<input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' />";
+if ($admin == 1) {
+	echo "<input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' />";
 }
 echo "</th>";
 echo "<th>Monto Total</th>";
 echo "</thead >";
 echo "<tbody id='appendExtra'>";
-$extras = getExtras($rut, $mes);
-if($extras){
-	foreach ($extras as $extra) {
+$extras = getExtras ( $rut, $mes );
+if ($extras) {
+	foreach ( $extras as $extra ) {
 		?>
-		<tr>
-		<td>
+<tr>
+	<td>
 		<?php echo $extra['Titulo'];?>
 		</td>
-		<td>
+	<td>
 		<?php
 		echo "<span class='label label-warning' >";
 		echo "$ ";
-		echo"<span class='montoExtra'>";
-		echo $extra['Monto'];
-		echo"</span>";
-		echo"</span>";
+		echo "<span class='montoExtra'>";
+		echo $extra ['Monto'];
+		echo "</span>";
+		echo "</span>";
 		?>
 		</td>
-		
-		
-		</tr>
-		<?php 
+
+
+</tr>
+<?php
 	}
-	
 }
 
 echo "</tbody>";
@@ -183,11 +164,11 @@ echo "</thead>";
 ?>
 
 </table>
- <div class='alert alert-warning visible-print-block'>Enviar Boleta de honorarios a nombre de :<br>
- TMTECNOMED S.A. <br>
- RUT: 76.022.465-0 <br>
- Direcci&#243n: Valle del Maipo poniente N&ordm 3617. Pe&ntildealolen, Stgo. 
- </div>
+<div class='alert alert-warning visible-print-block'>
+	Enviar Boleta de honorarios a nombre de :<br> TMTECNOMED S.A. <br> RUT:
+	76.022.465-0 <br> Direcci&#243n: Valle del Maipo poniente N&ordm 3617.
+	Pe&ntildealolen, Stgo.
+</div>
 
 
 
