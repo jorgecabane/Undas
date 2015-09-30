@@ -14,7 +14,7 @@ if ($_SESSION ["usuario"]) {
 }
 $mes = $_POST ['mes'];
 $rut = $_POST ['rut'];
-
+echo"<div id='errores'></div>";
 $Horas = getHoras ( $rut, $mes );
 echo "<table id='t01' class='table table-hover table-bordered table-condensed table-responsive' style='max-width:80%; white-space: nowrap'>";
 echo "<thead><tr class='bg-primary' colspan='2'>";
@@ -107,12 +107,6 @@ if ($ValorHoras) {
   <strong>Error!</strong> TM no tiene Valores Hora asociados.
 </div>';
 }
-if (count ( $Horas ) > count ( $ValorHoras )) {
-	echo '<div class="alert alert-danger alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Error!</strong> Falta agregar Valores Hora para calcular Honorario.
-</div>';
-}
 echo "<thead ><tr colspan='2' class='bg-info'>";
 echo "<th>Extras";
 if ($admin == 1) {
@@ -184,7 +178,10 @@ echo "</thead>";
 <script>
 //script para sumar la multiplicacion de las horas hechas por su valor hora ( dependiendo de si es semana o sabado)
 var contador = 0;
+var cuentaHoras = 0;
+var cuentaValoresHora = 0;
 $(".CentroHoraRealizada").each(function() {
+	cuentaHoras = cuentaHoras + 1;
  var horasRealizadas= $(this).text();
  var horas = $(this).parent().parent().find('.HorasRealizadas').text(); 
  var semanahorarealizada = $(this).parent().parent().find('.semanahorarealizada').text(); 
@@ -199,12 +196,17 @@ $(".CentroHoraRealizada").each(function() {
 	//alert(centroValorHora);
 if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 {
+	cuentaValoresHora = cuentaValoresHora +1;
 	tr.show();
 	tr.removeClass("hidden-print");
 	contador= (contador + parseFloat(horas*valorhora));
 }
+
 	
  });
+ if(cuentaHoras > cuentaValoresHora){
+	 $('#errores').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Error!</strong> Falta agregar Valores Hora para calcular Honorario.</div>");
+	 }
 });
 $('#totalHonorarios').html(contador);
 </script>
