@@ -5,14 +5,14 @@
  *
  */
 include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
-function getTM($idTM = null) {
-	if ($idTM == null) { // si se utilizo la funcion sin un id especifico
-		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
-				FROM tm where Doctor=0 and Centro=0 order by Apellido asc";
+function getEmpresa($idEmpresa = null) {
+	if ($idEmpresa == null) { // si se utilizo la funcion sin un id especifico
+		$query = "SELECT idEmpresa, Nombre, Rut, Giro, Direccion, Comuna, Ciudad, RazonSocial
+				FROM empresa order by Nombre asc	";
 	} else { // si se indico un id para buscar solo los datos de dicha persona
-		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
-				FROM tm
-				WHERE idTM=$idTM and Doctor=0 and Centro=0 order by Apellido asc";
+		$query = "SELECT idEmpresa, Nombre, Rut, Giro, Direccion, Comuna, Ciudad, RazonSocial
+				FROM empresa
+				WHERE idEmpresa=$idEmpresa order by Nombre asc	"	;
 	}
 	$res = mysql_query ( $query ) or die ( mysql_error () );
 
