@@ -109,7 +109,8 @@ else {
 
 
                     <h4>Rut usuario</h4>
-                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control' placeholder='RUT con puntos y gui&oacute;n' required  >
+                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control' 
+                    placeholder='RUT con puntos y gui&oacute;n' required />
                     <h4>Contrase&ntilde;a</h4>
                     <label for='password' class="sr-only">Contrase&ntilde;a</label>
                     <input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
@@ -126,7 +127,6 @@ else {
     <script>
         $(document).ready(function() {
             $("#call").focus();
-        }
-        );
+             });
     </script>
 </html>
