@@ -9,7 +9,8 @@ $ciudad = $_POST['ciudad'];
 $razon = $_POST['razon'];
 
 
-$query = "insert into Empresa values (null,'$nombre',$rut,'$giro','$direccion','$comuna','$ciudad','$razon')";
+$query = "insert into empresa values (null,'$nombre','$rut','$giro','$direccion','$comuna','$ciudad','$razon')";
+$queryAccesoEmpresa = mysql_query("insert into tm values (null,'$nombre',NULL,'$rut',NULL,NULL,'1234',0,NULL,NULL,0,NULL,1)");
 $resultado = mysql_query($query);
 if ($resultado) {
     //success
