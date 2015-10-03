@@ -184,60 +184,19 @@ $centro = $_GET ['centro'];
                     });//ready
 </script><!-- cambio de las ecos -->
 <script>
-    /* initialize the calendar
-     -----------------------------------------------------------------*/
-    $(document).ready(function() {
-
-        $('#calendar').fullCalendar({
-            eventSources: [{
-                    url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
-                }], //eventSources
-            eventRender: renderEvent,
-            eventAfterRender: saveBD,
-            eventResize: update,
-            eventDrop: update,
-            eventDragStop: deleteEvent,
-            viewRender: switchView,
-            eventReceive: receive,
-            header: {
-                left: 'prev,today,next',
-                center: 'title',
-                right: 'agendaDay,agendaWeek,month'
-            },
-            businessHours: {
-                start: '8:00', // a start time (10am in this example)
-                end: '21:00', // an end time (6pm in this example)
-
-                dow: [1, 2, 3, 4, 5, 6]
-                        // days of week. an array of zero-based day of week integers (0=Sunday)
-                        // (Monday-Thursday in this example)
-            },
-            //eventConstraint:"businessHours" ,
-            slotEventOverlap: false,
-            forceEventDuration: true,
-            slotDuration: '00:15:00',
-            defaultTimedEventDuration: '03:00:00',
-            minTime: '08:00:00',
-            maxTime: '21:00:00',
-            defaultView: 'month',
-            lazyFetch: true,
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar
-            hiddenDays: [0],
-            contentHeight: 800,
-            allDaySlot: false,
-            displayEventEnd: true
-        });
-
-    });//document.ready
-</script><!-- fullCalendar -->
-<script>
-    var saveBD = function(event, element) {
-
+    var saveBD = function(event) {
+        if (event.start.hasTime()) {
+            start = event.start.format();
+            end = event.end.format();
+        } else {
+            var inicio = prompt('Debe ingresar un inicio para el evento (ej. 8.00)');
+            var fin = prompt('Debe ingresar un termino al evento (ej. 11.30)');
+            //console.log();
+            start = event.start.format() + 'T' + inicio.replace('.', ':') + ':00';
+            end = event.start.format() + 'T' + fin.replace('.', ':') + ':00';
+        }
         idTM = event.idTM;
         idEco = event.idEco;
-        start = event.start.format();
-        end = event.end.format();
 
         if (event.fromBD === 0) {
             if (event.saved === 0) {
@@ -256,7 +215,13 @@ $centro = $_GET ['centro'];
                             //console.log(event.saved);
                             event.saved = 1;
                             event.id = output;
-                            $('#calendar').fullCalendar('updateEvent', event);
+                            if ($('#calendar').fullCalendar('getView').name === 'month') {
+                                $('#calendar').fullCalendar('refetchEvents');
+                            }
+                            else {
+                                $('#calendar').fullCalendar('updateEvent', event);
+                            }
+
                             $('.progress').slideUp();
                             //console.log(output);
 
@@ -265,6 +230,7 @@ $centro = $_GET ['centro'];
                 });//ajax
             }//si ya se guardo previamente
         }// si el evento viene de la bbdd
+
 
     };//function saveBD
 
@@ -331,6 +297,31 @@ $centro = $_GET ['centro'];
     };
 </script><!-- verify -->
 <script>
+    $(document).ready(function() {
+        function createEvent(event) {
+            //obtencion de los valores seleccionados
+            start = event.start.format() + ' ' + $('#rangoStart').text() + ':00';
+            end = event.start.format() + ' ' + $('#rangoEnd').text() + ':00';
+
+            //se crea un evento con datos correctos
+            evento = {
+                title: event.title,
+                start: start,
+                end: end,
+                idEco: event.idEco,
+                idTM: event.idTM,
+                saved: event.saved,
+                color: event.color,
+                description: event.description,
+                fromBD: event.fromBD,
+                editable: true
+            };
+            //render del evento
+            $('#calendar').fullCalendar('renderEvent', evento);
+        }
+    });
+</script><!-- createEvent -->
+<script>
     var receive = function(event) {
         /*
          * funcion que se corre si el evento no tiene hora asignada
@@ -341,26 +332,7 @@ $centro = $_GET ['centro'];
             $('#eventDate').html(event.start.format());//se obtiene la fecha ingresada
             $("#modalEvento").modal('show');//se muestra el modal
             $("#asignTime").click(function() {
-                //obtencion de los valores seleccionados
-                start = event.start.format() + ' ' + $('#rangoStart').text() + ':00';
-                end = event.start.format() + ' ' + $('#rangoEnd').text() + ':00';
-
-                //se crea un evento con datos correctos
-                evento = {
-                    title: event.title,
-                    start: start,
-                    end: end,
-                    idEco: event.idEco,
-                    idTM: event.idTM,
-                    saved: event.saved,
-                    color: event.color,
-                    description: event.description,
-                    fromBD: event.fromBD,
-                    editable: true
-                };
-                //render del evento
-                //$('#calendar').fullCalendar('renderEvent', evento);
-
+                createEvent(event);
                 //finalizacion (cerrado del modal)
                 console.log(evento);
                 $("#modalEvento").modal('hide');
@@ -423,7 +395,8 @@ $centro = $_GET ['centro'];
                 animation: true
             });//popover
         } else {
-            return false;// si el evento no tiene hora que no se incluya en el calendar
+            //return false;// si el evento no tiene hora que no se incluya en el calendar
+
         }
     };
 </script><!-- renderEvent -->
@@ -593,5 +566,53 @@ $centro = $_GET ['centro'];
         });//click #deleteWeek
     });//ready
 </script><!-- deleteWeek -->
+<script>
+    /* initialize the calendar
+     -----------------------------------------------------------------*/
+    $(document).ready(function() {
+
+        $('#calendar').fullCalendar({
+            eventSources: [{
+                    url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
+                }], //eventSources
+            eventRender: renderEvent,
+            //eventAfterRender: saveBD,
+            eventResize: update,
+            eventDrop: update,
+            eventDragStop: deleteEvent,
+            viewRender: switchView,
+            eventReceive: saveBD,
+            header: {
+                left: 'prev,today,next',
+                center: 'title',
+                right: 'agendaDay,agendaWeek,month'
+            },
+            businessHours: {
+                start: '8:00', // a start time (10am in this example)
+                end: '21:00', // an end time (6pm in this example)
+
+                dow: [1, 2, 3, 4, 5, 6]
+                        // days of week. an array of zero-based day of week integers (0=Sunday)
+                        // (Monday-Thursday in this example)
+            },
+            //eventConstraint:"businessHours" ,
+            slotEventOverlap: false,
+            forceEventDuration: true,
+            slotDuration: '00:15:00',
+            defaultTimedEventDuration: '03:00:00',
+            minTime: '08:00:00',
+            maxTime: '21:00:00',
+            defaultView: 'month',
+            lazyFetch: true,
+            editable: true,
+            droppable: true, // this allows things to be dropped onto the calendar
+            hiddenDays: [0],
+            contentHeight: 800,
+            allDaySlot: false,
+            displayEventEnd: true
+        });
+
+    });//document.ready
+</script><!-- fullCalendar -->
 <script src="Include/filtro.js"></script>
 </html>
