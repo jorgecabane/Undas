@@ -15,6 +15,13 @@
         echo "<table id='t01' class='table table-hover table-bordered'>";
         echo "<tbody>";
         while ($row = mysql_fetch_array($resultado)) {
+        	$nombre=$row['Nombre'];
+        	$rut=$row['Rut'];
+        	$giro=$row['Giro'];
+        	$direccion=$row['Direccion'];
+        	$comuna=$row['Comuna'];
+        	$ciudad=$row['Ciudad'];
+        	$razonsocial=$row['RazonSocial'];
             ?>
             <tr>
             <th>Nombre</th>
@@ -121,8 +128,8 @@
                     <td>
                         <div>
                             <input type="hidden" name="id" value="<?php echo $row['idEmpresa']; ?>" />
-                            <input type="submit" value="Finalizar edicion"
-                                   class='btn btn-info btnedit' disabled="disabled" />
+                            <input type="submit" value="Finalizar edicion" class='btn btn-info btnedit' disabled="disabled" />
+                            <input type="submit" value="Cancelar edicion" class='btn btn-warning btncancel' disabled="disabled" />        
                         </div>
                     </td>
                     </td>
@@ -141,7 +148,7 @@
 <script>
     $(".editable").keyup(function() {
         $(".btnedit").removeAttr("disabled");
-
+        $(".btncancel").removeAttr("disabled");
         $(this)
                 .parent()
                 .parent()
@@ -188,4 +195,19 @@
             });
         }
     });
+</script>
+<script>
+	$(".btncancel").click(function() {
+         $("#nombre").val("<?php echo $nombre; ?>");
+         $("#rut").val("<?php echo $rut; ?>");
+         $("#giro").val("<?php echo $giro; ?>");
+         $("#direccion").val("<?php echo $direccion; ?>");
+         $("#comuna").val("<?php echo $comuna; ?>");
+         $("#ciudad").val("<?php echo $ciudad; ?>");
+         $("#razonsocial").val("<?php echo $razonsocial; ?>");	
+         $('tr.danger').removeClass("danger");
+
+         $(".btnedit").attr("disabled", "disabled");
+         $(".btncancel").attr("disabled", "disabled");
+	});
 </script>

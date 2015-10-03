@@ -13,6 +13,15 @@ if ($resultado) {
     echo "<table id='t01' class='table table-hover table-bordered'>";
     echo "<tbody>";
     while ($row = mysql_fetch_array($resultado)) {
+    	$nombre=$row['Nombre'];
+    	$apellido=$row['Apellido'];
+    	$rut=$row['Rut'];
+    	$mail=$row['Mail'];
+    	$celular=$row['Celular'];
+    	$banco=$row['Banco'];
+    	$ctacorriente=$row['Cuentacorriente'];
+    	$comentario=$row['Comentario'];
+    	$idtm=$row['idTM'];
         ?>
         <tr>
         <th>Nombre</th>
@@ -190,6 +199,7 @@ if ($resultado) {
             success: function(response)
             {
 		                $(".btnedit").attr("disabled", "disabled");
+		                $(".btnedit").attr("disabled", "disabled");
 		                $('tr.danger').removeClass("danger").addClass("success");
             }
         });
@@ -213,4 +223,20 @@ if ($resultado) {
             });
         }
     });
+</script>
+<script>
+	$(".btncancel").click(function() {
+         $("#nombre").val("<?php echo $nombre; ?>");
+         $("#apellido").val("<?php echo $apellido; ?>");
+         $("#rut").val("<?php echo $rut; ?>");
+         $("#mail").val("<?php echo $mail; ?>");
+         $("#celular").val("<?php echo $celular; ?>");
+         $("#banco").val("<?php echo $banco; ?>");
+         $("#cuenta").val("<?php echo $ctacorriente; ?>");	
+         $("#comentario").val("<?php echo $comentario; ?>");
+         $('tr.danger').removeClass("danger");
+
+         $(".btnedit").attr("disabled", "disabled");
+         $(".btncancel").attr("disabled", "disabled");
+	});
 </script>
