@@ -5,12 +5,29 @@ $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>
 <!-- archivo de carga del calendario personal del TM sin opcion de modificar (solo exportacion) -->
+<div class='container-fluid'>
+    <div class='row'>
+     <div class='col-md-12 well well-sm well-titles'>
+            <div class="row">
+                <center>
+                    <h2>
+                        <span class="label label-info label-block">
+                            Centro: <b><?php echo $centro; ?></b>
+                        </span>
+                    </h2>
+                </center>
 
-<div class="col-sm-1 hidden-print">
-    <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
-        <span class="glyphicon glyphicon-print"></span>
-    </button>
-</div>
+            </div>
+        </div>
+        </div>
+        
+
+              </div>
+                       <div class="col-sm-1 hidden-print">
+                <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
+                    <span class="glyphicon glyphicon-print"></span>
+                </button>
+            </div>
 <div id='calendar' ></div>
 
 
