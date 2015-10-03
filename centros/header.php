@@ -89,7 +89,7 @@ if ($_SESSION ["usuario"]) {
                             foreach ($centros as $centro) {
                                 foreach ($centro as $datosCentro) {
                                     //echo $datosCentro['Nombre'] . '<br>';
-                                    echo '<li><a href="calendario.php?idCentro=' . $datosCentro['idCentro'] . '&centro=' . $datosCentro['Nombre'] . '(' . $datosCentro['Siglas'] . ')" tabindex="-1">' . $datosCentro['Nombre'] . ' <b>(' . $datosCentro['Siglas'] . ')</b></a></li>
+                                    echo '<li><a href="informacionHorario.php?idCentro=' . $datosCentro['idCentro'] . '&centro=' . $datosCentro['Nombre'] . '(' . $datosCentro['Siglas'] . ')" tabindex="-1">' . $datosCentro['Nombre'] . ' <b>(' . $datosCentro['Siglas'] . ')</b></a></li>
                                         ';
                                 }
                             }
