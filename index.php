@@ -58,20 +58,21 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             <div class="panel-heading">
                 <h4>Otro Widget</h4>
             </div>
-            <!--<div class="progressHoras" style="display: none">
+            <div class="progress2" style="display: none">
                 <div class="progress-bar progress-bar-striped active"
                      role="progressbar" style="width: 100%">
                     <span class="sr-only">Cargando...</span>
                 </div>
             </div>
-            <div class="panel-body">
+         <!--   <div class="panel-body">
                 <div class="col-sm-12 well well-sm well-titles">
                     <form class="form-inline text-center">
                         <div class="form-group">
                             <label for="start">Dia</label>
                             <input class="form-control" type="text" id="dia" name="dia">
-                            <label for="start">Hora Inicio</label>
-                            <input class="form-control" type="text" id="horastart"  name="horastart" placeholder="0930">
+                            --> <label for="start">Fecha</label>
+                           <input class="form-control" type="text" id="fechaLiquida" name="from"> 
+                            <!--
                             <label for="start">Hora Termino</label>
                             <input class="form-control" type="text" id="horaend" name="horaend" placeholder="1300">
                         </div>
@@ -79,7 +80,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 </div>
                 <div class="well well-sm col-sm-6" style="max-height: 400px;">
                     <h4>TMs libres</h4>
-                    <canvas id="grafico"></canvas>
+                  -->  <canvas id="grafico"></canvas><!--
                     <div class="chartLegend"></div>
                 </div>
                 <div class="well well-sm col-sm-6" id="libresHoras"
@@ -234,9 +235,9 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 <script>
 // aqui parte la copia para el segundo script////////////////////////////////////////////////////////////////////////////////////////
     $(function() {
-        var hoy = moment().format('YYYY-DD-MM');
-        $('#dia').val(hoy);
-        $("#dia").datepicker({
+        var hoy = moment().format('YYYY-MM-DD');
+        $('#fechaLiquida').val(hoy);
+        $("#fechaLiquida").datepicker({
             defaultDate: "+1d",
             changeMonth: true,
             dateFormat: "yy-mm-dd"
@@ -244,82 +245,50 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
     });
 </script>
 <script>
-// Get context with jQuery - using jQuery's .get() method.
-    var ctx = $("#grafico").get(0).getContext("2d");
-// This will get the first returned node in the jQuery collection.
 
-    var data = [{
-            value: 21,
-            color: '#FAA523',
-            label: 'No Asignados'
-        }, {
-            value: 0,
-            color: '#055683',
-            label: 'Asignados'
-        }];
+$(document).ready(function(){
+	var fecha = $("#fechaLiquida").val();
+    $.ajax({
+         type: "POST",
+         dataType: "json",
+         async: true,
+         url: 'Include/liquidacionesTM.php',
+         data: {"fecha": fecha},
+         success: function(data){
+         renderGraph(data.labels, data.points);
+         }
+     });
+});
 
-    GraficoHoras = new Chart(ctx).Doughnut(data, {
-        animateScale: true,
-        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
-//Boolean - Whether we should show a stroke on each segment
-        segmentShowStroke: true,
-//String - The colour of each segment stroke
-        segmentStrokeColor: "#fff",
-        percentageInnerCutout: 30,
-        responsive: true,
-        onAnimationComplete: function() {
-            this.showTooltip(this.segments, true);
-        }
-    });
-    $('.chartLegend').html(GraficoHoras.generateLegend());
-</script>
-<script>
-    $(document).ready(function() {
-        $('#dia, #horastart, #horaend').change(function() {
-            dia = $.datepicker.formatDate('yy-mm-dd', $('#dia').datepicker('getDate'));
-            horastart = $("#horastart").val();
+var renderGraph = function (labels, points) {
 
-            horaend = $("#horaend").val();
-            $.ajax({
-                url: 'include/disponibles.php',
-                async: true,
-                data: {
-                    "dia": dia,
-                    "horastart": horastart
-                            , "horaend": horaend
+ var canvas = $("#grafico")[0].getContext("2d");
 
-                },
-                method: 'POST',
-                beforeSend: function() {
-                    $('.progressHoras').slideDown('slow');
-                },
-                success: function(output) {
-                    $('.progressHoras').slideUp('slow');
-                    output = $.parseJSON(output);
-                    libres = 0;
+ var data = {
+                 labels: labels,
+                 datasets: [
+                     {
+                         label: "Liquidaciones",
+                         fillColor: "rgba(220,220,220,0.2)",
+                         strokeColor: "rgba(220,220,220,1)",
+                         pointColor: "rgba(220,220,220,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(220,220,220,1)",
+                         data: points 
+                     }
+                 ]
+             };
 
-                    $('#libresHoras').html('');
-                    $.each(output, function(index, value) {
-                        if (index !== 0) {
-                            libres++; //cantidad de TMs disponibles o libres en el intervalo seleccionado
+ var myChart = new Chart(canvas)
+                         .Line(data, {
+                                 responsive: true,
+                                 animation: true
+                                 });
 
-                            $('#libresHoras').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
-                        } else {
-                            total = value.tms;
-                        }
-                    });
-                    //console.log(libres);
-                    //console.log(total);
-                    GraficoHoras.segments[0].value = libres;
-                    GraficoHoras.segments[1].value = total - libres;
-                    GraficoHoras.update();
+}
 
 
-                }//success
-            });//ajax
-
-        });//change
-    });//ready
 </script>
 
 </html>

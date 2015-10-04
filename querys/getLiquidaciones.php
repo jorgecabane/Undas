@@ -1,11 +1,11 @@
 <?php
 function getLiquidaciones($fecha) {
-	include_once "../querys/getHoras.php";
-	include_once "../querys/getValorHora.php";
-	include_once "../querys/getExtras.php";
-	include_once "../querys/getTM.php";
+	include_once "getHoras.php";
+	include_once "getValorHora.php";
+	include_once "getExtras.php";
+	include_once "getTM.php";
 	include_once dirname ( __FILE__ ) . '/../conexionLocal.php';
-	
+	$result = array(); //inicializa array result
 	$getTM = getTM ();
 	foreach ( $getTM as $info ) {
 		$rut = $info ['Rut'];
@@ -41,11 +41,17 @@ function getLiquidaciones($fecha) {
 					}
 				}
 			}
-			echo $horas ['TMNombre'];
-			echo $sumaLiquidacion;
-			echo "<br>";
+			//echo $horas ['TMNombre'];
+			//echo $sumaLiquidacion;
+			//echo "<br>";
+			if($sumaLiquidacion != 0 ){
+			$nombre = $horas ['TMNombre'];
+			$result["$nombre"]["Liquidacion"]= $sumaLiquidacion;
+			}
 		}
 	}
+	return $result;
 }
-getLiquidaciones ( "2015-09" );
+//print_r(getLiquidaciones ( "2015-10" ));
+//getLiquidaciones ( "2015-10" );
 ?>
