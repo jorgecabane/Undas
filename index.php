@@ -64,35 +64,35 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                     <span class="sr-only">Cargando...</span>
                 </div>
             </div>
-         <!--   <div class="panel-body">
-                <div class="col-sm-12 well well-sm well-titles">
-                    <form class="form-inline text-center">
-                        <div class="form-group">
-                            <label for="start">Dia</label>
-                            <input class="form-control" type="text" id="dia" name="dia">
-                            --> <label for="start">Fecha</label>
-                           <input class="form-control" type="text" id="fechaLiquida" name="from"> 
-                            <!--
-                            <label for="start">Hora Termino</label>
-                            <input class="form-control" type="text" id="horaend" name="horaend" placeholder="1300">
-                        </div>
-                    </form>
-                </div>
-                <div class="well well-sm col-sm-6" style="max-height: 400px;">
-                    <h4>TMs libres</h4>
-                  -->  <canvas id="grafico"></canvas><!--
-                    <div class="chartLegend"></div>
-                </div>
-                <div class="well well-sm col-sm-6" id="libresHoras"
-                     style="overflow-y: auto; max-height: 400px;">
-                    <div class="alert alert-info">Seleccione un rango</div>
-                </div>
-                <div class="col-sm-12 alert alert-warning center-block text-center">
-                    <strong>Nota:</strong> Los TM que se encuentran en el listado no
-                    tienen <u>Ningun</u> evento asignado en el periodo de tiempo
-                    seleccionado.
-                </div>
-            </div> -->
+            <!--   <div class="panel-body">
+                   <div class="col-sm-12 well well-sm well-titles">
+                       <form class="form-inline text-center">
+                           <div class="form-group">
+                               <label for="start">Dia</label>
+                               <input class="form-control" type="text" id="dia" name="dia">
+            --> <label for="start">Fecha</label>
+            <input class="form-control" type="text" id="fechaLiquida" name="from">
+            <!--
+            <label for="start">Hora Termino</label>
+            <input class="form-control" type="text" id="horaend" name="horaend" placeholder="1300">
+        </div>
+    </form>
+</div>
+<div class="well well-sm col-sm-6" style="max-height: 400px;">
+    <h4>TMs libres</h4>
+            -->  <canvas id="grafico"></canvas><!--
+              <div class="chartLegend"></div>
+          </div>
+          <div class="well well-sm col-sm-6" id="libresHoras"
+               style="overflow-y: auto; max-height: 400px;">
+              <div class="alert alert-info">Seleccione un rango</div>
+          </div>
+          <div class="col-sm-12 alert alert-warning center-block text-center">
+              <strong>Nota:</strong> Los TM que se encuentran en el listado no
+              tienen <u>Ningun</u> evento asignado en el periodo de tiempo
+              seleccionado.
+          </div>
+      </div> -->
         </div>
     </div>
 
@@ -246,49 +246,47 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 </script>
 <script>
 
-$(document).ready(function(){
-	var fecha = $("#fechaLiquida").val();
-    $.ajax({
-         type: "POST",
-         dataType: "json",
-         async: true,
-         url: 'Include/liquidacionesTM.php',
-         data: {"fecha": fecha},
-         success: function(data){
-         renderGraph(data.labels, data.points);
-         }
-     });
-});
+    $(document).ready(function() {
+        var fecha = $("#fechaLiquida").val();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            async: true,
+            url: 'Include/liquidacionesTM.php',
+            data: {"fecha": fecha},
+            success: function(data) {
+                renderGraph(data.labels, data.points);
+            }
+        });
+    });
 
-var renderGraph = function (labels, points) {
+    var renderGraph = function(labels, points) {
 
- var canvas = $("#grafico")[0].getContext("2d");
+        var canvas = $("#grafico")[0].getContext("2d");
 
- var data = {
-                 labels: labels,
-                 datasets: [
-                     {
-                         label: "Liquidaciones",
-                         fillColor: "rgba(220,220,220,0.2)",
-                         strokeColor: "rgba(220,220,220,1)",
-                         pointColor: "rgba(220,220,220,1)",
-                         pointStrokeColor: "#fff",
-                         pointHighlightFill: "#fff",
-                         pointHighlightStroke: "rgba(220,220,220,1)",
-                         data: points 
-                     }
-                 ]
-             };
+        var data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Liquidaciones",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: points
+                }
+            ]
+        };
 
- var myChart = new Chart(canvas)
-                         .Line(data, {
-                                 responsive: true,
-                                 animation: true
-                                 });
+        var myChart = new Chart(canvas)
+                .Line(data, {
+            responsive: true,
+            animation: true
+        });
 
-}
-
-
+    };
 </script>
 
 </html>
