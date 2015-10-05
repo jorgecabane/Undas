@@ -3,6 +3,7 @@ include_once dirname(__FILE__) . "/querys/getTM.php"; // aqui ya se incluye la c
 include_once dirname(__FILE__) . "/querys/getEcos.php";
 include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
+include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
 include_once dirname(__FILE__) . "/Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {
