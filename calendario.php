@@ -87,9 +87,22 @@ $centro = $_GET ['centro'];
                         <?php
                         $tms = getTM();
                         foreach ($tms as $tm) {
-                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#" . $tm['Nombre'] . "' aria-expanded='false' aria-controls='" . $tm['Nombre'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
-                                <div id='" . $tm['Nombre'] . "' class='collapse'>prestaciones de " . $tm['Nombre'] . "</div>";
-                        } // <div class='fc-event label label-info label-block' event-color='#2b95ce'>Juan Perez</div>
+                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
+                                <div id='tm" . $tm['idTM'] . "' class='collapse'>Prestaciones:<br>
+                                    ";
+                            $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
+                            if ($prestaciones) {
+                                foreach ($prestaciones as $prestacion) {
+                                    $especifico = $prestacion['Especifico'];
+                                    echo "<div class='alert alert-sm alert-info'>$especifico</div>";
+                                }//cada una de las prestaciones
+                            }//si hay prestaciones
+                            else {
+                                echo "<div class='alert alert-sm alert-warning'>No hay asignadas</div>";
+                            }
+                            echo"</div>
+                                ";
+                        }//cada uno de los TM
                         ?>
                         <!-- Generacion de listado de TMs -->
                     </div>
@@ -108,7 +121,7 @@ $centro = $_GET ['centro'];
             </div>
             <!-- calendario -->
             <div class="col-sm-1 hidden-print">
-                <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
+                <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span>
                 </button>
             </div>
@@ -116,15 +129,15 @@ $centro = $_GET ['centro'];
             <!-- calendario -->
         </div>
         <div style='clear: both'></div>
-        <div class='alert alert-warning visible-print-block'>Informacion adicional para la impresion</div>
+        <div class='alert alert-warning visible-print-block'>Información adicional para la impresión</div>
     </div>
     <!-- row -->
 </div>
 
 <!-- container-fluid -->
 </body>
-<?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion?>
-<?php include_once dirname(__FILE__) . '/Include/modalEvento.php'; //modal para los eventos desde vista mes?>
+<?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion ?>
+<?php include_once dirname(__FILE__) . '/Include/modalEvento.php'; //modal para los eventos desde vista mes ?>
 <script>
                     $(document).ready(function() {
 
@@ -183,389 +196,21 @@ $centro = $_GET ['centro'];
                         });//each
                     });//ready
 </script><!-- cambio de las ecos -->
-<script>
-    var saveBD = function(event) {
-        if (event.start.hasTime()) {
-            start = event.start.format();
-            end = event.end.format();
-        } else {
-            var inicio = prompt('Debe ingresar un inicio para el evento (ej. 8.00)');
-            var fin = prompt('Debe ingresar un termino al evento (ej. 11.30)');
-            //console.log();
-            start = event.start.format() + 'T' + inicio.replace('.', ':') + ':00';
-            end = event.start.format() + 'T' + fin.replace('.', ':') + ':00';
-        }
-        idTM = event.idTM;
-        idEco = event.idEco;
-
-        if (event.fromBD === 0) {
-            if (event.saved === 0) {
-                //si el evento no se encuentra guardado en la bbdd
-                //armado de JSON para envio de datos
-                $.ajax({
-                    url: 'Include/insertarEvento.php',
-                    async: true,
-                    data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
-                    method: 'POST',
-                    beforeSend: function() {
-                        $('.progress').slideDown();
-                    },
-                    success: function(output) {
-                        if (output !== '0') {
-                            //console.log(event.saved);
-                            event.saved = 1;
-                            event.id = output;
-                            if ($('#calendar').fullCalendar('getView').name === 'month') {
-                                $('#calendar').fullCalendar('refetchEvents');
-                            }
-                            else {
-                                $('#calendar').fullCalendar('updateEvent', event);
-                            }
-
-                            $('.progress').slideUp();
-                            //console.log(output);
-
-                        }
-                    }//success
-                });//ajax
-            }//si ya se guardo previamente
-        }// si el evento viene de la bbdd
-
-
-    };//function saveBD
-
-</script><!-- SAVEBD -->
-<script>
-    var update = function(event, element) {
-        idEvento = event.id;
-        //$('#calendar').fullCalendar('updateEvent', event);
-
-        end = event.end.format();
-        start = event.start.format();
-        //alert(idEvento);
-
-        $.ajax({
-            url: 'Include/updatearEvento.php',
-            async: true,
-            data: {"idEvento": idEvento, "start": start, "end": end},
-            method: 'POST',
-            beforeSend: function() {
-                $('.progress').slideDown();
-            },
-            success: function(output) {
-                if (output === '1') {
-                    //console.log(output);
-                    $('.progress').slideUp();
-
-                }
-            }//success
-        });//ajax
-
-    };
-</script><!-- update -->
-<script>
-    var verify = function(event) {
-        //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
-        // alert(event.idEco+' '+event.start.format());
-        $.ajax({
-            url: 'Include/verificaEco.php',
-            async: true,
-            data: {"idEco": event.idEco, "start": event.start.format()},
-            method: 'POST',
-            success: function(output) {
-                if (output === 'false') {
-                    $("#myModal.modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
-                    $("#myModal").modal('show');
-                }
-            }// success
-        });//ajax
-
-        $.ajax({
-            url: 'Include/verificaTM.php',
-            async: true,
-            data: {"idTM": event.idTM, "start": event.start.format()},
-            method: 'POST',
-            success: function(output) {
-                if (output) {
-
-                }
-            }// success
-        });//ajax
-
-        //se hacen las verificaciones del evento
-        //se actualiza en la bbdd el elemento o se guarda si no existe
-    };
-</script><!-- verify -->
-<script>
-    $(document).ready(function() {
-        function createEvent(event) {
-            //obtencion de los valores seleccionados
-            start = event.start.format() + ' ' + $('#rangoStart').text() + ':00';
-            end = event.start.format() + ' ' + $('#rangoEnd').text() + ':00';
-
-            //se crea un evento con datos correctos
-            evento = {
-                title: event.title,
-                start: start,
-                end: end,
-                idEco: event.idEco,
-                idTM: event.idTM,
-                saved: event.saved,
-                color: event.color,
-                description: event.description,
-                fromBD: event.fromBD,
-                editable: true
-            };
-            //render del evento
-            $('#calendar').fullCalendar('renderEvent', evento);
-        }
-    });
-</script><!-- createEvent -->
-<script>
-    var receive = function(event) {
-        /*
-         * funcion que se corre si el evento no tiene hora asignada
-         * (creado desde la vista mensual)
-         */
-        //view = $('#calendar').fullCalendar('getView').name;
-        if (!event.start.hasTime()) {//si no tiene hora asignada
-            $('#eventDate').html(event.start.format());//se obtiene la fecha ingresada
-            $("#modalEvento").modal('show');//se muestra el modal
-            $("#asignTime").click(function() {
-                createEvent(event);
-                //finalizacion (cerrado del modal)
-                console.log(evento);
-                $("#modalEvento").modal('hide');
-            });
-        }
-
-    };//function drop
-</script><!-- receive -->
-<script>
-    var deleteEvent = function(event, jsEvent) {
-        var trashEl = jQuery('#deleteArea');
-        var ofs = trashEl.offset();
-
-        var x1 = ofs.left;
-        var x2 = ofs.left + trashEl.outerWidth(true);
-        var y1 = ofs.top;
-        var y2 = ofs.top + trashEl.outerHeight(true);
-
-        if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
-                jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
-            //var confirma = confirm('Seguro que desea eliminar el evento?');
-            confirma = true;//para pruebas
-            if (confirma) {
-                //console.log(event.id);
-                $('#calendar').fullCalendar('removeEvents', event._id);
-                $.ajax({
-                    url: 'Include/eliminarEvento.php',
-                    async: true,
-                    data: {"idEvento": event.id},
-                    method: 'POST',
-                    beforeSend: function() {
-                        $('.progress').slideDown();
-                    },
-                    success: function(output) {
-                        if (output === '1') {
-                            $('.progress').slideUp();
-                        }//si se borro de la base de datos
-                    }//success
-                });//ajax */
-            }//si confirma
-        }//si se arrojo evento en trashcan
-    };//deleteEvent
-
-</script><!-- deleteEvent -->
-<script>
-    var renderEvent = function(event, element) {
-        if (event.start.hasTime()) {
-            //se agrega la descripcion al evento
-            element.find('.fc-title').append("<br/>" + event.description);
-            //al hacer click se puede ver el detalle
-            element.popover({
-                title: 'Detalles del Evento',
-                content: '<div><b>Eco: </b>' + event.title + '<br>\n\
-                             <b>TM: </b>' + event.description + '<br>\n\
-                             <b>Fecha: </b>' + event.start.format('LL') + '<br>\n\
-                             <b>Inicio: </b>' + event.start.format("HH:mm") + '<br>\n\
-                             <b>Termino: </b>' + event.end.format("HH:mm") + '\n\
-                             </div>',
-                html: true,
-                animation: true
-            });//popover
-        } else {
-            //return false;// si el evento no tiene hora que no se incluya en el calendar
-
-        }
-    };
-</script><!-- renderEvent -->
-<script>
-    var switchView = function(view) {
-        switch (view.name) {
-            case 'month':
-                $('#repeatWeek, #deleteWeek').addClass('disabled');
-                $('#repeatMonth, #deleteMonth').removeClass('disabled');
-                break;
-            case 'agendaWeek':
-                $('#repeatWeek, #deleteWeek').removeClass('disabled');
-                $('#repeatMonth, #deleteMonth').addClass('disabled');
-                break;
-            case 'agendaDay':
-                $('#repeatWeek, #repeatMonth, #deleteWeek, #deleteMonth').addClass('disabled');
-        }
-    };
-</script><!-- switchView -->
-<script>
-    $(document).ready(function() {
-        $('#repeatWeek').click(function() {
-            cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a repetir
-            if (cantidad !== 0) {// si hay
-                if (confirm('Verifique que no está repitiendo eventos!, desea continuar?')) {
-                    var weeks = prompt('Cuantas semanas?'); //se pregunta cuantas semanas ahead
-                    weeks = parseInt(weeks); //transforma en num
-
-                    if (Math.floor(weeks) === weeks && $.isNumeric(weeks)) { //si el valor es entero
-                        $('#calendar').slideUp('slow'); //oculto el calendario
-                        $('.progress').slideDown('slow').children('.progress-bar').css('width', '0%'); //barra de progreso
-                        $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown(); //mensaje
-
-                        count = 0;//contador de repeticiones
-
-                        $('#calendar').fullCalendar('clientEvents', function(evento) {//array con los eventos del calendario
-                            week = $('#calendar').fullCalendar('getView').intervalStart.format('w');//la semana que se esta viendo
-                            if (evento.start.format('w') === week) { //si los eventos son de la semana
-                                for (i = 0; i < weeks; i++) {
-                                    start = evento.start.add(1, 'week').format(); //el horario mas una semana
-                                    end = evento.end.add(1, 'week').format(); //el horario mas una semana
-                                    idEco = evento.idEco; //en que eco se esta ejecutando
-                                    idTM = evento.idTM; //que tm es el evento
-
-                                    $.ajax({
-                                        url: 'Include/insertarEvento.php',
-                                        async: true,
-                                        data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
-                                        method: 'POST',
-                                        success: function(output) {
-                                            if (output !== '0') {
-                                                count++; //contador cuando un evento se inserta
-                                                avance = (count / cantidad) * 100; //se calcula el % de avance
-                                                if (avance === 100) { //si se termino de insertar todos (100%)
-                                                    $('.progress-bar').css('width', avance + '%'); //se aumenta la barra
-                                                    $('.progress').slideUp('slow'); //se esconde
-                                                    $('#horarioContent').slideUp('slow'); //se esconde
-                                                    $('#calendar').slideDown('slow'); //se muestra el calendario
-
-                                                } else {
-                                                    $('.progress-bar').css('width', avance + '%'); // cambia el % de avance
-                                                }
-                                            }//if
-                                        }//success
-                                    });//ajax */
-                                }//for
-                            }//solo para los eventos de la semana en curso
-                        });//clientEvents callback
-                    }//si el valor ingresado es numero
-                    else {
-                        alert('Debe ingresar un valor numerico');
-                    }
-                }//si confirma
-            }//si hay eventos
-            else {
-                alert('No hay eventos que repetir!');
-            }
-        });//click
-    });//ready
-</script><!-- repeatWeek -->
-<script>
-    $(document).ready(function() {
-        $('#repeatMonth').click(function() {
-            cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a repetir
-            if (cantidad !== 0) {
-                $('#calendar').slideUp('slow'); //oculto el calendario
-                $('.progress').slideDown('slow').children('.progress-bar').css('width', '0%'); //barra de progreso
-                $('#horarioContent').text('Espere mientras se repiten los eventos...').slideDown('slow'); //mensaje
-
-                count = 0;//contador de repeticiones
-
-                $('#calendar').fullCalendar('clientEvents', function(evento) {//array con los eventos del calendario
-                    month = $('#calendar').fullCalendar('getView').intervalStart.format('M');
-
-                    if (evento.start.format('M') === month) {
-                        start = evento.start.add(1, 'M').format(); //el horario mas mes
-                        end = evento.end.add(1, 'M').format(); //el horario mas un mes
-                        idEco = evento.idEco; //en que eco se esta ejecutando
-                        idTM = evento.idTM; //que tm es el evento
-                        console.log('idEco:' + idEco + ' idTM:' + idTM + ' start:' + start + ' end:' + end);
-                        $.ajax({
-                            url: 'Include/insertarEvento.php',
-                            async: false,
-                            data: {"idTM": idTM, "idEco": idEco, "start": start, "end": end},
-                            method: 'POST',
-                            success: function(output) {
-                                console.log('idEvento:' + output);
-                                if (output !== '0') {
-                                    count++; //contador cuando un evento se inserta
-                                    avance = (count / cantidad) * 100; //se calcula el % de avance
-                                    if (avance === 100) { //si se termino de insertar todos (100%)
-                                        $('.progress-bar').css('width', avance + '%'); //se aumenta la barra
-                                        $('.progress').slideUp('slow'); //se esconde
-                                        $('#horarioContent').slideUp('slow'); //se esconde
-                                        $('#calendar').slideDown('slow'); //se muestra el calendario
-
-                                    } else {
-                                        $('.progress-bar').css('width', avance + '%'); // cambia el % de avance
-                                    }
-                                }//if
-                            }//success
-                        });//ajax */
-                    }//si corresponde al mismo mes
-                });//"foreach" eventos del calendario
-
-            }//if
-        });//click
-    });//ready
-</script><!-- repeatMonth -->
+<script src="Include/js/saveBD.js"></script><!-- SAVEBD -->
+<script src="Include/js/updateEvent.js"></script><!-- update -->
+<script src="Include/js/verifyEvent.js"></script><!-- verifyEvent -->
+<script src="Include/js/deleteEvent.js"></script><!-- deleteEvent -->
+<script src="Include/js/renderEvent.js"></script><!-- renderEvent -->
+<script src="Include/js/switchView.js"></script><!-- switchView -->
 <script>
     $('#external-events').collapse({
         parent: '.fc-event'
     });
 </script><!-- collapse prestaciones -->
-<script>
-    $(document).ready(function() {
-        $('#deleteWeek').click(function() {
-            var confirmar = confirm('Está seguro que quiere eliminar todos los eventos de esta semana?');
-            if (confirmar) {
-                cantidad = $('#calendar .fc-event').size(); //cantidad de eventos a borrar
-                contador = 0; //contador para saber cuando cerrar el progressbar
-                $('.progress').slideDown('slow');//progress bar
-                $('#calendar').fullCalendar('clientEvents', function(evento) {//each evento en el cliente
-                    week = $('#calendar').fullCalendar('getView').intervalStart.format('w');//la semana que se esta viendo
-                    if (evento.start.format('w') === week) { //si los eventos son de la semana
-                        $('#calendar').fullCalendar('removeEvents', evento._id);
-                        $.ajax({
-                            url: 'Include/eliminarEvento.php',
-                            async: true,
-                            data: {"idEvento": evento.id},
-                            method: 'POST',
-                            success: function(output) {
-                                if (output === '1') {
-                                    contador++;
-                                    if (contador === cantidad) {
-                                        $('.progress').slideUp();
-                                    }
-
-                                }//si se borro de la base de datos
-                            }//success
-                        });//ajax */
-                    }//si los eventos son del a semana
-                });
-            } else {
-
-            }
-        });//click #deleteWeek
-    });//ready
-</script><!-- deleteWeek -->
+<script src="Include/js/repeatWeek.js"></script><!-- repeatWeek -->
+<script src="Include/js/repeatMonth.js"></script><!-- repeatMonth -->
+<script src="Include/js/deleteWeek.js"></script><!-- deleteWeek -->
+<script src="Include/js/deleteMonth.js"></script><!-- deleteMonth -->
 <script>
     /* initialize the calendar
      -----------------------------------------------------------------*/
@@ -577,8 +222,8 @@ $centro = $_GET ['centro'];
                 }], //eventSources
             eventRender: renderEvent,
             //eventAfterRender: saveBD,
-            eventResize: update,
-            eventDrop: update,
+            eventResize: updateEvent,
+            eventDrop: updateEvent,
             eventDragStop: deleteEvent,
             viewRender: switchView,
             eventReceive: saveBD,
