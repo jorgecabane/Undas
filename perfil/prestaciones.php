@@ -45,7 +45,7 @@ session_start();
                 else 
                 {
                 	echo'<div class="alert alert-warning" role="alert">';
-                	echo '<strong>Error!</strong> No existen prestaciones asociadas por TM a Empresa';
+                	echo '<strong>Oops!</strong> TM no tiene prestaciones asociadas en esta empresa.';
                 	echo "</div>";
                 }
                 
