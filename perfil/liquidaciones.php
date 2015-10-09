@@ -38,6 +38,7 @@ echo "<th>Horas Realizadas</th>";
 echo "</thead></tr><tbody>";
 if ($Horas) {
 	foreach ( $Horas as $informacion ) {
+		if($informacion['NombreEmpresa']!= "Sin Turno"){
 		?>
 
 
@@ -55,7 +56,8 @@ if ($informacion ['Semana'] == 7) {
 			horas </span></td>
 </tr>
 <?php
-	}
+		}
+}
 } else {
 	echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -122,7 +124,12 @@ if ($extras) {
 		?>
 <tr>
 	<td>
-		<?php echo $extra['Titulo'];?>
+		<?php 
+		echo "<span class='tituloExtra'>";
+		echo $extra['Titulo'];
+		echo "</span>";
+		
+		?>
 		</td>
 	<td>
 		<?php
@@ -132,6 +139,7 @@ if ($extras) {
 		echo $extra ['Monto'];
 		echo "</span>";
 		echo "</span>";
+		echo "  <button type='button' class='close eliminarExtra hidden-print' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
 		?>
 		</td>
 
@@ -246,7 +254,7 @@ $('#liquido').html(liquido);
         $(".btnguardarExtra").bind('click', function() {
             $(this).parent().parent().find('.btnguardarExtra').attr("value", "Guardado Exitoso");
             $(this).parent().parent().find('.btnguardarExtra').attr("disabled", "disabled");
-            $(this).parent().parent().find('.btnguardarExtra').attr("class", "btn btn-success btnguardarExtra");
+            $(this).parent().parent().find('.btnguardarExtra').attr("class", "btn btn-success btnguardarExtra hidden-print");
             $(this).parent().parent().find('.btncancelarExtra').attr("disabled", "disabled");
             var input = $(this).parent().parent().find(".Extra");
             var inputmonto = $(this).parent().parent().find(".montoExtra");
@@ -268,9 +276,57 @@ $('#liquido').html(liquido);
                     inputmonto.attr("disabled", "disabled");
                 }
             }); 
+               sumaMonto(monto); 
         });
-
+     
   
     });
+
+</script>
+<script>
+//script para eliminar un extra
+$('.eliminarExtra').click(function(){
+	var titulo = $(this).parent().parent().find('.tituloExtra').text();
+	var aqui = $(this).parent().parent();
+	var monto = $(this).parent().find('.montoExtra').text();
+	 var r = confirm("Esta seguro que quiere eliminar Extra: " + titulo + "?");
+     if (r == true) {
+
+         jQuery.ajax({
+             method: "POST",
+             url: "querys/eraseExtra.php",
+             data: {
+            	 "rut": "<?php echo $rut; ?>",
+                 'titulo': titulo,
+                 'monto': monto,
+                 'fecha': "<?php echo $mes; ?>"
+             },
+             success: function(response)
+             {
+                 aqui.remove();
+                 var resta = monto*-1;
+                 sumaMonto(resta);
+             }
+         });
+     }
+});
+</script>
+
+<script>
+//script para sumar los montos de los extras en el momento en que se guarden
+function sumaMonto(monto){
+	var suma = $('#totalHonorarios').text();
+    
+    suma = parseFloat(suma)+ parseFloat(monto);
+
+$('#totalHonorarios').html(suma);
+var bruto = $('#totalHonorarios').text();
+$('#bruto').html(bruto);
+var retencion = bruto*0.1;
+var sindecimales = parseFloat(retencion).toFixed(0);
+$('#retencion').html(sindecimales);
+var liquido = parseFloat(bruto)+parseFloat(sindecimales);
+$('#liquido').html(liquido);
+}
 
 </script>
