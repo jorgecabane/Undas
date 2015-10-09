@@ -139,7 +139,9 @@ if ($extras) {
 		echo $extra ['Monto'];
 		echo "</span>";
 		echo "</span>";
+		if ($admin == 1) {
 		echo "  <button type='button' class='close eliminarExtra hidden-print' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+		}
 		?>
 		</td>
 
