@@ -13,10 +13,10 @@ $Assoc= mysql_fetch_assoc($resultado);
 $idEmpresa=$Assoc['idEmpresa'];
 
 if($semana=="Semana"){
-$query="UPDATE ValorHora SET Valor=$valor WHERE TM_idTM=$idTM and Empresa_idEmpresa=$idEmpresa and Semana=1 ";
+$query="UPDATE valorhora SET Valor=$valor WHERE TM_idTM=$idTM and Empresa_idEmpresa=$idEmpresa and Semana=1 ";
 }
 else {
-$query="UPDATE ValorHora SET Valor=$valor WHERE TM_idTM=$idTM and Empresa_idEmpresa=$idEmpresa and Semana=0";	
+$query="UPDATE valorhora SET Valor=$valor WHERE TM_idTM=$idTM and Empresa_idEmpresa=$idEmpresa and Semana=0";	
 }
 
 $resultado=mysql_query($query);

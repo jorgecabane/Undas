@@ -13,10 +13,10 @@ $Assoc= mysql_fetch_assoc($resultadoId);
 $idEmpresa=$Assoc['idEmpresa'];
 
 if($semana=="Semana"){
-$query="Delete from ValorHora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=1 ";
+$query="Delete from valorhora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=1 ";
 }
 else {
-$query="Delete from ValorHora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=0";	
+$query="Delete from valorhora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=0";	
 }
 
 

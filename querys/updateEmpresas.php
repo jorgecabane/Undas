@@ -9,7 +9,7 @@ $comuna=$_POST['comuna'];
 $ciudad=$_POST['ciudad'];
 $razonsocial=$_POST['razonsocial'];
 
-$query="UPDATE Empresa SET Nombre='$nombre', Rut='$rut', Giro='$giro', Direccion='$direccion', Comuna='$comuna', Ciudad='$ciudad', RazonSocial='$razonsocial' WHERE Rut=$rut";
+$query="UPDATE empresa SET Nombre='$nombre', Rut='$rut', Giro='$giro', Direccion='$direccion', Comuna='$comuna', Ciudad='$ciudad', RazonSocial='$razonsocial' WHERE Rut='$rut'";
 
 $resultado=mysql_query($query);
 if($resultado) {

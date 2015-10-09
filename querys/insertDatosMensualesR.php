@@ -9,12 +9,12 @@
          $idCentro=$_POST['centro'];
             $idEmpresa=$_POST['empresa'];
           $mes=$_POST['mes'];
-           $año=$_POST['año'];
+           $ano=$_POST['año'];
              $cupos=$_POST['CantidadCupos'];
           
               
               
-    $query="insert into CuposLimite values (null,$cupos,$idCentro,$idEmpresa,$mes,$año)";    
+    $query="insert into cuposlimite values (null,$cupos,$idCentro,$idEmpresa,$mes,$ano)";    
     $resultado=mysql_query($query);
     if($resultado) { 
     //success 

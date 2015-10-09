@@ -13,11 +13,11 @@
 								$nombreEcos = $_POST['nombreEcos'];
 								$coloresEcos = $_POST['coloresEcos'];
 								//insertando centro
-								$query = "insert into Centro values (null,$idEmpresa,'$nombre','$siglas')";
+								$query = "insert into centro values (null,$idEmpresa,'$nombre','$siglas')";
 								$resultado = mysql_query ( $query );
 								
 								//obteniendo el id del centro recien insertado
-								$querybuscar = "SELECT idCentro FROM Centro WHERE Nombre='$nombre'";
+								$querybuscar = "SELECT idCentro FROM centro WHERE Nombre='$nombre'";
 								$resultadobuscar = mysql_query ( $querybuscar );
 								
 								$idcentro = mysql_fetch_assoc ( $resultadobuscar );
@@ -26,7 +26,7 @@
 								// insertando n ecos
 								
 								for($contador = 0; $contador < $numeroecos; $contador ++) {
-									$query2 = "insert into Ecos values (null,$valoridcentro,'$nombreEcos[$contador]','$coloresEcos[$contador]')";
+									$query2 = "insert into ecos values (null,$valoridcentro,'$nombreEcos[$contador]','$coloresEcos[$contador]')";
 									$resultado2 = mysql_query ( $query2 );
 								}
 								if ($resultado && $resultado2) {
