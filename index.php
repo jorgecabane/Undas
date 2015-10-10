@@ -3,6 +3,8 @@ session_start();
 include_once dirname(__FILE__) . "/header.php";
 include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
+  
+    <script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
 <div class="container-fluid well">
     <div class="row">
         <div class="col-sm-6 panel panel-info">
@@ -56,43 +58,13 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         </div>
         <div class="col-sm-6 panel panel-success">
             <div class="panel-heading">
-                <h4>Otro Widget</h4>
+                <h4>Prestaciones Tms</h4>
             </div>
-            <div class="progress2" style="display: none">
-                <div class="progress-bar progress-bar-striped active"
-                     role="progressbar" style="width: 100%">
-                    <span class="sr-only">Cargando...</span>
-                </div>
-            </div>
-            <!--   <div class="panel-body">
-                   <div class="col-sm-12 well well-sm well-titles">
-                       <form class="form-inline text-center">
-                           <div class="form-group">
-                               <label for="start">Dia</label>
-                               <input class="form-control" type="text" id="dia" name="dia">
-            --> <label for="start">Fecha</label>
-            <input class="form-control" type="text" id="fechaLiquida" name="from">
-            <!--
-            <label for="start">Hora Termino</label>
-            <input class="form-control" type="text" id="horaend" name="horaend" placeholder="1300">
-        </div>
-    </form>
-</div>
-<div class="well well-sm col-sm-6" style="max-height: 400px;">
-    <h4>TMs libres</h4>
-            -->  <canvas id="grafico"></canvas><!--
-              <div class="chartLegend"></div>
-          </div>
-          <div class="well well-sm col-sm-6" id="libresHoras"
-               style="overflow-y: auto; max-height: 400px;">
-              <div class="alert alert-info">Seleccione un rango</div>
-          </div>
-          <div class="col-sm-12 alert alert-warning center-block text-center">
-              <strong>Nota:</strong> Los TM que se encuentran en el listado no
-              tienen <u>Ningun</u> evento asignado en el periodo de tiempo
-              seleccionado.
-          </div>
-      </div> -->
+           <div>
+           <?php 
+           include_once "include/widgetHumano.php";
+           ?>
+           </div>
         </div>
     </div>
 
