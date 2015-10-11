@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
+    <script type="text/javascript" src="../maphilight-master/jquery.maphilight.js"></script>
 
-<body>
 
 <img src="images/humano.jpg" width="634" height="607" alt="humanwidget" class="map"  usemap="#humanwidget">
 
 <map name="humanwidget">
-   <area class='popover' shape="circle" coords="552,127,30" alt="Mano" href="#" data-toggle="popover" data-trigger="focus" title="Mano" content=" alo">
-   <area shape="circle" coords="338,431,30" alt="Rodilla" href="#" >
-   <area shape="circle" coords="321,321,30" alt="Pelvis" href="#" >
-   <area shape="circle" coords="359,568,30" alt="Pie" href="#" >
-   <area shape="circle" coords="177,138,30" alt="Codo" href="#" >
-   <area shape="circle" coords="319,242,40" alt="Abdominal" href="#" >
-   <area shape="circle" coords="351,162,30" alt="Mamaria" href="#" >
-   <area shape="circle" coords="317,112,30" alt="Cervical" href="#" >
-   <area shape="circle" coords="263,120,30" alt="Hombro" href="#" >
-   <area shape="circle" coords="499,133,30" alt="Antebrazo" href="#" >
-   <area shape="circle" coords="334,504,30" alt="Pierna" href="#" >
-   <area shape="circle" coords="289,363,30" alt="Muslo" href="#" >
-   <area shape="circle" coords="489,260,30" alt="Extras" href="#" >
+   <area shape="circle" coords="580,127,30" alt="Mano" href="#" title="Prestaciones Mano" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="338,431,30" alt="Rodilla" href="#" title="Prestaciones Rodilla" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="321,321,30" alt="Pelvis" href="#" title="Prestaciones Pelvis" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="359,568,30" alt="Pie" href="#" title="Prestaciones Pie" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="177,138,30" alt="Codo" href="#" title="Prestaciones Codo" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="319,242,40" alt="Abdominal" href="#" title="Prestaciones Abdominal" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="351,162,30" alt="Mamaria" href="#"  title="Prestaciones Mamaria" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="317,112,30" alt="Cervical" href="#" title="Prestaciones Cervical" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="263,120,30" alt="Hombro" href="#" title="Prestaciones Hombro" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="499,133,30" alt="Antebrazo" href="#" title="Prestaciones Antebrazo" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="334,504,30" alt="Pierna" href="#" title="Prestaciones Pierna" data-toggle="popover" data-trigger="focus" data-placement="auto" >
+   <area shape="circle" coords="289,363,30" alt="Muslo" href="#" title="Prestaciones Muslo" data-toggle="popover" data-trigger="focus" data-placement="auto">
+   <area shape="circle" coords="489,260,30" alt="Extras" href="#" title="Prestaciones Extras" data-toggle="popover" data-trigger="focus" data-placement="auto" >
 </map>
 
-</body>
 	<script type="text/javascript">
 	$(function() {
 		 $('.map').maphilight({
@@ -43,14 +42,20 @@
 				shadowFrom: false
 	        });
 	});</script>
-	<script>
-	 $(".popover").click(function() {
-	 $(this).popover({
-         title: 'Prestaciones de ',
-         content: '<div>Por que aparezco aqui ?</div>',
-         html: true,
-         animation: true
-     });//popover
-	   });
-	</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+    	
+
+        	 
+      
+        content: '<div><b><h4>Especifico: </h2></b><br>\n\
+        	             <b>TM: </b><br>\n\
+                         <b>TM: </b><br>\n\
+                         </div>',
+        html: true,
+        animation: true
+    });//popover
+});
+</script>
 </html>
