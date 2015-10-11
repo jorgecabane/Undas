@@ -8,6 +8,7 @@ var saveBD = function(event) {
         start = event.start.format();
         end = event.end.format();
     } else { //si el evento ha sido creado desde la vista mensual o no tiene horario por error
+        //$('#modalEvento').modal('show');
         var inicio = prompt('Debe ingresar un inicio para el evento (ej. 8.00)');
         var fin = prompt('Debe ingresar un termino al evento (ej. 11.30)');
         //console.log();
@@ -17,6 +18,7 @@ var saveBD = function(event) {
     idTM = event.idTM;
     idEco = event.idEco;
 
+    verifyEvent(event);
     if (event.fromBD === 0) {
         if (event.saved === 0) {
             //si el evento no se encuentra guardado en la bbdd

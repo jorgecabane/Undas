@@ -12,6 +12,7 @@ var updateEvent = function(event, element) {
     start = event.start.format();
     //alert(idEvento);
 
+    verifyEvent(event);
     $.ajax({
         url: 'Include/updatearEvento.php',
         async: true,

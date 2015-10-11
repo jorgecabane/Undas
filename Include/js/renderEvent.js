@@ -19,8 +19,9 @@ var renderEvent = function(event, element) {
             html: true,
             animation: true
         });//popover
+
     } else {
-        //return false;// si el evento no tiene hora que no se incluya en el calendar
+        return false;// si el evento no tiene hora que no se incluya en el calendar
 
     }
 };
