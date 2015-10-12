@@ -4,17 +4,8 @@
  * @returns {guarda el evento en la bbdd}
  */
 var saveBD = function(event) {
-    if (event.start.hasTime()) {
-        start = event.start.format();
-        end = event.end.format();
-    } else { //si el evento ha sido creado desde la vista mensual o no tiene horario por error
-        //$('#modalEvento').modal('show');
-        var inicio = prompt('Debe ingresar un inicio para el evento (ej. 8.00)');
-        var fin = prompt('Debe ingresar un termino al evento (ej. 11.30)');
-        //console.log();
-        start = event.start.format() + 'T' + inicio.replace('.', ':') + ':00';
-        end = event.start.format() + 'T' + fin.replace('.', ':') + ':00';
-    }
+    start = event.start.format();
+    end = event.end.format();
     idTM = event.idTM;
     idEco = event.idEco;
 

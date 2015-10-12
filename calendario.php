@@ -26,7 +26,7 @@ $centro = $_GET ['centro'];
             <div class="row">
                 <center>
                     <h2>
-                        <span class="label label-info label-block">
+                        <span class="label label-info label-block" id="centro" idCentro="<?php echo $idCentro;?>">
                             Centro: <b><?php echo $centro; ?></b>
                         </span>
                     </h2>
@@ -197,6 +197,7 @@ $centro = $_GET ['centro'];
                     });//ready
 </script><!-- cambio de las ecos -->
 <script src="Include/js/saveBD.js"></script><!-- SAVEBD -->
+<script src="Include/js/eventReceive.js"></script><!-- eventReceive -->
 <script src="Include/js/updateEvent.js"></script><!-- update -->
 <script src="Include/js/verifyEvent.js"></script><!-- verifyEvent -->
 <script src="Include/js/deleteEvent.js"></script><!-- deleteEvent -->
@@ -226,7 +227,7 @@ $centro = $_GET ['centro'];
             eventDrop: updateEvent,
             eventDragStop: deleteEvent,
             viewRender: switchView,
-            eventReceive: saveBD,
+            eventReceive: eventReceive,
             header: {
                 left: 'prev,today,next',
                 center: 'title',
