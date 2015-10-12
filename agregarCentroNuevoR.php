@@ -14,7 +14,11 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 <body background="images/bg.gif">
 	<div class="container">
 		<h2>Agregar Centro Nuevo</h2>
-	<?php //	<form action='querys/insertCentroNuevoR.php' method='POST'> ?>
+	<?php //	<form action='querys/insertCentroNuevoR.php' method='POST'> ?>	
+	
+	</div>
+		<div id="respuesta"></div>
+</body>
 			<div class="form-group">
 			<label for="nombre">Nombre</label> <input type="text"
 				class="form-control" id="nombre" placeholder="Agrege nombre"
@@ -56,9 +60,7 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 		</div>
 		<div class="form-group">
 			<br> <input class='btn btn-info btnedit ' type='submit' value='Agregar'>
-		</div>
-		<div id="respuesta"></div>
-</body>
+	
 </html>
 <script>
 
@@ -127,13 +129,13 @@ $(".btnedit").click(function(){
 
 	       success: function(response)
 	       {
-	    	   $("#respuesta").text("Se agrego con exito a: " + name);
-	    	   $('#nombre').val('');
+	    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong> Se agreg&oacute; correctamente a: ' + name+ '.</div>');
+		    	$('#nombre').val('');
 	     		$('#empresa').val('');
 	     		$('#ecos').val('');
 	     		$('#siglas').val('');
 	     		$('#append').empty();
-				document.location.reload();
+			
 
 	       }
 	 });

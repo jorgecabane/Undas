@@ -6,6 +6,9 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 <div class="container">
 	<h2>Agregar M&eacute;dicos</h2>
 	<h4>(Para Bloques ocupados)</h4>
+	<div>
+		<p id='respuesta'></p>
+	</div>
 	<div class="form-group">
 		<label for="Nombre">Nombre</label> <input type="text"
 			class="form-control" id="nombre" name="nombre"
@@ -18,9 +21,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 	</div>
 	<br> <input type="submit" value="Agregar" id='agregar'
 		class='btn btn-info btnedit' />
-	<div>
-		<p id='respuesta'></p>
-	</div>
+	
 </div>
 
 
@@ -46,9 +47,9 @@ $("#agregar").click(function(){
 
 			       success: function(response)
 			       {
-			    	   $("#respuesta").text("Se agrego con exito a: " + name+ " " + lastname);
+			    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong> Se agreg&oacute; correctamente a: ' + name+ ' ' + lastname+'.</div>');
 			    	   $('#nombre').val('');
-			     		$('#apellido').val('');
+			     	   $('#apellido').val('');
 
 
 			       }

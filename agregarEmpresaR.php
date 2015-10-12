@@ -11,7 +11,10 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
     <body background="images/bg.gif">
          <div class="container">
       <h2>Agregar Empresa</h2>
-
+	<div >
+<p id='respuesta'>
+</p>
+</div>
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" id="nombre" placeholder="Agrege Nombre de la empresa" required>
@@ -41,10 +44,7 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
           <input type="text" class="form-control" id="razon" placeholder="Agrege Razon Social de la empresa" required>
         </div>
              <input type="submit" value="Agregar" id='agregar' class='btn btn-info btnedit'/>
-		<div >
-<p id='respuesta'>
-</p>
-</div>
+	
     </div>
 
     </body>
@@ -74,14 +74,14 @@ $("#agregar").click(function(){
 
 			       success: function(response)
 			       {
-			    	   $("#respuesta").text("Se agrego con exito a: " + name);
-			    	   $('#nombre').val('');
+			    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong> Se agreg&oacute; correctamente a: ' + name+ '.</div>');
+			    	    $('#nombre').val('');
 			     		$('#rut').val('');
 			     		$('#giro').val('');
 			     		$('#direccion').val('');
 			     		$('#comuna').val('');
-		               $('#ciudad').val('');
-		               $('#razon').val('');
+		                $('#ciudad').val('');
+		                $('#razon').val('');
 
 			       }
 			 });
