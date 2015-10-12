@@ -25,30 +25,30 @@
                 $resultado = mysql_query($query);
                 if ($resultado) {
                     //success
-                    echo"Actualizado con exito, redireccionando";
-                    ?><meta http-equiv="Refresh" content="4;url=../index.php">
-                    <?php
+                    echo"Actualizado con exito";
+                    //<meta http-equiv="Refresh" content="4;url=../index.php">
+                    
                 } else {
                     //failure
-                    echo " Se produjo un error en la actualizacion, redireccionando";
-                    ?>
+                    echo " Se produjo un error en la actualizacion";
+                  
 
-                    <meta http-equiv="Refresh" content="4;'url=../editarClave.php">
-                    <?php
+                   // <meta http-equiv="Refresh" content="4;'url=../editarClave.php">
+                  
                 }
             } else {
                 echo "Las claves nuevas no coinciden";
-                ?>
+                
 
-                <meta http-equiv="Refresh" content="4;url=../editarClave.php">
-                <?php
+                //<meta http-equiv="Refresh" content="4;url=../editarClave.php">
+               
             }
         } else {
             echo "La clave antigua es incorrecta, intente denuevo";
-            ?>
+            
 
-            <meta http-equiv="Refresh" content="4;url=../editarClave.php">
-            <?php
+           // <meta http-equiv="Refresh" content="4;url=../editarClave.php">
+       
         }
         ?>
     </body>
