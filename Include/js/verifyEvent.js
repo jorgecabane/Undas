@@ -20,7 +20,8 @@ var verifyEvent = function(event) {
         data: {
             "idTM": event.idTM,
             "start": event.start.format(),
-            "end": event.end.format()
+            "end": event.end.format(),
+            "idCentro": $('#centro').attr('idCentro')
         },
         method: 'POST',
         success: function(output) {

@@ -10,6 +10,7 @@
  */
 require_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion local
 // verificacion del tipo 1
+
 function verifyEco($idEco, $dateTime, $type = 'array', $display = false) {
     if ($display == false) { // si solo se busca verificar (sin mostrar los duplicados)
         $query = "SELECT TM_idTM as idTM FROM evento WHERE Ecos_idEcos = $idEco AND HoraInicio = '$dateTime' ";
@@ -51,7 +52,7 @@ function verifyEco($idEco, $dateTime, $type = 'array', $display = false) {
  * @output (true, array) : si hay coincidencias
  * @output: (false): si no hay coincidencias
  */
-function verifyTM($idTM, $startDate, $endDate, $type = 'array', $display = false) {
+function verifyTM($idTM, $idCentro, $startDate, $endDate, $type = 'array', $display = false) {
     if ($display == false) { // si solo se busca verificar (sin mostrar los duplicados)
         $query = "SELECT Ecos_idEcos
                 FROM evento
@@ -67,7 +68,11 @@ function verifyTM($idTM, $startDate, $endDate, $type = 'array', $display = false
         //se retorna un array con los centros donde se encuentra asignado el TM
         $query = "SELECT ecos.Nombre, CONCAT(centro.Nombre, '(', centro.Siglas, ')') as Centro
                 FROM evento, ecos, centro
-                WHERE TM_idTM = $idTM AND (HoraInicio BETWEEN '$startDate' AND '$endDate') AND Ecos_idEcos = idEcos AND Centro_idCentro = idCentro";
+                WHERE TM_idTM = $idTM
+                    AND ((HoraInicio BETWEEN '$startDate' AND '$endDate') OR (HoraTermino BETWEEN '$startDate' AND '$endDate'))
+                    AND Ecos_idEcos = idEcos
+                    AND Centro_idCentro = idCentro
+                    AND idCentro NOT IN (SELECT idCentro FROM centro WHERE idCentro = $idCentro)";
         //var_dump($query);
         $res = mysql_query($query) or die(mysql_error()); // ejecutar la query
         if (mysql_affected_rows() >= 1) { // si hay algun error

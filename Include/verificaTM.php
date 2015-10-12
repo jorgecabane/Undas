@@ -6,8 +6,8 @@
  * los ultimos dos parametros se asignan para mostrar quienes estan asignados a esta eco con sus nombres
  */
 require_once dirname(__FILE__) . '/../querys/verify.php'; // funciones de verificacion
-if (isset($_POST['idTM']) && isset($_POST['start']) && isset($_POST['end'])) {
-    echo verifyTM($_POST['idTM'], $_POST['start'], $_POST['end'], 'json', true);
+if (isset($_POST['idTM']) && isset($_POST['start']) && isset($_POST['end']) && isset($_POST['idCentro'])) {
+    echo verifyTM($_POST['idTM'], $_POST['idCentro'], $_POST['start'], $_POST['end'], 'json', true);
 } else {
     echo '0';
 }
