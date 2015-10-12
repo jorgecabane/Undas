@@ -60,10 +60,12 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             <div class="panel-heading">
                 <h4>Prestaciones Tms</h4>
             </div>
-           <div>
+           <div class='panel-body row-fluid'>
+           <div class='col col-sm-12'>
            <?php 
            include_once "include/widgetHumano.php";
            ?>
+           </div>
            </div>
         </div>
     </div>
