@@ -16,7 +16,7 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 		<h2>Agregar Centro Nuevo</h2>
 	<?php //	<form action='querys/insertCentroNuevoR.php' method='POST'> ?>	
 	
-	</div>
+	
 		<div id="respuesta"></div>
 </body>
 			<div class="form-group">
@@ -60,7 +60,7 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 		</div>
 		<div class="form-group">
 			<br> <input class='btn btn-info btnedit ' type='submit' value='Agregar'>
-	
+	</div>
 </html>
 <script>
 
