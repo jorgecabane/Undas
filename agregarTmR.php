@@ -17,7 +17,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 				<label for="Apellido">Apellido</label> <input type="text" class="form-control"  id="apellido" name="apellido" placeholder="Agrege apellido" required>
 			</div>
 			<div class="form-group">
-				<label for="RUT">RUT</label> <input type="text" class="form-control" id="rut" name="rut" placeholder="Agrege RUT" required>
+				<label for="RUT">RUT</label> <input type="text" class="form-control" id="rut" name="rut" placeholder="Agrege Rut con digito verificador y puntos" required>
 			</div>
 			<div class="form-group">
 				<label for="Mail">Mail</label> <input type="text" class="form-control" id="mail" name="mail" placeholder="Agrege Mail" required>
