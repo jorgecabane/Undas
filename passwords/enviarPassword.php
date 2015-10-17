@@ -26,7 +26,7 @@ $query="SELECT * FROM tm Where Rut='$rut'";
 
 		 		mail($to,$subject,$txt,$headers);
 
-			echo "Revise el correo que le otorgo tmtecnomed";
+			echo "Revise el correo que le a otorgo tmtecnomed";
 			?><meta http-equiv="Refresh" content="3;url=../logIn.php">;<?php
 		 	}
 			 }

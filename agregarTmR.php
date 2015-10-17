@@ -32,12 +32,6 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 				<label for="Celular">Cuenta Corriente</label> <input type="text" class="form-control" id="cuenta" name="cuenta" placeholder="Agrege Cuenta Corriente" required>
 			</div>
 			<div class="form-group">
-				<label for="contrase�a">Contraseña</label> <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Elegir Contraseña" required>
-			</div>
-			<div class="form-group">
-				<label for="Repetircontrase�a">Repetir Contraseña</label> <input type="password" class="form-control" id="repetircontrasena" name="repetircontrasena" placeholder="Reescribir Contraseña" required>
-			</div>
-			<div class="form-group">
 				<label for="Comentario">Comentario</label> <textarea rows="4" cols="30" type="text" class="form-control" id="comentario" name="comentario" placeholder="Escribir comentario" required></textarea>
 			</div>
 			<br>
@@ -51,12 +45,8 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 
 <script>
 $("#agregar").click(function(){
-
 	var name= $('#nombre').val();
 	var lastname = $('#apellido').val();
-	var contra= $('#contrasena').val();
-	var repitecontra= $('#repetircontrasena').val();
-		if(contra==repitecontra){
 			 jQuery.ajax({
 			       method: "POST",
 			       url: "querys/insertTmR.php",
@@ -68,7 +58,6 @@ $("#agregar").click(function(){
 				     		'celular':$('#celular').val(),
 				     		'banco':$('#banco').val(),
 				     		'cuenta':$('#cuenta').val(),
-		                    'contrasena':$('#contrasena').val(),
 		                    'comentario':$('#comentario').val()
 			       },
 
@@ -92,13 +81,6 @@ $("#agregar").click(function(){
 			       }
 
 			 });//ajax
-			}
-		
-			
-
-		else{
-	     alert("Las contrase�as no coinciden, intente nuevamente");
-		}
 
 });
 

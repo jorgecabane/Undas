@@ -8,7 +8,7 @@ $nombreTM = $_POST ['nombreTM'];
 ?>
 <div class="row well well-sm">
 	<ul class="nav nav-tabs nav-pills hidden-print" id="myTabs">
-		<li class="nav"><a href="#Atab" data-toggle="tab">Info</a></li>
+		<li class="nav"><a href="#Atab" data-toggle="tab">Informacion</a></li>
 		<li class="nav"><a href="#Btab" data-toggle="tab">Honorarios</a></li>
 		<li class="nav active"><a href="#Ctab" data-toggle="tab">Horario</a></li>
 		<li class="nav"><a href="#Etab" data-toggle="tab">Prestaciones</a></li>
