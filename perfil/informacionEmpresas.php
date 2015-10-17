@@ -15,6 +15,7 @@
         echo "<table id='t01' class='table table-hover table-bordered'>";
         echo "<tbody>";
         while ($row = mysql_fetch_array($resultado)) {
+        	$idempresa=$row['idEmpresa'];
         	$nombre=$row['Nombre'];
         	$rut=$row['Rut'];
         	$giro=$row['Giro'];
@@ -127,7 +128,7 @@
                     <tr>
                     <td>
                         <div>
-                            <input type="hidden" name="id" value="<?php echo $row['idEmpresa']; ?>" />
+                            <input type="hidden" id="idempresa" name="idempresa" value="<?php echo $row['idEmpresa']; ?>" />
                             <input type="submit" value="Finalizar edicion" class='btn btn-info btnedit' disabled="disabled" />
                             <input type="submit" value="Cancelar edicion" class='btn btn-warning btncancel' disabled="disabled" />        
                         </div>
@@ -162,6 +163,7 @@
             method: "POST",
             url: "querys/updateEmpresas.php",
             data: {
+                'idempresa': $('#idempresa').val(),
                 'nombre': $('#nombre').val(),
                 'rut': $('#rut').val(),
                 'giro': $('#giro').val(),
