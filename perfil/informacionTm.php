@@ -151,9 +151,9 @@ if ($resultado) {
                 <td>
                     <div>
                         <input id="idtm" type="hidden" name="idtm" value="<?php echo $row['idTM']; ?>" />
-                        <input type="submit" value="Finalizar edicion"
+                        <input type="submit" value="Guardar"
                                class='btn btn-info btnedit' disabled="disabled" />
-						<input type="submit" value="Cancelar edicion"
+						<input type="submit" value="Cancelar"
                                class='btn btn-warning btncancel' disabled="disabled" />                        
                     </div>
                 </td>

@@ -46,7 +46,7 @@ foreach($datosCentro AS $Centro){
                         ?>
                         <td>
                             <div>
-                               <input type="submit" value="Finalizar edicion" class='btn btn-info btneditcentro' disabled="disabled" />
+                               <input type="submit" value="Guardar" class='btn btn-info btneditcentro' disabled="disabled" />
                             </div>
                         </td>
                         </td>
@@ -89,7 +89,7 @@ foreach($datosCentro AS $Centro){
                         ?>
                         <td>
                             <div>
-                                <input type="submit" value="Finalizar edicion" class='btn btn-info btnediteco ' disabled="disabled" />
+                                <input type="submit" value="Guardar" class='btn btn-info btnediteco ' disabled="disabled" />
                             </div>
                         </td>
                         </td>

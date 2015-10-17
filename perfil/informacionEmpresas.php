@@ -129,8 +129,8 @@
                     <td>
                         <div>
                             <input type="hidden" id="idempresa" name="idempresa" value="<?php echo $row['idEmpresa']; ?>" />
-                            <input type="submit" value="Finalizar edicion" class='btn btn-info btnedit' disabled="disabled" />
-                            <input type="submit" value="Cancelar edicion" class='btn btn-warning btncancel' disabled="disabled" />        
+                            <input type="submit" value="Guardar" class='btn btn-info btnedit' disabled="disabled" />
+                            <input type="submit" value="Cancelar" class='btn btn-warning btncancel' disabled="disabled" />        
                         </div>
                     </td>
                     </td>
