@@ -13,6 +13,7 @@ if ($resultado) {
     echo "<table id='t01' class='table table-hover table-bordered'>";
     echo "<tbody>";
     while ($row = mysql_fetch_array($resultado)) {
+    	$idtm=$row['idTM'];
     	$nombre=$row['Nombre'];
     	$apellido=$row['Apellido'];
     	$rut=$row['Rut'];
@@ -149,7 +150,7 @@ if ($resultado) {
 				<tr>
                 <td>
                     <div>
-                        <input id="id" type="hidden" name="id" value="<?php echo $row['idTM']; ?>" />
+                        <input id="idtm" type="hidden" name="idtm" value="<?php echo $row['idTM']; ?>" />
                         <input type="submit" value="Finalizar edicion"
                                class='btn btn-info btnedit' disabled="disabled" />
 						<input type="submit" value="Cancelar edicion"
@@ -186,7 +187,7 @@ if ($resultado) {
             method: "POST",
             url: "querys/updateTM.php",
             data: {
-                'id': $('#id').val(),
+                'idtm': $('#idtm').val(),
                 'nombre': $('#nombre').val(),
                 'apellido': $('#apellido').val(),
                 'rut': $('#rut').val(),

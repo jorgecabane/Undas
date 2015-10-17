@@ -1,7 +1,7 @@
 <?php
 
 include_once "../conexionLocal.php";
-$id= trim($_POST['id']);
+$id= trim($_POST['idtm']);
 $nombre = trim($_POST['nombre']);
 $apellido = trim($_POST['apellido']);
 $rut = trim($_POST['rut']);
@@ -11,7 +11,7 @@ $banco = trim($_POST['banco']);
 $cuenta = trim($_POST['cuenta']);
 $comentario = trim($_POST['comentario']);
 
-$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular=$celular, Banco='$banco', Cuentacorriente=$cuenta, Comentario='$comentario' WHERE idtm='$id'";
+$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular='$celular', Banco='$banco', Cuentacorriente='$cuenta', Comentario='$comentario' WHERE idtm='$id'";
 
 $resultado = mysql_query($query);
 if ($resultado) {
@@ -19,6 +19,6 @@ if ($resultado) {
     echo "Actualizado con exito, redireccionando";
 } else {
     //failure
-    echo "Se produjo un error en la actualizacion " . $query;
+    echo "Se produjo un error en la actualizacion ";
 }
 
