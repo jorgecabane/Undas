@@ -2,7 +2,7 @@
 session_start();
 include_once "../Include/isAdmin.php";
 include_once "../querys/getPrestaciones.php";
-include_once "../querys/getAllPrestaciones.php";
+//include "../querys/getAllPrestaciones.php";
 
 
 if ($_SESSION["usuario"]) {
@@ -44,15 +44,34 @@ if ($admin == 1) {
 echo "</tbody></table>";
 ?>
 <script>
+function PopulateSelect(rutTM, idEmpresa){
+	 $.ajax({
+         method: "POST",
+         url: "querys/getAllPrestaciones.php",
+         data: { 
+             'rut': rutTM, 
+             'idEmpresa': idEmpresa 
+             },
+         success: function(data){
+             // Parse the returned json data
+             var opts = $.parseJSON(data);
+             // Use jQuery's each to iterate over the opts value
+             $.each(opts, function(i, d) {
+                 // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
+                 $('.Prestaciones').append('<option value="'+ d.idPrestacion+ '">' + d.Grupo + ' ' + d.Especifico + '</option>');
+       
+             });
+         }
+     });
+}
+</script>
+<script>
 
     $(".btnprestaciones").click(function() {
-
+    
+    	
         var content = "<tr><td><select class='form-control Prestaciones' required name='Prestaciones'>";
-        content += "<option selected='true' disabled='disabled'> Seleccione Prestacion </option><?php
-foreach (getPrestacion($rut, $empresa) as $contenido) {
-    echo "<option value='" . $contenido["idPrestacion"] . "'> " . $contenido["Grupo"] . " " . $contenido["Especifico"] . '</option>';
-}
-?>";
+        content += "<option selected='true' disabled='disabled'> Seleccione Prestacion </option>";
         content += "</select></td>";
         content += "<td><input type='submit' value='Guardar' class='btn btn-info btnguardarPrestacion' /></td>";
         content += "<td><input type='submit' value='Cancelar' class='btn btn-danger btncancelarPrestacion' /></td></tr>";
@@ -60,6 +79,10 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
         $(".btncancelarPrestacion").bind('click', function() {
             $(this).parent().parent().remove();
         });
+
+ var idEmpresa= <?php echo $empresa; ?>;
+ var rutTM= <?php echo $rut; ?>;
+PopulateSelect(rutTM, idEmpresa);
 
         $(".btnguardarPrestacion").bind('click', function() {
             $(this).parent().parent().find('.btnguardarPrestacion').attr("value", "Guardado Exitoso");
@@ -112,6 +135,7 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
     });
 
 </script>
+
 
 <script>
     $('.close').click(function() {
