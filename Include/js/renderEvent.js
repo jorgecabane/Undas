@@ -9,7 +9,7 @@ var renderEvent = function(event, element) {
         element.find('.fc-title').append("<br/>" + event.description);
         //al hacer click se puede ver el detalle
         element.popover({
-            title: 'Detalles del Evento',
+            title: 'Detalles del Evento (' + event.id +')',
             content: '<div><b>Eco: </b>' + event.title + '<br>\n\
                              <b>TM: </b>' + event.description + '<br>\n\
                              <b>Fecha: </b>' + event.start.format('LL') + '<br>\n\

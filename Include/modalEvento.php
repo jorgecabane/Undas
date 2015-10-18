@@ -93,6 +93,7 @@
             // se crea el evento con los elementos recopilados
             // el paso anteriro se puede reemplazar por la composicion del JSON inmediatamente
             var event = {
+                "id": 0,
                 "title": title,
                 "idTM": idTM,
                 "idEco": idEco,
@@ -107,7 +108,7 @@
             $('#calendar').fullCalendar('renderEvent', event);
             saveBD(event);
             $('#modalEvento').modal('hide');
-        console.log(event);
+        //console.log(event);
         });//click de aceptar el modal
     });
 </script>
