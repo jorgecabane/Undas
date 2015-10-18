@@ -1,8 +1,8 @@
 <?php
 include_once "../conexionLocal.php";
-$id=$_POST['idcentro'];
-$nombre=$_POST['nombre'];
-$siglas=$_POST['siglas'];
+$id=trim($_POST['idcentro']);
+$nombre=trim($_POST['nombre']);
+$siglas=trim($_POST['siglas']);
 
 $query="UPDATE centro SET Nombre='$nombre', Siglas='$siglas' WHERE idCentro=$id";
 
