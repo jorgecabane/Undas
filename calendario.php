@@ -45,7 +45,6 @@ $centro = $_GET ['centro'];
                     </button>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="btn" id="repeatWeek">Repetir semana</a></li>
-                        <li><a href="#" class="btn" id="repeatMonth">Repetir mes</a></li>
                     </ul>
                 </div>
             </center>
@@ -74,16 +73,15 @@ $centro = $_GET ['centro'];
             <div class='panel panel-info'>
                 <div class="panel-heading">
                     <select class="form-control">
-                        <option value="TM">Listado TMs</option>
+                        <option value="TM">Listado TM</option>
                         <option value="doctores">Listado Doctores</option>
-                        <option value="feriado">Feriado</option>
                     </select>
                 </div>
                 <div class="panel-body">
-                    <input type='text' id='search' class='form-control'
-                           placeholder='Filtrar por Nombre'>
-                    <hr class='hr-sm'>
+                    <input type='text' id='search' class='form-control' placeholder='Filtrar por Nombre'>
+
                     <div  id='external-events'>
+                        <hr class='hr-sm'>
                         <?php
                         $tms = getTM();
                         foreach ($tms as $tm) {
@@ -94,7 +92,7 @@ $centro = $_GET ['centro'];
                             if ($prestaciones) {
                                 foreach ($prestaciones as $prestacion) {
                                     $especifico = $prestacion['Especifico'];
-                                    echo "<div class='alert alert-sm alert-info'>$especifico</div>";
+                                    echo "<div class='alert alert-sm alert-info prestacion'>$especifico</div>";
                                 }//cada una de las prestaciones
                             }//si hay prestaciones
                             else {
@@ -107,6 +105,18 @@ $centro = $_GET ['centro'];
                         <!-- Generacion de listado de TMs -->
                     </div>
                     <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
+
+                    <div id="doctores" class="colapse in">
+                        <hr class="hr-sm">
+                        <?php
+                        $medicos = getMedicos();
+                        if ($medicos) {
+                            foreach ($medicos as $medico) {
+                                echo "<div class='fc-event'>" . $medico['Nombre'] . " " . $medico['Apellido'] . "</div>";
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -116,9 +126,7 @@ $centro = $_GET ['centro'];
                     <span class="sr-only">Cargando...</span>
                 </div>
             </div>
-            <div id="horarioContent" class="alert alert-info" style="display:none">
-
-            </div>
+            <div id="horarioContent" class="alert alert-info" style="display:none"></div>
             <!-- calendario -->
             <div class="col-sm-1 hidden-print">
                 <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
@@ -129,7 +137,7 @@ $centro = $_GET ['centro'];
             <!-- calendario -->
         </div>
         <div style='clear: both'></div>
-        <div class='alert alert-warning visible-print-block'>Información adicional para la impresión</div>
+        <div class='alert alert-warning visible-print-block extraPrint'>Información adicional para la impresión</div>
     </div>
     <!-- row -->
 </div>
@@ -203,15 +211,14 @@ $centro = $_GET ['centro'];
 <script src="Include/js/deleteEvent.js"></script><!-- deleteEvent -->
 <script src="Include/js/renderEvent.js"></script><!-- renderEvent -->
 <script src="Include/js/switchView.js"></script><!-- switchView -->
+<script src="Include/js/repeatWeek.js"></script><!-- repeatWeek -->
+<script src="Include/js/deleteWeek.js"></script><!-- deleteWeek -->
+<script src="Include/js/deleteMonth.js"></script><!-- deleteMonth -->
 <script>
     $('#external-events').collapse({
         parent: '.fc-event'
     });
 </script><!-- collapse prestaciones -->
-<script src="Include/js/repeatWeek.js"></script><!-- repeatWeek -->
-<script src="Include/js/repeatMonth.js"></script><!-- repeatMonth -->
-<script src="Include/js/deleteWeek.js"></script><!-- deleteWeek -->
-<script src="Include/js/deleteMonth.js"></script><!-- deleteMonth -->
 <script>
     /* initialize the calendar
      -----------------------------------------------------------------*/
@@ -231,8 +238,6 @@ $centro = $_GET ['centro'];
 
             ], //eventSources
             eventRender: renderEvent,
-            //eventAfterRender: saveBD,
-            eventResize: updateEvent,
             eventDrop: updateEvent,
             eventDragStop: deleteEvent,
             viewRender: switchView,
@@ -269,5 +274,13 @@ $centro = $_GET ['centro'];
 
     });//document.ready
 </script><!-- fullCalendar -->
+<script>
+$(document).ready(function(){
+    $('.prestacion').each(function(){
+
+        $('.extraPrint').append('<div class="alert alert-sm">'+$(this).text()+'</div>');
+    });
+});
+</script><!-- agregar las prestaciones a la vista de impresion -->
 <script src="Include/filtro.js"></script>
 </html>
