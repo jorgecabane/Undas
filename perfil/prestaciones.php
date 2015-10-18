@@ -35,7 +35,7 @@ if ($admin == 1) {
             echo "</td></tr>";
         }
     } else {
-        echo'<tr><td colspan="3">';
+        echo'<tr class="warning Oops"><td colspan="3">';
         echo '<strong>Oops!</strong> TM no tiene prestaciones asociadas en esta empresa.';
         echo "</td></tr>";
     }
@@ -57,7 +57,7 @@ function PopulateSelect(rutTM, idEmpresa){
              var opts = $.parseJSON(data);
              // Use jQuery's each to iterate over the opts value
              $.each(opts, function(i, d) {
-                 // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
+                 // Get the right values from json object.
                  $('.Prestaciones').append('<option value="'+ d.idPrestacion+ '">' + d.Grupo + ' ' + d.Especifico + '</option>');
        
              });
@@ -105,6 +105,7 @@ PopulateSelect(rutTM, idEmpresa);
                 success: function(response)
                 {
                    row.toggleClass('success');
+                   $('.Oops').remove();
                 }
             });
 
