@@ -81,7 +81,7 @@ function PopulateSelect(rutTM, idEmpresa){
         });
 
  var idEmpresa= <?php echo $empresa; ?>;
- var rutTM= <?php echo $rut; ?>;
+ var rutTM= "<?php echo $rut; ?>";
 PopulateSelect(rutTM, idEmpresa);
 
         $(".btnguardarPrestacion").bind('click', function() {
