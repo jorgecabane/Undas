@@ -28,7 +28,7 @@ include_once dirname ( __FILE__ ) . "/Include/verificacionUsuario.php";
                     <?php
 if ($admin == 1) {
 include "querys/getEmpresa.php";
-$empresas = getEmpresa ();
+$empresas = getEmpresaNotSinTurno ();
 																			
 echo '<ul class="nav nav-pills nav-stacked">';
 							

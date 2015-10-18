@@ -44,7 +44,7 @@ session_start();
                 }
                 else 
                 {
-                	echo'<div class="alert alert-warning" role="alert">';
+                	echo'<div class="Oops alert alert-warning" role="alert">';
                 	echo '<strong>Oops!</strong> TM no tiene prestaciones asociadas en esta empresa.';
                 	echo "</div>";
                 }
@@ -93,7 +93,7 @@ session_start();
                 success: function(response)
                 {
                     select.attr("disabled", "disabled");
-                    
+                    $('.Oops').hide();
                 }
             });
         });

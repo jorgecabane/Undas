@@ -181,7 +181,7 @@
     $(".btncobro").click(function() {
         var content = "<tr><td><select class='form-control Centro' required name='Centro'>";
         content += "<option selected='true' disabled='disabled'> Seleccione Empresa </option><?php
-                    foreach (getEmpresa() as $empresa) {
+                    foreach (getEmpresaNotSinTurno() as $empresa) {
                         echo "<option value='" . $empresa ["idEmpresa"] . "'> " . $empresa ["Nombre"]. "</option>";
                     }
                     ?>";
