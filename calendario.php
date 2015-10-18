@@ -26,7 +26,7 @@ $centro = $_GET ['centro'];
             <div class="row">
                 <center>
                     <h2>
-                        <span class="label label-info label-block" id="centro" idCentro="<?php echo $idCentro;?>">
+                        <span class="label label-info label-block" id="centro" idCentro="<?php echo $idCentro; ?>">
                             Centro: <b><?php echo $centro; ?></b>
                         </span>
                     </h2>
@@ -218,9 +218,18 @@ $centro = $_GET ['centro'];
     $(document).ready(function() {
 
         $('#calendar').fullCalendar({
-            eventSources: [{
-                    url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
-                }], //eventSources
+            eventSources: [
+                {"url": "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>",
+                    "constraint": "businessHours"
+                },
+                {
+                    "url": "Include/feriados.php",
+                    "overlap": false,
+                    "rendering": "background",
+                    "color": '#6B685D'
+                }
+
+            ], //eventSources
             eventRender: renderEvent,
             //eventAfterRender: saveBD,
             eventResize: updateEvent,

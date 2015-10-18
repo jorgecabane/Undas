@@ -24,17 +24,9 @@ var saveBD = function(event) {
                 },
                 success: function(output) {
                     if (output !== '0') {
-                        //console.log(event.saved);
-                        event.saved = 1;
-                        event.id = output;
-                        if ($('#calendar').fullCalendar('getView').name === 'month') {
-                            //en la vista mensual se refrescan
-                            $('#calendar').fullCalendar('refetchEvents');
-                        }
-                        else {
-                            $('#calendar').fullCalendar('updateEvent', event);
-                        }
-
+                        event.saved = 1; //cambia el estado del evento a "guardado (1)"
+                        event.id = output; //asigna el output devuelto como el id del evento
+                        $('#calendar').fullCalendar('updateEvent', event);
                         $('.progress').slideUp();
                         //console.log(output);
 
