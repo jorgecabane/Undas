@@ -84,7 +84,31 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
                    row.toggleClass('success');
                 }
             });
+
+            $('.close').click(function() {
+                var prestacion = $(this).parent().find('.nombrePrestacion').text();
+                var aqui = $(this).parent();
+                var especifico = aqui.find('.especifico').text();
+                var r = confirm("Esta seguro que quiere eliminar Prestacion: " + prestacion + "?");
+                if (r == true) {
+
+                    jQuery.ajax({
+                        method: "POST",
+                        url: "querys/erasePrestacion.php",
+                        data: {
+                            "rut": "<?php echo $rut; ?>",
+                            'especifico': especifico
+                        },
+                        success: function(response)
+                        {
+                            aqui.remove();
+                        }
+                    });
+                }
+            });
         });
+
+       
     });
 
 </script>
