@@ -21,29 +21,33 @@ if ($admin == 1) {
     echo "<th>Prestacion</th>";
     echo "<th>Guardar</th>";
     echo "<th>Cancelar</th>";
-    echo "</thead><tbody></tbody></table>";
-}
-$prestaciones = getPrestaciones($rut, $empresa);
-if ($prestaciones) {
-    foreach ($prestaciones as $prestacion) {
-        echo'<div class="alert alert-warning" role="alert">';
-        if ($admin == 1) {
-            echo '<button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+    echo "</thead><tbody>";
+
+    //se buscan las prestaciones ya asignadas
+    $prestaciones = getPrestaciones($rut, $empresa);
+    if ($prestaciones) {//si hay
+        foreach ($prestaciones as $prestacion) {
+            echo'<tr><td colspan="3">';
+            if ($admin == 1) {
+                echo '<button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+            }
+            echo '<strong class="nombrePrestacion">' . $prestacion['Grupo'] . ": <span class='especifico'>" . $prestacion['Especifico'] . '</span></strong>';
+            echo "</td></tr>";
         }
-        echo '<strong class="nombrePrestacion">' . $prestacion['Grupo'] . ": <span class='especifico'>" . $prestacion['Especifico'] . '</span></strong>';
-        echo "</div>";
+    } else {
+        echo'<tr><td colspan="3">';
+        echo '<strong>Oops!</strong> TM no tiene prestaciones asociadas en esta empresa.';
+        echo "</td></tr>";
     }
-} else {
-    echo'<div class="Oops alert alert-warning" role="alert">';
-    echo '<strong>Oops!</strong> TM no tiene prestaciones asociadas en esta empresa.';
-    echo "</div>";
 }
+
+echo "</tbody></table>";
 ?>
 <script>
 
     $(".btnprestaciones").click(function() {
 
-        var content = "<tr><td><select class='form-control Prestacion' required name='Prestacion'>";
+        var content = "<tr><td><select class='form-control Prestaciones' required name='Prestaciones'>";
         content += "<option selected='true' disabled='disabled'> Seleccione Prestacion </option><?php
 foreach (getPrestacion($rut, $empresa) as $contenido) {
     echo "<option value='" . $contenido["idPrestacion"] . "'> " . $contenido["Grupo"] . " " . $contenido["Especifico"] . '</option>';
@@ -62,9 +66,11 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
             $(this).parent().parent().find('.btnguardarPrestacion').attr("disabled", "disabled");
             $(this).parent().parent().find('.btnguardarPrestacion').attr("class", "btn btn-success btnguardar");
             $(this).parent().parent().find('.btncancelarPrestacion').attr("disabled", "disabled");
-            var select = $(this).parent().parent().find(".Prestacion");
-            var idPrestacion = $(this).parent().parent().find(".Prestacion").val();
-
+            var select = $(this).parent().parent().find(".Prestaciones");
+            var idPrestacion = $(this).parent().parent().find(".Prestaciones").val();
+            var row = $(this).parent().parent(); //linea en la que se encuentra
+            var prestacion = $(".Prestaciones :selected").text();
+            row.html('<td colspan="3"><button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>' + prestacion + '</strong></td>');
             jQuery.ajax({
                 method: "POST",
                 url: "querys/insertPrestacion.php",
@@ -75,8 +81,7 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
                 },
                 success: function(response)
                 {
-                    select.attr("disabled", "disabled");
-                    $('.Oops').hide();
+                   row.toggleClass('success');
                 }
             });
         });
