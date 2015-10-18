@@ -1,5 +1,6 @@
 <?php
 include_once dirname(__FILE__) . "/querys/getTM.php"; // aqui ya se incluye la conexion local
+include_once dirname(__FILE__) . "/querys/getMedicos.php";
 include_once dirname(__FILE__) . "/querys/getEcos.php";
 include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
