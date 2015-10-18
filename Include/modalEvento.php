@@ -14,6 +14,9 @@
             <div class="modal-body">
                 <center>
                     <div class="row">
+                        <div id="eventTitle" class="col-sm-10 col-sm-offset-1 well well-titles">
+                            <div class="alert alert-danger">No se ha seleccionado TM</div>
+                        </div>
                         <div id="eventDate" class="col-sm-10 col-sm-offset-1 well well-titles">
                             <div class="alert alert-danger">No se ha seleccionado Fecha</div>
                         </div>
@@ -32,6 +35,7 @@
                 </center>
             </div>
             <div class="modal-footer">
+                <div id="evento"></div>
                 <button type="button" class="btn btn-info" id="asignTime">Aceptar</button>
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
             </div>
@@ -72,3 +76,42 @@
         });
     });
 </script><!-- definicion del slider -->
+<script>
+    $(document).ready(function() {
+        $('#asignTime').click(function() {
+            /*
+             * Funcion que se ejecuta la hacer click al boton aceptar del selector
+             * de hora del modalEvento
+             * recopila la informacion del evento que se arrojo y que no tenia hora
+             * para generar un nuevo evento y renderearlo, guardarlo en la DB
+             * y hacer las verificaciones pertinentes
+             */
+            var start = moment($('#eventDate').text()+' '+$('#rangoStart').text());
+            var end = moment($('#eventDate').text()+' '+$('#rangoEnd').text());
+            var idTM = $('#evento').attr('idtm');
+            var idEco = $('#evento').attr('idEco');
+            var color = $('#evento').attr('color');
+            var title = $('#evento').attr('title');
+            var description = $('#evento').attr('description');
+            // se crea el evento con los elementos recopilados
+            // el paso anteriro se puede reemplazar por la composicion del JSON inmediatamente
+            var event = {
+                "id": 0,
+                "title": title,
+                "idTM": idTM,
+                "idEco": idEco,
+                "color": color,
+                "description": description,
+                "fromBD": 0,
+                "saved": 0,
+                "start": start,
+                "end": end
+            };
+            //se renderea el evento en la bbdd
+            $('#calendar').fullCalendar('renderEvent', event);
+            saveBD(event);
+            $('#modalEvento').modal('hide');
+        //console.log(event);
+        });//click de aceptar el modal
+    });
+</script>

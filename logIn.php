@@ -37,7 +37,7 @@ else {
        
         echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
     } else {
-        echo '<div class="error">Su usuario es incorrecto, intente nuevamente.</div>';
+        echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
     }
 }
 ?>

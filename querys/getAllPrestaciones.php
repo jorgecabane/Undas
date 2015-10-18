@@ -5,7 +5,13 @@
  *
  */
 include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
-function getPrestacion($rut,$empresa) {
+
+
+if(isset($_POST['idEmpresa'])){
+$rut= $_POST['rut'];
+$empresa= $_POST['idEmpresa'];
+function getAllPrestaciones($rut,$empresa){
+
 	
 	
 		$query = "Select idprestaciones as idPrestacion, Grupo, Especifico from prestaciones
@@ -19,11 +25,13 @@ where prestacionestm.TM_RUT = '$rut' and prestacionestm.Empresa_idEmpresa = $emp
 		$result[] = $row;
 	}
 
-	return $result;
+	echo json_encode($result);
 }
 
 else{
 	return false;
 }
+}
+getAllPrestaciones($rut,$empresa);
 }
 ?>

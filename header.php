@@ -1,5 +1,6 @@
 <?php
 include_once dirname(__FILE__) . "/querys/getTM.php"; // aqui ya se incluye la conexion local
+include_once dirname(__FILE__) . "/querys/getMedicos.php";
 include_once dirname(__FILE__) . "/querys/getEcos.php";
 include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
@@ -41,7 +42,7 @@ if ($_SESSION ["usuario"]) {
 
     <!-- css -->
 
-    <link href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' rel='stylesheet'>
+    <link href='css/jquery-ui.css' rel='stylesheet'>
     <link href='css/bootstrap.min.css' rel='stylesheet'>
     <link href='calendario/fullcalendar.css' rel='stylesheet'/>
     <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
