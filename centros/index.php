@@ -5,13 +5,13 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid well">
     <div class="row">
-        <div class="col-sm-6 panel panel-info">
+    <!--      <div class="col-sm-6 panel panel-info">
             <div class="panel-heading">
                 <h4>
                     <strong>TMs No asignados</strong>
                 </h4>
             </div>
-            <div class="progress" style="display: none">
+          <div class="progress" style="display: none">
                 <div class="progress-bar progress-bar-striped active"
                      role="progressbar" style="width: 100%">
                     <span class="sr-only">Cargando...</span>
