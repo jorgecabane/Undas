@@ -6,7 +6,8 @@ var eventReceive = function(event) {
     }
     else {
         $('#modalEvento').modal('show');
-        $('#eventDate').html('<div class="alert alert-sm alert-info">'+event.start.format()+'</div>');
+        $('#eventDate').html('<div class="alert alert-sm alert-info">' + event.start.format() + '</div>');
+        $('#eventTitle').html('<div class="alert alert-sm alert-info">' + event.description + ' <strong>(' + event.title + ')</strong></div>');
         $('#evento')
                 .attr('start', event.start.format())
                 .attr('end', event.end.format())

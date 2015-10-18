@@ -28,7 +28,7 @@ var saveBD = function(event) {
                         event.saved = 1; //cambia el estado del evento a "guardado (1)"
                         event.id = output; //asigna el output devuelto como el id del evento
                         view = $('#calendar').fullCalendar('getView');
-                        console.log(view.name);
+                        //console.log(view.name);
                         if (view.name === 'month') {
                             $('#calendar').fullCalendar('refetchEvents');
                         } else {

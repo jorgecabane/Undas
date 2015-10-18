@@ -14,6 +14,9 @@
             <div class="modal-body">
                 <center>
                     <div class="row">
+                        <div id="eventTitle" class="col-sm-10 col-sm-offset-1 well well-titles">
+                            <div class="alert alert-danger">No se ha seleccionado TM</div>
+                        </div>
                         <div id="eventDate" class="col-sm-10 col-sm-offset-1 well well-titles">
                             <div class="alert alert-danger">No se ha seleccionado Fecha</div>
                         </div>
