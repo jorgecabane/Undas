@@ -70,7 +70,7 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
             var idPrestacion = $(this).parent().parent().find(".Prestaciones").val();
             var row = $(this).parent().parent(); //linea en la que se encuentra
             var prestacion = $(".Prestaciones :selected").text();
-            row.html('<td colspan="3"><button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>' + prestacion + '</strong></td>');
+            row.html('<td colspan="3"><button type="button" class="close borrar"  aria-label="Close"><span aria-hidden="true">&times;</span></button><strong class="nombrePrestacion">' + prestacion + '</strong></td>');
             jQuery.ajax({
                 method: "POST",
                 url: "querys/insertPrestacion.php",
@@ -85,10 +85,10 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
                 }
             });
 
-            $('.close').click(function() {
-                var prestacion = $(this).parent().find('.nombrePrestacion').text();
+            $('.borrar').click(function() {
+               // var prestacion = $(this).parent().find('.nombrePrestacion').text();
                 var aqui = $(this).parent();
-                var especifico = aqui.find('.especifico').text();
+               
                 var r = confirm("Esta seguro que quiere eliminar Prestacion: " + prestacion + "?");
                 if (r == true) {
 
@@ -97,7 +97,7 @@ foreach (getPrestacion($rut, $empresa) as $contenido) {
                         url: "querys/erasePrestacion.php",
                         data: {
                             "rut": "<?php echo $rut; ?>",
-                            'especifico': especifico
+                            'idPrestacion': idPrestacion	
                         },
                         success: function(response)
                         {
