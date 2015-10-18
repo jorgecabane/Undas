@@ -121,22 +121,22 @@ if ($_SESSION ["usuario"]) {
                                 Empresas<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="Empresas.php">Perfiles empresas</a></li>
-                                <li><a href="agregarEmpresaR.php">Nueva empresa</a></li>
-                                <li><a href="agregarCentroNuevoR.php">Nuevo centro</a></li>
+                                <li><a href="Empresas.php">Perfiles Empresas</a></li>
+                                <li><a href="agregarEmpresaR.php">Nueva Empresa</a></li>
+                                <li><a href="agregarCentroNuevoR.php">Nuevo Centro</a></li>
                             </ul>
                         </li>
 
                     <?php } // si es admin ve esto     ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Tecn&oacute;logos m&eacute;dicos<span class="caret"></span>
+                            Tecn&oacute;logos M&eacute;dicos<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="perfiles" href="Perfiles.php">Perfiles tecn&oacute;logos m&eacute;dicos</a></li>
+                            <li><a id="perfiles" href="Perfiles.php">Perfiles Tecn&oacute;logos M&eacute;dicos</a></li>
                             <?php
                             if ($admin == 1) {
-                                echo "<li><a href='agregarTmR.php'>Nuevo tecn&oacute;logo m&eacute;dico</a></li>";
+                                echo "<li><a href='agregarTmR.php'>Nuevo Tecn&oacute;logo M&eacute;dico</a></li>";
                             } // si es admin ve esto
                             ?>
                         </ul>
