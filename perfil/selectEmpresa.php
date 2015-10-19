@@ -9,10 +9,11 @@ include_once "../querys/getEmpresa.php";
 	<?php
 	$empresas = getEmpresa ();
 	foreach ( $empresas as $empresa ) {
+		if($empresa['Nombre']!='Sin Turno'){
 		?>
         <option value="<?php echo $empresa['idEmpresa'];?>"><?php echo $empresa['Nombre'];?></option>
     <?php
-	}
+	}}
 	
 	?>
 		
