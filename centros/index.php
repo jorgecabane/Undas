@@ -3,8 +3,24 @@ session_start();
 include_once dirname(__FILE__) . "/header.php";
 include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
-<div class="container-fluid well">
+<div class="container-fluid ">
     <div class="row">
+     <div class="col-sm-3">
+     </div>
+          <div class="col-sm-6 panel panel-success">
+            <div class="panel-heading">
+                <h4>Prestaciones Tm</h4>
+            </div>
+           <div class='panel-body row-fluid'>
+           <div class='col col-sm-12'>
+           <center>
+           <?php 
+           include_once "include/widgetHumano.php";
+           ?>
+           </center>
+           </div>
+           </div>
+        </div>
     <!--      <div class="col-sm-6 panel panel-info">
             <div class="panel-heading">
                 <h4>

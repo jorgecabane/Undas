@@ -1,7 +1,3 @@
-<?php
-session_start();
-include_once dirname(__FILE__) . "/header.php";
-?>
 <html>
 
     <meta charset="utf-8">
@@ -40,14 +36,14 @@ style="position:absolute;top:290px;left:300px;width:50px;height:50px; border: 2p
 		var especifico = $(this).attr('title');
 		//var idEmpresa = aqui va la id de la empresa (si es que se mete un centro);
 		var contenido = $(this);
-		
+		var nombreEmpresa = $('.NombreEmpresa').text();
 	
 		    $.ajax({
 	    	method: "POST",
 	        url: "querys/getPrestacionesWidget.php",
 	        data: { 
 		           'especifico': especifico,
-		        // 'idEmpresa': idEmpresa 
+		           'Empresa':  nombreEmpresa
 	              },
 	        success: function(response){
 	            contenido.attr("data-content",response);

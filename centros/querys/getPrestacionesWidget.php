@@ -73,5 +73,3 @@ if(isset($_POST['especifico']) && !isset($_POST['Empresa']) )
 		return false;
 	}
 }
-
-?>
