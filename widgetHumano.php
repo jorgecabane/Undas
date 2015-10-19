@@ -1,3 +1,7 @@
+<?php
+session_start();
+include_once dirname(__FILE__) . "/header.php";
+?>
 <html>
 
     <meta charset="utf-8">
