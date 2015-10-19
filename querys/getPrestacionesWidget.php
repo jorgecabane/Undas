@@ -47,6 +47,7 @@ if(isset($_POST['especifico']) && !isset($_POST['idEmpresa']) )
 	inner join tm on ( tm.idTM = prestacionestm.TM_idTM)
 	where
 	prestaciones.Especifico = '$especifico'
+	group by Nombre
 	ORDER BY tm.Apellido asc";
 	
 	$res = mysql_query($query) or die(mysql_error());
