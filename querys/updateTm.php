@@ -11,7 +11,7 @@ $banco = trim($_POST['banco']);
 $cuenta = trim($_POST['cuenta']);
 $comentario = trim($_POST['comentario']);
 
-$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular='$celular', Banco='$banco', Cuentacorriente='$cuenta', Comentario='$comentario' WHERE idtm='$id'";
+$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular='$celular', Banco='$banco', Cuentacorriente='$cuenta', Comentario='$comentario' WHERE idtm=$id";
 
 $resultado = mysql_query($query);
 if ($resultado) {
