@@ -7,7 +7,7 @@ include_once dirname(__FILE__) . "/querys/insertLog.php";
 // $resultadotipo= mysql_fetch_assoc($tipo);
 if (isset($_POST ['login'])) {
     if (verificar_login($_POST ['user'], $_POST ['password'])) {
-        insertLog('login', dirname(__FILE__));
+        insertLog('login', dirname(__FILE__).'&IP='.$_SERVER['REMOTE_ADDR']);//inserta un log de la ip y donde se metio!
         $user1 = $_POST ['user'];
         // $query = mysql_query("SELECT usuario FROM usuarios WHERE usuario = '$user'") or die(mysql_error());
         // $row2 = mysql_fetch_assoc($query);
