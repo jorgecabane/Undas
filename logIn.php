@@ -1,12 +1,13 @@
 <?php
 session_start();
-include_once dirname(__FILE__)."/conexionLocal.php";
+include_once dirname(__FILE__) . "/conexionLocal.php";
 include_once dirname(__FILE__) . "/querys/verification.php";
-
+include_once dirname(__FILE__) . "/querys/insertLog.php";
 // $tipo = mysql_query("SELECT * FROM usuarios WHERE usuario = '$user' and password = '$password'") or die(mysql_error());
 // $resultadotipo= mysql_fetch_assoc($tipo);
 if (isset($_POST ['login'])) {
     if (verificar_login($_POST ['user'], $_POST ['password'])) {
+        insertLog('login', dirname(__FILE__));
         $user1 = $_POST ['user'];
         // $query = mysql_query("SELECT usuario FROM usuarios WHERE usuario = '$user'") or die(mysql_error());
         // $row2 = mysql_fetch_assoc($query);
@@ -26,15 +27,14 @@ if (isset($_POST ['login'])) {
         } else {
             echo "error con query";
         }
-if($resultado34 ['Centro']==1){
-	//log in de centro 
-	header("location:centros/index.php");
-}
-else {
-	//log in de persona normal
-	header("location:index.php");
-}
-       
+        if ($resultado34 ['Centro'] == 1) {
+            //log in de centro
+            header("location:centros/index.php");
+        } else {
+            //log in de persona normal
+            header("location:index.php");
+        }
+
         echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
     } else {
         echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
@@ -109,8 +109,8 @@ else {
 
 
                     <h4>Rut usuario</h4>
-                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control' 
-                    placeholder='RUT con puntos y gui&oacute;n' required />
+                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control'
+                                                                         placeholder='RUT con puntos y gui&oacute;n' required />
                     <h4>Contrase&ntilde;a</h4>
                     <label for='password' class="sr-only">Contrase&ntilde;a</label>
                     <input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
@@ -127,6 +127,6 @@ else {
     <script>
         $(document).ready(function() {
             $("#call").focus();
-             });
+        });
     </script>
 </html>
