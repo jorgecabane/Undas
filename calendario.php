@@ -72,7 +72,7 @@ $centro = $_GET ['centro'];
             </div>
             <div class='panel panel-info'>
                 <div class="panel-heading">
-                    <select class="form-control">
+                    <select class="form-control" id="selectTM">
                         <option value="TM">Listado TM</option>
                         <option value="doctores">Listado Doctores</option>
                     </select>
@@ -106,13 +106,13 @@ $centro = $_GET ['centro'];
                     </div>
                     <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
 
-                    <div id="doctores" class="colapse in">
+                    <div id="medicos" style="display:none;">
                         <hr class="hr-sm">
                         <?php
                         $medicos = getMedicos();
                         if ($medicos) {
                             foreach ($medicos as $medico) {
-                                echo "<div class='fc-event'>" . $medico['Nombre'] . " " . $medico['Apellido'] . "</div>";
+                                echo "<div class='fc-event medico' event-color='#ffaa00' idTM='" . $medico['idTM'] . "'>" . $medico['Nombre'] . " " . $medico['Apellido'] . "</div>";
                             }
                         }
                         ?>
@@ -158,10 +158,15 @@ $centro = $_GET ['centro'];
                             eco = $('#ecos option:selected').text();
                             idEco = $('#ecos').val();
 
-                            $('#external-events .fc-event').each(function() {
-                                $(this).css('background', color).css('border', color).css("line-height", "1.45");
-                                $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
-                                idTM = $(this).attr('idTM');
+                            $('#external-events .fc-event, .medico').each(function() {
+                                if ($(this).hasClass('medico')) {
+                                    color = '#ffaa00';
+                                } else {
+                                    $(this).css('background', color).css('border', color).css("line-height", "1.45");
+                                    $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
+                                }
+
+                                //idTM = $(this).attr('idTM');
                                 $(this).data('event', {
                                     title: eco, // use the element's text as the event title
                                     description: $.trim($(this).text()),
@@ -176,7 +181,11 @@ $centro = $_GET ['centro'];
                             });// each
                         });
 
-                        $('#external-events .fc-event').each(function() {
+                        $('#external-events .fc-event, .medico').each(function() {
+                            /*
+                             * funcion que asigna el event a un pill de TM la primera vez
+                             * que se crean los pills
+                             */
                             color = $(this).attr('event-color');
                             eco = $('#ecos option:selected').text();
                             idEco = $('#ecos').val();
@@ -229,6 +238,10 @@ $centro = $_GET ['centro'];
                 {"url": "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>",
                     "constraint": "businessHours"
                 },
+                {"url": "Include/feedEventosMedico.php?idCentro=<?php echo $idCentro; ?>",
+                    "constraint": "businessHours",
+                    "color": '#ffaa00'
+                },
                 {
                     "url": "Include/feriados.php",
                     "overlap": false,
@@ -275,12 +288,20 @@ $centro = $_GET ['centro'];
     });//document.ready
 </script><!-- fullCalendar -->
 <script>
-$(document).ready(function(){
-    $('.prestacion').each(function(){
+    $(document).ready(function() {
+        $('.prestacion').each(function() {
 
-        $('.extraPrint').append('<div class="alert alert-sm">'+$(this).text()+'</div>');
+            $('.extraPrint').append('<div class="alert alert-sm">' + $(this).text() + '</div>');
+        });
     });
-});
 </script><!-- agregar las prestaciones a la vista de impresion -->
+<script>
+    $(document).ready(function() {
+        $('#selectTM').change(function() {
+            $('#external-events').slideToggle('slow');
+            $('#medicos').slideToggle('slow');
+        });//change selectTM
+    });//document
+</script><!-- display de Medicos/TM-->
 <script src="Include/filtro.js"></script>
 </html>

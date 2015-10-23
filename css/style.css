@@ -84,6 +84,16 @@ to {
     border-color: #3FABE9;
     border-width: 1px;
 }
+.medico {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    background-color: #ffaa00;
+    border-color: #ff0000;
+    border-width: 1px;
+    padding: 2px;
+    text-align: center;
+}
 .fc-event {
     cursor: pointer;
 }
