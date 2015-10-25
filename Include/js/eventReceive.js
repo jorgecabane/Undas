@@ -11,8 +11,8 @@ var eventReceive = function(event) {
         $('#evento')
                 .attr('start', event.start.format())
                 .attr('end', event.end.format())
-                .attr('idTM', event.idTM)
-                .attr('idEco', event.idEco)
+                .attr('idtm', event.idTM)
+                .attr('ideco', event.idEco)
                 .attr('color', event.color)
                 .attr('title', event.title)
                 .attr('description', event.description);

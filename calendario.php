@@ -128,6 +128,13 @@ $centro = $_GET ['centro'];
             </div>
             <div id="horarioContent" class="alert alert-info" style="display:none"></div>
             <!-- calendario -->
+            <div class="col-sm-2 hidden-print">
+                <div class="alert alert-danger alert-sm active" id="cupos"><span class="glyphicon glyphicon-hourglass pull-right"></span>
+                    CUPOS: <strong>2</strong> /
+                    <strong>200</strong>
+
+                </div>
+            </div>
             <div class="col-sm-1 hidden-print">
                 <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span>
@@ -160,13 +167,13 @@ $centro = $_GET ['centro'];
 
                             $('#external-events .fc-event, .medico').each(function() {
                                 if ($(this).hasClass('medico')) {
-                                    color = '#ffaa00';
+                                    color = '#ffaa00'; //modificar para mantener el color de los medicos
                                 } else {
                                     $(this).css('background', color).css('border', color).css("line-height", "1.45");
                                     $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
                                 }
 
-                                //idTM = $(this).attr('idTM');
+                                idTM = $(this).attr('idTM');
                                 $(this).data('event', {
                                     title: eco, // use the element's text as the event title
                                     description: $.trim($(this).text()),
@@ -289,19 +296,14 @@ $centro = $_GET ['centro'];
 </script><!-- fullCalendar -->
 <script>
     $(document).ready(function() {
-        $('.prestacion').each(function() {
-
-            $('.extraPrint').append('<div class="alert alert-sm">' + $(this).text() + '</div>');
-        });
-    });
-</script><!-- agregar las prestaciones a la vista de impresion -->
-<script>
-    $(document).ready(function() {
         $('#selectTM').change(function() {
             $('#external-events').slideToggle('slow');
             $('#medicos').slideToggle('slow');
         });//change selectTM
     });//document
 </script><!-- display de Medicos/TM-->
+<script>
+
+</script>
 <script src="Include/filtro.js"></script>
 </html>
