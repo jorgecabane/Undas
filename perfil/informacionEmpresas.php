@@ -130,7 +130,7 @@
                         <div>
                             <input type="hidden" id="idempresa" name="idempresa" value="<?php echo $row['idEmpresa']; ?>" />
                             <input type="submit" value="Guardar" class='btn btn-info btnedit' disabled="disabled" />
-                            <input type="submit" value="Cancelar" class='btn btn-warning btncancel' disabled="disabled" />        
+                            <input type="submit" value="Cancelar" class='btn btn-warning btncancelempresa' disabled="disabled" />        
                         </div>
                     </td>
                     </td>
@@ -149,7 +149,7 @@
 <script>
     $(".editable").keyup(function() {
         $(".btnedit").removeAttr("disabled");
-        $(".btncancel").removeAttr("disabled");
+        $(".btncancelempresa").removeAttr("disabled");
         $(this)
                 .parent()
                 .parent()
@@ -159,6 +159,8 @@
 </script>
 <script>
     $(".btnedit").click(function() {
+        var rut = "<?php echo $rut; ?>";
+        var rut2 = $('#rut').val()      
         jQuery.ajax({
             method: "POST",
             url: "querys/updateEmpresas.php",
@@ -174,21 +176,27 @@
             },
             success: function(response)
             {
+            	if(rut != rut2){
+                  	 location.reload();  
+                  }
                 $(".btnedit").attr("disabled", "disabled");
+                $(".btncancelempresa").attr("disabled", "disabled");
                 $('tr.danger').removeClass("danger").addClass("success");
             }
+            
+       
         });
     });
 </script>
 <script>
     $(".btnerase").click(function() {
-        var r = confirm("Esta seguro que quiere eliminar a: " + $('#nombre').val() + "?");
+        var r = confirm("Esta seguro que quiere eliminar a: " + $('#nombre').val() + "?(si acepta se perdera toda la informacion de la empresa.)");
         if (r == true) {
             jQuery.ajax({
                 method: "POST",
                 url: "querys/eraseEmpresa.php",
                 data: {
-                    'rut': $('#rut').val()
+                    'idempresa': $('#idempresa').val()
                 },
                 success: function(response)
                 {
@@ -199,7 +207,7 @@
     });
 </script>
 <script>
-	$(".btncancel").click(function() {
+	$(".btncancelempresa").click(function() {
          $("#nombre").val("<?php echo $nombre; ?>");
          $("#rut").val("<?php echo $rut; ?>");
          $("#giro").val("<?php echo $giro; ?>");
@@ -210,6 +218,6 @@
          $('tr.danger').removeClass("danger");
 
          $(".btnedit").attr("disabled", "disabled");
-         $(".btncancel").attr("disabled", "disabled");
+         $(".btncancelempresa").attr("disabled", "disabled");
 	});
 </script>

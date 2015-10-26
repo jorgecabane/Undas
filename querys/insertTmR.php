@@ -19,7 +19,7 @@ $contrasena=$apellido.$random;
 		echo "Perfecto, redireccionando";
 		$to = $mail;
 		$subject = "Contraseña TMTECNOMED";
-		$txt = "tu contraseña es: $contrasena, Dirigase a app.tmtecnomed.cl para acceder al sitio.";
+		$txt = "Su contraseña es: <strong>$contrasena</strong><br>Dirigase a <a href='http://app.tmtecnomed.cl'>app.tmtecnomed.cl<a> para acceder al sitio.<br><br><img";
 		$headers = "From: serviciotenico@tmtecnomed.cl" . "\r\n";
 		
 		mail($to,$subject,$txt,$headers);

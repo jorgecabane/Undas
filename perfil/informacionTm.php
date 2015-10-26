@@ -183,6 +183,8 @@ if ($resultado) {
 </script>
 <script>
     $(".btnedit").click(function() {
+    	  var rut = "<?php echo $rut; ?>";
+          var rut2 = $('#rut').val()  
         jQuery.ajax({
             method: "POST",
             url: "querys/updateTM.php",
@@ -199,16 +201,20 @@ if ($resultado) {
             },
             success: function(response)
             {
+            	if(rut != rut2){
+                 	 location.reload();  
+                 }
 		                $(".btnedit").attr("disabled", "disabled");
 		                $(".btnedit").attr("disabled", "disabled");
 		                $('tr.danger').removeClass("danger").addClass("success");
+		               
             }
         });
     });
 </script>
 <script>
     $(".btnerase").click(function() {
-        var r = confirm("Esta seguro que quiere eliminar a: " + $('#nombre').val() + ' ' + $('#apellido').val() + "?");
+        var r = confirm("Esta seguro que quiere eliminar a: " + $('#nombre').val() + ' ' + $('#apellido').val() + "? (SI ACEPTA SE PERDERA TODA LA INFORMACION)");
         if (r == true) {
 
             jQuery.ajax({

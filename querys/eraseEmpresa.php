@@ -1,9 +1,8 @@
 <?php
 include_once "../conexionLocal.php";
-$rut=$_POST['rut'];
-
-$query="Delete from empresa WHERE Rut='$rut'";
-$queryIngresoCentro=mysql_query("delete from tm where Rut='$rut'");
+$idempresa=$_POST['idempresa'];
+echo "$idempresa";
+$query="DELETE FROM empresa WHERE idEmpresa=$idempresa";
 $resultado=mysql_query($query);
 if($resultado) {
 	//success

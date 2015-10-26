@@ -90,6 +90,7 @@ foreach($datosCentro AS $Centro){
                         <td>
                             <div>
                                 <input type="submit" value="Guardar" class='btn btn-info btnediteco ' disabled="disabled" />
+                                <input type="submit" value="Cancelar" class='btn btn-warning btncancelcentro' disabled="disabled" />
                             </div>
                         </td>
                         </td>
@@ -188,7 +189,7 @@ foreach($datosCentro AS $Centro){
     	var row = $(this).parent().parent().parent().parent();
     	var idcentro = $(this).parent().parent().find('.nombrecentro').attr('idcentro');
     	var nombre = $(this).parent().parent().find('.nombrecentro').val();
-        var r = confirm("Esta seguro que quiere eliminar a: " + nombre + "?");
+        var r = confirm("Esta seguro que quiere eliminar el centro: " + nombre + "? (SI ACEPTA SE PERDERA TODA LA INFORMACION)");
         if (r == true) {
              jQuery.ajax({
                 method: "POST",
@@ -214,7 +215,7 @@ foreach($datosCentro AS $Centro){
         var row = $(this).parent().parent();
     	var ideco = $(this).parent().parent().find('.nombreeco').attr('ideco');
     	var nombre = $(this).parent().parent().find('.nombreeco').val();
-        var r = confirm("Esta seguro que quiere eliminar a: " + nombre + "?");
+        var r = confirm("Esta seguro que quiere eliminar a: " + nombre + "? (SI ACEPTA SE PERDERA TODA LA INFORMACION");
         if (r == true) {
              jQuery.ajax({
                 method: "POST",
@@ -234,4 +235,19 @@ foreach($datosCentro AS $Centro){
             });
         }
     });
+</script>
+<script>
+	$(".btncancel").click(function() {
+         $("#nombre").val("<?php echo $nombre; ?>");
+         $("#rut").val("<?php echo $rut; ?>");
+         $("#giro").val("<?php echo $giro; ?>");
+         $("#direccion").val("<?php echo $direccion; ?>");
+         $("#comuna").val("<?php echo $comuna; ?>");
+         $("#ciudad").val("<?php echo $ciudad; ?>");
+         $("#razonsocial").val("<?php echo $razonsocial; ?>");	
+         $('tr.danger').removeClass("danger");
+
+         $(".btnedit").attr("disabled", "disabled");
+         $(".btncancel").attr("disabled", "disabled");
+	});
 </script>
