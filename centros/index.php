@@ -15,7 +15,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
            <div class='col col-sm-12'>
            <center>
            <?php 
-           include_once "include/widgetHumano.php";
+           include_once "Include/widgetHumano.php";
            ?>
            </center>
            </div>
