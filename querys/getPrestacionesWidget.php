@@ -35,7 +35,7 @@ ORDER BY tm.Apellido asc";
         	echo "<br>";
         }
     } else {
-        echo "No existen prestaciones asociadas por Tms";
+       echo "<center><strong>No existen Tecn&oacute;logos <br> con esta prestaci&oacute;n</center></strong>";
     }
 }
 if(isset($_POST['especifico']) && !isset($_POST['Empresa']) )

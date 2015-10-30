@@ -35,7 +35,7 @@ ORDER BY tm.Apellido asc";
         	echo "<br>";
         }
     } else {
-        return false;
+       echo "<center><strong>No existen Tecn&oacute;logos <br> con esta prestaci&oacute;n</center></strong>";
     }
 }
 if(isset($_POST['especifico']) && !isset($_POST['Empresa']) )
@@ -70,6 +70,6 @@ if(isset($_POST['especifico']) && !isset($_POST['Empresa']) )
 		echo "<br>";
 		}
 	} else {
-		return false;
-	}
+       echo "<center><strong>No existen Tecn&oacute;logos <br> con esta prestaci&oacute;n</center></strong>";
+    }
 }
