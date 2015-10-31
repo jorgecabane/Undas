@@ -17,8 +17,8 @@ $empresa = $_POST['empresa'];
 if ($admin == 1) {
     echo "<input type='submit' value='Agregar Prestacion' class='btn btn-info btnprestaciones' />";
     echo "<table id='appendPrestaciones' class='table table-hover table-bordered table-condensed'>";
-    echo "<thead><tr>";
-    echo "<th>Prestacion</th>";
+    echo "<thead><tr class='info'>";
+    echo "<th>Prestaciones</th>";
     echo "<th>Guardar</th>";
     echo "<th>Cancelar</th>";
     echo "</thead><tbody>";
@@ -40,9 +40,41 @@ if ($admin == 1) {
         echo "</td></tr>";
     }
 }
+if($admin == 0 ){
+	echo "<table id='appendPrestaciones' class='table table-hover table-bordered table-condensed'>";
+	echo "<thead><tr>";
+	echo "<th class='rellenar info'>Prestaciones</th>";
+	echo "</thead><tbody>";
+	
+	//se buscan las prestaciones ya asignadas
+	$prestaciones = getPrestaciones($rut, $empresa);
+	if ($prestaciones) {//si hay
+		foreach ($prestaciones as $prestacion) {
+			echo'<tr><td colspan="3">';
+			if ($admin == 1) {
+				echo '<button type="button" class="close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+			}
+			echo '<strong class="nombrePrestacion">' . $prestacion['Grupo'] . ": <span class='especifico'>" . $prestacion['Especifico'] . '</span></strong>';
+			echo "</td></tr>";
+		}
+	} else {
+		echo'<tr class="warning Oops"><td colspan="3">';
+		echo '<strong>Oops!</strong> TM no tiene prestaciones asociadas en esta empresa.';
+		echo "</td></tr>";
+	}
+	
+}
 
 echo "</tbody></table>";
+
 ?>
+<script>
+//script para ponerle el nombre en la tabla
+$( document ).ready(function() {	
+	var option = $("select#empresa option:selected").text();
+$('.rellenar').html("Prestaciones  "+ option);
+		});
+</script>
 <script>
 function PopulateSelect(rutTM, idEmpresa){
 	 $.ajax({
@@ -161,3 +193,4 @@ PopulateSelect(rutTM, idEmpresa);
         }
     });
 </script>
+
