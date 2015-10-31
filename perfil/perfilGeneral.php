@@ -1,10 +1,18 @@
 <?php
 session_start ();
 include_once "../conexionLocal.php";
+include_once "../Include/isAdmin.php";
+
 $rut = $_POST ['Rut'];
-// $_POST['Rut'] = '16.954.490-5';
 $nombreTM = $_POST ['nombreTM'];
-// $nombreTM = 'Andrea Amaro Mandolini'
+
+if ($_SESSION["usuario"]) {
+	if (isAdmin($_SESSION["idusuario"]) == 1) {
+		$admin = 1;
+	} else {
+		$admin = 0;
+	}
+}
 ?>
 <div class="row well well-sm">
 	<ul class="nav nav-tabs nav-pills hidden-print" id="myTabs">
@@ -12,7 +20,9 @@ $nombreTM = $_POST ['nombreTM'];
 		<li class="nav"><a href="#Btab" data-toggle="tab">Honorarios</a></li>
 		<li class="nav active"><a href="#Ctab" data-toggle="tab">Horario</a></li>
 		<li class="nav"><a href="#Etab" data-toggle="tab">Prestaciones</a></li>
+		<?php if($admin==1){?>
 		<li class="nav"><a href="#Dtab" data-toggle="tab">Liquidaciones</a></li>
+		<?php }?>
 	</ul>
 
 

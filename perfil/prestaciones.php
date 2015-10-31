@@ -18,7 +18,7 @@ if ($admin == 1) {
     echo "<input type='submit' value='Agregar Prestacion' class='btn btn-info btnprestaciones' />";
     echo "<table id='appendPrestaciones' class='table table-hover table-bordered table-condensed'>";
     echo "<thead><tr class='info'>";
-    echo "<th>Prestaciones</th>";
+    echo "<th class='rellenar'>Prestaciones</th>";
     echo "<th>Guardar</th>";
     echo "<th>Cancelar</th>";
     echo "</thead><tbody>";

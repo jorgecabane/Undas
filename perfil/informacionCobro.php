@@ -79,6 +79,11 @@
 
                        
                     }
+                    else {
+                    	echo'<tr class="warning Oops"><td colspan="5">';
+                    	echo '<strong>Oops!</strong> TM no tiene Honorarios asociados.';
+                    	echo "</td></tr>";
+                    }
                     echo "</tbody></table>";
                     ?>
                     
@@ -220,6 +225,7 @@
                 },
                 success: function(response)
                 {
+                	  $('.Oops').remove();
                     select.attr("disabled", "disabled");
                     input.attr("disabled", "disabled");
                     inputsemana.attr("disabled", "disabled");
