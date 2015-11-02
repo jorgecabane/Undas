@@ -183,8 +183,6 @@
                 $(".btncancelempresa").attr("disabled", "disabled");
                 $('tr.danger').removeClass("danger").addClass("success");
             }
-            
-       
         });
     });
 </script>
