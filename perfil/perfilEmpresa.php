@@ -5,7 +5,12 @@ $idEmpresa = $_POST['idEmpresa'];
 $nombreEmpresa = $_POST['nombreEmpresa'];
 
 ?>
-
+<div class="progress2" style="display: none">
+    <div class="progress-bar progress-bar-striped active"
+    		role="progressbar" style="width:100%" style="height: 5px">
+    		<span class="sr-only">Cargando...</span>
+    		</div>
+    		</div>
 <div class="row well well-sm">
     <ul class="nav nav-tabs nav-pills" id="myTabs">
         <li class="nav active"><a href="#Atab" data-toggle="tab">Informaci&oacute;n Empresa</a></li>

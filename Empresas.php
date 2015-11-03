@@ -62,19 +62,18 @@ if ($admin == 1) {
 
 <script src="include/filtro.js"></script>
 <script>
-    $(document).ready(function() {
-        $('.fc-event').css("line-height", "2");
-        $('.fc-event').css("background-color", "rgb(51, 122, 183);");
-    });
+$(document).ready(function() {
+$('.fc-event').css( "line-height", "2" );
+$('.fc-event').css( "background-color", "rgb(51, 122, 183);" );  
+});
 
 </script>
 <script>
     $(".fc-event").click(function() {
         $(this).siblings().css("background-color", "rgb(51, 122, 183);");
         $(this).css("background-color", "gray");
-        $("#perfil").slideDown('2000').load("perfil/perfilEmpresa.php", {
-            "idEmpresa": $(this).attr('idEmpresa'),
-            'nombreEmpresa': $(this).text()
+        $("#perfil").slideDown('slow').load("perfil/perfilEmpresa.php", {"idEmpresa": $(this).attr('idEmpresa'),'nombreEmpresa': $(this).text()}, function() {
+        	$('.progress').slideUp('slow');
         });
 
     });

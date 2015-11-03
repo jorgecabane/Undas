@@ -6,8 +6,10 @@ include_once dirname(__FILE__) . "/../querys/getEcosGroup.php";
     <?php    
 //while ($row = mysql_fetch_array($resultado)) {
     $datosCentro = getEcosGroup($idEmpresa);
+    
 foreach($datosCentro AS $Centro){
         ?>
+        
         <table id='t01' class='table table-hover table-bordered'>
             <thead><tr class='bg-info'>
                     <th>Nombre Centro</th>
@@ -153,10 +155,14 @@ foreach($datosCentro AS $Centro){
                 'nombre' : nombrecentro,
                 'siglas' : siglas
             },
+            beforeSend: function() {
+                $('.progress2').slideDown('slow');
+              },
             success: function(response)
             {
                 btn.attr("disabled", "disabled");
                 row.removeClass("danger").addClass("success");
+                $('.progress2').slideUp('slow');
             }
         });
     });
@@ -176,10 +182,14 @@ foreach($datosCentro AS $Centro){
                 'nombre' : nombreeco,
                 'color' : color
             },
+            beforeSend: function() {
+                $('.progress2').slideDown('slow');
+              },
             success: function(response)
             {
                 btn.attr("disabled", "disabled");
                 row.removeClass("danger").addClass("success");
+                $('.progress2').slideUp('slow');
             }
         });
     });
