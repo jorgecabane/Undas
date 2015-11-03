@@ -157,7 +157,7 @@ echo "</tbody>";
 </tbody>
 <?php
 echo "<thead><tr class='bg-success' >";
-echo "<th>Valor Honorarios Base: $ <span id='totalHonorarios'></span></th>";
+echo "<th>Valor Honorarios Base: $ <span id='totalHonorarios'></span><span id='totalHonorariosHidden' style='display:none'></span></th>";
 echo "<th>Total Horas Mes: <span id='totalHoras'></span></th>";
 echo "</tr>";
 echo "<tr><th class='bg-info' colspan='2'><center>Boleta de Honorarios <center></th></tr>";
@@ -173,6 +173,7 @@ echo "</thead>";
 	76.022.465-0 <br> Direcci&#243n: Valle del Maipo poniente N&ordm 3617.
 	Pe&ntildealolen, Stgo.
 </div>
+
 
 
 
@@ -209,7 +210,7 @@ if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 	cuentaValoresHora = cuentaValoresHora +1;
 	tr.show();
 	tr.removeClass("hidden-print");
-	contador= (contador + parseFloat(horas*valorhora));
+	contador= parseFloat(contador + parseFloat(horas*valorhora));
 }
 
 	
@@ -218,25 +219,32 @@ if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 	 $('#errores').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Error!</strong> Falta agregar Valores Hora para calcular Honorario.</div>");
 	 }
 });
-$('#totalHonorarios').html(contador);
+// honorarios hidden totalHonorariosHidden
+$('#totalHonorariosHidden').html(contador);
+//honorarios displayed
+$('#totalHonorarios').html(contador.toLocaleString('de-DE'));
 </script>
 <script>
 //script para sumar los Extras
-var suma = $('#totalHonorarios').text();
+var suma = $('#totalHonorariosHidden').text();
 $(".montoExtra").each(function(index) {
     suma = parseFloat(suma)+ parseFloat($(this).text());
 });
-$('#totalHonorarios').html(suma);
+//honorarios hidden totalHonorariosHidden
+$('#totalHonorariosHidden').html(suma);
+//honorarios displayed
+$('#totalHonorarios').html(suma.toLocaleString('de-DE'));
 </script>
 <script>
-//script para calcular los honorarios brutos, retencion y liquido
-var bruto = $('#totalHonorarios').text();
-$('#bruto').html(bruto);
-var retencion = bruto*0.1;
-var sindecimales = parseFloat(retencion).toFixed(0);
-$('#retencion').html(sindecimales);
-var liquido = parseFloat(bruto)+parseFloat(sindecimales);
-$('#liquido').html(liquido);
+//script para calcular los honorarios brutos, retencion y liquido (toLocaleString('de-DE') cambia el formato a separador de miles ) 
+var bruto = parseFloat($('#totalHonorariosHidden').text());
+$('#bruto').html(bruto.toLocaleString('de-DE'));
+var retenciondecimales = bruto*0.1;
+var retencion = parseFloat(parseFloat(retenciondecimales).toFixed(0));
+$('#retencion').html(retencion.toLocaleString('de-DE'));
+var liquido = parseFloat(parseFloat(bruto)-parseFloat(retencion));
+//var liquidoMiles = Moneda(liquido);
+$('#liquido').html(liquido.toLocaleString('de-DE'));
 </script>
 
 
@@ -317,18 +325,21 @@ $('.eliminarExtra').click(function(){
 <script>
 //script para sumar los montos de los extras en el momento en que se guarden
 function sumaMonto(monto){
-	var suma = $('#totalHonorarios').text();
+	var suma = $('#totalHonorariosHidden').text();
     
-    suma = parseFloat(suma)+ parseFloat(monto);
-
-$('#totalHonorarios').html(suma);
-var bruto = $('#totalHonorarios').text();
-$('#bruto').html(bruto);
-var retencion = bruto*0.1;
-var sindecimales = parseFloat(retencion).toFixed(0);
-$('#retencion').html(sindecimales);
-var liquido = parseFloat(bruto)+parseFloat(sindecimales);
-$('#liquido').html(liquido);
+    suma = parseFloat(parseFloat(suma)+ parseFloat(monto));
+//total honorarios hidden 
+$('#totalHonorariosHidden').html(suma);
+//total honorarios displayed
+$('#totalHonorarios').html(suma.toLocaleString('de-DE'));
+var bruto = parseFloat($('#totalHonorariosHidden').text());
+$('#bruto').html(bruto.toLocaleString('de-DE'));
+var retenciondecimales = bruto*0.1;
+var retencion = parseFloat(parseFloat(retenciondecimales).toFixed(0));
+$('#retencion').html(retencion.toLocaleString('de-DE'));
+var liquido = parseFloat(parseFloat(bruto)-parseFloat(retencion));
+//var liquidoMiles = Moneda(liquido);
+$('#liquido').html(liquido.toLocaleString('de-DE'));
 }
 
 </script>
