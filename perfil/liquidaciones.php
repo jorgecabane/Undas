@@ -125,7 +125,7 @@ if ($admin == 1) {
 	echo "<input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' />";
 }
 echo "</th>";
-echo "<th>Monto Total</th>";
+echo "<th>Monto Total Extras</th>";
 echo "</thead >";
 echo "<tbody id='appendExtra'>";
 $extras = getExtras ( $rut, $mes );
@@ -166,12 +166,12 @@ echo "</tbody>";
 
 //aquiparte Resumen honorarios
 echo "<thead>";
-echo "<tr class='bg-success'><th colspan='2'>Total Horas Mes: <span id='totalHoras'></span></th></tr>";
-echo "<tr class='bg-success' ><th colspan='2'>Valor Honorarios Base: $ <span id='totalHonorarios'></span><span id='totalHonorariosHidden' style='display:none'></span></th></tr>";
+echo "<tr class='bg-success'><th colspan='2'>Total Horas Mes: <span id='totalHoras' style='padding-left:120px'></span></th></tr>";
+echo "<tr class='bg-success' ><th colspan='2'>Valor Honorarios Base: <span style='padding-left:60px'>$ </span><span id='totalHonorarios'></span><span id='totalHonorariosHidden' style='display:none'></span></th></tr>";
 echo "<tr><th class='bg-info' colspan='2'><center>Boleta de Honorarios <center></th></tr>";
-echo "<tr><th class='bg-warning' colspan='2'>Total Bruto: $ <span id='bruto'></span></th></tr>";
-echo "<tr><th class='bg-warning' colspan='2'>10% de retencion: $ <span id='retencion'></span></th></tr>";
-echo "<tr><th class='bg-warning' colspan='2'>Total liquido honorarios: $ <span id='liquido'></span></th></tr>";
+echo "<tr><th class='bg-warning' colspan='2'>Total Bruto: <span style='padding-left:146px'>$ </span><span id='bruto'></span></th></tr>";
+echo "<tr><th class='bg-warning' colspan='2'>10% de retenci&oacute;n: <span style='padding-left:100px'>$ </span><span id='retencion'></span></th></tr>";
+echo "<tr><th class='bg-warning' colspan='2'>Total l&iacute;quido honorarios: <span style='padding-left:50px'>$ </span><span id='liquido'></span></th></tr>";
 echo "</thead>";
 //aqui termina resumen Honorarios
 ?>
