@@ -20,7 +20,7 @@
 	</div>
 </div>
 
-<div id="Liquidaciones" class="row"></div>
+<div id="Liquidaciones" style=" margin:auto 0; " class="row"></div>
 
 <script>
     $(function() {
