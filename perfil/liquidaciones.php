@@ -14,7 +14,7 @@ if ($_SESSION ["usuario"]) {
 }
 $mes = $_POST ['mes'];
 $rut = $_POST ['rut'];
-
+echo "<br>";
 //div en caso de errores ( horasRealizadas sin valoresHora asociadas)
 echo"<div id='errores'></div>";
 

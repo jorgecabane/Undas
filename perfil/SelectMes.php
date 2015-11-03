@@ -45,3 +45,14 @@ $("#Liquidaciones").slideDown('slow').load("perfil/liquidaciones.php", {"rut": <
 });
 });
 </script>
+<script>
+$( document ).ready(function() {
+var d = new Date(),
+
+n = d.getMonth()+1,
+
+y = d.getFullYear();
+var date = y+"-"+n;
+$("#Liquidaciones").load("perfil/liquidaciones.php", {"rut": <?php echo "'$rut'";?>, "mes": date}); 
+});
+</script>
