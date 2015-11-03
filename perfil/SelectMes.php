@@ -11,7 +11,7 @@
 			class="form-control text-center" type="text" id="start" name="from">
 
 	</div>
-	<div class="col-sm-2 hidden-print exporta" style="display: none">
+	<div class="col-sm-2 hidden-print exporta" >
 		<button class="btn btn-danger btn-block" onClick="window.print()"
 			id="descargar" data-toggle="tooltip" data-placement="left"
 			title="Descargar PDF!">
@@ -37,7 +37,7 @@
 </script>
 <script>
 $("#start").change(function() {
-	$('.exporta').show();
+
 	var mes = $('#start').val();
 $("#Liquidaciones").slideDown('slow').load("perfil/liquidaciones.php", {"rut": <?php echo "'$rut'";?>, "mes": mes}, 
 		function() {
