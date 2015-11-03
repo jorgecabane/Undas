@@ -3,13 +3,13 @@ include_once dirname(__FILE__) . "/../conexionLocal.php";
 include_once dirname(__FILE__) . "/../querys/getEcosGroup.php";
 ?>
 <div align="center" >
-    <?php    
+    <?php
 //while ($row = mysql_fetch_array($resultado)) {
     $datosCentro = getEcosGroup($idEmpresa);
-    
+
 foreach($datosCentro AS $Centro){
         ?>
-        
+
         <table id='t01' class='table table-hover table-bordered'>
             <thead><tr class='bg-info'>
                     <th>Nombre Centro</th>
@@ -60,8 +60,8 @@ foreach($datosCentro AS $Centro){
                     <th>Nombres Ecos</th>
                     <th>Color</th>
             </thead><tbody>
-            
-        <?php	foreach ($Centro['Ecos'] as $dataEco) { 
+
+        <?php	foreach ($Centro['Ecos'] as $dataEco) {
                 		?>
                     <tr>
                         <td>
@@ -102,7 +102,7 @@ foreach($datosCentro AS $Centro){
                     </tr>
                     <?php
                 }
-			}	
+			}
             ?>
         </tbody>
     </table>
@@ -116,7 +116,7 @@ foreach($datosCentro AS $Centro){
                 .parent()
                 .addClass("danger");
     });
-    
+
 </script>
 <script>
     $(".editable").keyup(function() {
@@ -127,7 +127,7 @@ foreach($datosCentro AS $Centro){
                 .parent()
                 .addClass("danger");
     });
-    
+
 </script>
 <script>
     $(".coloreco").change(function() {
@@ -138,7 +138,7 @@ foreach($datosCentro AS $Centro){
                 .parent()
                 .addClass("danger");
     });
-    
+
 </script>
 <script>
     $(".btneditcentro").click(function() {
@@ -156,13 +156,13 @@ foreach($datosCentro AS $Centro){
                 'siglas' : siglas
             },
             beforeSend: function() {
-                $('.progress2').slideDown('slow');
+                $('.progress').slideDown('slow');
               },
             success: function(response)
             {
                 btn.attr("disabled", "disabled");
                 row.removeClass("danger").addClass("success");
-                $('.progress2').slideUp('slow');
+                $('.progress').slideUp('slow');
             }
         });
     });
@@ -183,13 +183,13 @@ foreach($datosCentro AS $Centro){
                 'color' : color
             },
             beforeSend: function() {
-                $('.progress2').slideDown('slow');
+                $('.progress').slideDown('slow');
               },
             success: function(response)
             {
                 btn.attr("disabled", "disabled");
                 row.removeClass("danger").addClass("success");
-                $('.progress2').slideUp('slow');
+                $('.progress').slideUp('slow');
             }
         });
     });
@@ -254,7 +254,7 @@ foreach($datosCentro AS $Centro){
          $("#direccion").val("<?php echo $direccion; ?>");
          $("#comuna").val("<?php echo $comuna; ?>");
          $("#ciudad").val("<?php echo $ciudad; ?>");
-         $("#razonsocial").val("<?php echo $razonsocial; ?>");	
+         $("#razonsocial").val("<?php echo $razonsocial; ?>");
          $('tr.danger').removeClass("danger");
 
          $(".btnedit").attr("disabled", "disabled");

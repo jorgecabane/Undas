@@ -34,20 +34,22 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 ?>
             </div><!-- #listado -->
         </div>
-    <div class="progress" style="display:none">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
-                    <span class="sr-only">Cargando...</span>
-                </div>
-            </div>
-        <?php
+      <?php
         // si no admin ve esto
         if ($admin == 1) {
-            echo '<div class="col-sm-10" id="perfil">
-            <div class="alert alert-info">
-                <center>
-                    <h4>Por favor seleccione una Empresa del listado de la izquierda para ver su informaci&oacute;n</h4>
-                </center>
-            </div>';
+            echo '<div class="col-sm-10">
+                    <div class="progress" style="display:none">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
+                            <span class="sr-only">Cargando...</span>
+                        </div>
+                    </div>
+                    <div id="perfil">
+                        <div class="alert alert-info">
+                        <center>
+                        <h4>Por favor seleccione una Empresa del listado de la izquierda para ver su informaci&oacute;n</h4>
+                    </center>
+                    </div>
+                  </div>';
         }
         ?>
     </div><!-- row -->
@@ -69,7 +71,7 @@ if ($admin == 1) {
 <script>
 $(document).ready(function() {
 $('.fc-event').css( "line-height", "2" );
-$('.fc-event').css( "background-color", "rgb(51, 122, 183);" );  
+$('.fc-event').css( "background-color", "rgb(51, 122, 183);" );
 });
 
 </script>
