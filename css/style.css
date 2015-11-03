@@ -96,6 +96,7 @@ to {
 }
 .fc-event {
     cursor: pointer;
+    font-size: 0.9em;
 }
 .alert {
     margin-bottom: 0px;
