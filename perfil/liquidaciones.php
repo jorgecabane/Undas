@@ -5,7 +5,7 @@ include_once "../Include/meses.php";
 include_once "../querys/getHoras.php";
 include_once "../querys/getValorHora.php";
 include_once "../querys/getExtras.php";
-if ($_SESSION ["usuario"]) {
+if ($_SESSION ["usuario"]) { 
 	if (isAdmin ( $_SESSION ["idusuario"] ) == 1) {
 		$admin = 1;
 	} else {
@@ -14,65 +14,35 @@ if ($_SESSION ["usuario"]) {
 }
 $mes = $_POST ['mes'];
 $rut = $_POST ['rut'];
+
+//div en caso de errores ( horasRealizadas sin valoresHora asociadas)
 echo"<div id='errores'></div>";
+
+//aqui parte Resumen Fecha y TM
 $Horas = getHoras ( $rut, $mes );
 echo "<table id='t01' class='table table-hover table-bordered table-condensed table-responsive' style='max-width:80%; white-space: nowrap'>";
-echo "<thead><tr class='bg-primary' colspan='2'>";
+echo "<thead><tr class='bg-primary'>";
 echo "<th>Fecha: ";
 echo "<span id='mes'>" . Mes ( $Horas [0] ['Mes'] ) . "</span>";
 echo " ";
 echo "<span id='year'>" . $Horas [0] ['Year'] . "</span>";
-echo " </th>";
-echo "</thead></tr>";
+echo "</th>";
+echo "</tr></thead>";
 
-echo "<thead><tr class='bg-primary' colspan='2'>";
+echo "<thead><tr class='bg-primary'>";
 echo "<th>TM: ";
 echo $Horas [0] ['TMNombre'];
 echo " " . $Horas [0] ['TMApellido'];
 echo " </th>";
 echo "</thead></tr>";
+// Aqui termina Resumen Fecha y TM
 
-echo "<thead><tr class='bg-info'>";
-echo "<th>Empresa</th>";
-echo "<th>Horas Realizadas</th>";
-echo "</thead></tr><tbody>";
-if ($Horas) {
-	foreach ( $Horas as $informacion ) {
-		if($informacion['NombreEmpresa']!= "Sin Turno"){
-		?>
-
-
-<tr>
-	<td><span class="CentroHoraRealizada"><?php echo $informacion['NombreEmpresa']; ?></span>
-		<span class="semanahorarealizada"><?php
-		
-if ($informacion ['Semana'] == 7) {
-			echo "Sabado";
-		} else {
-			echo "Semana";
-		}
-		?></span></td>
-	<td><span class='label label-info'><span class="HorasRealizadas"><?php echo number_format($informacion['Horas'], 2); ?></span>
-			horas </span></td>
-</tr>
-<?php
-		}
-}
-} else {
-	echo '<div class="alert alert-warning alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Error!</strong> Tm no tiene Horas realizadas asociadas.
-</div>';
-}
-
-?>
-</tbody>
-
-<?php
+// Aqui parte Valores Horas
 echo "<thead><tr class='bg-info'>";
 echo "<th>Empresa</th>";
 echo "<th>Valor Hora</th>";
 echo "</thead></tr><tbody>";
+
 $ValorHoras = getValorHora ( $rut );
 if ($ValorHoras) {
 	
@@ -103,12 +73,52 @@ if ($ValorHoras) {
 
 <?php
 	}
-} else {
+}//si es que tiene valores hora asociadas
+else { //caso de que no tenga valoreshora asociadas
 	echo '<div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Error!</strong> TM no tiene Valores Hora asociados.
 </div>';
 }
+//aqui termina valoresHora
+
+//aqui empìeza HorasRealizadas
+echo "<thead><tr class='bg-info'>";
+echo "<th>Empresa</th>";
+echo "<th>Horas Realizadas</th>";
+echo "</thead></tr><tbody>";
+if ($Horas) {
+	foreach ( $Horas as $informacion ) {
+		if($informacion['NombreEmpresa']!= "Sin Turno"){
+			?>
+
+
+<tr>
+	<td><span class="CentroHoraRealizada"><?php echo $informacion['NombreEmpresa']; ?></span>
+		<span class="semanahorarealizada"><?php
+		
+if ($informacion ['Semana'] == 7) {
+			echo "Sabado";
+		} else {
+			echo "Semana";
+		}
+		?></span></td>
+	<td><span class='label label-info'><span class="HorasRealizadas"><?php echo number_format($informacion['Horas'], 2); ?></span>
+			horas </span></td>
+</tr>
+<?php
+		}
+}
+} else {
+	echo '<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Error!</strong> Tm no tiene Horas realizadas asociadas.
+</div>';
+}
+echo "</tbody>";
+// aqui termina HorasRealizadas
+
+//aqui empieza Extras
 echo "<thead ><tr colspan='2' class='bg-info'>";
 echo "<th>Extras";
 if ($admin == 1) {
@@ -152,29 +162,28 @@ if ($extras) {
 }
 
 echo "</tbody>";
+//aqui termina Extras
 
-?>
-</tbody>
-<?php
-echo "<thead><tr class='bg-success' >";
-echo "<th>Valor Honorarios Base: $ <span id='totalHonorarios'></span><span id='totalHonorariosHidden' style='display:none'></span></th>";
-echo "<th>Total Horas Mes: <span id='totalHoras'></span></th>";
-echo "</tr>";
+//aquiparte Resumen honorarios
+echo "<thead>";
+echo "<tr class='bg-success'><th colspan='2'>Total Horas Mes: <span id='totalHoras'></span></th></tr>";
+echo "<tr class='bg-success' ><th colspan='2'>Valor Honorarios Base: $ <span id='totalHonorarios'></span><span id='totalHonorariosHidden' style='display:none'></span></th></tr>";
 echo "<tr><th class='bg-info' colspan='2'><center>Boleta de Honorarios <center></th></tr>";
 echo "<tr><th class='bg-warning' colspan='2'>Total Bruto: $ <span id='bruto'></span></th></tr>";
 echo "<tr><th class='bg-warning' colspan='2'>10% de retencion: $ <span id='retencion'></span></th></tr>";
 echo "<tr><th class='bg-warning' colspan='2'>Total liquido honorarios: $ <span id='liquido'></span></th></tr>";
 echo "</thead>";
+//aqui termina resumen Honorarios
 ?>
 
 </table>
+
+
 <div class='alert alert-warning visible-print-block'>
 	Enviar Boleta de honorarios a nombre de :<br> TMTECNOMED S.A. <br> RUT:
 	76.022.465-0 <br> Direcci&#243n: Valle del Maipo poniente N&ordm 3617.
 	Pe&ntildealolen, Stgo.
 </div>
-
-
 
 
 <script>
