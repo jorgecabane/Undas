@@ -9,6 +9,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             <center>Perfiles Empresas</center>
         </h3>
     </div>
+
     <div class="row">
         <div class="col-sm-2 well well-sm">
             <h4>Busque por Empresa</h4>
@@ -33,7 +34,11 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 ?>
             </div><!-- #listado -->
         </div>
-
+    <div class="progress" style="display:none">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+            </div>
         <?php
         // si no admin ve esto
         if ($admin == 1) {
@@ -72,6 +77,7 @@ $('.fc-event').css( "background-color", "rgb(51, 122, 183);" );
     $(".fc-event").click(function() {
         $(this).siblings().css("background-color", "rgb(51, 122, 183);");
         $(this).css("background-color", "gray");
+        $('.progress').slideDown('slow');
         $("#perfil").slideDown('slow').load("perfil/perfilEmpresa.php", {"idEmpresa": $(this).attr('idEmpresa'),'nombreEmpresa': $(this).text()}, function() {
         	$('.progress').slideUp('slow');
         });
