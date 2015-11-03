@@ -199,6 +199,9 @@ if ($resultado) {
                 'cuenta': $('#cuenta').val(),	
                 'comentario': $('#comentario').val()
             },
+            beforeSend: function() {
+                $('.progress').slideDown('slow');
+              },
             success: function(response)
             {
             	if(rut != rut2){
@@ -207,7 +210,7 @@ if ($resultado) {
 		                $(".btnedit").attr("disabled", "disabled");
 		                $(".btnedit").attr("disabled", "disabled");
 		                $('tr.danger').removeClass("danger").addClass("success");
-		               
+		                $('.progress').slideUp('slow');
             }
         });
     });

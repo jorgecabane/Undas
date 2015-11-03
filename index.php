@@ -141,7 +141,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             data: {"start": start, "end": end},
             method: 'POST',
             beforeSend: function() {
-                $('.progress').slideDown('slow');
+              $('.progress').slideDown('slow');
             },
             success: function(output) {
                 $('.progress').slideUp('slow');

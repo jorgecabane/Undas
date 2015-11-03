@@ -5,6 +5,7 @@ $idEmpresa = $_POST['idEmpresa'];
 $nombreEmpresa = $_POST['nombreEmpresa'];
 
 ?>
+
 <div class="row well well-sm">
     <ul class="nav nav-tabs nav-pills" id="myTabs">
         <li class="nav active"><a href="#Atab" data-toggle="tab">Informaci&oacute;n Empresa</a></li>

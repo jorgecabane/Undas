@@ -24,6 +24,12 @@
         	$ciudad=$row['Ciudad'];
         	$razonsocial=$row['RazonSocial'];
             ?>
+            <div class="progress" style="display: none">
+                <div class="progress-bar progress-bar-striped active"
+                     role="progressbar" style="width: 100%">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+            </div>
             <tr>
             <th>Nombre</th>
                 <td>
@@ -174,6 +180,9 @@
                 'ciudad': $('#ciudad').val(),
                 'razonsocial': $('#razonsocial').val()
             },
+            beforeSend: function() {
+                $('.progress').slideDown('slow');
+              },
             success: function(response)
             {
             	if(rut != rut2){
@@ -182,6 +191,7 @@
                 $(".btnedit").attr("disabled", "disabled");
                 $(".btncancelempresa").attr("disabled", "disabled");
                 $('tr.danger').removeClass("danger").addClass("success");
+                $('.progress').slideUp('slow');
             }
         });
     });
