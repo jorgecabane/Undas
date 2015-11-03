@@ -10,7 +10,7 @@
             $idEmpresa=$_POST['empresa'];
           $mes=$_POST['mes'];
            $ano=$_POST['año'];
-             $cupos=$_POST['CantidadCupos'];
+             $cupos=trim($_POST['CantidadCupos']);
           
               
               

@@ -1,8 +1,8 @@
 <?php
 include_once "../conexionLocal.php";
-$id=$_POST['ideco'];
-$nombre=$_POST['nombre'];
-$color=$_POST['color'];
+$id=trim($_POST['ideco']);
+$nombre=trim($_POST['nombre']);
+$color=trim($_POST['color']);
 
 $query="UPDATE ecos SET Nombre='$nombre', Color='$color' WHERE idEcos=$id";
 

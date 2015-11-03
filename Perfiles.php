@@ -2,6 +2,7 @@
 session_start();
 include_once dirname(__FILE__) . "/header.php";
 include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
+include_once dirname(__FILE__) . "/querys/getTM.php";
 ?>
 <div class="container-fluid">
     <div class="row well well-titles hidden-print">
@@ -75,11 +76,7 @@ if ($admin == 1) {
 
     $sessionrut = $_SESSION['idusuario'];
 
-    $query = "SELECT Rut, Nombre, Apellido FROM tm WHERE idTM='$sessionrut'";
-
-    $res = mysql_query($query) or die(mysql_error());
-
-    $row = mysql_fetch_assoc($res);
+   $row = getTM($sessionrut);
     $Rut = $row["Rut"];
     $nombreTM = $row['Nombre'] . ' ' . $row['Apellido'];
 

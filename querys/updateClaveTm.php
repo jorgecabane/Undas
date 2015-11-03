@@ -8,9 +8,9 @@
         include_once dirname(__FILE__) . "/../conexionLocal.php";
 
         $id = $_POST['id'];
-        $claveantigua = $_POST['claveantigua'];
-        $clavenueva = $_POST['clavenueva'];
-        $repetirclave = $_POST['repetirclave'];
+        $claveantigua = trim($_POST['claveantigua']);
+        $clavenueva = trim($_POST['clavenueva']);
+        $repetirclave = trim($_POST['repetirclave']);
 
 
         $result = mysql_query("Select Password from tm Where idTM=$id");

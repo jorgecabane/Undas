@@ -1,14 +1,14 @@
 <?php
 include_once "../conexionLocal.php";
-$idempresa=$_POST['idempresa'];
-$nombre=$_POST['nombre'];
-$rut=$_POST['rut'];
+$idempresa=trim($_POST['idempresa']);
+$nombre=trim($_POST['nombre']);
+$rut=trim($_POST['rut']);
 echo $rut;
-$giro=$_POST['giro'];
-$direccion=$_POST['direccion'];
-$comuna=$_POST['comuna'];
-$ciudad=$_POST['ciudad'];
-$razonsocial=$_POST['razonsocial'];
+$giro=trim($_POST['giro']);
+$direccion=trim($_POST['direccion']);
+$comuna=trim($_POST['comuna']);
+$ciudad=trim($_POST['ciudad']);
+$razonsocial=trim($_POST['razonsocial']);
 
 $query="UPDATE empresa SET Nombre='$nombre', Rut='$rut', Giro='$giro', Direccion='$direccion', Comuna='$comuna', Ciudad='$ciudad', RazonSocial='$razonsocial' WHERE idEmpresa='$idempresa'";
 

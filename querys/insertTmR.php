@@ -1,14 +1,14 @@
 
 <?php
 include_once "../conexionLocal.php";
-$nombre = $_POST ['nombre'];
-$apellido = $_POST ['apellido'];
-$rut = $_POST ['rut'];
-$mail = $_POST ['mail'];
-$cuenta = $_POST ['cuenta'];
-$banco = $_POST ['banco'];
-$celular = $_POST ['celular'];
-$comentario = $_POST ['comentario'];
+$nombre = trim($_POST ['nombre']);
+$apellido = trim($_POST ['apellido']);
+$rut = trim($_POST ['rut']);
+$mail = trim($_POST ['mail']);
+$cuenta = trim($_POST ['cuenta']);
+$banco = trim($_POST ['banco']);
+$celular = trim($_POST ['celular']);
+$comentario = trim($_POST ['comentario']);
 $random=rand(1000000,9999999);
 $contrasena=$apellido.$random;
 	

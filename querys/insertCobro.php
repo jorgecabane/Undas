@@ -1,10 +1,10 @@
 
 <?php
 include_once "../conexionLocal.php";
-$idTM=$_POST['idTM'];
-$valor=$_POST['cobro'];
-$empresa=$_POST['idEmpresa'];
-$semana=$_POST['semana'];
+$idTM=trim($_POST['idTM']);
+$valor=trim($_POST['cobro']);
+$empresa=trim($_POST['idEmpresa']);
+$semana=trim($_POST['semana']);
 
 $queryIdTM="Select idTM from tm where Rut='$idTM'";
 $resultado= mysql_query($queryIdTM);
