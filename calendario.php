@@ -129,8 +129,7 @@ $centro = $_GET ['centro'];
             <!-- calendario -->
             <div class="col-sm-2 hidden-print">
                 <div class="alert alert-info alert-sm" ><span class="glyphicon glyphicon-hourglass pull-right"></span>
-                    CUPOS: <span id="cupos" class="badge badge-warning"></span>
-                </div>
+                    <center>CUPOS:<span id="cupos" class="badge badge-warning"></span></center></div>
             </div>
             <div class="col-sm-1 hidden-print">
                 <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
