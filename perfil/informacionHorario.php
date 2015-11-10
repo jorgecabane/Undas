@@ -9,28 +9,29 @@
 
 
 <script>
-                        $(document).ready(function() {
-                            $('#calendar').fullCalendar({
-                                eventSources: {
-                                    url: "Include/feedEventosTM.php?Rut=<?php echo $rut; ?>"
-                                },
-                                header: {
-                                    left: 'prev,today,next',
-                                    center: 'title',
-                                    right: 'agendaDay,agendaWeek,month'
-                                },
-                                eventRender: function(event, element) {
-                                    element.find('.fc-title').prepend(event.description + "<br/>");
-                                },
-                                defaultView: 'month',
-                                lazyFetch: true,
-                                hiddenDays: [0],
-                                allDaySlot: false,
-                                minTime: '08:00:00',
-                                maxTime: '21:00:00',
-                                slotDuration: '00:15:00',
-                                contentHeight: 800,
-                                displayEventEnd: true
-                            });//fullCalendar
-                        });//ready
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                eventSources: {
+                    url: "Include/feedEventosTM.php?Rut=<?php echo $rut; ?>"
+                },
+                header: {
+                    left: 'prev,today,next',
+                    center: 'title',
+                    right: 'agendaDay,agendaWeek,month'
+                },
+                eventRender: function(event, element) {
+                    element.find('.fc-title').prepend(event.description + '<br>');
+                },
+                defaultView: 'month',
+                lazyFetch: true,
+                hiddenDays: [0],
+                allDaySlot: false,
+                minTime: '08:00:00',
+                maxTime: '21:00:00',
+                slotDuration: '00:15:00',
+                contentHeight: 800,
+                slotEventOverlap: false,
+                displayEventEnd: true
+            });//fullCalendar
+        });//ready
 </script>
