@@ -1,5 +1,7 @@
 var verifyEvent = function(event) {
-    //verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
+    /*
+     * verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
+     */
     // alert(event.idEco+' '+event.start.format());
 //    $.ajax({
 //        url: 'Include/verificaEco.php',

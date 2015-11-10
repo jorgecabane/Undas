@@ -30,6 +30,7 @@ var deleteEvent = function(event, jsEvent) {
                 success: function(output) {
                     if (output === '1') {
                         $('.progress').slideUp();
+                        getCupos();
                     }//si se borro de la base de datos
                 }//success
             });//ajax */

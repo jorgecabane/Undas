@@ -18,6 +18,7 @@ $(document).ready(function() {
                             if (output !== '1') {
                                 alert('Hubo un error al eliminar algun evento, se recargará la página...');
                                 location.reload();
+                                getCupos();
                             }//si se borro de la base de datos
                         }//success
                     });//ajax */

@@ -13,4 +13,5 @@ var switchView = function(view) {
         case 'agendaDay':
             $('#repeatWeek, #deleteWeek, #deleteMonth').addClass('disabled');
     }
+    getCupos();
 };

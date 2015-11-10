@@ -22,6 +22,7 @@ $(document).ready(function() {
                                 contador++;
                                 if (contador === cantidad) {
                                     $('.progress').slideUp();
+                                    getCupos();
                                 }
 
                             }//si se borro de la base de datos

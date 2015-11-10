@@ -36,7 +36,7 @@ var saveBD = function(event) {
                         }
 
                         $('.progress').slideUp();
-
+                        getCupos();
 
                     }
                 }//success

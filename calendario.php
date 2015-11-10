@@ -104,7 +104,6 @@ $centro = $_GET ['centro'];
                         ?>
                         <!-- Generacion de listado de TMs -->
                     </div>
-                    <!-- <Ma href='#' class='btn btn-warning btn-block'>Ejecutar</a> -->
 
                     <div id="medicos" style="display:none;">
                         <hr class="hr-sm">
@@ -129,10 +128,8 @@ $centro = $_GET ['centro'];
             <div id="horarioContent" class="alert alert-info" style="display:none"></div>
             <!-- calendario -->
             <div class="col-sm-2 hidden-print">
-                <div class="alert alert-danger alert-sm active" id="cupos"><span class="glyphicon glyphicon-hourglass pull-right"></span>
-                    CUPOS: <strong>2</strong> /
-                    <strong>200</strong>
-
+                <div class="alert alert-info alert-sm" ><span class="glyphicon glyphicon-hourglass pull-right"></span>
+                    CUPOS: <span id="cupos" class="badge badge-warning"></span>
                 </div>
             </div>
             <div class="col-sm-1 hidden-print">
@@ -230,6 +227,7 @@ $centro = $_GET ['centro'];
 <script src="Include/js/repeatWeek.js"></script><!-- repeatWeek -->
 <script src="Include/js/deleteWeek.js"></script><!-- deleteWeek -->
 <script src="Include/js/deleteMonth.js"></script><!-- deleteMonth -->
+<script src="Include/js/getCupos.js"></script><!-- getCupos -->
 <script>
     $('#external-events').collapse({
         parent: '.fc-event'
@@ -259,6 +257,7 @@ $centro = $_GET ['centro'];
             ], //eventSources
             eventRender: renderEvent,
             eventDrop: updateEvent,
+            eventResize: updateEvent,
             eventDragStop: deleteEvent,
             viewRender: switchView,
             eventReceive: eventReceive,
@@ -289,7 +288,8 @@ $centro = $_GET ['centro'];
             hiddenDays: [0],
             contentHeight: 800,
             allDaySlot: false,
-            displayEventEnd: true
+            displayEventEnd: true,
+            timeFormat: 'H:mm'
         });
 
     });//document.ready

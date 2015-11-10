@@ -25,6 +25,7 @@ var updateEvent = function(event, element) {
             if (output === '1') {
                 //console.log(output);
                 $('.progress').slideUp();
+                getCupos();
             }
         }//success
     });//ajax
