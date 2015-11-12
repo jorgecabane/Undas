@@ -1,45 +1,76 @@
-
+<?php
+$month = date ( 'm' );
+$year = date ('Y');
+?>
 <div class="progress" style="display: none">
 	<div class="progress-bar progress-bar-striped active"
 		role="progressbar" style="width: 100%">
 		<span class="sr-only">Cargando...</span>
 	</div>
 </div>
-<div class="row   ">
-	<div class="col-xs-2  col-xs-offset-5 text-center hidden-print">
-		<label for="start">Seleccione Mes</label> <input
-			class="form-control text-center" type="text" id="start" name="from">
+<div class="row">
+	<div class="col-xs-2  col-xs-offset-3 text-center hidden-print">
+		Mes:
+		<select	class="form-control text-center" name="month" id="month">
+			<option value="1" <?PHP if($month==1) echo "selected";?>>Enero</option>
+			<option value="2" <?PHP if($month==2) echo "selected";?>>Febrero</option>
+			<option value="3" <?PHP if($month==3) echo "selected";?>>Marzo</option>
+			<option value="4" <?PHP if($month==4) echo "selected";?>>Abril</option>
+			<option value="5" <?PHP if($month==5) echo "selected";?>>Mayo</option>
+			<option value="6" <?PHP if($month==6) echo "selected";?>>Junio</option>
+			<option value="7" <?PHP if($month==7) echo "selected";?>>Julio</option>
+			<option value="8" <?PHP if($month==8) echo "selected";?>>Agosto</option>
+			<option value="9" <?PHP if($month==9) echo "selected";?>>Septiembre</option>
+			<option value="10" <?PHP if($month==10) echo "selected";?>>Octubre</option>
+			<option value="11" <?PHP if($month==11) echo "selected";?>>Noviembre</option>
+			<option value="12" <?PHP if($month==12) echo "selected";?>>Diciembre</option>
+		</select>
+	</div>
+	<div class="col-xs-2   text-center hidden-print">
+	A&ntilde;o:
+		<select class="form-control text-center" name="year" id="year">
+	<?PHP
+	
+for($i = 2015; $i <= date ( "Y" ); $i ++)
+		if ($year == $i)
+			echo "<option value='$i' selected>$i</option>";
+		else
+			echo "<option value='$i'>$i</option>";
+	?>
+</select>
+	</div>
 
-	</div>
-	<div class="col-sm-2 hidden-print exporta" >
-		<button class="btn btn-danger btn-block" onClick="window.print()"
-			id="descargar" data-toggle="tooltip" data-placement="left"
-			title="Descargar PDF!">
-			<span class="glyphicon glyphicon-print"></span>
-		</button>
-	</div>
+<div class="col-sm-2 hidden-print exporta text-center">
+Imprimir
+	<button class="btn btn-danger btn-block" onClick="window.print()"
+		id="descargar" data-toggle="tooltip" data-placement="left"
+		title="Descargar PDF!">
+		<span class="glyphicon glyphicon-print"></span>
+	</button>
+</div>
 </div>
 
-<div id="Liquidaciones" style=" margin:auto 0; " class="row"></div>
+<div id="Liquidaciones" style="margin: auto 0;" class="row"></div>
 
 <script>
-    $(function() {
-        var hoy = moment().format('YYYY-MM');
-        $('#start').val(hoy);
-      
-        $("#start").datepicker({
-            defaultDate: "+1d",
-            changeMonth: true,
-            dateFormat: "yy-mm"
-        });
+$("#month").change(function() {
 
-          });
+	var month = $('#month').val();
+	var year = $('#year').val();
+	var date = year+'-'+month;
+$("#Liquidaciones").slideDown('slow').load("perfil/liquidaciones.php", {"rut": <?php echo "'$rut'";?>, "mes": date}, 
+		function() {
+    $('.progress').slideUp('slow');
+});
+});
 </script>
 <script>
-$("#start").change(function() {
+$("#year").change(function() {
 
-	var mes = $('#start').val();
-$("#Liquidaciones").slideDown('slow').load("perfil/liquidaciones.php", {"rut": <?php echo "'$rut'";?>, "mes": mes}, 
+	var month = $('#month').val();
+	var year = $('#year').val();
+	var date = year+'-'+month;
+$("#Liquidaciones").slideDown('slow').load("perfil/liquidaciones.php", {"rut": <?php echo "'$rut'";?>, "mes": date}, 
 		function() {
     $('.progress').slideUp('slow');
 });
