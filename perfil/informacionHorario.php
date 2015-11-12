@@ -31,7 +31,8 @@
                 slotDuration: '00:15:00',
                 contentHeight: 800,
                 slotEventOverlap: false,
-                displayEventEnd: true
+                displayEventEnd: true,
+                timeFormat: 'H:mm'
             });//fullCalendar
         });//ready
 </script>
