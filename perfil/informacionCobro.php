@@ -191,7 +191,7 @@
                     }
                     ?>";
         content += "</select></td>";
-        content += "	<td> <input class='form-control ValorCobro' type='text' name='cobro' placeholder='Ingrese Honorario'> </td>";
+        content += "<td> <input class='form-control ValorCobro' type='text' name='cobro' placeholder='Ingrese Honorario'> </td>";
         content += "<td><select class='form-control Semana' required name='Semana'>";
         content += "<option value='1'> Semana </option>";
         content += "<option value='0'> Sabado </option>";
@@ -214,6 +214,10 @@
             var idEmpresa = $(this).parent().parent().find(".Centro").val();
             var cobro = $(this).parent().parent().find(".ValorCobro").val();
             var semana = $(this).parent().parent().find(".Semana").val();
+            var NombreEmpresa= $(this).parent().parent().find('.Centro :selected').text();
+            var NombreSemana = $(this).parent().parent().find(".Semana :selected").text();
+            var row = $(this).parent().parent(); //linea en la que se encuentra
+            row.html('<td class="centro">'+NombreEmpresa+'</td><td><div class="form-group"><input class="form-control editableCobro" type="text" name="cobro" value="'+cobro+'" required></div></td><td class="semana">'+NombreSemana+'</td><td><input type="submit" value="Editar" class="btn btn-info btneditabletwo" disabled="disabled"/></td><td><input type="submit" value="Eliminar"class="btn btn-danger btndeletetwo"/></td>');
             jQuery.ajax({
                 method: "POST",
                 url: "querys/insertCobro.php",
@@ -226,11 +230,75 @@
                 success: function(response)
                 {
                 	  $('.Oops').remove();
+                	  row.toggleClass('success');
                     select.attr("disabled", "disabled");
                     input.attr("disabled", "disabled");
                     inputsemana.attr("disabled", "disabled");
                 }
             });
+
+            $(".btndeletetwo").click(function() {
+                var centro = $(this).parent().parent().find(".centro").text();
+                var input  = $(this).parent().parent().find(".editableCobro").val();
+                var semana = $(this).parent().parent().find(".semana").text();
+                var r = confirm("Esta seguro que quiere eliminar la fila: " + centro + " valor: " + input + "?");
+                if (r == true) {
+                    var borrar = $(this).parent().parent();
+                    jQuery.ajax({
+                        method: "POST",
+                        url: "querys/eraseCobro.php",
+                        data: {
+                            'valor': input,
+                            'id': $("#idTM").val(),
+                            'semana': $.trim(semana),
+                            'empresa': $.trim(centro)
+                        },
+                        success: function(response)
+                        {
+                            borrar.remove();
+                        }
+                    });
+                }
+
+
+            });
+
+            $(".editableCobro").keyup(function() {
+            	//$(".btneditable").removeAttr("disabled");
+            	//solo se buscan los elementos de la fila seleccionada
+            	        var row = $(this).parent().parent().parent();
+
+            	        row.find(".btneditabletwo").removeAttr("disabled");
+            	        row.addClass("danger");
+            	    });
+
+            	    $(".btneditabletwo").click(function() {
+            	        //solo se buscan los elementos de la fila seleccionada
+            	        var row = $(this).parent().parent();
+            	        var input = row.find(".editableCobro");
+            	        var centro = row.find(".centro");
+            	        var semana = row.find(".semana");
+            	       
+
+            	        jQuery.ajax({
+            	            method: "POST",
+            	            url: "querys/updateCobro.php",
+            	            data: {
+            	                'valor': input.val(),
+            	                'id': $("#idTM").val(),
+            	                'semana': $.trim(semana.html()),
+            	                'empresa': $.trim(centro.html())
+
+            	            },
+            	            success: function(response)
+            	            {
+            	                $(".btneditabletwo").attr("disabled", "disabled");
+            	                row   
+            	                     .removeClass("danger")
+            	                     .addClass("success");
+            	            }//success
+            	        });//ajax
+            	    });//click .btneditable
         });
     });
 
