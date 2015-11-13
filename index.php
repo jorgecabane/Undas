@@ -10,7 +10,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         <div class="col-sm-6 panel panel-info">
             <div class="panel-heading">
                 <h4>
-                    <strong>Tecnologos M&eacute;dicos no asignados</strong>
+                    <strong>Tecn&oacute;logos M&eacute;dicos no asignados</strong>
                 </h4>
             </div>
             <div class="progress" style="display: none">
@@ -40,7 +40,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                     </form>
                 </div>
                 <div class="well well-sm col-sm-6" style="max-height: 400px;">
-                    <h4>TMs libres</h4>
+                    <h4>Tecn&oacute;logos libres</h4>
                     <canvas id="myChart"></canvas>
                     <div class="chartLegend"></div>
                 </div>
@@ -50,7 +50,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 </div>
                 <div class="col-sm-12 alert alert-warning center-block text-center">
                     <strong>Nota:</strong> Los TM que se encuentran en el listado no
-                    tienen <u>Ningun</u> evento asignado en el periodo de tiempo
+                    tienen <u>Ning&uacute;n</u> evento asignado en el per&iacute;odo de tiempo
                     seleccionado.
                 </div>
             </div>
@@ -58,7 +58,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         </div>
         <div class="col-sm-6 panel panel-success">
             <div class="panel-heading">
-                <h4>Prestaciones Tecnologos M&eacute;dicos</h4>
+                <h4>Prestaciones Tecn&oacute;logos M&eacute;dicos</h4>
             </div>
            <div class='panel-body row-fluid'>
            <div class='col col-sm-12'>
