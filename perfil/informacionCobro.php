@@ -29,7 +29,7 @@
              echo "</thead><tbody >";
              if ($admin == 1) {
              echo "<input type='submit' value='Agregar Honorario' class='btn btn-info btncobro' />";
-             	                                                   
+             echo "<div><br></div>";
              }
              
              $resultado = getValorHora($rut);

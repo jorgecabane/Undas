@@ -15,7 +15,8 @@ if ($_SESSION["usuario"]) {
 $rut = $_POST['rut'];
 $empresa = $_POST['empresa'];
 if ($admin == 1) {
-    echo "<input type='submit' value='Agregar Prestacion' class='btn btn-info btnprestaciones' />";
+    echo "<input type='submit' value='Agregar Prestaci&oacute;n' class='btn btn-info btnprestaciones' />";
+    echo "<div><br></div>";
     echo "<table id='appendPrestaciones' class='table table-hover table-bordered table-condensed'>";
     echo "<thead><tr class='info'>";
     echo "<th class='rellenar'>Prestaciones</th>";

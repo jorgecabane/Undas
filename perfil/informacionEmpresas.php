@@ -73,7 +73,7 @@
                 </td>
                 </tr>
                 <tr>
-                <th>Direccion</th>
+                <th>Direcci&oacute;n</th>
                 <td>
                     <div class="form-group">
                         <input id="direccion" type="text" class="form-control editable" name="Direccion" value="<?php echo $row['Direccion']; ?>"
@@ -115,7 +115,7 @@
                 </td>
                 </tr>
                 <tr>
-                <th>Razon social</th>
+                <th>Raz&oacute;n social</th>
                 <td>
                     <div class="form-group">
                         <input id="razonsocial" type="text" class="form-control editable" name="Razonsocial" value="<?php echo $row['RazonSocial']; ?>"
