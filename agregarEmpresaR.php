@@ -21,15 +21,15 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
         </div>
            <div class="form-group">
           <label for="nombre">Rut</label>
-          <input type="text" class="form-control" id="rut" placeholder="Agrege Rut de la empresa con digito verificador y puntos" required>
+          <input type="text" class="form-control" id="rut" placeholder="Agrege Rut de la empresa con puntos y d&iacute;gito verificador" required>
         </div>
            <div class="form-group">
           <label for="nombre">Giro</label>
           <input type="text" class="form-control" id="giro" placeholder="Agrege Giro de la empresa" required>
         </div>
            <div class="form-group">
-          <label for="nombre">Direccion</label>
-          <input type="text" class="form-control" id="direccion" placeholder="Agrege Direccion de la empresa" required>
+          <label for="nombre">Direcci&oacute;n</label>
+          <input type="text" class="form-control" id="direccion" placeholder="Agrege Direcci&oacute;n de la empresa" required>
         </div>
            <div class="form-group">
           <label for="nombre">Ciudad</label>
@@ -40,8 +40,8 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
           <input type="text" class="form-control" id="comuna" placeholder="Agrege Comuna de la empresa" required>
         </div>
         <div class="form-group">
-          <label for="nombre">Razon Social</label>
-          <input type="text" class="form-control" id="razon" placeholder="Agrege Razon Social de la empresa" required>
+          <label for="nombre">Raz&oacute;n Social</label>
+          <input type="text" class="form-control" id="razon" placeholder="Agrege Raz&oacute;n Social de la empresa" required>
         </div>
              <input type="submit" value="Agregar" id='agregar' class='btn btn-info btnedit'/>
 	

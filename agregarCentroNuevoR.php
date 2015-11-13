@@ -48,7 +48,7 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 			<label for="siglas">Siglas</label> <input type="text" class="form-control" id="siglas" placeholder="Agrege siglas" required>
 		</div>
 		<div class="form-group">
-			<label for="Ecos">Numero de ecos</label> <input type="number" class="form-control" id="ecos" placeholder="Agrege numero de ecos" required>
+			<label for="Ecos">N&uacute;mero de ecos</label> <input type="number" class="form-control" id="ecos" placeholder="Agrege n&uacute;mero de ecos" required>
 
 		</div>
 		<div class="form-group">
