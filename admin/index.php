@@ -1,0 +1,116 @@
+<?php
+session_start ();
+include_once dirname ( __FILE__ ) . "/header.php";
+include_once dirname ( dirname ( __FILE__ ) ) . "/Include/verificacionUsuario.php";
+include_once dirname ( dirname ( __FILE__ ) ) . "/querys/getEmpresa.php";
+include_once dirname ( dirname ( __FILE__ ) ) . "/querys/getTM.php";
+?>
+<div class="container-fluid well">
+	<div class="row">
+
+
+
+		<div class="col-sm-4 panel panel-info">
+			<div class="panel-heading">
+				<h4>
+					<strong>Ingreso como TM </strong>
+				</h4>
+			</div>
+
+			<div class="panel-body row-fluid"></div>
+			<!-- Aqui va el Select de todos los Tm con values = a su id --->
+			<br> <select class="form-control text-center" id="tms">
+				<option value="" disabled selected>Seleccione Tecn&oacute;logo</option>
+	<?php
+	$tms = getTM ();
+	foreach ( $tms as $tm ) {
+		if ($empresa ['Nombre'] != 'Sin Turno') {
+			?>
+        <option value="<?php echo $tm['idTM'];?>"><?php echo $tm['Nombre']; echo " "; echo $tm['Apellido'];?></option>
+    <?php
+		}
+	}
+	?>
+	   </select> <br>
+			<center>
+				<button type="button" class="btn btn-success btn-lg tecnologo">Ingresar</button>
+			</center>
+			<br>
+			<!-- Aqui termina select TM --->
+		</div>
+		
+		
+				<div class="col-sm-4 panel panel-danger">
+			<div class="panel-heading">
+				<h4>
+					<strong>Ingreso como SuperAdmin</strong>
+				</h4>
+			</div>
+
+			<div class="panel-body row-fluid"></div>
+			<br><br><br><br>
+			<center>
+			<button type="button" class="btn btn-danger btn-lg superadmin">Ingresar</button>
+			</center> <br>
+		</div>
+		
+		
+		
+		<div class="col-sm-4 panel panel-success">
+			<div class="panel-heading">
+				<h4>
+					<strong>Ingreso como Empresa</strong>
+				</h4>
+			</div>
+
+			<div class="panel-body row-fluid"></div>
+
+			<!-- Aqui va el Select de todas las Empresas con values = a su id --->
+			<br> <select class="form-control text-center" id="emp">
+				<option value="" disabled selected>Seleccione Empresa</option>
+	<?php
+	$empresas = getEmpresa ();
+	foreach ( $empresas as $empresa ) {
+		if ($empresa ['Nombre'] != 'Sin Turno') {
+			?>
+        <option value="<?php echo $empresa['idEmpresa'];?>"><?php echo $empresa['Nombre'];?></option>
+    <?php
+		}
+	}
+	?>
+	   </select> <br>
+			<center>
+				<button type="button" class="btn btn-success btn-lg empresa">Ingresar</button>
+			</center>
+			<br>
+			<!-- Aqui termina select empresas --->
+		</div>
+
+
+	</div>
+</div>
+
+
+</body>
+
+<script>
+$( ".superadmin" ).click(function() {
+$(location).attr('href', '../index.php');
+});
+</script>
+
+<script>
+$( ".tecnologo" ).click(function() {
+	  var nombre = $('#tms:selected').text();
+	  var id = $('#tms:selected').val();
+load("tecnologo.php", {"id": id, "nombre": nombre}); 
+});
+</script>
+
+<script>
+$( ".empresa" ).click(function() {
+	  var nombre = $('#emp:selected').text();
+	  var id = $('#emp:selected').val();
+load("empresa.php", {"id": id , "nombre": nombre}); 
+});
+</script>

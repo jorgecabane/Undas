@@ -27,8 +27,9 @@ if (isset($_POST ['login'])) {
             header("location:centros/index.php");
         } else { */
             //log in de persona normal
-            header("location:../index.php");
+            header("location:index.php");
         //}
+            $_SESSION['super']= 1;
             $_SESSION ['idusuario'] = "Soy Super Admin";
             $_SESSION ["usuario"] = "Super Admin";
         echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";

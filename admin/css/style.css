@@ -1,0 +1,150 @@
+.well-titles{
+    padding: 1px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.well-titles h2,h3,h4{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.navbar{
+    margin-bottom: 3px;
+}
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+@-webkit-keyframes progress-bar-stripes {
+    from {
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
+}
+@keyframes progress-bar-stripes {
+    from {
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
+}
+
+#external-events .fc-event {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    background-color: #3FABE9;
+    border-color: #3FABE9;
+    border-width: 1px;
+}
+.medico {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    background-color: #ffaa00;
+    border-color: #ff7b00;
+    border-width: 1px;
+    padding: 2px;
+    text-align: center;
+}
+.fc-event {
+    cursor: pointer;
+    font-size: 0.9em;
+}
+.alert {
+    margin-bottom: 0px;
+}
+/* Popover */
+.popover {
+    border: 2px dotted #6EBFEE;
+    z-index: 9999;
+}
+
+/* Popover Header */
+.popover-title {
+    background-color: #6EBFEE;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align:center;
+    width: 200px;
+}
+
+/* Popover Body */
+.popover-content {
+    background-color: white;
+    color: #6EBFEE;
+    padding: 1px;
+    text-align: justify;
+}
+
+/* Popover Arrow */
+.arrow {
+    border-right-color: #6EBFEE !important;
+}
+.panel{
+    padding: 2px;
+    margin-bottom: 5px;
+}
+.panel-body{
+    padding:2px;
+}
+.panel-heading{
+    padding-left:4px;
+    padding-right:4px;
+    text-align: center;
+}
+.alert-sm{
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}
+td {
+white-space: nowrap;
+}

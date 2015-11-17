@@ -3,7 +3,7 @@ $month = date('m');
 ?>
 <div class="row">
 	<div class="col-xs-4  col-xs-offset-4 text-center hidden-print">
-		<label>Seleccione Empresa</label> <select
+		<label>Seleccione Fecha</label> <select
 			class="form-control text-center" name="month" id="month">
 	<option value="1"  <?PHP if($month==1) echo "selected";?>>Enero</option>
 	<option value="2"  <?PHP if($month==2) echo "selected";?>>Febrero</option>

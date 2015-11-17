@@ -5,6 +5,11 @@
     unset($_SESSION['usuario']);
     session_destroy();
  }
- header('Location: logIn.php');
- exit;
+ if(isset($_SESSION['super'])){
+ 	header('Location: admin/logIn.php');
+ }
+ else{
+ 	header('Location: logIn.php');
+ }
+  exit;
 ?>
