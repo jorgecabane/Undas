@@ -231,7 +231,7 @@ if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 // honorarios hidden totalHonorariosHidden
 $('#totalHonorariosHidden').html(contador);
 //honorarios displayed
-$('#totalHonorarios').html(contador.toLocaleString('de-DE'));
+$('#totalHonorarios').html(contador.toLocaleString('de-DE').toFixed());
 </script>
 <script>
 //script para sumar los Extras
@@ -242,7 +242,7 @@ $(".montoExtra").each(function(index) {
 //honorarios hidden totalHonorariosHidden
 $('#totalHonorariosHidden').html(suma);
 //honorarios displayed
-$('#totalHonorarios').html(suma.toLocaleString('de-DE'));
+$('#totalHonorarios').html(suma.toLocaleString('de-DE').toFixed());
 </script>
 <script>
 //script para calcular los honorarios brutos, retencion y liquido (toLocaleString('de-DE') cambia el formato a separador de miles ) 
@@ -253,7 +253,7 @@ var retencion = parseFloat(parseFloat(retenciondecimales).toFixed(0));
 $('#retencion').html(retencion.toLocaleString('de-DE'));
 var liquido = parseFloat(parseFloat(bruto)-parseFloat(retencion));
 //var liquidoMiles = Moneda(liquido);
-$('#liquido').html(liquido.toLocaleString('de-DE'));
+$('#liquido').html(liquido.toLocaleString('de-DE').toFixed());
 </script>
 
 
@@ -340,15 +340,15 @@ function sumaMonto(monto){
 //total honorarios hidden 
 $('#totalHonorariosHidden').html(suma);
 //total honorarios displayed
-$('#totalHonorarios').html(suma.toLocaleString('de-DE'));
+$('#totalHonorarios').html(suma.toLocaleString('de-DE').toFixed());
 var bruto = parseFloat($('#totalHonorariosHidden').text());
-$('#bruto').html(bruto.toLocaleString('de-DE'));
+$('#bruto').html(bruto.toLocaleString('de-DE').toFixed());
 var retenciondecimales = bruto*0.1;
 var retencion = parseFloat(parseFloat(retenciondecimales).toFixed(0));
-$('#retencion').html(retencion.toLocaleString('de-DE'));
+$('#retencion').html(retencion.toLocaleString('de-DE').toFixed());
 var liquido = parseFloat(parseFloat(bruto)-parseFloat(retencion));
 //var liquidoMiles = Moneda(liquido);
-$('#liquido').html(liquido.toLocaleString('de-DE'));
+$('#liquido').html(liquido.toLocaleString('de-DE').toFixed());
 }
 
 </script>
