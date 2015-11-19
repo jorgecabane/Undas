@@ -75,10 +75,11 @@ if ($admin == 1) {
     //print_r($_SESSION);
 
     $sessionrut = $_SESSION['idusuario'];
-
+//echo $sessionrut;
    $row = getTM($sessionrut);
-    $Rut = $row["Rut"];
-    $nombreTM = $row['Nombre'] . ' ' . $row['Apellido'];
+//   print_r($row);
+    $Rut = $row[0]["Rut"];
+    $nombreTM = $row[0]['Nombre'] . ' ' . $row[0]['Apellido'];
 
     echo "<script>
             $('.progress').slideDown('slow');
