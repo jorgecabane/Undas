@@ -106,15 +106,16 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
 <script>
     $(".tecnologo").click(function() {
         var nombre = $('#tms    :selected').text();
-        var id = $('#tms').val();
-        $(location).attr("href", "tecnologo.php?id=" + id + "&nombre=" + nombre);
+        var id = $('#tms :selected').val();
+        $(location).attr('href', "tecnologo.php?id=" + id + "&nombre=" + nombre);
+       
     });
 </script>
 
 <script>
     $(".empresa").click(function() {
         var nombre = $('#emp :selected').text();
-        var id = $('#emp').val();
+        var id = $('#emp :selected').val();
         $(location).attr('href', "empresa.php?id=" + id + "&nombre=" + nombre);
     });
 </script>
