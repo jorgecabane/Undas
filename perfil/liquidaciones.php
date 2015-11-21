@@ -229,29 +229,31 @@ if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 	 }
 });
 // honorarios hidden totalHonorariosHidden
-$('#totalHonorariosHidden').html(contador);
+var contadorhonorario = parseFloat(contador).toFixed();
+$('#totalHonorariosHidden').html(contadorhonorario);
 //honorarios displayed
-$('#totalHonorarios').html(contador.toLocaleString('de-DE'));
+$('#totalHonorarios').html(contadorhonorario.toLocaleString('de-DE'));
 </script>
 <script>
 //script para sumar los Extras
-var suma = $('#totalHonorariosHidden').text();
+var suma = parseFloat($('#totalHonorariosHidden').text()).toFixed();
 $(".montoExtra").each(function(index) {
     suma = parseFloat(suma)+ parseFloat($(this).text());
 });
 //honorarios hidden totalHonorariosHidden
+sumaHonorarios = parseFloat(parseFloat(suma).toFixed()); 
 $('#totalHonorariosHidden').html(suma);
 //honorarios displayed
-$('#totalHonorarios').html(suma.toLocaleString('de-DE'));
+$('#totalHonorarios').html(sumaHonorarios.toLocaleString('de-DE'));
 </script>
 <script>
 //script para calcular los honorarios brutos, retencion y liquido (toLocaleString('de-DE') cambia el formato a separador de miles ) 
 var bruto = parseFloat($('#totalHonorariosHidden').text());
 $('#bruto').html(bruto.toLocaleString('de-DE'));
 var retenciondecimales = bruto*0.1;
-var retencion = parseFloat(parseFloat(retenciondecimales).toFixed(0));
+var retencion = parseFloat(parseFloat(retenciondecimales).toFixed());
 $('#retencion').html(retencion.toLocaleString('de-DE'));
-var liquido = parseFloat(parseFloat(bruto)-parseFloat(retencion));
+var liquido = parseFloat(parseFloat(parseFloat(bruto)-parseFloat(retencion)).toFixed());
 //var liquidoMiles = Moneda(liquido);
 $('#liquido').html(liquido.toLocaleString('de-DE'));
 </script>
@@ -277,7 +279,7 @@ $('#liquido').html(liquido.toLocaleString('de-DE'));
             $(this).parent().parent().find('.btncancelarExtra').attr("disabled", "disabled");
             var input = $(this).parent().parent().find(".Extra");
             var inputmonto = $(this).parent().parent().find(".montoExtra");
-               var year = moment($('#start').val()+'-01').format('YYYY-MM-DD');
+               var year = moment($('#year').val()+'-'+$('#month').val()+'-01').format('YYYY-MM-DD');
                var titulo = input.val();
                var monto = inputmonto.val();
                 jQuery.ajax({
@@ -334,19 +336,19 @@ $('.eliminarExtra').click(function(){
 <script>
 //script para sumar los montos de los extras en el momento en que se guarden
 function sumaMonto(monto){
-	var suma = $('#totalHonorariosHidden').text();
+	var suma = parseFloat($('#totalHonorariosHidden').text()).toFixed();
     
     suma = parseFloat(parseFloat(suma)+ parseFloat(monto));
 //total honorarios hidden 
 $('#totalHonorariosHidden').html(suma);
 //total honorarios displayed
 $('#totalHonorarios').html(suma.toLocaleString('de-DE'));
-var bruto = parseFloat($('#totalHonorariosHidden').text());
+var bruto = parseFloat(parseFloat($('#totalHonorariosHidden').text()).toFixed());
 $('#bruto').html(bruto.toLocaleString('de-DE'));
 var retenciondecimales = bruto*0.1;
-var retencion = parseFloat(parseFloat(retenciondecimales).toFixed(0));
+var retencion = parseFloat(parseFloat(retenciondecimales).toFixed());
 $('#retencion').html(retencion.toLocaleString('de-DE'));
-var liquido = parseFloat(parseFloat(bruto)-parseFloat(retencion));
+var liquido = parseFloat(parseFloat(parseFloat(bruto)-parseFloat(retencion)).toFixed());
 //var liquidoMiles = Moneda(liquido);
 $('#liquido').html(liquido.toLocaleString('de-DE'));
 }
