@@ -13,7 +13,7 @@ if (isset($_POST ['login'])) {
         // $row2 = mysql_fetch_assoc($query);
 
 
-        $queryoli = "Select idTM, Nombre, Centro from tm where Rut='$user1'";
+        $queryoli = "Select idTM, Nombre from tm where Rut='$user1'";
         // echo $queryoli;
         $resultado33 = mysql_query($queryoli) or die(mysql_error());
 
