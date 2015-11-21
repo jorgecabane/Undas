@@ -22,6 +22,8 @@ if ($resultado) {
     	$banco=$row['Banco'];
     	$ctacorriente=$row['Cuentacorriente'];
     	$comentario=$row['Comentario'];
+    	$segundonombre=$row['Segundonombre'];
+    	$segundoapellido=$row['Segundoapellido'];
     	$idtm=$row['idTM'];
         ?>
         <tr>
@@ -40,11 +42,41 @@ if ($resultado) {
             </td>
             </tr>
             <tr>
+            <th>Segundo Nombre</th>
+            <td>
+                <div class="form-group">
+                    <input id="segundonombre" type="text" class="form-control editable"
+                           name="Segundonombre" value="<?php echo $row['Segundonombre']; ?>"
+                           <?php
+                           if ($admin == 0) {
+                               echo "disabled='disabled'";
+                           }
+                           ?>
+                           required>
+                </div>
+            </td>
+            </tr>
+            <tr>
             <th>Apellido</th>
             <td>
                 <div class="form-group">
                     <input id="apellido" type="text" class="form-control editable"
                            name="Apellido" value="<?php echo $row['Apellido']; ?>"
+                           <?php
+                           if ($admin == 0) {
+                               echo "disabled='disabled'";
+                           }
+                           ?>
+                           required>
+                </div>
+            </td>
+            </tr>
+            <tr>
+            <th>Segundo Apellido</th>
+            <td>
+                <div class="form-group">
+                    <input id="segundoapellido" type="text" class="form-control editable"
+                           name="Segundoapellido" value="<?php echo $row['Segundoapellido']; ?>"
                            <?php
                            if ($admin == 0) {
                                echo "disabled='disabled'";
@@ -197,7 +229,9 @@ if ($resultado) {
                 'celular': $('#celular').val(),
                 'banco': $('#banco').val(),
                 'cuenta': $('#cuenta').val(),	
-                'comentario': $('#comentario').val()
+                'comentario': $('#comentario').val(),
+                'segundonombre': $('#segundonombre').val(),
+                'segundoapellido': $('#segundoapellido').val()
             },
             beforeSend: function() {
                 $('.progress').slideDown('slow');
@@ -244,6 +278,8 @@ if ($resultado) {
          $("#banco").val("<?php echo $banco; ?>");
          $("#cuenta").val("<?php echo $ctacorriente; ?>");	
          $("#comentario").val("<?php echo $comentario; ?>");
+         $("#segundonombre").val("<?php echo $segundonombre; ?>");
+         $("#segundoapellido").val("<?php echo $segundoapellido; ?>");
          $('tr.danger').removeClass("danger");
 
          $(".btnedit").attr("disabled", "disabled");

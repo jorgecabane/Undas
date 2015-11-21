@@ -9,11 +9,13 @@ $cuenta = trim($_POST ['cuenta']);
 $banco = trim($_POST ['banco']);
 $celular = trim($_POST ['celular']);
 $comentario = trim($_POST ['comentario']);
+$segundonombre = trim($_POST ['segundonombre']);
+$segundoapellido = trim($_POST ['segundoapellido']);
 $random=rand(1000000,9999999);
 $contrasena=$apellido.$random;
 	
 	// comprobamos si ha ocurrido un error.
-	$query = "insert into tm values (null,'$nombre','$apellido','$rut','$mail',$celular,'$contrasena',0,'$cuenta','$banco',0,'$comentario',0)";
+	$query = "insert into tm values (null,'$nombre','$apellido','$rut','$mail',$celular,'$contrasena',0,'$cuenta','$banco',0,'$comentario', '$segundonombre', '$segundoapellido')";
 	$resultado2 = mysql_query ( $query );
 	if ($resultado2) {
 		echo "Perfecto, redireccionando";

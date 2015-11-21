@@ -14,7 +14,13 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 				<label for="Nombre">Nombre</label> <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Agrege nombre" required>
 			</div>
 			<div class="form-group">
+				<label for="Segundonombre">Segundo Nombre</label> <input type="text" class="form-control" id="segundonombre" name="segundonombre" placeholder="Agrege segundo nombre" required>
+			</div>
+			<div class="form-group">
 				<label for="Apellido">Apellido</label> <input type="text" class="form-control"  id="apellido" name="apellido" placeholder="Agrege apellido" required>
+			</div>
+			<div class="form-group">
+				<label for="Segundoapellido">Segundo Apellido</label> <input type="text" class="form-control"  id="segundoapellido" name="Segundoapellido" placeholder="Agrege segundo apellido" required>
 			</div>
 			<div class="form-group">
 				<label for="RUT">RUT</label> <input type="text" class="form-control" id="rut" name="rut" placeholder="Agrege Rut con digito verificador y puntos" required>
@@ -26,10 +32,10 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 				<label for="Celular">Celular</label> <input type="number" class="form-control" id="celular" name="celular" placeholder="Agrege Celular" required>
 			</div>
 				<div class="form-group">
-				<label for="Celular">Banco</label> <input type="text" class="form-control" id="banco" name="banco" placeholder="Agrege Banco" required>
+				<label for="Banco">Banco</label> <input type="text" class="form-control" id="banco" name="banco" placeholder="Agrege Banco" required>
 			</div>
 				<div class="form-group">
-				<label for="Celular">Cuenta Corriente</label> <input type="text" class="form-control" id="cuenta" name="cuenta" placeholder="Agrege Cuenta Corriente" required>
+				<label for="Cuentacorriente">Cuenta Corriente</label> <input type="text" class="form-control" id="cuenta" name="cuenta" placeholder="Agrege Cuenta Corriente" required>
 			</div>
 			<div class="form-group">
 				<label for="Comentario">Comentario</label> <textarea rows="4" cols="30" type="text" class="form-control" id="comentario" name="comentario" placeholder="Escribir comentario" required></textarea>
@@ -58,7 +64,9 @@ $("#agregar").click(function(){
 				     		'celular':$('#celular').val(),
 				     		'banco':$('#banco').val(),
 				     		'cuenta':$('#cuenta').val(),
-		                    'comentario':$('#comentario').val()
+		                    'comentario':$('#comentario').val(),
+		                    'segundonombre':$('#segundonombre').val(),
+		                    'segundoapellido':$('#segundoapellido').val()
 			       },
 
 			       error: function() {
@@ -78,6 +86,8 @@ $("#agregar").click(function(){
 		                $('#contrasena').val('');
 		                $('#repetircontrasena').val('');
 		                $('#comentario').val('');
+		                $('#segundonombre').val();
+		                $('#segundoapellido').val();
 			       }
 
 			 });//ajax

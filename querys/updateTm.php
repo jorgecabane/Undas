@@ -10,8 +10,10 @@ $celular = trim($_POST['celular']);
 $banco = trim($_POST['banco']);
 $cuenta = trim($_POST['cuenta']);
 $comentario = trim($_POST['comentario']);
+$segundonombre = trim($_POST['segundonombre']);
+$segundoapellido = trim($_POST['segundoapellido']);
 
-$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular='$celular', Banco='$banco', Cuentacorriente='$cuenta', Comentario='$comentario' WHERE idtm=$id";
+$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular='$celular', Banco='$banco', Cuentacorriente='$cuenta', Comentario='$comentario', Segundonombre='$segundonombre', Segundoapellido='$segundoapellido' WHERE idtm=$id";
 
 $resultado = mysql_query($query);
 if ($resultado) {
