@@ -9,7 +9,7 @@
 include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion local
 
 function getDisponibles($start, $end) {
-    $query = "SELECT count(idTM) as tms FROM tm where Doctor = 0 and Centro = 0";
+    $query = "SELECT count(idTM) as tms FROM tm where Doctor = 0";
     $res = mysql_query($query);
     $result[] = mysql_fetch_assoc($res);
 
@@ -21,9 +21,9 @@ function getDisponibles($start, $end) {
               WHERE idTM NOT IN (SELECT DISTINCT(TM_idTM)
                                  FROM tm, evento
                                  WHERE tm.idTM = TM_idTM AND (DATE(HoraInicio) BETWEEN '" . $newStart[0] . "' AND '" . $newEnd[0] . "') OR (TIME(HoraInicio) BETWEEN '" . $newStart[1] . "' AND '" . $newEnd[1] . "'))
-                                 		And Doctor= 0 And Centro =0
+                                 		AND Doctor= 0
                                  		";
-    
+
     $res1 = mysql_query($query1) OR DIE(mysql_error());
     if (mysql_affected_rows() >= 1) {
         $res1 = mysql_query($query1) or die(mysql_error());
