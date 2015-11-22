@@ -23,6 +23,10 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
           <label for="nombre">Rut</label>
           <input type="text" class="form-control" id="rut" placeholder="Agrege Rut de la empresa con puntos y d&iacute;gito verificador" required>
         </div>
+        <div class="form-group">
+          <label for="nombre">Correo</label>
+          <input type="text" class="form-control" id="mail" placeholder="Agrege mail de la empresa" required>
+        </div>
            <div class="form-group">
           <label for="nombre">Giro</label>
           <input type="text" class="form-control" id="giro" placeholder="Agrege Giro de la empresa" required>
@@ -65,7 +69,8 @@ $("#agregar").click(function(){
 				     		'direccion':$('#direccion').val(),
 				     		'comuna':$('#comuna').val(),
 				     		'razon':$('#razon').val(),
-		                    'ciudad':$('#ciudad').val()
+		                    'ciudad':$('#ciudad').val(),
+		                    'mail':$('#mail').val()
 			       },
 
 			       error: function() {
@@ -82,6 +87,7 @@ $("#agregar").click(function(){
 			     		$('#comuna').val('');
 		                $('#ciudad').val('');
 		                $('#razon').val('');
+		                $('#mail').val();
 
 			       }
 			 });

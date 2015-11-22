@@ -7,22 +7,22 @@ $direccion = trim($_POST['direccion']);
 $comuna = trim($_POST['comuna']);
 $ciudad = trim($_POST['ciudad']);
 $razon = trim($_POST['razon']);
+$mail = trim($_POST['mail'])
+$random=rand(1000000,9999999);
+$contrasena=$nombre.$random;
 
-
-$query = "insert into empresa values (null,'$nombre','$rut','$giro','$direccion','$comuna','$ciudad','$razon')";
-$queryAccesoEmpresa = mysql_query("insert into tm values (null,'$nombre',NULL,'$rut',NULL,NULL,'1234',0,NULL,NULL,0,NULL,1)");
+$query = "insert into empresa values (null,'$nombre','$rut','$giro','$direccion','$comuna','$ciudad','$razon','$contrasena', $mail)";
 $resultado = mysql_query($query);
 if ($resultado) {
-    //success
-    echo"Agregado con exito, redireccionando";
-    ?><meta http-equiv="Refresh" content="1;url=../agregarEmpresaR.php">;
-    <?php
-} else {
-    //failure
-    echo " Error el rut o giro ya existe intente otro, redireccionando";
-    ?>
-
-    <meta http-equiv="Refresh" content="1;url=../agregarEmpresaR.php">;
-    <?php
-}
+		echo "Perfecto, redireccionando";
+		$to = $mail;
+		$subject = "Contraseña TMTECNOMED";
+		$txt = "Su contraseña es: <strong>$contrasena</strong><br>Dirigase a <a href='http://app.tmtecnomed.cl'>app.tmtecnomed.cl<a> para acceder al sitio.<br><br><img";
+		$headers = "From: serviciotenico@tmtecnomed.cl" . "\r\n";
+	
+		mail($to,$subject,$txt,$headers);
+	}
+	else {
+		echo "error en la creacion";
+	}
 ?>

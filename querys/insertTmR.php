@@ -14,7 +14,6 @@ $segundoapellido = trim($_POST ['segundoapellido']);
 $random=rand(1000000,9999999);
 $contrasena=$apellido.$random;
 	
-	// comprobamos si ha ocurrido un error.
 	$query = "insert into tm values (null,'$nombre','$apellido','$rut','$mail',$celular,'$contrasena',0,'$cuenta','$banco',0,'$comentario', '$segundonombre', '$segundoapellido')";
 	$resultado2 = mysql_query ( $query );
 	if ($resultado2) {
