@@ -4,34 +4,34 @@ include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
 include_once dirname(__FILE__) . "/querys/verification.php";
 include_once dirname(__FILE__) . "/querys/insertLog.php";
 
-if (isset($_POST ['login'])) {
+if (isset($_POST['login'])) {
     if (verificar_login($_POST ['user'], $_POST ['password'])) {
-        insertLog('login', dirname(__FILE__).'&IP='.$_SERVER['REMOTE_ADDR']);//inserta un log de la ip y donde se metio!
-        
-     /*    $user1 = $_POST ['user'];
-        $querySaberSiCentro = "Select idTM, Nombre, Centro from tm where Rut='$user1'";
-        $resultadoSaberSiCentro = mysql_query($querySaberSiCentro) or die(mysql_error());
+        insertLog('login', dirname(__FILE__) . '&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
 
-        if ($resultadoSaberSiCentro) {
-            $resultadoAsociativo = mysql_fetch_assoc($resultadoSaberSiCentro);
-            if ($resultadoAsociativo) {
-                $_SESSION ['idusuario'] = "Soy Super Admin";
-                $_SESSION ["usuario"] = $resultadoAsociativo ['Nombre'];
-                // echo $_SESSION['idusuario'];
-            }
-        } else {
-            echo "error con query";
-        }
-        if ($resultadoAsociativo ['Centro'] == 1) {
-            //log in de centro
-            header("location:centros/index.php");
-        } else { */
-            //log in de persona normal
-            header("location:index.php");
+        /*    $user1 = $_POST ['user'];
+          $querySaberSiCentro = "Select idTM, Nombre, Centro from tm where Rut='$user1'";
+          $resultadoSaberSiCentro = mysql_query($querySaberSiCentro) or die(mysql_error());
+
+          if ($resultadoSaberSiCentro) {
+          $resultadoAsociativo = mysql_fetch_assoc($resultadoSaberSiCentro);
+          if ($resultadoAsociativo) {
+          $_SESSION ['idusuario'] = "Soy Super Admin";
+          $_SESSION ["usuario"] = $resultadoAsociativo ['Nombre'];
+          // echo $_SESSION['idusuario'];
+          }
+          } else {
+          echo "error con query";
+          }
+          if ($resultadoAsociativo ['Centro'] == 1) {
+          //log in de centro
+          header("location:centros/index.php");
+          } else { */
+        //log in de persona normal
+        header("location:index.php");
         //}
-            $_SESSION['super']= 1;
-            $_SESSION ['idusuario'] = "Soy Super Admin";
-            $_SESSION ["usuario"] = "Super Admin";
+        $_SESSION['super'] = 1;
+        $_SESSION ['idusuario'] = "Soy Super Admin";
+        $_SESSION ["usuario"] = "Super Admin";
         echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
     } else {
         echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
@@ -114,7 +114,7 @@ if (isset($_POST ['login'])) {
                     <br>
                     <input name='login' class="btn btn-lg btn-primary btn-block" type="submit"></input>
                 </form>
-               
+
             </div>
 
         </div>
