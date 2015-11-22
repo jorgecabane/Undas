@@ -10,11 +10,14 @@ include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion
 function getMedicos($id = null) {
     if ($id == null) { // si se utilizo la funcion sin un id especifico
         $query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
-				FROM tm where Doctor=1 and Centro=0 order by Apellido asc";
+				FROM tm
+                                WHERE Doctor=1
+                                ORDER BY Apellido ASC";
     } else { // si se indico un id para buscar solo los datos de dicha persona
         $query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
 				FROM tm
-				WHERE idTM=$id and Doctor=1 and Centro=0 order by Apellido asc";
+				WHERE idTM=$id AND Doctor=1
+                                ORDER BY Apellido ASC";
     }
     $res = mysql_query($query) or die(mysql_error());
     if (mysql_affected_rows() >= 1) {

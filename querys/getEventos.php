@@ -13,14 +13,14 @@ include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion
 function getEventos($idCentro = null, $medicos = false) {
     if ($idCentro != null) {
         if ($medicos) {
-            $query = "SELECT ecos.Nombre as title, concat(tm.Nombre,' ' ,tm.Apellido) as description, idEvento as id, HoraInicio as start, HoraTermino as end, idEcos as idEco, idTM
+            $query = "SELECT ecos.Nombre as title, concat(tm.Nombre,'<br>' ,tm.Apellido) as description, idEvento as id, HoraInicio as start, HoraTermino as end, idEcos as idEco, idTM
 				FROM evento, ecos, tm
 				WHERE TM_idTM=idTM AND
                                       Ecos_idEcos=idEcos AND
                                       Centro_idCentro=$idCentro AND
                                       Doctor = 1";
         } else {
-            $query = "SELECT ecos.Nombre as title, concat(tm.Nombre,' ' ,tm.Apellido) as description, idEvento as id, HoraInicio as start, HoraTermino as end, color, idEcos as idEco, idTM
+            $query = "SELECT ecos.Nombre as title, concat(tm.Nombre,'<br>' ,tm.Apellido) as description, idEvento as id, HoraInicio as start, HoraTermino as end, color, idEcos as idEco, idTM
 				FROM evento, ecos, tm
 				WHERE TM_idTM=idTM AND
                                       Ecos_idEcos=idEcos AND
