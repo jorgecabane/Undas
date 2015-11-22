@@ -3,9 +3,9 @@ session_start();
 include_once dirname(__FILE__) . "/header.php";
 include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
-  
+
     <script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
-<div class="container-fluid well">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 panel panel-info">
             <div class="panel-heading">
@@ -63,7 +63,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
            <div class='panel-body row-fluid'>
            <div class='col col-sm-12'>
            <center>
-           <?php 
+           <?php
            include_once "Include/widgetHumano.php";
            ?>
            </center>
@@ -173,6 +173,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 <script>
     $(document).ready(function() {
         $('#start, #end, #slider').change(getDisponibles);//change
+        getDisponibles;
         $("#slider").slider({
             range: true,
             min: 480,
@@ -206,63 +207,4 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         });//slider
     });//ready
 </script>
-
-
-<script>
-// aqui parte la copia para el segundo script////////////////////////////////////////////////////////////////////////////////////////
-    $(function() {
-        var hoy = moment().format('YYYY-MM-DD');
-        $('#fechaLiquida').val(hoy);
-        $("#fechaLiquida").datepicker({
-            defaultDate: "+1d",
-            changeMonth: true,
-            dateFormat: "yy-mm-dd"
-        });
-    });
-</script>
-<script>
-
-    $(document).ready(function() {
-        var fecha = $("#fechaLiquida").val();
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            async: true,
-            url: 'Include/liquidacionesTM.php',
-            data: {"fecha": fecha},
-            success: function(data) {
-                renderGraph(data.labels, data.points);
-            }
-        });
-    });
-
-    var renderGraph = function(labels, points) {
-
-        var canvas = $("#grafico")[0].getContext("2d");
-
-        var data = {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Liquidaciones",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: points
-                }
-            ]
-        };
-
-        var myChart = new Chart(canvas)
-                .Line(data, {
-            responsive: true,
-            animation: true
-        });
-
-    };
-</script>
-
 </html>
