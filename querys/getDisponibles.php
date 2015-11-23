@@ -33,7 +33,7 @@ function getDisponibles($start, $end) {
         }//while
     }//if
     else {
-        $result[] = $query1;
+        $result[] = "No hay tecnólogos libres";
     }
     return $result;
 }
