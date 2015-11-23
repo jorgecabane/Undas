@@ -148,3 +148,6 @@ to {
 td {
 white-space: nowrap;
 }
+.popovereable{
+    cursor: pointer;
+}

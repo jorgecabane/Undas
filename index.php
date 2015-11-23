@@ -4,7 +4,7 @@ include_once dirname(__FILE__) . "/header.php";
 include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 
-    <script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
+<script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 panel panel-info">
@@ -57,20 +57,23 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 
         </div>
         <div class="col-sm-6 panel panel-success">
+
             <div class="panel-heading">
                 <h4>Prestaciones Tecn&oacute;logos M&eacute;dicos</h4>
             </div>
-           <div class='panel-body row-fluid'>
-           <div class='col col-sm-12'>
-           <center>
-           <?php
-           include_once "Include/widgetHumano.php";
-           ?>
-           </center>
-           </div>
-           </div>
-        </div>
-    </div>
+            <center>
+                <div class='panel-body row-fluid'>
+                    <div class='col col-sm-12' style="background: #2F2F2F;">
+
+                        <?php
+                        include_once "Include/widgetHumano.php";
+                        ?>
+
+                    </div>
+                </div>
+            </center>
+        </div><!-- panel-success -->
+    </div><!-- row -->
 
 
 
@@ -141,7 +144,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             data: {"start": start, "end": end},
             method: 'POST',
             beforeSend: function() {
-              $('.progress').slideDown('slow');
+                $('.progress').slideDown('slow');
             },
             success: function(output) {
                 $('.progress').slideUp('slow');
