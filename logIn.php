@@ -6,36 +6,49 @@ include_once dirname(__FILE__) . "/querys/insertLog.php";
 // $tipo = mysql_query("SELECT * FROM usuarios WHERE usuario = '$user' and password = '$password'") or die(mysql_error());
 // $resultadotipo= mysql_fetch_assoc($tipo);
 if (isset($_POST['login'])) {
-    if (verificar_login($_POST['user'], $_POST['password'])) {
+	$verificacion= verificar_login($_POST['user'], $_POST['password']);
+    if ($verificacion== "TM" || $verificacion== "Empresa") {
         insertLog('login', dirname(__FILE__) . '&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
         $user1 = $_POST ['user'];
         // $query = mysql_query("SELECT usuario FROM usuarios WHERE usuario = '$user'") or die(mysql_error());
         // $row2 = mysql_fetch_assoc($query);
 
+if($verificacion== "TM"){
+	//log in de TM normal
+        $query = "Select idTM, Nombre from tm where Rut='$user1'";
 
-        $queryoli = "Select idTM, Nombre from tm where Rut='$user1'";
-        // echo $queryoli;
-        $resultado33 = mysql_query($queryoli) or die(mysql_error());
+        $resultado33 = mysql_query($query) or die(mysql_error());
 
         if ($resultado33) {
             $resultado34 = mysql_fetch_assoc($resultado33);
             if ($resultado34) {
                 $_SESSION ['idusuario'] = $resultado34 ['idTM'];
                 $_SESSION ["usuario"] = $resultado34 ['Nombre'];
-                // echo $_SESSION['idusuario'];
+                header("location:index.php");
             }
         } else {
             echo "error con query";
         }
-        if ($resultado34 ['Centro'] == 1) {
-            //log in de centro
-            header("location:centros/index.php");
-        } else {
-            //log in de persona normal
-            header("location:index.php");
-        }
+}
+if ($verificacion== "Empresa"){
+	//log in de Empresas
+	$query = "Select idEmpresa, Nombre from empresa where Rut='$user1'";
 
-        echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
+	$resultado33 = mysql_query($query) or die(mysql_error());
+	
+	if ($resultado33) {
+		$resultado34 = mysql_fetch_assoc($resultado33);
+		if ($resultado34) {
+			$_SESSION ['idusuario'] = $resultado34 ['idTM'];
+			$_SESSION ["usuario"] = $resultado34 ['Nombre'];
+			header("location:centros/index.php");
+		}
+	} else {
+		echo "error con query";
+	}
+	
+}
+    
     } else {
         echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
     }
