@@ -124,6 +124,7 @@ if ($_SESSION ["usuario"]) {
                                 <li><a href="Empresas.php">Perfiles Empresas</a></li>
                                 <li><a href="agregarEmpresaR.php">Nueva Empresa</a></li>
                                 <li><a href="agregarCentroNuevoR.php">Nuevo Centro</a></li>
+                                <li><a href="agregarEcoNuevaR.php">Nuevas Ecos</a></li>
                             </ul>
                         </li>
 
