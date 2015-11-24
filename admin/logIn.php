@@ -6,7 +6,7 @@ include_once dirname(__FILE__) . "/querys/insertLog.php";
 
 if (isset($_POST['login'])) {
     if (verificar_login($_POST ['user'], $_POST ['password'])) {
-        insertLog('login', dirname(__FILE__) . '&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
+        insertLog('login', dirname(__FILE__) . '?&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
 
         /*    $user1 = $_POST ['user'];
           $querySaberSiCentro = "Select idTM, Nombre, Centro from tm where Rut='$user1'";

@@ -8,7 +8,7 @@ include_once dirname(__FILE__) . "/querys/insertLog.php";
 if (isset($_POST['login'])) {
 	$verificacion= verificar_login($_POST['user'], $_POST['password']);
     if ($verificacion== "TM" || $verificacion== "Empresa") {
-        insertLog('login', dirname(__FILE__) . '&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
+        insertLog('login', dirname(__FILE__) . '?&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
         $user1 = $_POST ['user'];
         // $query = mysql_query("SELECT usuario FROM usuarios WHERE usuario = '$user'") or die(mysql_error());
         // $row2 = mysql_fetch_assoc($query);
@@ -35,7 +35,7 @@ if ($verificacion== "Empresa"){
 	$query = "Select idEmpresa, Nombre from empresa where Rut='$user1'";
 
 	$resultado33 = mysql_query($query) or die(mysql_error());
-	
+
 	if ($resultado33) {
 		$resultado34 = mysql_fetch_assoc($resultado33);
 		if ($resultado34) {
@@ -46,9 +46,9 @@ if ($verificacion== "Empresa"){
 	} else {
 		echo "error con query";
 	}
-	
+
 }
-    
+
     } else {
         echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
     }
