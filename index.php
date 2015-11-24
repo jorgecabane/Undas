@@ -152,11 +152,12 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 libres = 0;
 
                 $('#libres').html('');
+                //console.log(output);
                 $.each(output, function(index, value) {
                     if (index !== 0) {
-                        libres++; //cantidad de TMs disponibles o libres en el intervalo seleccionado
-
+                        libres++;//cantidad de TMs disponibles o libres en el intervalo seleccionado
                         $('#libres').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
+
                     } else {
                         total = value.tms;
                     }

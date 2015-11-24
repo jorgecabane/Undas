@@ -97,7 +97,7 @@
     </a>
 
     <a class="popovereable" id="map-link-18" href="#" shape="square"
-       title="Abdomen" data-toggle="popover" data-trigger="focus" data-placement="auto"
+       title="Abdominal" data-toggle="popover" data-trigger="focus" data-placement="auto"
        style="position:absolute;top:240px;left:193px;width:10px;height:10px; border: 2px solid red;border-radius: 8px;">
     </a>
     <span style="position:absolute;top:660px;left: 11px;color: red;">

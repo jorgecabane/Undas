@@ -20,10 +20,12 @@ function getDisponibles($start, $end) {
               FROM tm
               WHERE idTM NOT IN (SELECT DISTINCT(TM_idTM)
                                  FROM tm, evento
-                                 WHERE tm.idTM = TM_idTM AND (DATE(HoraInicio) BETWEEN '" . $newStart[0] . "' AND '" . $newEnd[0] . "') OR (TIME(HoraInicio) BETWEEN '" . $newStart[1] . "' AND '" . $newEnd[1] . "'))
-                                 		AND Doctor= 0
-                                 		";
-
+                                 WHERE tm.idTM = TM_idTM
+                                    AND (DATE(HoraInicio) BETWEEN '$newStart[0]' AND '$newEnd[0]')
+                                    AND (TIME(HoraInicio) BETWEEN '$newStart[1]' AND '$newEnd[1]')
+                                    ORDER BY TM_idTM)
+                                 		AND Doctor= 0";
+    //echo $query1;
     $res1 = mysql_query($query1) OR DIE(mysql_error());
     if (mysql_affected_rows() >= 1) {
         $res1 = mysql_query($query1) or die(mysql_error());
@@ -33,7 +35,7 @@ function getDisponibles($start, $end) {
         }//while
     }//if
     else {
-        $result[] = "No hay tecnólogos libres";
+        $result[] = Array("nombreTM"=>"No hay tecnólogos libres en el horario seleccionado");
     }
     return $result;
 }
