@@ -86,6 +86,14 @@ if (isset($_POST['login'])) {
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
             }
+            .admin{
+                background: #7db9e8;
+                background: -moz-linear-gradient(top,  #7db9e8 0%, #2989d8 50%, #1e5799 100%);
+                background: -webkit-linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%);
+                background: linear-gradient(to bottom,  #7db9e8 0%,#2989d8 50%,#1e5799 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=0 );
+
+            }
         </style>
 
 
@@ -100,12 +108,12 @@ if (isset($_POST['login'])) {
     </style>
     <body background="images/bg.gif">
         <div class='container'>
-            <div class='col-md-4 col-md-offset-4'>
+            <div class='col-md-4 col-md-offset-4 well-sm admin'>
                 <form action="" method="post" class="form-singin">
                     <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
 
 
-                    <h4>Rut usuario</h4>
+                    <h4>Rut Admin</h4>
                     <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control'
                                                                          placeholder='RUT con puntos y gui&oacute;n' required />
                     <h4>Contrase&ntilde;a</h4>

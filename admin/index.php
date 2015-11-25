@@ -89,8 +89,11 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
             <br>
             <!-- Aqui termina select empresas --->
         </div>
-
-
+    </div>
+    <div class="row">
+        <div class="col-sm-12 well well-sm">
+            <?php include_once dirname(__FILE__) . "/Include/logs.php"; ?>
+        </div>
     </div>
 </div>
 
@@ -108,7 +111,7 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
         var nombre = $('#tms    :selected').text();
         var id = $('#tms :selected').val();
         $(location).attr('href', "tecnologo.php?id=" + id + "&nombre=" + nombre);
-       
+
     });
 </script>
 
