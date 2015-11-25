@@ -83,7 +83,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         var hoy = moment().format('YYYY-MM-DD');
         $('#start').val(hoy);
         $('#end').val(hoy);
-
+        getDisponibles();
         $("#start").datepicker({
             defaultDate: "+1d",
             changeMonth: true,
