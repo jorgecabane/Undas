@@ -155,9 +155,13 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 //console.log(output);
                 $.each(output, function(index, value) {
                     if (index !== 0) {
-                        libres++;//cantidad de TMs disponibles o libres en el intervalo seleccionado
-                        $('#libres').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
-
+                        if (value.nombreTM) {
+                            libres++;//cantidad de TMs disponibles o libres en el intervalo seleccionado
+                            $('#libres').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
+                        }
+                        else{
+                            $('#libres').append('<div class="alert alert-sm alert-warning">No hay TM libres en el rango seleccionado</div>');
+                        }
                     } else {
                         total = value.tms;
                     }

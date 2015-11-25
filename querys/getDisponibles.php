@@ -18,13 +18,11 @@ function getDisponibles($start, $end) {
     //manejo de la fecha para indicar el formato
     $query1 = "SELECT concat(tm.Nombre, ' ', tm.Apellido) as nombreTM
               FROM tm
-              WHERE idTM NOT IN (SELECT DISTINCT(TM_idTM)
+              WHERE Doctor = 0 AND idTM NOT IN (SELECT DISTINCT(TM_idTM)
                                  FROM tm, evento
                                  WHERE tm.idTM = TM_idTM
-                                    AND (DATE(HoraInicio) BETWEEN '$newStart[0]' AND '$newEnd[0]')
-                                    AND (TIME(HoraInicio) BETWEEN '$newStart[1]' AND '$newEnd[1]')
-                                    ORDER BY TM_idTM)
-                                 		AND Doctor= 0";
+                                    AND ((HoraInicio >= '$start' AND HoraInicio <='$end') OR (HoraTermino >= '$start' AND HoraTermino <='$end')                                        )
+                   		ORDER BY TM_idTM)";
     //echo $query1;
     $res1 = mysql_query($query1) OR DIE(mysql_error());
     if (mysql_affected_rows() >= 1) {
@@ -35,7 +33,7 @@ function getDisponibles($start, $end) {
         }//while
     }//if
     else {
-        $result[] = Array("nombreTM"=>"No hay tecnólogos libres en el horario seleccionado");
+        $result[] = Array("nombreTM"=>false);
     }
     return $result;
 }
