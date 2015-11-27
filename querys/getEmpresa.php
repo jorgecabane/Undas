@@ -12,7 +12,7 @@ function getEmpresa($idEmpresa = null) {
 	} else { // si se indico un id para buscar solo los datos de dicha persona
 		$query = "SELECT idEmpresa, Nombre, Rut, Giro, Direccion, Comuna, Ciudad, RazonSocial
 				FROM empresa
-				WHERE idEmpresa=$idEmpresa order by Nombre asc	"	;
+				WHERE Rut=$idEmpresa order by Nombre asc	"	;
 	}
 	$res = mysql_query ( $query ) or die ( mysql_error () );
 

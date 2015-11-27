@@ -2,6 +2,7 @@
 session_start();
 include_once dirname(__FILE__) . "/conexionLocal.php";
 include_once dirname(__FILE__) . "/querys/verification.php";
+include_once dirname(__FILE__) . "/querys/getEmpresaRut.php";
 include_once dirname(__FILE__) . "/querys/insertLog.php";
 // $tipo = mysql_query("SELECT * FROM usuarios WHERE usuario = '$user' and password = '$password'") or die(mysql_error());
 // $resultadotipo= mysql_fetch_assoc($tipo);
@@ -14,14 +15,7 @@ if (isset($_POST['login'])) {
         // $row2 = mysql_fetch_assoc($query);
 
 if($verificacion== "TM"){
-	//log in de TM normal
-        $query = "Select idTM, Nombre from tm where Rut='$user1'";
-
-        $resultado33 = mysql_query($query) or die(mysql_error());
-
-        if ($resultado33) {
-            $resultado34 = mysql_fetch_assoc($resultado33);
-            if ($resultado34) {
+   $resultado34 = getTMRut($user1);
                 $_SESSION ['idusuario'] = $resultado34 ['idTM'];
                 $_SESSION ["usuario"] = $resultado34 ['Nombre'];
                 header("location:index.php");
@@ -31,14 +25,7 @@ if($verificacion== "TM"){
         }
 }
 if ($verificacion== "Empresa"){
-	//log in de Empresas
-	$query = "Select idEmpresa, Nombre from empresa where Rut='$user1'";
-
-	$resultado33 = mysql_query($query) or die(mysql_error());
-
-	if ($resultado33) {
-		$resultado34 = mysql_fetch_assoc($resultado33);
-		if ($resultado34) {
+		$resultado34 = getEmpresaRut($user1);
 			$_SESSION ['idusuario'] = $resultado34 ['idTM'];
 			$_SESSION ["usuario"] = $resultado34 ['Nombre'];
 			header("location:centros/index.php");
