@@ -21,9 +21,38 @@ $centro = $_GET ['centro'];
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 well well-sm">
+        <div class="col-md-2 well well-sm">
+            <center><h3>Listado TM</h3></center>
+            <input type='text' id='search' class='form-control' placeholder='Filtrar por Nombre'>
+
+            <div  id='external-events'>
+                <hr class='hr-sm'>
+                <?php
+                $tms = getTM();
+                foreach ($tms as $tm) {
+                    echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
+                                <div id='tm" . $tm['idTM'] . "' class='collapse'>Prestaciones:<br>
+                                    ";
+                    $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
+                    if ($prestaciones) {
+                        foreach ($prestaciones as $prestacion) {
+                            $especifico = $prestacion['Especifico'];
+                            echo "<div class='alert alert-sm alert-info prestacion'>$especifico</div>";
+                        }//cada una de las prestaciones
+                    }//si hay prestaciones
+                    else {
+                        echo "<div class='alert alert-sm alert-warning'>No hay asignadas</div>";
+                    }
+                    echo"</div>
+                                ";
+                }//cada uno de los TM
+                ?>
+                <!-- Generacion de listado de TMs -->
+            </div>
+        </div><!-- listado de tms -->
+        <div class="col-sm-10 well well-sm">
             <div class="col-sm-1 hidden-print">
-                <button class="btn btn-danger btn-block" onClick="window.print()" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
+                <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span>
                 </button>
             </div>
@@ -46,7 +75,7 @@ $centro = $_GET ['centro'];
                                 right: 'agendaDay,agendaWeek,month'
                             },
                             eventRender: function(event, element) {
-                                element.find('.fc-title').prepend(event.description + "<br/>");
+                                element.find('.fc-title').append("<br/>" + event.description);
                             },
                             defaultView: 'month',
                             lazyFetch: true,
@@ -61,3 +90,4 @@ $centro = $_GET ['centro'];
                         });//fullCalendar
                     });//ready
 </script>
+<script src="Include/filtro.js"></script>

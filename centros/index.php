@@ -5,111 +5,111 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid ">
     <div class="row">
-     <div class="col-sm-3">
-     </div>
-          <div class="col-sm-6 panel panel-success">
-            <div class="panel-heading">
-                <h4>Prestaciones Tm</h4>
-            </div>
-           <div class='panel-body row-fluid'>
-           <div class='col col-sm-12'>
-           <center>
-           <?php 
-           include_once "Include/widgetHumano.php";
-           ?>
-           </center>
-           </div>
-           </div>
-        </div>
-    <!--      <div class="col-sm-6 panel panel-info">
-            <div class="panel-heading">
-                <h4>
-                    <strong>TMs No asignados</strong>
-                </h4>
-            </div>
-          <div class="progress" style="display: none">
-                <div class="progress-bar progress-bar-striped active"
-                     role="progressbar" style="width: 100%">
-                    <span class="sr-only">Cargando...</span>
-                </div>
-            </div>
-            <div class="panel-body row-fluid">
-                <div class="col-sm-12 well well-sm well-titles">
-                    <form class="form-inline text-center">
-                        <div class="form-group">
-                            <label for="start">Inicio</label> <input class="form-control"
-                                                                     type="text" id="start" name="from"> <label for="end">Final</label>
-                            <input class="form-control" type="text" id="end" name="to">
-                        </div>
-
-                        <div class="col-sm-10 col-sm-offset-1">
-                            <h4>De
-                                <span id="rangoStart">8:30</span> a
-                                <span id="rangoEnd">20:00</span>
-                                Horas
-                            </h4>
-                            <div id="slider"></div>
-                            <br>
-                        </div>
-                    </form>
-                </div>
-                <div class="well well-sm col-sm-6" style="max-height: 400px;">
-                    <h4>TMs libres</h4>
-                    <canvas id="myChart"></canvas>
-                    <div class="chartLegend"></div>
-                </div>
-                <div class="well well-sm col-sm-6" id="libres"
-                     style="overflow-y: auto; max-height: 400px;">
-                    <div class="alert alert-info">Seleccione un rango</div>
-                </div>
-                <div class="col-sm-12 alert alert-warning center-block text-center">
-                    <strong>Nota:</strong> Los TM que se encuentran en el listado no
-                    tienen <u>Ningun</u> evento asignado en el periodo de tiempo
-                    seleccionado.
-                </div>
-            </div>
-
+        <div class="col-sm-3">
         </div>
         <div class="col-sm-6 panel panel-success">
             <div class="panel-heading">
-                <h4>Otro Widget</h4>
+                <h4>Prestaciones Tm</h4>
             </div>
-            <!--<div class="progressHoras" style="display: none">
-                <div class="progress-bar progress-bar-striped active"
-                     role="progressbar" style="width: 100%">
-                    <span class="sr-only">Cargando...</span>
+            <div class='panel-body row-fluid'>
+                <div class='col col-sm-12' style="background: #2F2F2F;">
+                    <center>
+                        <?php
+                        include_once "../Include/widgetHumano.php";
+                        ?>
+                    </center>
                 </div>
             </div>
-            <div class="panel-body">
-                <div class="col-sm-12 well well-sm well-titles">
-                    <form class="form-inline text-center">
-                        <div class="form-group">
-                            <label for="start">Dia</label>
-                            <input class="form-control" type="text" id="dia" name="dia">
-                            <label for="start">Hora Inicio</label>
-                            <input class="form-control" type="text" id="horastart"  name="horastart" placeholder="0930">
-                            <label for="start">Hora Termino</label>
-                            <input class="form-control" type="text" id="horaend" name="horaend" placeholder="1300">
-                        </div>
-                    </form>
-                </div>
-                <div class="well well-sm col-sm-6" style="max-height: 400px;">
-                    <h4>TMs libres</h4>
-                    <canvas id="grafico"></canvas>
-                    <div class="chartLegend"></div>
-                </div>
-                <div class="well well-sm col-sm-6" id="libresHoras"
-                     style="overflow-y: auto; max-height: 400px;">
-                    <div class="alert alert-info">Seleccione un rango</div>
-                </div>
-                <div class="col-sm-12 alert alert-warning center-block text-center">
-                    <strong>Nota:</strong> Los TM que se encuentran en el listado no
-                    tienen <u>Ningun</u> evento asignado en el periodo de tiempo
-                    seleccionado.
-                </div>
-            </div> -->
         </div>
+        <!--      <div class="col-sm-6 panel panel-info">
+                <div class="panel-heading">
+                    <h4>
+                        <strong>TMs No asignados</strong>
+                    </h4>
+                </div>
+              <div class="progress" style="display: none">
+                    <div class="progress-bar progress-bar-striped active"
+                         role="progressbar" style="width: 100%">
+                        <span class="sr-only">Cargando...</span>
+                    </div>
+                </div>
+                <div class="panel-body row-fluid">
+                    <div class="col-sm-12 well well-sm well-titles">
+                        <form class="form-inline text-center">
+                            <div class="form-group">
+                                <label for="start">Inicio</label> <input class="form-control"
+                                                                         type="text" id="start" name="from"> <label for="end">Final</label>
+                                <input class="form-control" type="text" id="end" name="to">
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <h4>De
+                                    <span id="rangoStart">8:30</span> a
+                                    <span id="rangoEnd">20:00</span>
+                                    Horas
+                                </h4>
+                                <div id="slider"></div>
+                                <br>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="well well-sm col-sm-6" style="max-height: 400px;">
+                        <h4>TMs libres</h4>
+                        <canvas id="myChart"></canvas>
+                        <div class="chartLegend"></div>
+                    </div>
+                    <div class="well well-sm col-sm-6" id="libres"
+                         style="overflow-y: auto; max-height: 400px;">
+                        <div class="alert alert-info">Seleccione un rango</div>
+                    </div>
+                    <div class="col-sm-12 alert alert-warning center-block text-center">
+                        <strong>Nota:</strong> Los TM que se encuentran en el listado no
+                        tienen <u>Ningun</u> evento asignado en el periodo de tiempo
+                        seleccionado.
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6 panel panel-success">
+                <div class="panel-heading">
+                    <h4>Otro Widget</h4>
+                </div>
+        <!--<div class="progressHoras" style="display: none">
+            <div class="progress-bar progress-bar-striped active"
+                 role="progressbar" style="width: 100%">
+                <span class="sr-only">Cargando...</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12 well well-sm well-titles">
+                <form class="form-inline text-center">
+                    <div class="form-group">
+                        <label for="start">Dia</label>
+                        <input class="form-control" type="text" id="dia" name="dia">
+                        <label for="start">Hora Inicio</label>
+                        <input class="form-control" type="text" id="horastart"  name="horastart" placeholder="0930">
+                        <label for="start">Hora Termino</label>
+                        <input class="form-control" type="text" id="horaend" name="horaend" placeholder="1300">
+                    </div>
+                </form>
+            </div>
+            <div class="well well-sm col-sm-6" style="max-height: 400px;">
+                <h4>TMs libres</h4>
+                <canvas id="grafico"></canvas>
+                <div class="chartLegend"></div>
+            </div>
+            <div class="well well-sm col-sm-6" id="libresHoras"
+                 style="overflow-y: auto; max-height: 400px;">
+                <div class="alert alert-info">Seleccione un rango</div>
+            </div>
+            <div class="col-sm-12 alert alert-warning center-block text-center">
+                <strong>Nota:</strong> Los TM que se encuentran en el listado no
+                tienen <u>Ningun</u> evento asignado en el periodo de tiempo
+                seleccionado.
+            </div>
+        </div> -->
     </div>
+</div>
 
 
 

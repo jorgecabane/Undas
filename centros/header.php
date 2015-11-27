@@ -3,6 +3,7 @@ include_once dirname(__FILE__) . "/querys/getTM.php"; // aqui ya se incluye la c
 include_once dirname(__FILE__) . "/querys/getEcos.php";
 include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
+include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
 
 if ($_SESSION ["usuario"]) {
 
@@ -66,8 +67,8 @@ if ($_SESSION ["usuario"]) {
 
                     <?php
                     // MENU HORARIOS
-                
-                        echo '<li class="dropdown">
+
+                    echo '<li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#" role="button">Agenda<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu multi-level" role="menu"><!-- empresas -->
@@ -82,32 +83,32 @@ if ($_SESSION ["usuario"]) {
                         </ul>
                     </li> -->
                         ';
-                        foreach (getCentrosGroup($_SESSION ["usuario"]) as $empresa => $centros) {
-                            echo '<li class="dropdown-submenu  disabled"><a href="#" tabindex="-1">' . $empresa . '</a><!-- $empresa  -->
+                    foreach (getCentrosGroup($_SESSION ["usuario"]) as $empresa => $centros) {
+                        echo '<li class="dropdown-submenu  disabled"><a href="#" tabindex="-1">' . $empresa . '</a><!-- $empresa  -->
                             <ul class="dropdown-menu"><!-- menu $empresa -->
                                     ';
-                            foreach ($centros as $centro) {
-                                foreach ($centro as $datosCentro) {
-                                    //echo $datosCentro['Nombre'] . '<br>';
-                                    echo '<li><a href="informacionHorario.php?idCentro=' . $datosCentro['idCentro'] . '&centro=' . $datosCentro['Nombre'] . '(' . $datosCentro['Siglas'] . ')" tabindex="-1">' . $datosCentro['Nombre'] . ' <b>(' . $datosCentro['Siglas'] . ')</b></a></li>
+                        foreach ($centros as $centro) {
+                            foreach ($centro as $datosCentro) {
+                                //echo $datosCentro['Nombre'] . '<br>';
+                                echo '<li><a href="informacionHorario.php?idCentro=' . $datosCentro['idCentro'] . '&centro=' . $datosCentro['Nombre'] . '(' . $datosCentro['Siglas'] . ')" tabindex="-1">' . $datosCentro['Nombre'] . ' <b>(' . $datosCentro['Siglas'] . ')</b></a></li>
                                         ';
-                                }
                             }
-                            echo '</ul><!-- menu $empresa-->
+                        }
+                        echo '</ul><!-- menu $empresa-->
                                   </li><!-- dropdown-submenu -->
                                   ';
-                        }
-                        echo '</ul><!-- empresas -->
+                    }
+                    echo '</ul><!-- empresas -->
                           </li><!-- menu horarios-->
                           ';
-                        /* while ($row = mysql_fetch_array($result)) {
-                          echo "<li><a href='calendario.php?idCentro=" . $row['idCentro'] . "'>" . $row['Nombre'] . "</a></li>\n";
-                          }
-                          echo "</ul>\n</li>\n <!-- Dropdown honorarios -->\n";
-                         */
-                     // si es admin ve esto
+                    /* while ($row = mysql_fetch_array($result)) {
+                      echo "<li><a href='calendario.php?idCentro=" . $row['idCentro'] . "'>" . $row['Nombre'] . "</a></li>\n";
+                      }
+                      echo "</ul>\n</li>\n <!-- Dropdown honorarios -->\n";
+                     */
+                    // si es admin ve esto
                     //MENU EMPRESAS
-          ?></ul>
+                    ?></ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="editarClave.php">Editar Clave</a></li>
