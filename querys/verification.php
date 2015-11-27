@@ -1,15 +1,20 @@
-<?php function verificar_login($user, $password) {
-    $rec = mysql_query("SELECT * FROM tm WHERE Rut='$user' AND Password = '$password'") or die(mysql_error());
+<?php 
+include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
+function verificar_login($user, $password) {
+	
+    $rec = mysql_query("SELECT idTM FROM tm WHERE Rut='$user' AND Password = '$password'") or die(mysql_error());
 
-    if (mysql_affected_rows() == 1) {
+      if (mysql_num_rows($rec) ==1) {
         return "TM";
-    } else {
-    	$rec = mysql_query("SELECT * FROM tm WHERE Rut='$user' AND Password = '$password'") or die(mysql_error());
-    	if (mysql_affected_rows() == 1) {
+    } 
+    
+    	$rec2 = mysql_query("SELECT * FROM empresa WHERE Rut='$user' AND Password = '$password'") or die(mysql_error());
+    	if (mysql_num_rows($rec2) ==1) {
     		return "Empresa";
-    	} else {
-        return 0;
-    }
+    	}
+    	
+    	if($rec == NULL && $rec2 == NULL){
+    		return 0;
+    	}
+
 }
-}
-?>
