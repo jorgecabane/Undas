@@ -69,11 +69,11 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
     </style>
     <body background="images/bg.gif">
         <div class='container'>
-            <div class='col-md-4 col-md-offset-4'>
+            <div class='col-md-4 col-md-offset-4 form-group'>
               
                     <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
 
-
+<form role="form">
                     <h4>Rut usuario</h4>
                     <label for="user" class="sr-only">Rut</label> <input id="user" name="user" type="text" class='form-control'
                                                                          placeholder='RUT con puntos y gui&oacute;n' required />
@@ -82,7 +82,7 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
                     <input name="password" id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
                     <br>
                     <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
-             
+             </form>
                 <center><a href="passwords/passwordRecovery.php">(Recuperar clave)</a></center>
             </div>
 
