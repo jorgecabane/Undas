@@ -282,6 +282,8 @@ $('#liquido').html(liquido.toLocaleString('de-DE'));
                var year = moment($('#year').val()+'-'+$('#month').val()+'-01').format('YYYY-MM-DD');
                var titulo = input.val();
                var monto = inputmonto.val();
+               var row = $(this).parent().parent(); //linea en la que se encuentra
+               row.html("<td><span class='tituloExtra'>"+titulo+"</span></td><td><span class='label label-warning' >$ <span class='montoExtra'>"+monto+"</span></span><button type='button' class='close eliminarExtra2 hidden-print' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></td>");
                 jQuery.ajax({
                 method: "POST",
                 url: "querys/insertExtra.php",
@@ -298,6 +300,32 @@ $('#liquido').html(liquido.toLocaleString('de-DE'));
                 }
             }); 
                sumaMonto(monto); 
+             //script para eliminar un extra
+               $('.eliminarExtra2').click(function(){
+               	var titulo = $(this).parent().parent().find('.tituloExtra').text();
+               	var aqui = $(this).parent().parent();
+               	var monto = $(this).parent().find('.montoExtra').text();
+               	 var r = confirm("Esta seguro que quiere eliminar Extra: " + titulo + "?");
+                    if (r == true) {
+
+                        jQuery.ajax({
+                            method: "POST",
+                            url: "querys/eraseExtra.php",
+                            data: {
+                           	 "rut": "<?php echo $rut; ?>",
+                                'titulo': titulo,
+                                'monto': monto,
+                                'fecha': "<?php echo $mes; ?>"
+                            },
+                            success: function(response)
+                            {
+                                aqui.remove();
+                                var resta = monto*-1;
+                                sumaMonto(resta);
+                            }
+                        });
+                    }
+               });
         });
      
   
