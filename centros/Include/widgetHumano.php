@@ -136,7 +136,7 @@
 
         $(".popovereable").each(function() {
             var especifico = $(this).attr('title');
-            //var idEmpresa = aqui va la id de la empresa (si es que se mete un centro);
+            var idEmpresa = $('.NombreEmpresa').attr('idEmpresa');
             var contenido = $(this);
 
 
@@ -144,8 +144,8 @@
                 method: "POST",
                 url: "querys/getPrestacionesWidget.php",
                 data: {
-                    'especifico': especifico
-                            // 'idEmpresa': idEmpresa
+                    'especifico': especifico,
+                    'Empresa': idEmpresa
                 },
                 success: function(response) {
                     contenido.attr("data-content", response);
