@@ -8,7 +8,7 @@ include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion l
 function getTMRut($rut) {
 		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
 				FROM tm
-				WHERE Rut = $rut AND Doctor=0
+				WHERE Rut = '$rut' AND Doctor=0
                                 ORDER BY Apellido ASC";
 	$res = mysql_query ( $query ) or die ( mysql_error () );
 
