@@ -117,42 +117,42 @@
         Ecotomografías Doppler
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Testicular" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Testicular" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 676px;left: 100px;width:90px;height:25px;color: red">
         - Testicular
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Carotideo y Vertebral" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Carotideo y Vertebral" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 676px;left: 312px;width: 153px;height:25px;color: red">
         - Carotideo y Vertebral -
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Venoso de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Venoso de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 694px;left: 193px;width:90px;height:25px;color: red">
         - Venoso EEII
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Venoso de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Venoso de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 694px;left: 296px;width: 106px;height:25px;color: red">
         - Venoso EESS -
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Arterial de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Arterial de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 712px;left: 196px;width:90px;height:25px;color: red">
         - Arterial EEII
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Arterial de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Arterial de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 712px;left: 298px;width: 103px;height:25px;color: red">
         - Arterial EESS -
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Renal" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Renal" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 676px;left: 164px;width:90px;height:25px;color: red">
         - Renal
     </span>
     <span class="popovereable" id="map-link-21" shape="square"
-          title="Doppler color Hepático" data-toggle="popover" data-trigger="focus" data-placement="auto"
+          title="Doppler Hepático" data-toggle="popover" data-trigger="focus" data-placement="auto"
           style="position:absolute;top: 676px;left: 227px;width:90px;height:25px;color: red">
         - Hepático
     </span>

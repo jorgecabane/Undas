@@ -8,7 +8,7 @@
     <div id="map" style="position:relative; width:600px; height:800px; z-index:0; background-image:url(images/prestaciones.png); background-repeat: no-repeat;">
 
         <a class="popovereable" id="map-link-1" href="#" shape="square"
-           title="Doppler color Carotideo y Vertebral" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Carotideo y Vertebral" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:103px;left:22px;width:185px;height:53px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
@@ -33,12 +33,12 @@
         </a>
 
         <a class="popovereable" id="map-link-6" href="#" shape="square"
-           title="Doppler color Venoso de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Venoso de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:186px;left:399px;width:174px;height:59px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
         <a class="popovereable" id="map-link-7" href="#" shape="square"
-           title="Doppler color Renal" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Renal" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:293px;left:446px;width:147px;height:34px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
@@ -53,12 +53,12 @@
         </a>
 
         <a class="popovereable" id="map-link-10" href="#" shape="square"
-           title="Doppler color Testicular" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Testicular" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:511px;left:401px;width:186px;height:29px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
         <a class="popovereable" id="map-link-11" href="#" shape="square"
-           title="Doppler color Venoso de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Venoso de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:583px;left:419px;width:165px;height:54px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
@@ -73,7 +73,7 @@
         </a>
 
         <a class="popovereable" id="map-link-14" href="#" shape="square"
-           title="Doppler color Arterial de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Arterial de EEII" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:588px;left:29px;width:164px;height:55px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
@@ -83,7 +83,7 @@
         </a>
 
         <a class="popovereable" id="map-link-16" href="#" shape="square"
-           title="Doppler color Hepático" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Hepático" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:410px;left:23px;width:95px;height:56px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
@@ -98,7 +98,7 @@
         </a>
 
         <a class="popovereable" id="map-link-19" href="#" shape="square"
-           title="Doppler color Arterial de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
+           title="Doppler Arterial de EESS" data-toggle="popover" data-trigger="focus" data-placement="auto"
            style="position:absolute;top:196px;left:23px;width:164px;height:53px; border: 1px solid #2F2F2F;border-radius: 2px;">
         </a>
 
