@@ -21,7 +21,7 @@ $centro = $_GET ['centro'];
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2 well well-sm">
+        <div class="col-md-2 well well-sm hidden-print">
             <center><h3>Listado TM</h3></center>
             <input type='text' id='search' class='form-control' placeholder='Filtrar por Nombre'>
 
@@ -30,8 +30,8 @@ $centro = $_GET ['centro'];
                 <?php
                 $tms = getTM();
                 foreach ($tms as $tm) {
-                    echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
-                                <div id='tm" . $tm['idTM'] . "' class='collapse'>Prestaciones:<br>
+                    echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
+                                <div id='tm" . $tm['idTM'] . "' class='prestaciones collapse'>Prestaciones:<br>
                                     ";
                     $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
                     if ($prestaciones) {
@@ -89,5 +89,10 @@ $centro = $_GET ['centro'];
                             timeFormat: 'H:mm'
                         });//fullCalendar
                     });//ready
+</script>
+<script>
+    $('a.label').click(function() {
+        $(this).find('.glyphicon').toggleClass('glyphicon-plus-sign').toggleClass('glyphicon-minus-sign');
+    });
 </script>
 <script src="Include/filtro.js"></script>

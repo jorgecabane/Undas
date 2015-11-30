@@ -85,8 +85,8 @@ $centro = $_GET ['centro'];
                         <?php
                         $tms = getTM();
                         foreach ($tms as $tm) {
-                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
-                                <div id='tm" . $tm['idTM'] . "' class='collapse'>Prestaciones:<br>
+                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
+                                <div id='tm" . $tm['idTM'] . "' class='collapse prestaciones'>Prestaciones:<br>
                                     ";
                             $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
                             if ($prestaciones) {
@@ -228,9 +228,11 @@ $centro = $_GET ['centro'];
 <script src="Include/js/deleteMonth.js"></script><!-- deleteMonth -->
 <script src="Include/js/getCupos.js"></script><!-- getCupos -->
 <script>
-    $('#external-events').collapse({
-        parent: '.fc-event'
+    //$('#external-events').collapse({parent: '.fc-event'}); //creacion de los espacios para colapsar
+    $('a.label').click(function() {
+        $(this).find('.glyphicon').toggleClass('glyphicon-plus-sign').toggleClass('glyphicon-minus-sign');
     });
+
 </script><!-- collapse prestaciones -->
 <script>
     /* initialize the calendar
@@ -301,8 +303,5 @@ $centro = $_GET ['centro'];
         });//change selectTM
     });//document
 </script><!-- display de Medicos/TM-->
-<script>
-
-</script>
 <script src="Include/filtro.js"></script>
 </html>

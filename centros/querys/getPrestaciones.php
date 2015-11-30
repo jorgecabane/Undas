@@ -3,6 +3,9 @@
 /*
  * getPrestaciones funcion que se conecta a la base de datos para entregar la informacion de todas
  * las prestaciones de un tm especifico, dado su Rut
+ *  @param {string} : $rutTM
+ *  @param {int} : $empresa
+ *  @return {array} : todas las prestaciones de un TM en una empresa seleccionada
  *
  */
 include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion local
