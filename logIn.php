@@ -3,17 +3,15 @@ session_start();
 include_once dirname(__FILE__) . "/conexionLocal.php";
 // $tipo = mysql_query("SELECT * FROM usuarios WHERE usuario = '$user' and password = '$password'") or die(mysql_error());
 // $resultadotipo= mysql_fetch_assoc($tipo);
-
-
 ?>
 <html>
-<div id="respuesta"></div>
+    <div id="respuesta"></div>
     <head>
         <!-- css -->
         <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8 "/>
-		<script src="Include/jquery-2.1.4.min.js"></script>
-		<script src="Include/bootstrap.js"></script>
-   		<script src="Include/jquery-ui.js"></script>
+        <script src="Include/jquery-2.1.4.min.js"></script>
+        <script src="Include/bootstrap.js"></script>
+        <script src="Include/jquery-ui.js"></script>
         <link href="css/bootstrap.min.css" rel='stylesheet'>
         <style>
             body {
@@ -70,50 +68,52 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
     <body background="images/bg.gif">
         <div class='container'>
             <div class='col-md-4 col-md-offset-4 form-group'>
-              
-                    <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
 
-<form role="form">
-                    <h4>Rut usuario</h4>
-                    <label for="user" class="sr-only">Rut</label> <input id="user" name="user" type="text" class='form-control'
-                                                                         placeholder='RUT con puntos y gui&oacute;n' required />
-                    <h4>Contrase&ntilde;a</h4>
-                    <label for='password' class="sr-only">Contrase&ntilde;a</label>
-                    <input name="password" id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
-                    <br>
-                    <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
-             </form>
+                <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
+
+                <h4>Rut usuario</h4>
+                <label for="user" class="sr-only">Rut</label>
+                <input id="user" name="user" type="text" class='form-control' placeholder='RUT con puntos y gui&oacute;n' required />
+
+                <h4>Contrase&ntilde;a</h4>
+                <label for='password' class="sr-only">Contrase&ntilde;a</label>
+                <input name="password" id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
+
+                <br>
+                <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
+
                 <center><a href="passwords/passwordRecovery.php">(Recuperar clave)</a></center>
             </div>
 
-        </div>
+        </div><!-- login -->
 
 
     </body>
     <script>
         $(document).ready(function() {
-        	$(".btnsubmit").click(function() {
-              jQuery.ajax({
-                  method: "POST",
-                  url: "querys/verification.php",
-                  data: {
-                      'user': $('#user').val(),
-                      'password': $('#password').val()                     
-                  },
-                  success: function(response)
-                  {
-                  	if (response=="Tm"){
-                  		$(location).attr('href', 'index.php');				
-                  	}
-                  	if (response == "Empresa"){
-                  		$(location).attr('href', 'centros/index.php');		
-                  	}
-                  	if (response == 0){
-                  		$("#respuesta").html('<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>');
-                  }
-              }
-          });
-        	});
+            $(".btnsubmit").click(function() {
+                jQuery.ajax({
+                    method: "POST",
+                    url: "querys/verification.php",
+                    async: false,
+                    data: {
+                        'user': $('#user').val(),
+                        'password': $('#password').val()
+                    },
+                    success: function(response)
+                    {
+                        if (response == "Tm") {
+                            $(location).attr('href', 'index.php');
+                        }
+                        if (response == "Empresa") {
+                            $(location).attr('href', 'centros/index.php');
+                        }
+                        if (response == 0) {
+                            $("#respuesta").html('<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>');
+                        }
+                    }
+                });
+            });
         });
     </script>
 </html>
