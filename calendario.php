@@ -289,12 +289,23 @@ $centro = $_GET ['centro'];
             hiddenDays: [0],
             contentHeight: 800,
             allDaySlot: false,
+            //loading:loading,
             displayEventEnd: true,
             timeFormat: 'H:mm'
+
         });
 
     });//document.ready
 </script><!-- fullCalendar -->
+<script>
+    var loading = function(isLoading, view) {
+                if (isLoading) {
+                    $('.loading-screen').show();
+                } else {
+                    $('.loading-screen').hide();
+                }
+            };
+</script>
 <script>
     $(document).ready(function() {
         $('#selectTM').change(function() {

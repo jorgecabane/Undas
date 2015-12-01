@@ -50,6 +50,9 @@ if ($_SESSION ["usuario"]) {
 
 </head>
 <body background="images/bg.gif">
+    <div class="loading-screen" style="position: fixed; z-index: 9999; background: #FFFFFF; opacity: .95; width: 100%; height: 100%; display:none;">
+        <center><img src="images/small-load.gif" style="position: relative; top: 100px;"></center>
+    </div>
     <div class='row' align="left">
         <img src="images/logo.gif" alt="logo" />
     </div>
@@ -161,7 +164,7 @@ if ($_SESSION ["usuario"]) {
                     <li><a href="bugReport.php" ><font color="red">¡Reportar Error!</font></a></li>
                     <li><button onClick="window.location.href = 'logOff.php'" class="btn btn-danger navbar-btn"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
                 </ul>
-                
+
 
             </div>
             <!-- /.navbar-collapse -->

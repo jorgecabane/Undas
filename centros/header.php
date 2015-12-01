@@ -44,6 +44,9 @@ if ($_SESSION ["usuario"]) {
 
 </head>
 <body background="images/bg.gif">
+    <div class="loading-screen" style="position: fixed; z-index: 9999; background: #15191F; opacity: .95; width: 100%; height: 100%; display:none;">
+        <center><img src="images/small-load.gif"></center>
+    </div>
     <div class='row' align="left">
         <img src="images/logo.gif" alt="logo" />
     </div>
