@@ -5,7 +5,7 @@ $tms = getTM();
 echo '<ul class="nav nav-pills nav-stacked">';
 
 foreach ($tms as $tm) {
-    echo '<li class="fc-event fc" rut="' . $tm['Rut'] . '"><center>' . $tm['Nombre'] . ' ' . $tm['Apellido'] . '</center></li>';
+    echo '<li class="fc-event fc" rut="' . $tm['Rut'] . '"><span class="glyphicon glyphicon-circle-arrow-right pull-right"></span><center>' . $tm['Nombre'] . ' ' . $tm['Apellido'] . '</center></li>';
 }
 echo '</ul>';
 ?>
