@@ -14,14 +14,14 @@ function getEventosTM($Rut = null) {
 				WHERE RUT='$Rut' AND TM_idTM=idTM AND Ecos_idEcos=idEcos AND Centro_idCentro=idCentro";
 
         $res = mysql_query($query) or die(mysql_error());
-        if (mysql_affected_rows()>= 1) {
-            while($row = mysql_fetch_assoc($res)) {
+        if (mysql_affected_rows() >= 1) {
+            while ($row = mysql_fetch_assoc($res)) {
                 $result [] = $row;
             } // while
-            return $result;
         } else {
-            return 'No se encontraron eventos!';
+            $result = false;
         }
+        return $result;
     } // si se le entrega correctamente el idCentro
 }
 

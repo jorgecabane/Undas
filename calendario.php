@@ -289,7 +289,7 @@ $centro = $_GET ['centro'];
             hiddenDays: [0],
             contentHeight: 800,
             allDaySlot: false,
-            //loading:loading,
+            loading:loading,
             displayEventEnd: true,
             timeFormat: 'H:mm'
 
