@@ -30,13 +30,10 @@ function getEventos($idCentro = null, $medicos = false) {
 
         //echo $query;
         $res = mysql_query($query) or die(mysql_error());
-        if (mysql_affected_rows() >= 1) {
-            while ($row = mysql_fetch_assoc($res)) {
-                $result [] = $row;
-            } // while
-        }else{
-            $result = 'No hay eventos que traer';
-        }
+
+        while ($row = mysql_fetch_assoc($res)) {
+            $result [] = $row;
+        } // while
         return $result;
     } // si se le entrega correctamente el idCentro
 }

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Script que genera los eventos desde la base de datos indicandole el id del centro
  * en formato json para cargarlos en el calendario
@@ -24,9 +23,10 @@
  *
  *
  */
-require_once dirname(__FILE__) . "/../querys/getEventos.php";
-if (isset($_REQUEST ['idCentro'])) {
-
-    echo json_encode(getEventos($_REQUEST ['idCentro']));
+require_once dirname ( __FILE__ ) . "/../querys/getEventos.php";
+if (isset ( $_REQUEST ['idCentro'] )) {
+	
+	echo json_encode ( getEventos ( $_REQUEST ['idCentro'] ) );
 }
+
 ?>
