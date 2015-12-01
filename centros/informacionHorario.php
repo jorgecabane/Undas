@@ -66,9 +66,22 @@ $centro = $_GET ['centro'];
 <script>
                     $(document).ready(function() {
                         $('#calendar').fullCalendar({
-                            eventSources: {
-                                url: "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>"
-                            },
+                            eventSources: [
+                                {"url": "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>",
+                                    "constraint": "businessHours"
+                                },
+                                {"url": "Include/feedEventosMedico.php?idCentro=<?php echo $idCentro; ?>",
+                                    "constraint": "businessHours",
+                                    "color": '#ffaa00'
+                                },
+                                {
+                                    "url": "Include/feriados.php",
+                                    "overlap": false,
+                                    "rendering": "background",
+                                    "color": '#6B685D'
+                                }
+
+                            ], //eventSources
                             header: {
                                 left: 'prev,today,next',
                                 center: 'title',

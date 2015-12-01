@@ -27,6 +27,6 @@
 require_once dirname(__FILE__) . "/../querys/getEventos.php";
 if (isset($_REQUEST ['idCentro'])) {
 
-    echo json_encode(getEventos($_REQUEST ['idCentro']));
+    echo json_encode(getEventos($_REQUEST ['idCentro'], true));
 }
 ?>
