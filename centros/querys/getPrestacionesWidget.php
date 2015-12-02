@@ -12,7 +12,7 @@ if(isset($_POST['Empresa'])){
 $Empresa=	$_POST['Empresa'];
 $especifico = $_POST['especifico'];
 
-$query = "select concat(tm.Nombre,' ' ,tm.Apellido) as Nombre
+$query = "select concat(tm.Nombre,' ' ,tm.Apellido) as Nombre, empresa.Nombre as Empresa
 from prestaciones
 inner join prestacionestm on (prestacionestm.prestaciones_idprestaciones = prestaciones.idprestaciones)
 inner join tm on ( tm.idTM = prestacionestm.TM_idTM)
@@ -20,7 +20,7 @@ inner join empresa on (empresa.Rut = prestacionestm.Empresa_Rut)
 where  
 prestaciones.Especifico = '$especifico'
 and
-empresa.Nombre = '$Empresa'
+empresa.idEmpresa = '$Empresa'
 ORDER BY tm.Apellido asc";
 
     $res = mysql_query($query) or die(mysql_error());
@@ -28,9 +28,16 @@ ORDER BY tm.Apellido asc";
         while ($row = mysql_fetch_assoc($res)) {
             $result[] = $row;
         }
-
+        $empresa=' ';
         foreach ( $result as $nombre)
-        {
+        {   if($nombre['Empresa'] != $empresa  ){
+        	echo "<strong>";
+        	echo $nombre['Empresa'];
+        	$empresa = $nombre['Empresa'];
+        	echo "</strong>";
+        	echo "<br>";
+        	
+        }
         	echo $nombre['Nombre'];
         	echo "<br>";
         }

@@ -136,7 +136,7 @@
 
         $(".popovereable").each(function() {
             var especifico = $(this).attr('title');
-            var idEmpresa = $('.NombreEmpresa').attr('idEmpresa');
+            var idEmpresa = $('.NombreEmpresa').attr('idempresa');
             var contenido = $(this);
 
 
