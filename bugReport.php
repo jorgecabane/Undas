@@ -41,6 +41,14 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 <script>
 $("#agregar").click(function(){
 
+	var fullDate = new Date()
+	 
+	//convert month to 2 digits
+	var twoDigitMonth = fullDate.getMonth()+1;
+	 
+	var currentDate = fullDate.getFullYear() +  "-" + twoDigitMonth + "-" + fullDate.getDate();
+	//console.log(currentDate);
+
 	var name= $('#nombre').val();
 
 			 jQuery.ajax({
@@ -49,7 +57,8 @@ $("#agregar").click(function(){
 			       data: {
 				     		'id':$('#idsession').val(),
 				     		'titulo':$('#titulo').val(),
-				     		'descripcion':$('#descripcion').val()				     		
+				     		'descripcion':$('#descripcion').val(),
+				     		'fecha': currentDate				     		
 			       },
 
 			       error: function() {
@@ -58,7 +67,7 @@ $("#agregar").click(function(){
 
 			       success: function(response)
 			       {
-			    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong> Se agreg&oacute; correctamente su Error.</div>');
+			    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong>'+response+'</div>');
 			    	    $('#idsession').val('');
 			     		$('#titulo').val('');
 			     		$('#descripcion').val('');

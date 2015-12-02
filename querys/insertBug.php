@@ -9,14 +9,15 @@
 		$id = trim($_POST ['id']);
 		$titulo = trim($_POST ['titulo']);
 		$descripcion = trim($_POST ['descripcion']);
+		$date = $_POST ['fecha'];
 		//insertando centro
-		$query = "insert into bugs values (null,'$titulo','$descripcion','$id')";
+		$query = "insert into bugs values (null,'$titulo','$descripcion','$id','$date')";
 		$resultado = mysql_query ( $query );
 		//obteniendo el id del centro recien insertado
 		
 		if ($resultado) {
 			// success
-			echo "bug agregado con exito, redireccionando";
+			echo "Bug agregado correctamente, Lo solucionaremos prontamente";
 		} else {
 			// failure
 			echo "bug no se guardo, redireccionando";
