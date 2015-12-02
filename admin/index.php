@@ -91,17 +91,21 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 well well-sm" style="max-height: 400px; overflow-y: auto;">
+        <div class="col-sm-12 well well-sm" >
             <i class="glyphicon glyphicon-download pull-right"></i>
+             <div class="panel panel-default">
             <?php include_once dirname(__FILE__) . "/Include/logs.php"; ?>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 well well-sm" style="max-height: 400px; overflow-y: auto;">
+      
             <i class="glyphicon glyphicon-download pull-right"></i>
             <center><h3>Reporte de bugs</h3></center>
+            <div class="panel panel-default">
              <?php include_once dirname(__FILE__) . "/Include/bugs.php"; ?>
-        </div>
+             </div>
+        
     </div>
 </div>
 

@@ -1,17 +1,18 @@
 <?php
 include_once dirname(__FILE__) . '/../querys/getLogs.php';//conexion local
 echo "<center><h3>Logs</h3></center>";
-echo "<table class='table table-condensed table-bordered table-hover'>
+echo "<table class='table table-fixed'>
         <thead>
             <tr>
-                <th>Horario</th>
-                <th>Tipo</th>
-                <th>User</th>
-                <th>IP</th>
-                <th>URL</th>
+                <th width='21%'>Horario</th>
+                <th width='7%'>Tipo</th>
+                <th width='13%'>User</th>
+                <th width='17%'>IP</th>
+                <th width='43%'>URL</th>
             </tr>
-        </thead>";
-echo "<tbody>";
+        </thead></table>";
+echo '<div style="max-height: 300px; overflow-y: auto;">';        
+echo "<table class='table table-bordered table-hover table-fixed'><tbody>";
 $logs = getLogs();
 if ($logs) {
     foreach($logs as $log){
@@ -29,5 +30,5 @@ if ($logs) {
     }
 }
 echo "  </tbody>
-      </table>  ";
+      </table></div>  ";
 ?>
