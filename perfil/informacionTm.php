@@ -219,7 +219,7 @@ if ($resultado) {
           var rut2 = $('#rut').val()  
         jQuery.ajax({
             method: "POST",
-            url: "querys/updateTM.php",
+            url: "querys/updateTm.php",
             data: {
                 'idtm': $('#idtm').val(),
                 'nombre': $('#nombre').val(),

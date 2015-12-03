@@ -13,7 +13,7 @@ $comentario = trim($_POST['comentario']);
 $segundonombre = trim($_POST['segundonombre']);
 $segundoapellido = trim($_POST['segundoapellido']);
 
-$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular='$celular', Banco='$banco', Cuentacorriente='$cuenta', Comentario='$comentario', Segundonombre='$segundonombre', Segundoapellido='$segundoapellido' WHERE idtm=$id";
+$query = "UPDATE tm SET Nombre='$nombre', Apellido='$apellido', Rut='$rut', Mail='$mail', Celular='$celular', Banco='$banco', Cuentacorriente='$cuenta', Comentario='$comentario', Segundonombre='$segundonombre', Segundoapellido='$segundoapellido' WHERE idTM=$id";
 
 $resultado = mysql_query($query);
 if ($resultado) {
