@@ -5,9 +5,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid ">
     <div class="row">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-6 panel panel-success">
+        <div class="col-sm-6 col-sm-offset-3 panel panel-success">
             <div class="panel-heading">
                 <h4>Prestaciones Tm</h4>
             </div>
@@ -15,7 +13,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 <div class='col col-sm-12' style="background: #2F2F2F;">
                     <center>
                         <?php
-                        include_once "../Include/widgetHumano.php";
+                        include_once dirname(__FILE__) . "/Include/widgetHumano.php";
                         ?>
                     </center>
                 </div>

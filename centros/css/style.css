@@ -84,8 +84,19 @@ to {
     border-color: #3FABE9;
     border-width: 1px;
 }
+.medico {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    background-color: #ffaa00;
+    border-color: #ff7b00;
+    border-width: 1px;
+    padding: 2px;
+    text-align: center;
+}
 .fc-event {
     cursor: pointer;
+    font-size: 0.9em;
 }
 .alert {
     margin-bottom: 0px;
@@ -136,4 +147,15 @@ to {
 }
 td {
 white-space: nowrap;
+}
+.popovereable{
+    cursor: pointer;
+}
+#map .label{
+    display: inline-block;
+}
+
+.progress{
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
