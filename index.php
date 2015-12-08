@@ -13,7 +13,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                     <strong>Tecn&oacute;logos M&eacute;dicos no asignados</strong>
                 </h4>
             </div>
-            <div class="progress" style="display: none">
+            <div id="progress" class="progress" style="display: none">
                 <div class="progress-bar progress-bar-striped active"
                      role="progressbar" style="width: 100%">
                     <span class="sr-only">Cargando...</span>
@@ -62,6 +62,11 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                 <h4>Prestaciones Tecn&oacute;logos M&eacute;dicos</h4>
             </div>
             <center>
+                <div id="progress2" class="progress" style="display: none">
+                    <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" style="width: 100%">
+                        <span class="sr-only">Cargando...</span>
+                    </div>
+                </div>
                 <div class='panel-body row-fluid'>
                     <div class='col col-sm-12' style="background: #2F2F2F;">
 
@@ -144,10 +149,10 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             data: {"start": start, "end": end},
             method: 'POST',
             beforeSend: function() {
-                $('.progress').slideDown('slow');
+                $('#progress').slideDown('slow');
             },
             success: function(output) {
-                $('.progress').slideUp('slow');
+                $('#progress').slideUp('slow');
                 output = $.parseJSON(output);
                 libres = 0;
 
@@ -159,7 +164,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                             libres++;//cantidad de TMs disponibles o libres en el intervalo seleccionado
                             $('#libres').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
                         }
-                        else{
+                        else {
                             $('#libres').append('<div class="alert alert-sm alert-warning">No hay TM libres en el rango seleccionado</div>');
                         }
                     } else {

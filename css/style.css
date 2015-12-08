@@ -151,3 +151,11 @@ white-space: nowrap;
 .popovereable{
     cursor: pointer;
 }
+#map .label{
+    display: inline-block;
+}
+
+.progress{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
