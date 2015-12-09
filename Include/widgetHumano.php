@@ -1,4 +1,4 @@
-<div id="map" style="position:relative; width:403px; height:731px; z-index:0; background-image:url(images/prestaciones.jpg); background-repeat: no-repeat;">
+<div id="map" style="position:relative; width:403px; height:664px; z-index:0; background-image:url(images/prestaciones.jpg); background-repeat: no-repeat;">
     <select id="empresas" style="position:absolute;top:5px;left:255px;">
         <?php
         require_once dirname(__FILE__) . '/../querys/getEmpresa.php';
@@ -125,6 +125,12 @@
         <span class="popovereable label label-danger label-block" id="map-link-21" title="Doppler Carotideo y Vertebral" data-toggle="popover" data-trigger="focus" data-placement="bottom">
             Carotideo y Vertebral
         </span>
+        <span class="popovereable label label-danger label-block" id="map-link-21" title="Doppler Renal" data-toggle="popover" data-trigger="focus" data-placement="bottom">
+            Renal
+        </span>
+        <span class="popovereable label label-danger label-block" id="map-link-21" title="Doppler Hepático" data-toggle="popover" data-trigger="focus" data-placement="bottom">
+            Hepático
+        </span>
         <span class="popovereable label label-danger label-block" id="map-link-21" title="Doppler Venoso de EEII" data-toggle="popover" data-trigger="focus" data-placement="bottom">
             Venoso EEII
         </span>
@@ -136,12 +142,6 @@
         </span>
         <span class="popovereable label label-danger label-block" id="map-link-21" title="Doppler Arterial de EESS" data-toggle="popover" data-trigger="focus" data-placement="bottom">
             Arterial EESS
-        </span>
-        <span class="popovereable label label-danger label-block" id="map-link-21" title="Doppler Renal" data-toggle="popover" data-trigger="focus" data-placement="bottom">
-            Renal
-        </span>
-        <span class="popovereable label label-danger label-block" id="map-link-21" title="Doppler Hepático" data-toggle="popover" data-trigger="focus" data-placement="bottom">
-            Hepático
         </span>
     </div>
     <!--<area shape="circle" coords="580,127" alt="Mano" href="#" title="Prestaciones Mano" data-toggle="popover" data-trigger="focus" data-placement="bottom" >

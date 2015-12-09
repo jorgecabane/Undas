@@ -59,7 +59,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         <div class="col-sm-6 panel panel-success">
 
             <div class="panel-heading">
-                <h4>Prestaciones Tecn&oacute;logos M&eacute;dicos</h4>
+                <h4>Prestaciones Tecn&oacute;logos M&eacute;dicos TMTECNOMED</h4>
             </div>
             <center>
                 <div id="progress2" class="progress" style="display: none">

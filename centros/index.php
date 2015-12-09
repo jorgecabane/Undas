@@ -5,9 +5,13 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 <div class="container-fluid ">
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 panel panel-success">
+        <div class="alert alert-info col-sm-3" style="text-align: justify;">
+            <span class="glyphicon glyphicon-info-sign"></span> <u>Utilizaci&oacute;n:</u><br>
+            Mantenga el puntero de su mouse sobre el &aacute;rea que desee para verificar los Tecn&oacute;logos M&eacute;dicos que realizan esta prestaci&oacute;n.
+        </div>
+        <div class="col-sm-6 panel panel-success">
             <div class="panel-heading">
-                <h4>Prestaciones Tm</h4>
+                <h4>Prestaciones Tecn&oacute;logos M&eacute;dicos TMTECNOMED</h4>
             </div>
             <div class='panel-body row-fluid'>
                 <div class='col col-sm-12' style="background: #2F2F2F;">
