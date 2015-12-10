@@ -16,7 +16,7 @@ function getTMRut($rut) {
 
     if (mysql_affected_rows() == 1) {
         while ($row = mysql_fetch_assoc($res)) {
-            $result[] = $row;
+            $result = $row;
         }
     } else {
         $result = false;
