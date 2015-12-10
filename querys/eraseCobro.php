@@ -4,13 +4,8 @@ include_once "../conexionLocal.php";
 
 $idTM=$_POST['id'];
 $valor=$_POST['valor'];
-$empresa=$_POST['empresa'];
+$idEmpresa=$_POST['empresa'];
 $semana=$_POST['semana'];
-
-$queryId="Select idEmpresa from empresa where Nombre='$empresa'";
-$resultadoId= mysql_query($queryId);
-$Assoc= mysql_fetch_assoc($resultadoId);
-$idEmpresa=$Assoc['idEmpresa'];
 
 if($semana=="Semana"){
 $query="Delete from valorhora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=1 ";

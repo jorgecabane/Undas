@@ -69,7 +69,7 @@
                                        value="Editar" class='btn btn-info btneditable' disabled="disabled" />
 
                             </td>
-                            <td><input type="submit" value="Eliminar"
+                            <td><input type="submit" value="Eliminar" idEmpresa="<?php echo $row['idEmpresa']; ?>"
                                        class='btn btn-danger btndelete' /></td>
                                 <?php
                             }
@@ -157,6 +157,7 @@
                 .parent()
                 .children(".semana")
                 .html();
+        var idEmpresa = $(this).attr('idEmpresa');
 
         var r = confirm("Esta seguro que quiere eliminar la fila: " + centro + " valor: " + input + "?");
         if (r == true) {
@@ -168,7 +169,7 @@
                     'valor': input,
                     'id': $("#idTM").val(),
                     'semana': semana,
-                    'empresa': centro
+                    'empresa': idEmpresa
                 },
                 success: function(response)
                 {
@@ -251,7 +252,7 @@
                             'valor': input,
                             'id': $("#idTM").val(),
                             'semana': $.trim(semana),
-                            'empresa': $.trim(centro)
+                            'empresa': idEmpresa
                         },
                         success: function(response)
                         {

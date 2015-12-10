@@ -9,8 +9,9 @@ include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion
 
 function getValorHora($rutTM) {
 
-    $query = "SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, empresa.Nombre as Empresa, tm.idTM as idTM from tm 
-				inner join valorhora on tm.idTM = valorhora.Tm_idTM
+    $query = "SELECT valorhora.Valor as Valor, valorhora.Semana as Semana, empresa.Nombre as Empresa, tm.idTM as idTM, empresa.idEmpresa as idEmpresa
+    			from tm 
+    			inner join valorhora on tm.idTM = valorhora.Tm_idTM
 				inner join empresa on empresa.idEmpresa = valorhora.Empresa_idEmpresa
 				WHERE tm.Rut='$rutTM'
                 ORDER BY Empresa asc";
