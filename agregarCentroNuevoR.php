@@ -126,15 +126,13 @@ $(".btnedit").click(function(){
 
 	       success: function(response)
 	       {
-	    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong> Se agreg&oacute; correctamente a: ' + name+ '.</div>');
+	    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>'+response+'</strong></div>');
 		    	$('#nombre').val('');
 	     		$('#empresa').val('');
 	     		$('#ecos').val('');
 	     		$('#siglas').val('');
 	     		$('#append').empty();
-	     		setTimeout(function(){location.reload()},1500)
-			
-
+	     		setTimeout(function(){location.reload()},2500)
 	       }
 	 });
 

@@ -6,6 +6,7 @@
 <body>
 <?php
 		include_once "../conexionLocal.php";
+		if(isset($_POST ['empresa'],$_POST ['nombre'],$_POST ['siglas'],$_POST ['ecos'],$_POST ['nombreEcos'],$_POST ['coloresEcos'])){
 		$idEmpresa = trim($_POST ['empresa']);
 		$nombre = trim($_POST ['nombre']);
 		$siglas = trim($_POST ['siglas']);
@@ -28,10 +29,14 @@
 		}
 		if ($resultado && $resultado2) {
 			// success
-			echo "Centro agregado con exito, redireccionando";
+			echo "Centro:$nombre agregado con exito";
 		} else {
 			// failure
-			echo " El nombre o sigla ya existe, redireccionando";
+			echo " El nombre:$nombre o sigla:$siglas ya existe, intente otra vez";
+		}
+		}
+		else {
+			echo "campo/s vacíos";
 		}
 ?>
 								

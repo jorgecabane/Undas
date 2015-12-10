@@ -6,6 +6,7 @@
 <body>
 <?php
 		include_once "../conexionLocal.php";
+		if(isset($_POST ['idCentro'],$_POST ['ecos'],$_POST ['nombreEcos'],$_POST ['coloresEcos'])){
 		$idCentro = trim($_POST ['idCentro']);
 		$numeroecos = trim($_POST ['ecos']);
 		$nombreEcos = $_POST['nombreEcos'];
@@ -22,6 +23,11 @@
 		} else {
 			// failure
 			echo " Error, redireccionando";
+		}
+		}
+		else
+		{
+			echo "campo/s vacíos";
 		}
 ?>
 								

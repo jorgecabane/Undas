@@ -75,7 +75,7 @@ $("#agregar").click(function(){
 
 			       success: function(response)
 			       {
-			    	    $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong> Se agreg&oacute; correctamente a: ' + name+ ' ' + lastname+'. <br><strong>La clave fue enviada al mail ingresado.</strong></div>');
+			    	    $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>'+response+'</strong><br></div>');
 				    	$('#nombre').val('');
 			     		$('#apellido').val('');
 			     		$('#rut').val('');
