@@ -2,6 +2,7 @@
 session_start ();
 require_once dirname(__FILE__)."/header.php";
 include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
+include_once dirname(__FILE__)."/querys/getEmpresa.php";
 ?>
 <!DOCTYPE html>
 
@@ -28,15 +29,11 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 			<label>Empresa a la que pertenece</label> <br>
 
           <?php
-		include_once "conexionLocal.php";
-
-		$query = "SELECT * from empresa order by Nombre asc ";
-
-			$resultado = mysql_query ( $query ) or die ( mysql_error () );
+			$resultado = getEmpresa();
 				if ($resultado) {
 					echo "<select class='form-control' required name='empresa' id='empresa' >";
 					echo "<option value=''> Seleccione Empresa </option>";
-					while ( $row = mysql_fetch_assoc ( $resultado ) ) {
+					foreach($resultado as $row){
 						echo "<option value='" . $row ['idEmpresa'] . "'>" . $row ['Nombre'] . "</option>";
 					}
 					echo "</select>";
@@ -135,6 +132,7 @@ $(".btnedit").click(function(){
 	     		$('#ecos').val('');
 	     		$('#siglas').val('');
 	     		$('#append').empty();
+	     		setTimeout(function(){location.reload()},1500)
 			
 
 	       }

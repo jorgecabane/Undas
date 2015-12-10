@@ -10,8 +10,8 @@
 		$nombre = trim($_POST ['nombre']);
 		$siglas = trim($_POST ['siglas']);
 		$numeroecos = trim($_POST ['ecos']);
-		$nombreEcos = trim($_POST['nombreEcos']);
-		$coloresEcos = trim($_POST['coloresEcos']);
+		$nombreEcos = $_POST['nombreEcos'];
+		$coloresEcos = $_POST['coloresEcos'];
 		//insertando centro
 		$query = "insert into centro values (null,$idEmpresa,'$nombre','$siglas')";
 		$resultado = mysql_query ( $query );
