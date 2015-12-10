@@ -38,6 +38,7 @@
                            
 
                            foreach ($resultado as $row) {
+                           	$idTM=$row['idTM'];
 
                                echo "<tr>";
                                echo "<td class='centro'>" . $row ['Empresa'] . "</td>\n";
@@ -192,7 +193,7 @@
                     }
                     ?>";
         content += "</select></td>";
-        content += "<td> <input class='form-control ValorCobro' type='text' name='cobro' placeholder='Ingrese Honorario'> </td>";
+        content += "<td> <input class='form-control ValorCobro' type='number' name='cobro' placeholder='Ingrese Honorario'> </td>";
         content += "<td><select class='form-control Semana' required name='Semana'>";
         content += "<option value='1'> Semana </option>";
         content += "<option value='0'> Sabado </option>";
@@ -250,9 +251,9 @@
                         url: "querys/eraseCobro.php",
                         data: {
                             'valor': input,
-                            'id': $("#idTM").val(),
                             'semana': $.trim(semana),
-                            'empresa': idEmpresa
+                            'empresa': idEmpresa,
+                            'id': <?php echo $idTM; ?>
                         },
                         success: function(response)
                         {
