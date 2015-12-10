@@ -287,7 +287,7 @@
             	            url: "querys/updateCobro.php",
             	            data: {
             	                'valor': input.val(),
-            	                'id': $("#idTM").val(),
+            	                'id': <?php if(isset($idTM)){echo $idTM;} else { echo '0';} ?>,
             	                'semana': $.trim(semana.html()),
             	                'empresa': $.trim(centro.html())
 
