@@ -253,7 +253,7 @@
                             'valor': input,
                             'semana': $.trim(semana),
                             'empresa': idEmpresa,
-                            'id': <?php echo $idTM; ?>
+                            'id': <?php if(isset($idTM)){echo $idTM;} else { echo '0';} ?>
                         },
                         success: function(response)
                         {
