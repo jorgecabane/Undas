@@ -11,7 +11,7 @@
 		$descripcion = trim($_POST ['descripcion']);
 		$date = $_POST ['fecha'];
 		//insertando centro
-		$query = "insert into bugs values (null,'$titulo','$descripcion','$id','$date',NULL)";
+		$query = "insert into bugs values (null,'$titulo','$descripcion',NULL,'$date',$id)";
 		$resultado = mysql_query ( $query );
 		//obteniendo el id del centro recien insertado
 		

@@ -115,6 +115,7 @@ if ($_SESSION ["usuario"]) {
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="editarClave.php">Editar Clave</a></li>
+                      <li><a href="bugReport.php" ><font color="red">¡Reportar Error!</font></a></li>
                     <li><button onClick="window.location.href = 'logOff.php'" class="btn btn-danger navbar-btn"><strong class="NombreEmpresa" idEmpresa="<?php echo $_SESSION ["idusuario"];?>"><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
                 </ul>
 
