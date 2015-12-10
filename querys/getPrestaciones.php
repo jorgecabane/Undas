@@ -69,7 +69,7 @@ function getPrestacionesWidget($especifico, $Empresa = false) {
                   FROM prestaciones
                        inner join prestacionestm on (prestacionestm.prestaciones_idprestaciones = prestaciones.idprestaciones)
                        inner join tm on ( tm.idTM = prestacionestm.TM_idTM)
-                       inner join empresa on (empresa.Rut = prestacionestm.Empresa_Rut)
+                       inner join empresa on (empresa.idEmpresa = prestacionestm.Empresa_idEmpresa)
                   WHERE prestaciones.Especifico = '$especifico' AND
                       empresa.idEmpresa = '$Empresa'
                   ORDER BY tm.Apellido asc";
@@ -78,7 +78,7 @@ function getPrestacionesWidget($especifico, $Empresa = false) {
 	          FROM prestaciones
                        inner join prestacionestm on (prestacionestm.prestaciones_idprestaciones = prestaciones.idprestaciones)
                        inner join tm on ( tm.idTM = prestacionestm.TM_idTM)
-                       inner join empresa on (empresa.Rut = prestacionestm.Empresa_Rut)
+                       inner join empresa on (empresa.idEmpresa = prestacionestm.Empresa_idEmpresa)
                   WHERE prestaciones.Especifico = '$especifico'
                   ORDER BY Empresa asc, tm.Apellido asc";
     }
