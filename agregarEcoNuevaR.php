@@ -2,6 +2,7 @@
 session_start ();
 require_once dirname(__FILE__)."/header.php";
 include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
+include_once dirname(__FILE__)."/querys/getCentros.php";
 ?>
 <!DOCTYPE html>
 
@@ -21,18 +22,13 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 </body>
 		
 		<div class="form-group">
-			<label>Centro a la que pertenece</label> <br>
-
-          <?php
-		include_once "conexionLocal.php";
-
-		$query = "SELECT * from centro order by Nombre asc ";
-
-			$resultado = mysql_query ( $query ) or die ( mysql_error () );
+			<label>Centro a la que pertenece</label> <br>	
+			<?php 
+			$resultado = getCentros();
 				if ($resultado) {
 					echo "<select class='form-control' required name='empresa' id='centro' >";
 					echo "<option value=''> Seleccione Centro </option>";
-					while ( $row = mysql_fetch_assoc ( $resultado ) ) {
+					foreach($resultado as $row){
 						echo "<option value='" . $row ['idCentro'] . "'>" . $row ['Nombre'] . "</option>";
 					}
 					echo "</select>";
