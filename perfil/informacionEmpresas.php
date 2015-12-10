@@ -24,9 +24,6 @@
         	$ciudad=$row['Ciudad'];
         	$razonsocial=$row['RazonSocial'];
             ?>
-            <div class="progress" style="display: none">
-                <div class="progress-bar progress-bar-striped active"
-                     role="progressbar" style="width: 100%">
                     <span class="sr-only">Cargando...</span>
                 </div>
             </div>
@@ -165,8 +162,8 @@
 </script>
 <script>
     $(".btnedit").click(function() {
-        var rut = "<?php echo $rut; ?>";
-        var rut2 = $('#rut').val()      
+        var nombre ="<?php echo $nombre;?>";
+        var nombre2 = $('#nombre').val();     
         jQuery.ajax({
             method: "POST",
             url: "querys/updateEmpresas.php",
@@ -185,11 +182,14 @@
               },
             success: function(response)
             {
-            	if(rut != rut2){
-                  	 location.reload();  
+            	if(nombre != nombre2){
+            		$('.nombreevento').each(function(){
+                     if(nombre == $(this).text()){
+                    	 $(this).html(nombre2);
+                         }                    
+                  });
                   }
                 $(".btnedit").attr("disabled", "disabled");
-                $(".btncancelempresa").attr("disabled", "disabled");
                 $('tr.danger').removeClass("danger").addClass("success");
                 $('.progress').slideUp('slow');
             }
@@ -223,9 +223,10 @@
          $("#comuna").val("<?php echo $comuna; ?>");
          $("#ciudad").val("<?php echo $ciudad; ?>");
          $("#razonsocial").val("<?php echo $razonsocial; ?>");	
-         $('tr.danger').removeClass("danger");
 
-         $(".btnedit").attr("disabled", "disabled");
+         $('tr.danger').removeClass("danger").addClass("warning");
+         $('tr.success').removeClass("success").addClass("warning");
          $(".btncancelempresa").attr("disabled", "disabled");
+         $(".btnedit").removeAttr("disabled");
 	});
 </script>

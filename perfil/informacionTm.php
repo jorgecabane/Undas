@@ -216,7 +216,13 @@ if ($resultado) {
 <script>
     $(".btnedit").click(function() {
     	  var rut = "<?php echo $rut; ?>";
-          var rut2 = $('#rut').val()  
+          var rut2 = $('#rut').val();
+          var nombre = "<?php echo $nombre; ?>";
+          var nombre2 = $('#nombre').val();
+          var apellido = "<?php echo $apellido; ?>"; 
+          var apellido2 =$('#apellido').val();
+          var nombrecompleto =nombre+' '+apellido;
+          var nombrecompleto2 =nombre2+' '+apellido2;
         jQuery.ajax({
             method: "POST",
             url: "querys/updateTm.php",
@@ -241,7 +247,13 @@ if ($resultado) {
             	if(rut != rut2){
                  	 location.reload();  
                  }
-		                $(".btnedit").attr("disabled", "disabled");
+                if(nombre != nombre2){
+	                	$('.nombreevento').each(function(){
+	                        if(nombrecompleto  == $(this).text()){
+	                       	 $(this).html(nombrecompleto2);
+	                            }                    
+	                     });
+                }
 		                $(".btnedit").attr("disabled", "disabled");
 		                $('tr.danger').removeClass("danger").addClass("success");
 		                $('.progress').slideUp('slow');
@@ -280,9 +292,10 @@ if ($resultado) {
          $("#comentario").val("<?php echo $comentario; ?>");
          $("#segundonombre").val("<?php echo $segundonombre; ?>");
          $("#segundoapellido").val("<?php echo $segundoapellido; ?>");
-         $('tr.danger').removeClass("danger");
 
-         $(".btnedit").attr("disabled", "disabled");
+         $('tr.danger').removeClass("danger").addClass("warning");
+         $('tr.success').removeClass("success").addClass("warning");
          $(".btncancel").attr("disabled", "disabled");
+         $(".btnedit").removeAttr("disabled");
 	});
 </script>
