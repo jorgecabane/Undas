@@ -152,7 +152,8 @@ if ($_SESSION ["usuario"]) {
                                 M&eacute;dicos<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a id="perfiles" href="agregarDoctor.php">Nuevo M&eacute;dicos</a></li>
+                                <li><a id="perfiles" href="agregarDoctor.php">Nuevo M&eacute;dico</a></li>
+                                <li><a id="perfiles" href="informacionMedicos.php">Editar M&eacute;dicos</a></li>
                             </ul>
                         <?php } ?>
 
