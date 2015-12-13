@@ -13,8 +13,8 @@ if (!isset($_SESSION)) {
         insertLog('login', dirname(__FILE__) . '?&user=' . $user . '&IP=' . $_SERVER['REMOTE_ADDR']);
         $resultado = getTMRut($user);
         //var_dump($resultado34);
-        $_SESSION['idusuario'] = $resultado[0]['idTM'];
-        $_SESSION["usuario"] = $resultado[0]['Nombre'];
+        $_SESSION['idusuario'] = $resultado['idTM'];
+        $_SESSION["usuario"] = $resultado['Nombre'];
         //header("location:index.php");
         //var_dump($user1);
         echo "Tm";
@@ -24,8 +24,8 @@ if (!isset($_SESSION)) {
     if (mysql_affected_rows() == 1) {
         insertLog('login', dirname(__FILE__) . '?&user=' . $user . '&IP=' . $_SERVER['REMOTE_ADDR']);
         $resultado34 = getEmpresaRut($user);
-        $_SESSION['idusuario'] = $resultado34 [0]['idEmpresa'];
-        $_SESSION["usuario"] = $resultado34 [0]['Nombre'];
+        $_SESSION['idusuario'] = $resultado34 ['idEmpresa'];
+        $_SESSION["usuario"] = $resultado34 ['Nombre'];
         //header("location:centros/index.php");
         echo "Empresa";
     }
