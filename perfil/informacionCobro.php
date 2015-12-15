@@ -56,15 +56,23 @@
 
                             </div>
                         </td>
+                     
                         <?php
                         if ($row ['Semana'] == 1) {
-                            echo "<td class='semana'>Semana</td>";
+                            echo "<td><select class='form-control text-center semana'>
+            		              <option value='1' class='default' selected> Semana </option>
+            					  <option value='0' > Sabado </option>            		
+            		              </td>";
                         } else {
 
-                            echo "<td class='semana'>Sabado</td>";
+                            echo "<td><select class='form-control text-center semana'>
+            		              <option value='0' class='default' selected> Sabado </option>
+            					  <option value='1' > Semana </option>            		
+            		              </td>";
                         }
                         if ($admin == 1) {
                             ?>
+                            </select>
                             <td><input type="hidden" id="idTM" name="id"
                                        value="<?php echo $row['idTM']; ?>" /> <input type="submit"
                                        value="Editar" class='btn btn-info btneditable' disabled="disabled" />
@@ -97,11 +105,17 @@
     $(".editableCobro").keyup(function() {
 //$(".btneditable").removeAttr("disabled");
 //solo se buscan los elementos de la fila seleccionada
-        var row = $(this).parent().parent().parent();
+    	 var row = $(this).parent().parent().parent();
 
-        row.find(".btneditable").removeAttr("disabled");
-        row.addClass("danger");
+         row.find(".btneditable").removeAttr("disabled");
+         row.addClass("danger");
     });
+    $(".semana").change(function() {
+    	 var row = $(this).parent().parent();
+
+         row.find(".btneditable").removeAttr("disabled");
+         row.addClass("danger");
+    	    });
 
     $(".btneditable").click(function() {
         //solo se buscan los elementos de la fila seleccionada
@@ -109,6 +123,7 @@
         var input = row.find(".editableCobro");
         var centro = row.find(".centro");
         var semana = row.find(".semana");
+        var semanaprevia = semana.find('.default');
        
 
         jQuery.ajax({
@@ -117,7 +132,8 @@
             data: {
                 'valor': input.val(),
                 'id': $("#idTM").val(),
-                'semana': semana.html(),
+                'semana': semana.val(),
+                'semanaprevia': semanaprevia.val(),
                 'empresa': centro.html()
 
             },

@@ -1,9 +1,8 @@
-
 <?php
 include_once "../conexionLocal.php";
-$idTM=$_POST['idTM'];
+$idTM=trim($_POST['idTM']);
 $empresa=trim($_POST['idEmpresa']);
-$idPrestacion=$_POST['idPrestacion'];
+$idPrestacion=trim($_POST['idPrestacion']);
 
 $queryIdTM="Select idTM from tm where Rut='$idTM'";
 $resultado= mysql_query($queryIdTM);

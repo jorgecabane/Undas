@@ -1,4 +1,3 @@
-
 <?php
 include_once "../conexionLocal.php";
 $rutTM=trim($_POST['idTM']);
@@ -12,8 +11,7 @@ $idassoc= mysql_fetch_assoc($resultado);
 $idtecnologo=$idassoc['idTM'];
 
 	// comprobamos si ha ocurrido un error.
-	$query = "insert into valorhora values (null,$idtecnologo,$valor,$semana,$empresa)";
-
+	$query = "insert into valorhora values (null,$idtecnologo,'$valor',$semana,$empresa)";
 	
 	$resultado2 = mysql_query ( $query );
 	if ($resultado2) {
