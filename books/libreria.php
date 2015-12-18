@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include_once dirname(__FILE__) . "/verificacionUsuario.php";
+include_once dirname(dirname(__FILE__)) . "/Include/isAdmin.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -57,7 +58,15 @@ include_once dirname(__FILE__) . "/verificacionUsuario.php";
     <p>Los archivos no pueden pesar mas de 100 mb. Estan permitidos pdfs, docs, imagenes y videos.</p>
 </blockquote>
 <br>
-
+<?php 
+if ($_SESSION["usuario"]) {
+	if (isAdmin($_SESSION["idusuario"]) == 1) {
+echo "<div id='usuario' admin='1' ></div>";
+	} else {
+echo "<div id='usuario' admin='0' ></div>";
+	}
+}
+?>
 <!--
 <form>
     <label for="theme-switcher">Theme:</label>
@@ -129,8 +138,18 @@ include_once dirname(__FILE__) . "/verificacionUsuario.php";
     <ol class="indicator"></ol>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- script para que admin vea botones de subida -->
+<script> 
+$(document).ready(function(){
+var admin = $('#usuario').attr('admin');
 
-
+if(admin==0)
+{
+$('.fileupload-buttons').hide();
+}
+});
+</script>
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -185,6 +204,7 @@ include_once dirname(__FILE__) . "/verificacionUsuario.php";
     </tr>
 {% } %}
 </script>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <!-- The Templates plugin is included to render the upload/download listings -->
