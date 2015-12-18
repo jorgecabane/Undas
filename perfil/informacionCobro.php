@@ -249,9 +249,9 @@
                 {
                 	  $('.Oops').remove();
                 	  row.toggleClass('success');
-                    select.attr("disabled", "disabled");
-                    input.attr("disabled", "disabled");
-                    inputsemana.attr("disabled", "disabled");
+                    //select.attr("disabled", "disabled");
+                    //input.attr("disabled", "disabled");
+                   // inputsemana.attr("disabled", "disabled");
                 }
             });
 
