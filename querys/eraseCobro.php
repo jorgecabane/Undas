@@ -7,12 +7,9 @@ $valor=$_POST['valor'];
 $idEmpresa=$_POST['empresa'];
 $semana=$_POST['semana'];
 
-if($semana=="Semana"){
-$query="Delete from valorhora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=1 ";
-}
-else {
-$query="Delete from valorhora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=0";	
-}
+
+$query="Delete from valorhora WHERE TM_idTM=$idTM and Empresa_idEMpresa=$idEmpresa and Semana=$semana and Valor = '$valor' ";
+
 
 
 

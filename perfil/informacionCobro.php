@@ -172,8 +172,8 @@
                 $(this)
                 .parent()
                 .parent()
-                .children(".semana")
-                .html();
+                .find(".semana")
+                .val();
         var idEmpresa = $(this).attr('idEmpresa');
 
         var r = confirm("Esta seguro que quiere eliminar la fila: " + centro + " valor: " + input + "?");
@@ -235,7 +235,13 @@
             var NombreEmpresa= $(this).parent().parent().find('.Centro :selected').text();
             var NombreSemana = $(this).parent().parent().find(".Semana :selected").text();
             var row = $(this).parent().parent(); //linea en la que se encuentra
-            row.html('<td class="centro">'+NombreEmpresa+'</td><td><div class="form-group"><input class="form-control editableCobro" type="text" name="cobro" value="'+cobro+'" required></div></td><td class="semana">'+NombreSemana+'</td><td><input type="submit" value="Editar" class="btn btn-info btneditabletwo" disabled="disabled"/></td><td><input type="submit" value="Eliminar"class="btn btn-danger btndeletetwo"/></td>');
+            if(semana == 1){
+            row.html('<td class="centro">'+NombreEmpresa+'</td><td><div class="form-group"><input class="form-control editableCobro" type="text" name="cobro" value="'+cobro+'" required></div></td><td><select class="form-control text-center semana"><option value="1" class="default" selected> Semana </option><option value="0" > Sabado </option> </select></td><td><input type="submit" value="Editar" class="btn btn-info btneditabletwo" disabled="disabled"/></td><td><input type="submit" value="Eliminar"class="btn btn-danger btndeletetwo"/></td>');
+            }
+            else{
+            row.html('<td class="centro">'+NombreEmpresa+'</td><td><div class="form-group"><input class="form-control editableCobro" type="text" name="cobro" value="'+cobro+'" required></div></td><td><select class="form-control text-center semana"><option value="0" class="default" selected> Sabado </option> <option value="1" > Semana </option> </select> </td><td><input type="submit" value="Editar" class="btn btn-info btneditabletwo" disabled="disabled"/></td><td><input type="submit" value="Eliminar"class="btn btn-danger btndeletetwo"/></td>');
+            }
+
             jQuery.ajax({
                 method: "POST",
                 url: "querys/insertCobro.php",
@@ -290,13 +296,20 @@
             	        row.addClass("danger");
             	    });
 
+            $(".semana").change(function() {
+           	 var row = $(this).parent().parent();
+
+                row.find(".btneditabletwo").removeAttr("disabled");
+                row.addClass("danger");
+           	    });
+
             	    $(".btneditabletwo").click(function() {
             	        //solo se buscan los elementos de la fila seleccionada
             	        var row = $(this).parent().parent();
             	        var input = row.find(".editableCobro");
             	        var centro = row.find(".centro");
             	        var semana = row.find(".semana");
-            	       
+            	        var semanaprevia = semana.find('.default');
 
             	        jQuery.ajax({
             	            method: "POST",
@@ -304,8 +317,9 @@
             	            data: {
             	                'valor': input.val(),
             	                'id': <?php if(isset($idTM)){echo $idTM;} else { echo '0';} ?>,
-            	                'semana': $.trim(semana.html()),
-            	                'empresa': $.trim(centro.html())
+            	                'semana': $.trim(semana.val()),
+            	                'empresa': $.trim(centro.html()),
+            	                'semanaprevia' : semanaprevia.val()
 
             	            },
             	            success: function(response)
