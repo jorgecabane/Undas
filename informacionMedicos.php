@@ -40,7 +40,7 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
             echo "</td></tr>";
         }
     } else {
-        echo'<tr class="warning Oops"><td colspan="3">';
+        echo'<tr class="warning Oops"><td colspan="5">';
         echo '<strong>Oops!</strong> No existen M&eacute;dicos todav&iacute;a.';
         echo "</td></tr>";
     }
