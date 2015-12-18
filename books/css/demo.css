@@ -10,9 +10,14 @@
  * http://www.opensource.org/licenses/MIT
  */
 body {
-
+  max-width: 750px;
   margin: 0 auto;
   padding: 1em;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  background: #222; 
+  color: #fff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }

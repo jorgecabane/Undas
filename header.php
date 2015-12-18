@@ -156,16 +156,12 @@ if ($_SESSION ["usuario"]) {
                                 <li><a id="perfiles" href="informacionMedicos.php">Editar M&eacute;dicos</a></li>
                             </ul>
                         <?php } ?>
-                        
-						 <li class="dropdown">
-  						 <li><a href="libreria.php">eBooks</a></li>
-					     </li>
                 </ul>
            
                 <!-- aqui termina -->
 
                 <ul class="nav navbar-nav navbar-right">
-           		    
+           		     <li><a href="books/libreria.html">eBooks</a></li>
                     <li><a href="editarClave.php">Editar Clave</a></li>
                     <li><a href="bugReport.php" ><font color="red">¡Reportar Error!</font></a></li>
                     <li><button onClick="window.location.href = 'logOff.php'" class="btn btn-danger navbar-btn"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
