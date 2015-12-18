@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include_once dirname(__FILE__) . "/verificacionUsuario.php";
+?>
+
 <!DOCTYPE HTML>
 <!--
 /*
@@ -46,7 +51,7 @@
 </head>
 <body>
 
-<h1>LibrerÃ­a TMTecnomed</h1>
+<h1>Librer&iacute;a TMTecnomed</h1>
 
 <blockquote>
     <p>Los archivos no pueden pesar mas de 100 mb. Estan permitidos pdfs, docs, imagenes y videos.</p>
@@ -117,9 +122,9 @@
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
     <div class="slides"></div>
     <h3 class="title"></h3>
-    <a class="prev">â€¹</a>
-    <a class="next">â€º</a>
-    <a class="close">Ã—</a>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
 </div>
