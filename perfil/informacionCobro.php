@@ -264,7 +264,7 @@
             $(".btndeletetwo").click(function() {
                 var centro = $(this).parent().parent().find(".centro").text();
                 var input  = $(this).parent().parent().find(".editableCobro").val();
-                var semana = $(this).parent().parent().find(".semana").text();
+                var semana = $(this).parent().parent().find(".semana").val();
                 var r = confirm("Esta seguro que quiere eliminar la fila: " + centro + " valor: " + input + "?");
                 if (r == true) {
                     var borrar = $(this).parent().parent();
