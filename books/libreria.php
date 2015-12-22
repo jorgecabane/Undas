@@ -138,18 +138,7 @@ echo "<div id='usuario' admin='0' ></div>";
     <ol class="indicator"></ol>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- script para que admin vea botones de subida -->
-<script> 
-$(document).ready(function(){
-var admin = $('#usuario').attr('admin');
 
-if(admin==0)
-{
-$('.fileupload-buttons').hide();
-}
-});
-</script>
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -246,6 +235,19 @@ $('#theme-switcher').change(function () {
             $(this).val() + '/jquery-ui.css'
         )
     );
+});
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- script para que admin vea botones de subida -->
+<script> 
+$(document).ready(function(){
+var admin = $('#usuario').attr('admin');
+
+if(admin==0)
+{
+$('.fileupload-buttons').hide();
+}
 });
 </script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
