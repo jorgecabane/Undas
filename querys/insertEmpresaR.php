@@ -13,7 +13,9 @@ $mail = trim($_POST['mail']);
 $random = rand(1000000, 9999999);
 $contrasena = $nombre . $random;
 
-$query = "insert into empresa values (null,'$nombre','$rut','$giro','$direccion','$comuna','$ciudad','$razon','$contrasena', '$mail')";
+$query = "insert into empresa values (null,'". mysql_real_escape_string($nombre) ."','". mysql_real_escape_string($rut) ."','". mysql_real_escape_string($giro) ."',
+'". mysql_real_escape_string($direccion) ."','". mysql_real_escape_string($comuna) ."','". mysql_real_escape_string($ciudad) ."','". mysql_real_escape_string($razon) ."',
+'". md5($contrasena) ."', '". mysql_real_escape_string($mail) ."')";
 $resultado = mysql_query($query);
 if ($resultado) {
     echo "Agregado con éxito";

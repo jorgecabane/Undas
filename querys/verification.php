@@ -8,7 +8,7 @@ if (!isset($_SESSION)) {
     $user = $_POST['user'];
     $password = $_POST['password'];
 
-    $rec = mysql_query("SELECT idTM FROM tm WHERE Rut = '$user' AND Password = '$password'") or die(mysql_error());
+    $rec = mysql_query("SELECT idTM FROM tm WHERE Rut = '$user' AND Password = '". md5($password) ."'") or die(mysql_error());
     if (mysql_affected_rows() == 1) {
         insertLog('login', dirname(__FILE__) . '?&user=' . $user . '&IP=' . $_SERVER['REMOTE_ADDR']);
         $resultado = getTMRut($user);
@@ -20,7 +20,7 @@ if (!isset($_SESSION)) {
         echo "Tm";
     }
 
-    $rec2 = mysql_query("SELECT * FROM empresa WHERE Rut = '$user' AND Password = '$password'") or die(mysql_error());
+    $rec2 = mysql_query("SELECT * FROM empresa WHERE Rut = '$user' AND Password = '". md5($password) ."'") or die(mysql_error());
     if (mysql_affected_rows() == 1) {
         insertLog('login', dirname(__FILE__) . '?&user=' . $user . '&IP=' . $_SERVER['REMOTE_ADDR']);
         $resultado34 = getEmpresaRut($user);
