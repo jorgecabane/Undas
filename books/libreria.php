@@ -61,9 +61,11 @@ include_once dirname(dirname(__FILE__)) . "/Include/isAdmin.php";
 <?php 
 if ($_SESSION["usuario"]) {
 	if (isAdmin($_SESSION["idusuario"]) == 1) {
-echo "<div id='usuario' admin='1' ></div>";
+		$admin=1;
+
 	} else {
-echo "<div id='usuario' admin='0' ></div>";
+		$admin=0;
+
 	}
 }
 ?>
@@ -104,6 +106,7 @@ echo "<div id='usuario' admin='0' ></div>";
     <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="fileupload-buttonbar">
+    <?php if($admin == 1){?>
         <div class="fileupload-buttons">
             <!-- The fileinput-button span is used to style the file input field as button -->
             <span class="fileinput-button">
@@ -115,6 +118,7 @@ echo "<div id='usuario' admin='0' ></div>";
             <!-- The global file processing state -->
             <span class="fileupload-process"></span>
         </div>
+        <?php }?>
         <!-- The global progress state -->
         <div class="fileupload-progress fade" style="display:none">
             <!-- The global progress bar -->
@@ -166,6 +170,7 @@ echo "<div id='usuario' admin='0' ></div>";
 {% } %}
 </script>
 <!-- The template to display files available for download -->
+<?php if($admin == 1){?>
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-download fade">
@@ -193,6 +198,39 @@ echo "<div id='usuario' admin='0' ></div>";
     </tr>
 {% } %}
 </script>
+<?php }
+else{
+?>
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+            </p>
+            {% if (file.error) { %}
+                <div><span class="error">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            <button style="display: none;" class="delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>Delete</button>
+        </td>
+    </tr>
+{% } %}
+</script>
+<?php 
+}
+?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -224,32 +262,11 @@ echo "<div id='usuario' admin='0' ></div>";
 <script src="js/jquery.fileupload-jquery-ui.js"></script>
 <!-- The main application script -->
 <script src="js/main.js"></script>
-<script>
-// Initialize the jQuery UI theme switcher:
-$('#theme-switcher').change(function () {
-    var theme = $('#theme');
-    theme.prop(
-        'href',
-        theme.prop('href').replace(
-            /[\w\-]+\/jquery-ui.css/,
-            $(this).val() + '/jquery-ui.css'
-        )
-    );
-});
-</script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <!-- script para que admin vea botones de subida -->
-<script> 
-$(document).ready(function(){
-var admin = $('#usuario').attr('admin');
 
-if(admin==0)
-{
-$('.fileupload-buttons').hide();
-}
-});
-</script>
+
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
 <!--[if (gte IE 8)&(lt IE 10)]>
 <script src="js/cors/jquery.xdr-transport.js"></script>
