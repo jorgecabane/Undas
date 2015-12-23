@@ -14,7 +14,7 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
 
 
     echo "<div><br></div>";
-    echo "<table class='table table-hover table-bordered table-condensed'>";
+    echo "<div class='well'><table class='table table-hover table-bordered table-condensed'>";
     echo "<thead><tr class='info'>";
     echo "<th>Eliminar</th>";
     echo "<th>Nombre</th>";
@@ -45,7 +45,7 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
         echo "</td></tr>";
     }
 
-echo "</tbody></table>";
+echo "</tbody></table></div>";
 
 ?>
 </div></div>
