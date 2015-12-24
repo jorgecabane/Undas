@@ -17,7 +17,8 @@ var renderEvent = function(event, element) {
                              <b>Termino: </b>' + event.end.format("HH:mm") + '\n\
                              </div>',
             html: true,
-            animation: true
+            animation: true,
+            placement: 'auto'
         });//popover
     } else {
         if (!event.feriado) {
