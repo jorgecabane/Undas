@@ -32,7 +32,7 @@ $("#cambiar").click(function(){
 	
 				 jQuery.ajax({
 			       method: "POST",
-			       url: "querys/updateClaveTm.php",
+			       url: "querys/updateClaveAdmin.php",
 			       data: {
 				     		'claveantigua':$('#claveantigua').val(),
 				     		'clavenueva':$('#clavenueva').val(),

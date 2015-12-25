@@ -13,15 +13,15 @@
         $repetirclave = trim($_POST['repetirclave']);
 
 
-        $result = mysql_query("Select Password from tm Where idTM=$id");
-        $assoc = mysql_fetch_assoc($result);
-        $password = $assoc['Password'];
+        $result = mysql_query("Select Password from admin Where id=$id");
+        $hola = mysql_fetch_assoc($result);
+        $password = $hola['Password'];
 
-        if ( $password == md5($claveantigua) ) {
+        if ($password == md5($claveantigua)) {
 
             if ($repetirclave == $clavenueva) {
 
-                $query = "UPDATE tm SET Password='". md5($clavenueva) ."'  WHERE idTM=$id";
+                $query = "UPDATE admin SET Password='". md5($clavenueva) ."' WHERE id=$id";
                 $resultado = mysql_query($query);
                 if ($resultado) {
                     //success

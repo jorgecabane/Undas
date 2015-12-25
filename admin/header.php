@@ -67,6 +67,7 @@ if ($_SESSION ["usuario"]) {
                 <!-- aqui termina -->
 
                 <ul class="nav navbar-nav navbar-right">
+                <li><a href="editarClave.php">Editar Clave</a></li>
                 <li><button onClick="window.location.href = '../logOff.php'" class="btn btn-danger navbar-btn"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
                 </ul>
 

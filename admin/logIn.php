@@ -8,32 +8,26 @@ if (isset($_POST['login'])) {
     if (verificar_login($_POST ['user'], $_POST ['password'])) {
         insertLog('login', dirname(__FILE__) . '?&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
 
-        /*    $user1 = $_POST ['user'];
-          $querySaberSiCentro = "Select idTM, Nombre, Centro from tm where Rut='$user1'";
-          $resultadoSaberSiCentro = mysql_query($querySaberSiCentro) or die(mysql_error());
+          $rut = $_POST ['user'];
+          $query = "Select id, Nombre from admin where Rut='$rut'";
+          $resultado = mysql_query($query) or die(mysql_error());
 
-          if ($resultadoSaberSiCentro) {
-          $resultadoAsociativo = mysql_fetch_assoc($resultadoSaberSiCentro);
+          if ($resultado) {
+          $resultadoAsociativo = mysql_fetch_assoc($resultado);
           if ($resultadoAsociativo) {
-          $_SESSION ['idusuario'] = "Soy Super Admin";
+          $_SESSION ['idusuario'] =  $resultadoAsociativo ['id'];
           $_SESSION ["usuario"] = $resultadoAsociativo ['Nombre'];
           // echo $_SESSION['idusuario'];
+          header("location:index.php");
+          //}
+          $_SESSION['super'] = 1;
+          echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
           }
           } else {
           echo "error con query";
           }
-          if ($resultadoAsociativo ['Centro'] == 1) {
-          //log in de centro
-          header("location:centros/index.php");
-          } else { */
-        //log in de persona normal
-        header("location:index.php");
-        //}
-        $_SESSION['super'] = 1;
-        $_SESSION ['idusuario'] = "Soy Super Admin";
-        $_SESSION ["usuario"] = "Super Admin";
-        echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
-    } else {
+    }
+    else {
         echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
     }
 }

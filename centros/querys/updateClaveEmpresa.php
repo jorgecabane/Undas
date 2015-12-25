@@ -13,7 +13,7 @@
         $repetirclave = trim($_POST['repetirclave']);
 
 
-        $result = mysql_query("Select Password from tm Where idTM=$id");
+        $result = mysql_query("Select Password from empresa Where idEmpresa=$id");
         $assoc = mysql_fetch_assoc($result);
         $password = $assoc['Password'];
 
@@ -21,7 +21,7 @@
 
             if ($repetirclave == $clavenueva) {
 
-                $query = "UPDATE tm SET Password='". md5($clavenueva) ."'  WHERE idTM=$id";
+                $query = "UPDATE Password SET Password='". md5($clavenueva) ."'  WHERE idEmpresa=$id";
                 $resultado = mysql_query($query);
                 if ($resultado) {
                     //success

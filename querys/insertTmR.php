@@ -21,7 +21,7 @@ $contrasena=$apellido.$random;
 	
 	$resultado2 = mysql_query ( $query );
 	if ($resultado2) {
-		echo "Perfecto, redireccionando";
+		echo "Agregado con &eacute;xito!.";
 		$to = $mail;
 		$subject = "Contraseña TMTECNOMED";
 		$txt = "Su contraseña es: <strong>$contrasena</strong><br>Dirigase a <a href='http://app.tmtecnomed.cl'>app.tmtecnomed.cl<a> para acceder al sitio.<br><br><img";

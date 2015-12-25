@@ -19,7 +19,7 @@
 		}
 		if ($resultado) {
 			// success
-			echo "Ecos agregadas con exito, redireccionando";
+			echo "Ecos agregadas con &eacute;xito!.";
 		} else {
 			// failure
 			echo " Error, redireccionando";

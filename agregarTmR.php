@@ -86,8 +86,8 @@ $("#agregar").click(function(){
 		                $('#contrasena').val('');
 		                $('#repetircontrasena').val('');
 		                $('#comentario').val('');
-		                $('#segundonombre').val();
-		                $('#segundoapellido').val();
+		                $('#segundonombre').val('');
+		                $('#segundoapellido').val('');
 			       }
 
 			 });//ajax
