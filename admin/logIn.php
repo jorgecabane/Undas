@@ -3,31 +3,27 @@ session_start();
 include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
 include_once dirname(__FILE__) . "/querys/verification.php";
 include_once dirname(__FILE__) . "/querys/insertLog.php";
+include_once dirname(__FILE__) . "/querys/admin.php";
 
 if (isset($_POST['login'])) {
     if (verificar_login($_POST ['user'], $_POST ['password'])) {
         insertLog('login', dirname(__FILE__) . '?&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
 
-          $rut = $_POST ['user'];
-          $query = "Select id, Nombre from admin where Rut='$rut'";
-          $resultado = mysql_query($query) or die(mysql_error());
+        $rut = $_POST ['user'];
+        $resultado = admin($rut);
 
           if ($resultado) {
-          $resultadoAsociativo = mysql_fetch_assoc($resultado);
-          if ($resultadoAsociativo) {
-          $_SESSION ['idusuario'] =  $resultadoAsociativo ['id'];
-          $_SESSION ["usuario"] = $resultadoAsociativo ['Nombre'];
+          $_SESSION ['idusuario'] =  $resultado ['id'];
+          $_SESSION ["usuario"] = $resultado ['Nombre'];
           // echo $_SESSION['idusuario'];
           header("location:index.php");
           //}
           $_SESSION['super'] = 1;
           echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
           }
-          } else {
-          echo "error con query";
-          }
-    }
-    else {
+          
+          else
+    {
         echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
     }
 }
