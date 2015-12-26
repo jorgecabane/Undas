@@ -27,6 +27,7 @@ if (isset($_POST['login'])) {
         echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
     }
 }
+}
 ?>
 <html>
     <head>
