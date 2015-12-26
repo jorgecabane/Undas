@@ -162,10 +162,12 @@ if ($_SESSION ["usuario"]) {
 
                 <ul class="nav navbar-nav navbar-right">
            		     <li><a href="books/libreria.php">Librer&iacute;a</a></li>
-           		     <?php if($_SESSION['super']!=1){ 
-               		     echo '<li><a href="editarClave.php">Editar Clave</a></li>';
-           		         echo '<li><a href="bugReport.php" ><font color="red">¡Reportar Error!</font></a></li>';
-                    }?>
+           		     <?php if(isset($_SESSION['super'])){ 
+               		                        }
+               		                        else {
+               		                        	echo '<li><a href="editarClave.php">Editar Clave</a></li>';
+               		                        	echo '<li><a href="bugReport.php" ><font color="red">¡Reportar Error!</font></a></li>';
+               		                        }?>
                     <li><button onClick="window.location.href = 'logOff.php'" class="btn btn-danger navbar-btn"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
                 </ul>
 
