@@ -3,6 +3,7 @@ session_start();
 include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
 ?>
 <html>
+<div id="respuesta"></div>
     <head>
         <!-- css -->
         <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8 "/>
