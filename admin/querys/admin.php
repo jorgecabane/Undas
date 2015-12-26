@@ -7,15 +7,18 @@
 include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
 function admin($rut) {
 
-        $query = "Select id, Nombre from admin where Rut='$rut'";
+        $query = "Select * from admin where Rut='$rut'";
 
-	$res = mysql_query ( $query ) or die ( mysql_error () );
+    $res = mysql_query($query) or die(mysql_error());
 
-	while ( $row = mysql_fetch_assoc ( $res ) ) {
-		$result[] = $row;
-	}
-
-	return $result;
+    if (mysql_affected_rows() == 1) {
+        while ($row = mysql_fetch_assoc($res)) {
+            $result = $row;
+        }
+    } else {
+        $result = false;
+    }
+    return $result;
 }
 //var_dump ( getTM () );
 ?>

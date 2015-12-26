@@ -1,33 +1,6 @@
 <?php
 session_start();
 include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
-include_once dirname(__FILE__) . "/querys/verification.php";
-include_once dirname(__FILE__) . "/querys/insertLog.php";
-include_once dirname(__FILE__) . "/querys/admin.php";
-
-if (isset($_POST['login'])) {
-    if (verificar_login($_POST ['user'], $_POST ['password'])) {
-        insertLog('login', dirname(__FILE__) . '?&user=' . $_POST['user'] . '&IP=' . $_SERVER['REMOTE_ADDR']); //inserta un log de la ip y donde se metio!
-
-        $rut = $_POST ['user'];
-        $resultado = admin($rut);
-
-          if ($resultado) {
-          $_SESSION ['idusuario'] =  $resultado ['id'];
-          $_SESSION ["usuario"] = $resultado ['Nombre'];
-          // echo $_SESSION['idusuario'];
-          header("location:index.php");
-          //}
-          $_SESSION['super'] = 1;
-          echo "Has sido logueado correctamente " . $_SESSION ['usuario'] . " ";
-          }
-          
-          else
-    {
-        echo '<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>';
-    }
-}
-}
 ?>
 <html>
     <head>
@@ -100,19 +73,19 @@ if (isset($_POST['login'])) {
     <body background="images/bg.gif">
         <div class='container'>
             <div class='col-md-4 col-md-offset-4 well-sm admin'>
-                <form action="" method="post" class="form-singin">
+                
                     <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
 
 
                     <h4>Rut Admin</h4>
-                    <label for="user" class="sr-only">Rut</label> <input id="call" name="user" type="text" class='form-control'
+                    <label for="user" class="sr-only">Rut</label> <input id="user" name="user" type="text" class='form-control'
                                                                          placeholder='RUT con puntos y gui&oacute;n' required />
                     <h4>Contrase&ntilde;a</h4>
                     <label for='password' class="sr-only">Contrase&ntilde;a</label>
-                    <input name="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
+                    <input id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
                     <br>
-                    <input name='login' class="btn btn-lg btn-primary btn-block" type="submit"></input>
-                </form>
+                    <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
+             
 
             </div>
 
@@ -122,7 +95,32 @@ if (isset($_POST['login'])) {
     </body>
     <script>
         $(document).ready(function() {
-            $("#call").focus();
+            $("#user").focus();
+        });
+    </script>
+    
+        <script>
+        $(document).ready(function() {
+            $(".btnsubmit").click(function() {
+                jQuery.ajax({
+                    method: "POST",
+                    url: "querys/verification.php",
+                    async: false,
+                    data: {
+                        'user': $('#user').val(),
+                        'password': $('#password').val()
+                    },
+                    success: function(response)
+                    {
+             			if(response == 1){
+                      $(location).attr('href', 'index.php');
+             			}
+                        if (response == 0) {
+                            $("#respuesta").html('<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>');
+                        }
+                    }
+                });
+            });
         });
     </script>
 </html>
