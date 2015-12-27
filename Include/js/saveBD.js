@@ -31,8 +31,10 @@ var saveBD = function(event) {
                         //console.log(view.name);
                         if (view.name === 'month') {
                             $('#calendar').fullCalendar('refetchEvents');
+                            $('#undoEvent').attr('idEvent', event.id);
                         } else {
                             $('#calendar').fullCalendar('updateEvent', event);
+                            $('#undoEvent').attr('idEvent', event.id);
                         }
 
                         $('.progress').slideUp();

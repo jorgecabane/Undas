@@ -1,21 +1,9 @@
 var verifyEvent = function(event) {
     /*
-     * verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)
+     * @param {obj} : event
+     * @return {verificacion en la base de datos (si hay algun evento a la misma hora en el mismo lugar)}
      */
-    // alert(event.idEco+' '+event.start.format());
-//    $.ajax({
-//        url: 'Include/verificaEco.php',
-//        async: true,
-//        data: {"idEco": event.idEco, "start": event.start.format()},
-//        method: 'POST',
-//        success: function(output) {
-//            if (output === 'false') {
-//                $("#myModal.modal-body").html('<div class="alert alert-danger">La Eco se encuentra asignada a otra persona, corrija el error.</div>');
-//                $("#myModal").modal('show');
-//            }
-//        }// success
-//    });//ajax
-
+    //console.log(event._id);
     $.ajax({
         url: 'Include/verificaTM.php',
         async: true,
@@ -36,6 +24,7 @@ var verifyEvent = function(event) {
                     content += '<div class="alert alert-danger alert-sm">' + val.Centro + '</div>';
                 });
                 $("#myModal .modal-body").html('<div class="well well-sm">El TM ya se encuentra asignado en: ' + content + '</div>');
+                
                 //console.log(content);
                 $("#myModal").modal('show');
             }

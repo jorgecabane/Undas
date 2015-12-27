@@ -1,9 +1,3 @@
-<?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 <div class="modal fade" id="modalEvento" tabindex="-1" role="dialog" aria-labelledby=".modal-title">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -86,8 +80,8 @@
              * para generar un nuevo evento y renderearlo, guardarlo en la DB
              * y hacer las verificaciones pertinentes
              */
-            var start = moment($('#eventDate').text()+' '+$('#rangoStart').text());
-            var end = moment($('#eventDate').text()+' '+$('#rangoEnd').text());
+            var start = moment($('#eventDate').text() + ' ' + $('#rangoStart').text());
+            var end = moment($('#eventDate').text() + ' ' + $('#rangoEnd').text());
             var idTM = $('#evento').attr('idtm');
             var idEco = $('#evento').attr('idEco');
             var color = $('#evento').attr('color');
@@ -111,7 +105,7 @@
             $('#calendar').fullCalendar('renderEvent', event);
             saveBD(event);
             $('#modalEvento').modal('hide');
-        //console.log(event);
+            //console.log(event);
         });//click de aceptar el modal
     });
 </script>

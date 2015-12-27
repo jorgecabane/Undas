@@ -1,10 +1,10 @@
 /*
- * @param {type} event
- * @param {type} element
+ * @param {type} : event
+ * @param {type} : element
  * @returns {setea el popover para eventos}
  */
 var renderEvent = function(event, element) {
-    if (event.start.hasTime()) {
+    if (event.start.hasTime()) {//si el evento tiene hora asignada
         //se agrega la descripcion al evento
         element.find('.fc-title').append("<br/>" + event.description);
         //al hacer click se puede ver el detalle
