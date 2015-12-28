@@ -27,7 +27,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                     echo '<ul class="nav nav-pills nav-stacked">';
 
                     foreach ($empresas as $emp) {
-                        echo '<li class="active fc-event" idEmpresa="' . $emp ['idEmpresa'] . '"><center class="nombreevento">' . $emp ['Nombre'] . '</center></li>';
+                        echo '<li class="active fc-event" idEmpresa="' . $emp ['idEmpresa'] . '"><span class="glyphicon glyphicon-circle-arrow-right pull-right"></span><center class="nombreevento">' . $emp ['Nombre'] . '</center></li>';
                     }//foreach empresa
                     echo '</ul>';
                 }
