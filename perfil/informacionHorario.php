@@ -11,9 +11,14 @@
 <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
-                eventSources: {
-                    url: "Include/feedEventosTM.php?Rut=<?php echo $rut; ?>"
-                },
+                eventSources: [
+                    {url: "Include/feedEventosTM.php?Rut=<?php echo $rut; ?>"},
+                    {
+                        "url": "Include/feedFeriados.php",
+                        "overlap": false,
+                        "rendering": "background",
+                        "color": '#6B685D'
+                    }],
                 header: {
                     left: 'prev,today,next',
                     center: 'title',

@@ -75,7 +75,7 @@ $centro = $_GET ['centro'];
                                     "color": '#ffaa00'
                                 },
                                 {
-                                    "url": "Include/feriados.php",
+                                    "url": "Include/feedFeriados.php",
                                     "overlap": false,
                                     "rendering": "background",
                                     "color": '#6B685D'

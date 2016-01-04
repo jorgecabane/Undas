@@ -55,9 +55,6 @@ $feriados = array(
         'feriado' => true
     )
 );
-echo json_encode($feriados);
-
-
 //[{
 //"title" : "Feriado",
 //"description": "Dia de la Raza",
