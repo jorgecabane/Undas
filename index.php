@@ -140,8 +140,8 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 <!-- inicializacion del chart -->
 <script>
     var getDisponibles = function() {
-        start = $.datepicker.formatDate('yy-mm-dd', $('#start').datepicker('getDate')) + ' ' + $('#rangoStart').text() + ':00';
-        end = $.datepicker.formatDate('yy-mm-dd', $('#end').datepicker('getDate')) + ' ' + $('#rangoEnd').text() + ':00';
+        start = $("#start").val() + ' ' + $('#rangoStart').text() + ':00';
+        end = $("#end").val() + ' ' + $('#rangoEnd').text() + ':00';
 
         $.ajax({
             url: 'Include/disponibles.php',
