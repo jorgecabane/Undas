@@ -132,8 +132,9 @@ $centro = $_GET ['centro'];
                     <center>CUPOS:<span id="cupos" class="badge badge-warning"></span></center></div>
             </div>
             <div class="col-sm-1 hidden-print">
-                <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
-                    <span class="glyphicon glyphicon-print"></span>
+                <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Imprimir o Descargar PDF!">
+                    <span class="glyphicon glyphicon-print"></span> /
+                    <span class="glyphicon glyphicon-save"></span>
                 </button>
             </div>
             <div class="col-sm-1 hidden-print">
@@ -313,7 +314,7 @@ $centro = $_GET ['centro'];
 </script><!-- loading del calendario!-->
 <script>
     $(document).ready(function() {
-        $('#refreshCalendar').click(function(){
+        $('#refreshCalendar').click(function() {
             $('#calendar').fullCalendar('refetchEvents');
         });
     });
