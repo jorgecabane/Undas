@@ -93,40 +93,36 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
     <div class="row">
         <div class="col-sm-12 well well-sm" >
             <i class="glyphicon glyphicon-download pull-right"></i>
-             <div class="panel panel-default">
-            <?php include_once dirname(__FILE__) . "/Include/logs.php"; ?>
+            <div class="panel panel-default">
+                <?php include_once dirname(__FILE__) . "/Include/logs.php"; ?>
             </div>
         </div>
     </div>
     <div class="row">
-      
-            <i class="glyphicon glyphicon-download pull-right"></i>
-            <center><h3>Reporte de bugs</h3></center>
-            <div class="panel panel-default">
-             <?php include_once dirname(__FILE__) . "/Include/bugs.php"; ?>
-             </div>
-        
+
+        <i class="glyphicon glyphicon-download pull-right"></i>
+        <center><h3>Reporte de bugs</h3></center>
+        <div class="panel panel-default">
+            <?php include_once dirname(__FILE__) . "/Include/bugs.php"; ?>
+        </div>
+
     </div>
 </div>
 
 
 </body>
-
 <script>
     $(".superadmin").click(function() {
         $(location).attr('href', '../index.php');
     });
 </script>
-
 <script>
     $(".tecnologo").click(function() {
         var nombre = $('#tms    :selected').text();
         var id = $('#tms :selected').val();
         $(location).attr('href', "tecnologo.php?id=" + id + "&nombre=" + nombre);
-
     });
 </script>
-
 <script>
     $(".empresa").click(function() {
         var nombre = $('#emp :selected').text();
