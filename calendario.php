@@ -136,6 +136,11 @@ $centro = $_GET ['centro'];
                     <span class="glyphicon glyphicon-print"></span>
                 </button>
             </div>
+            <div class="col-sm-1 hidden-print">
+                <button class="btn btn-success btn-block" id="refreshCalendar" data-toggle="tooltip" data-placement="left" title="Recargar Calendario!">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+            </div>
             <div id='calendar'></div>
             <!-- calendario -->
         </div>
@@ -289,7 +294,7 @@ $centro = $_GET ['centro'];
             hiddenDays: [0],
             contentHeight: 800,
             allDaySlot: false,
-            loading:loading,
+            loading: loading,
             displayEventEnd: true,
             timeFormat: 'H:mm'
 
@@ -299,13 +304,20 @@ $centro = $_GET ['centro'];
 </script><!-- fullCalendar -->
 <script>
     var loading = function(isLoading, view) {
-                if (isLoading) {
-                    $('.loading-screen').show();
-                } else {
-                    $('.loading-screen').hide();
-                }
-            };
-</script>
+        if (isLoading) {
+            $('.loading-screen').show();
+        } else {
+            $('.loading-screen').hide();
+        }
+    };
+</script><!-- loading del calendario!-->
+<script>
+    $(document).ready(function() {
+        $('#refreshCalendar').click(function(){
+            $('#calendar').fullCalendar('refetchEvents');
+        });
+    });
+</script><!-- refresh del calendario -->
 <script>
     $(document).ready(function() {
         $('#selectTM').change(function() {
