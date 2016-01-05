@@ -92,6 +92,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         $("#start").datepicker({
             defaultDate: "+1d",
             changeMonth: true,
+            changeYear: true,
             onClose: function(selectedDate) {
                 $("#end").datepicker("option", "minDate", selectedDate);
             },
@@ -101,6 +102,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         $("#end").datepicker({
             defaultDate: "+1d",
             changeMonth: true,
+            changeYear: true,
             onClose: function(selectedDate) {
                 $("#start").datepicker("option", "maxDate", selectedDate);
             },
