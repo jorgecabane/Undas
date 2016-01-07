@@ -5,13 +5,14 @@ $fechas = getLogsParam(2);
 echo "<center><h3>Logs</h3></center>";
 echo "<div class='row'>";
 echo "<div class='col-sm-4'><input class='form-control' type='text' id='search' placeholder='Filtro'></div>";
-echo "<div class='col-sm-4'><select class='form-control' id='fecha'><option>Todas las fechas</option>";
-foreach ($fechas as $data) {
-    foreach ($data as $fecha) {
-        echo "<option value='$fecha'>$fecha</option>";
-    }
-}
-echo "</select></div>";
+echo "<div class='col-sm-4'><input type='date' class='datepicker form-control' id='fecha' placeholder='seleccionar fecha'></div>";
+//echo "<div class='col-sm-4'><select class='form-control' id='fecha'><option>Todas las fechas</option>";
+//foreach ($fechas as $data) {
+//    foreach ($data as $fecha) {
+//        echo "<option value='$fecha'>$fecha</option>";
+//    }
+//}
+//echo "</select></div>";
 echo "<div class='col-sm-4'>Otro filtro</div>";
 echo "</div><!-- row -->";
 echo "<table class='table table-fixed'>
