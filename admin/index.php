@@ -24,15 +24,13 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
                 <?php
                 $tms = getTM();
                 foreach ($tms as $tm) {
-                    if ($empresa ['Nombre'] != 'Sin Turno') {
-                        ?>
-                        <option value="<?php echo $tm['idTM']; ?>"><?php
-                            echo $tm['Nombre'];
-                            echo " ";
-                            echo $tm['Apellido'];
-                            ?></option>
-                        <?php
-                    }
+                    ?>
+                    <option value="<?php echo $tm['idTM']; ?>"><?php
+                        echo $tm['Nombre'];
+                        echo " ";
+                        echo $tm['Apellido'];
+                        ?></option>
+                    <?php
                 }
                 ?>
             </select> <br>

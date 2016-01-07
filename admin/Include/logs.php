@@ -1,7 +1,19 @@
 <?php
 include_once dirname(__FILE__) . '/../querys/getLogs.php'; //conexion local
+$fechas = getLogsParam(2);
+//print_r($fechas);
 echo "<center><h3>Logs</h3></center>";
-echo "<input class='form-control' type='text' id='search' placeholder='Filtro'>";
+echo "<div class='row'>";
+echo "<div class='col-sm-4'><input class='form-control' type='text' id='search' placeholder='Filtro'></div>";
+echo "<div class='col-sm-4'><select class='form-control' id='fecha'><option>Todas las fechas</option>";
+foreach ($fechas as $data) {
+    foreach ($data as $fecha) {
+        echo "<option value='$fecha'>$fecha</option>";
+    }
+}
+echo "</select></div>";
+echo "<div class='col-sm-4'>Otro filtro</div>";
+echo "</div><!-- row -->";
 echo "<table class='table table-fixed'>
         <thead>
             <tr>
@@ -37,6 +49,15 @@ echo "  </tbody>
     $('#search').keyup(function() {
         $('.log').hide();
         var txt = $('#search').val();
+        $('.log').each(function() {
+            if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                $(this).show();
+            }
+        });
+    });
+    $('#fecha').change(function() {
+        $('.log').hide();
+        var txt = $('#fecha').val();
         $('.log').each(function() {
             if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
                 $(this).show();
