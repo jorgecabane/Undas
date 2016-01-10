@@ -161,7 +161,7 @@ if ($_SESSION ["usuario"]) {
                 <!-- aqui termina -->
 
                 <ul class="nav navbar-nav navbar-right">
-           		     <li><a href="resumenhonorario.php"><font color="green">Resumen honorarios</font></a></li>
+           		     <li><a href="resumenLiquidaciones.php"><font color="green">Resumen honorarios</font></a></li>
            		     <li><a href="books/libreria.php"><font color="blue">Librer&iacute;a</font></a></li>
            		     <?php if(isset($_SESSION['super'])){ 
                		                        }

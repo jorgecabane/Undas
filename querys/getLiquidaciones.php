@@ -45,14 +45,16 @@ function getLiquidaciones($fecha) {
 			//echo $sumaLiquidacion;
 			//echo "<br>";
 			if($sumaLiquidacion != 0 ){
-			$nombre = $horas ['TMNombre'];
-			$result["$nombre"]["Liquidacion"]= $sumaLiquidacion;
+			$nombre = $horas['TMNombre']." ".$horas['TMApellido'];
+			$rut = $info['Rut'];
+			$result[$rut][]= $nombre;
+			$result[$rut][]= $sumaLiquidacion;
 			}
 		}
 	}
 	return $result;
 }
-//print_r(getLiquidaciones ( "2015-10" ));
+print_r(getLiquidaciones ( "2015-10" ));
 //echo json_encode(getLiquidaciones ( "2015-10" ));
 //{"Admin":{"Liquidacion":15000}}
 //getLiquidaciones ( "2015-10" );
