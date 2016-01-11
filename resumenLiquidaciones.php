@@ -5,6 +5,7 @@ include_once "conexionLocal.php";
 $month = date ( 'm' );
 $year = date ('Y');
 ?>
+<script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
 <div class="progress" style="display: none">
 	<div class="progress-bar progress-bar-striped active"
 		role="progressbar" style="width: 100%">
