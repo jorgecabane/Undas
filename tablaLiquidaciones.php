@@ -22,7 +22,7 @@ $ruttm=getTM();
 $liquidaciones = getLiquidaciones ($mes );
 echo "<br>";
 echo "<h3>Resumen Liquidaciones</h3>
-	  <table id='t01' class='table table-hover table-bordered'>
+	  <table id='t01' class='table table-hover table-bordered' >
 	   <tr>
         <th><font color='green'>Nombre Tecnologo</font></th>
         <th><font color='green'>Total liquidacion</font></th> 
@@ -30,7 +30,7 @@ echo "<h3>Resumen Liquidaciones</h3>
     
 Foreach($ruttm as $tm){
 	if(isset($liquidaciones[$tm['Rut']][0])){
-	echo "<tr><th>";
+	echo "<tr  bgcolor='#ffff66'><th>";
     echo $liquidaciones[$tm['Rut']][0]; 
     echo "</th><th>" ;
   	echo "$".number_format($liquidaciones[$tm['Rut']][1]);  
