@@ -30,7 +30,7 @@ echo "<h3 align='center'>Resumen Liquidaciones</h3>
     
 Foreach($ruttm as $tm){
 	if(isset($liquidaciones[$tm['Rut']][0])){
-	echo "<tr  bgcolor='#ffff66'><th>";
+	echo "<tr  bgcolor='#c1c1a4' ><th>";
     echo $liquidaciones[$tm['Rut']][0]; 
     echo "</th><th>" ;
   	echo "$".number_format($liquidaciones[$tm['Rut']][1]);  
