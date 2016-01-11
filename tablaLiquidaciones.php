@@ -21,8 +21,8 @@ $ruttm=getTM();
 
 $liquidaciones = getLiquidaciones ($mes );
 echo "<br>";
-echo "<h3>Resumen Liquidaciones</h3>
-	  <table id='t01' class='table table-hover table-bordered' >
+echo "<h3 align='center'>Resumen Liquidaciones</h3>
+	  <table id='t01' class='table table-hover table-bordered' style='width: 95%' align='center' >
 	   <tr>
         <th><font color='green'>Nombre Tecnologo</font></th>
         <th><font color='green'>Total liquidacion</font></th> 
