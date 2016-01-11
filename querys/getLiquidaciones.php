@@ -54,7 +54,6 @@ function getLiquidaciones($fecha) {
 	}
 	return $result;
 }
-print_r(getLiquidaciones ( "2015-10" ));
 //echo json_encode(getLiquidaciones ( "2015-10" ));
 //{"Admin":{"Liquidacion":15000}}
 //getLiquidaciones ( "2015-10" );

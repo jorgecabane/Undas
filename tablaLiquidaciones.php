@@ -9,7 +9,6 @@ echo"<div id='errores'></div>";
 $ruttm=getTM();
 
 $liquidaciones = getLiquidaciones ($mes );
-print_r($liquidaciones);
 echo "<h3 align='center'>Resumen Liquidaciones</h3>
 	  <table id='t01' class='table table-hover table-bordered' style='width: 95%' align='center' >
 	   <tr>
