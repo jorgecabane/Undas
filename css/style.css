@@ -159,3 +159,8 @@ white-space: nowrap;
     margin-top: 3px;
     margin-bottom: 3px;
 }
+
+.prestaciones{
+    max-height: 300px;
+    overflow: auto;
+}
