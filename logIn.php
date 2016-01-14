@@ -15,9 +15,13 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
         <link href="css/bootstrap.min.css" rel='stylesheet'>
         <style>
             body {
-                padding-top: 80px;
-                padding-bottom: 40px;
+ 
                 background-color: #eee;
+                background: url(images/login.png) no-repeat ; 
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
             }
 
             .form-signin {
@@ -65,7 +69,8 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
             text-align: center;
         }
     </style>
-    <body background="images/login.png">
+<body>
+
         <div class='container'>
             <div class='col-md-4 col-md-offset-4 form-group well well-sm'>
 

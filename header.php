@@ -7,17 +7,19 @@ include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
 include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
 include_once dirname(__FILE__) . "/Include/isAdmin.php";
 
+
+// si super isset -> no me sirve verificar isadmin
 if ($_SESSION ["usuario"]) {
-    if (isAdmin($_SESSION ["idusuario"]) == 1) {
+    if (isAdmin($_SESSION ["idusuario"],$_SESSION["context"]) == 1) {
         $admin = 1;
     } else {
         $admin = 0;
     }
 } else {
-    //print_r($_SESSION);
-    //si no hay sesion se envi al login
+    //si no hay sesion se envia al login
     header('Location:logIn.php');
 }
+
 ?>
 <head>
     <!-- title and meta -->

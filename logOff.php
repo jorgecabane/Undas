@@ -6,9 +6,11 @@
     session_destroy();
  }
  if(isset($_SESSION['super'])){
+ 	session_destroy();
  	header('Location: admin/logIn.php');
  }
  else{
+ 	session_destroy();
  	header('Location: logIn.php');
  }
   exit;

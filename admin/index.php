@@ -111,7 +111,7 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
 </body>
 <script>
     $(".superadmin").click(function() {
-        $(location).attr('href', '../index.php');
+        $(location).attr('href', 'admin.php');
     });
 </script>
 <script>

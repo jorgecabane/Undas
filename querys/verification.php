@@ -15,6 +15,7 @@ if (!isset($_SESSION)) {
         //var_dump($resultado34);
         $_SESSION['idusuario'] = $resultado['idTM'];
         $_SESSION["usuario"] = $resultado['Nombre'];
+        $_SESSION["context"] = "tm";
         //header("location:index.php");
         //var_dump($user1);
         echo "Tm";
