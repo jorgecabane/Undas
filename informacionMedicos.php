@@ -28,7 +28,7 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
     if ($medicos) {//si hay
         foreach ($medicos as $medico) {
             echo'<tr>';
-            echo '<td><button type="button" class="close" idMedico="'.$medico['idTM'].'" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>';
+            
             echo'<td><input type="text" class="form-control nombre editar" value="'.$medico['Nombre'].'"></td>';
             echo'<td><input type="text" class="form-control apellido editar" value="'.$medico['Apellido'].'"></td>';
             echo '<td>';
@@ -36,6 +36,7 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
             echo '</td>';
     		echo'<td colspan="1">';
     		echo '<input type="submit" value="Cancelar" idMedico="'.$medico['idTM'].'" class="btn btn-warning btncancel" disabled="disabled"/>';
+    		echo '<td><input type="button" value = "Eliminar" class=" btn btn-danger btnclose" idMedico="'.$medico['idTM'].'" aria-label="Close"/></td>';
             //echo '<strong class="medico" idMedico="'.$medico['idTM'].'">' . $medico['Nombre'] . " <span>" . $medico['Apellido'] . '</strong>';
             echo "</td></tr>";
         }
@@ -51,12 +52,12 @@ echo "</tbody></table></div>";
 </div></div>
 
 <script>
-    $('.close').click(function() {
+    $('.btnclose').click(function() {
         var idMedico = $(this).attr('idMedico');
         var Nombre = $(this).parent().parent().find('.nombre').val();
         var Apellido = $(this).parent().parent().find('.apellido').val();
         var aqui = $(this).parent().parent();
-        var r = confirm("Esta seguro que desea eliminar Médico: " + Nombre + " " + Apellido +"?");
+        var r = confirm("Esta seguro que desea eliminar Mï¿½dico: " + Nombre + " " + Apellido +"?");
         if (r == true) {
 
             jQuery.ajax({
