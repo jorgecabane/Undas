@@ -156,15 +156,16 @@ if ($_SESSION ["usuario"]) {
                             <ul class="dropdown-menu" role="menu">
                                 <li><a id="perfiles" href="agregarDoctor.php">Nuevo M&eacute;dico</a></li>
                                 <li><a id="perfiles" href="informacionMedicos.php">Editar M&eacute;dicos</a></li>
-                            </ul>
-                        <?php } ?>
+                            </ul>    
+                         <li><a href="resumenLiquidaciones.php">Resumen honorarios</a></li>
+                         <?php } ?>
                 </ul>
            
                 <!-- aqui termina -->
 
                 <ul class="nav navbar-nav navbar-right">
-           		     <li><a href="resumenLiquidaciones.php"><font color="green">Resumen honorarios</font></a></li>
-           		     <li><a href="books/libreria.php"><font color="blue">Librer&iacute;a</font></a></li>
+           		    
+           		     <li><a href="books/libreria.php">Librer&iacute;a</a></li>
            		     <?php if(isset($_SESSION['super'])){ 
                		                        }
                		                        else {
