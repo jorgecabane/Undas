@@ -1,7 +1,7 @@
 <?php
-include_once "/Include/meses.php";
-include_once "/querys/getLiquidaciones.php";
-include_once "/querys/getTM.php";
+include_once dirname(__FILE__) . "/Include/meses.php";
+include_once dirname(__FILE__) . "/querys/getLiquidaciones.php";
+include_once dirname(__FILE__) . "/querys/getTM.php";
 $mes = $_POST ['mes'];
 //div en caso de errores ( horasRealizadas sin valoresHora asociadas)
 echo"<div id='errores'></div>";

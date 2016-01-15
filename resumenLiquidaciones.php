@@ -1,7 +1,6 @@
 <?php
 session_start ();
-include_once 'header.php';
-include_once "conexionLocal.php";
+include_once dirname(__FILE__) . "/header.php";
 $month = date ( 'm' );
 $year = date ('Y');
 ?>
