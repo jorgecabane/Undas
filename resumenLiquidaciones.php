@@ -71,7 +71,7 @@ $("#month").change(function() {
 	var month = $('#month').val();
 	var year = $('#year').val();
 	var date = year+'-'+month;
-$("#Liquidaciones").slideDown('slow').load("perfil/tablaLiquidaciones.php", {"mes": date}, 
+$("#Liquidaciones").slideDown('slow').load("honorarios/tablaLiquidaciones.php", {"mes": date}, 
 		function() {
     $('.progress').slideUp('slow');
 });
@@ -83,7 +83,7 @@ $("#year").change(function() {
 	var month = $('#month').val();
 	var year = $('#year').val();
 	var date = year+'-'+month;
-$("#Liquidaciones").slideDown('slow').load("perfil/tablaLiquidaciones.php", {"mes": date}, 
+$("#Liquidaciones").slideDown('slow').load("honorarios/tablaLiquidaciones.php", {"mes": date}, 
 		function() {
     $('.progress').slideUp('slow');
 });
@@ -97,7 +97,7 @@ n = d.getMonth()+1,
 
 y = d.getFullYear();
 var date = y+"-"+n;
-$("#Liquidaciones").load("perfil/tablaLiquidaciones.php", {"mes": date}); 
+$("#Liquidaciones").load("honorarios/tablaLiquidaciones.php", {"mes": date}); 
 });
 </script>
 <?php 
