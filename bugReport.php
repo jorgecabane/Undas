@@ -23,11 +23,11 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
           <input type="text" class="form-control" id="nombre" value='<?php echo $_SESSION['usuario'];?>' disabled>
         </div>
            <div class="form-group">
-          <label for="nombre">Titulo</label>
+          <label for="nombre">T&iacute;tulo</label>
           <input type="text" class="form-control" id="titulo" placeholder="Ingrese un titulo para el error" required>
         </div>
            <div class="form-group">
-          <label for="nombre">Descripcion</label>
+          <label for="nombre">Descripci&oacute;n</label>
           <textarea name="descripcion" cols="40" rows="5" id="descripcion" class="form-control"></textarea>
         </div>
         
