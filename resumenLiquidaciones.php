@@ -1,6 +1,15 @@
 <?php
 session_start ();
 include_once dirname(__FILE__) . "/header.php";
+include_once dirname(__FILE__) . "/Include/isAdmin.php";
+if ($_SESSION["usuario"]) {
+	if (isAdmin($_SESSION["idusuario"],$_SESSION ["context"]) == 1) {
+		$admin = 1;
+	} else {
+		$admin = 0;
+	}
+}
+if($admin == 1){
 $month = date ( 'm' );
 $year = date ('Y');
 ?>
@@ -39,6 +48,7 @@ for($i = 2015; $i <= date ( "Y" ); $i ++)
 			echo "<option value='$i' selected>$i</option>";
 		else
 			echo "<option value='$i'>$i</option>";
+		
 	?>
 </select>
 	</div>
@@ -90,3 +100,7 @@ var date = y+"-"+n;
 $("#Liquidaciones").load("tablaLiquidaciones.php", {"mes": date}); 
 });
 </script>
+<?php 
+} else {
+	echo "Usted no tiene permisos para ver esta pagina.";
+}
