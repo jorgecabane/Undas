@@ -8,7 +8,7 @@
                 include_once "../querys/getEmpresa.php";
                 include_once "../querys/getValorHora.php";
                 if ($_SESSION ["usuario"]) {
-                    if (isAdmin($_SESSION ["idusuario"]) == 1) {
+                	if (isAdmin($_SESSION["idusuario"],$_SESSION ["context"]) == 1) {
                         $admin = 1;
                        
                     } else {

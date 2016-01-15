@@ -15,6 +15,7 @@ if (!isset($_SESSION)) {
         $_SESSION['idusuario'] = $resultado['id'];
         $_SESSION["usuario"] = $resultado['Nombre'];
         $_SESSION['super'] = 1;
+        $_SESSION['context'] = "super";
         //header("location:index.php");
         //var_dump($user1);
         echo "1";

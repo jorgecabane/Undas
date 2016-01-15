@@ -2,7 +2,7 @@
 include_once dirname(dirname(__FILE__)) . "/Include/isAdmin.php";
 
 if ($_SESSION ["usuario"]) {
-    if (isAdmin($_SESSION ["idusuario"]) == 1) {
+    if (isAdmin($_SESSION ["idusuario"],$_SESSION ["context"]) == 1) {
         $admin = 1;
     } else {
         $admin = 0;
