@@ -9,18 +9,19 @@ echo"<div id='errores'></div>";
 $ruttm=getTM();
 
 $liquidaciones = getLiquidaciones ($mes );
+echo "<br><div class = 'col-xs-8  col-xs-offset-2 text-center well well-xs'>";
 echo "<h3 align='center'>Resumen Liquidaciones</h3>
-	  <table id='t01' class='table table-hover table-bordered' style='width: 95%' align='center' >
-	   <tr>
-        <th><font color='green'>Nombre Tecnologo</font></th>
-        <th><font color='green'>Honorario bruto</font></th> 
-		<th><font color='green'>Retencion</font></th> 
-		<th><font color='green'>Honorario liquido</font></th> 
-       </tr>";
+	  <table id='t01' class='table table-hover table-bordered table-condensed'>
+	   <thead><tr class='info'>
+        <th>Nombre Tecnologo</th>
+        <th>Honorario bruto</th> 
+		<th>Retencion</th> 
+		<th>Honorario liquido</th> 
+       </tr></thead><tbody>";
     
 Foreach($ruttm as $tm){
 	if(isset($liquidaciones[$tm['Rut']][0])){
-	echo "<tr  bgcolor='#c1c1a4' ><th>";
+	echo "<tr  ><th>";
     echo $liquidaciones[$tm['Rut']][0]; 
     echo "</th><th>" ;
   	echo "$".number_format($liquidaciones[$tm['Rut']][1]);  
@@ -31,5 +32,5 @@ Foreach($ruttm as $tm){
     echo "</th></tr>";
 	}
 }
-echo "</table>"
+echo "</table></div>";
 ?>

@@ -13,6 +13,7 @@ if($admin == 1){
 $month = date ( 'm' );
 $year = date ('Y');
 ?>
+<br>
 <script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
 <div class="progress" style="display: none">
 	<div class="progress-bar progress-bar-striped active"
