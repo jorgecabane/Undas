@@ -5,7 +5,6 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
 // $resultadotipo= mysql_fetch_assoc($tipo);
 ?>
 <html>
-    <div id="respuesta"></div>
     <head>
         <!-- css -->
         <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8 "/>
@@ -18,10 +17,9 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
  
                 background-color: #eee;
                 background: url(images/login.png) no-repeat ; 
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
-				background-size: cover;
+			
+				padding-top: 40px;
+                padding-bottom: 40px;
             }
 
             .form-signin {
@@ -74,16 +72,24 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
         <div class='container'>
             <div class='col-md-4 col-md-offset-4 form-group well well-sm'>
 
-                <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
+                <h2 class='form-singin-heading text'>Inicie sesi&oacute;n</h2>
 
                 <h4>Rut usuario</h4>
                 <label for="user" class="sr-only">Rut</label>
-                <input id="user" name="user" type="text" class='form-control' placeholder='RUT con puntos y gui&oacute;n' required />
-
+                
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                <input id="user" name="user" type="text" class='form-control' placeholder='RUT con puntos y gui&oacute;n'  aria-describedby="basic-addon1" required />
+				</div>
+				
                 <h4>Contrase&ntilde;a</h4>
                 <label for='password' class="sr-only">Contrase&ntilde;a</label>
+                
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
                 <input name="password" id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
-
+				</div>
+				
                 <br>
                 <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
 
@@ -91,7 +97,7 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
             </div>
 
         </div><!-- login -->
-
+   <div id="respuesta"></div>
 
     </body>
     <script>
@@ -115,6 +121,8 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
                         }
                         if (response == 0) {
                             $("#respuesta").html('<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>');
+                            $('.input-group').addClass('has-error');
+                            $( ".container" ).effect( "shake" );                            
                         }
                     }
                 });
