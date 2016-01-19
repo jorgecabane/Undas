@@ -1,6 +1,6 @@
 <?php
-include_once "../conexionLocal.php";
-include_once "/getTMRut.php";
+include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
+include_once dirname(__FILE__) . "/getTMRut.php";
 
 $rutTM=$_POST['rut'];
 $tm=getTMRut($rutTM);
