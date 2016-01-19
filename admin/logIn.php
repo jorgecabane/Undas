@@ -3,7 +3,7 @@ session_start();
 include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
 ?>
 <html>
-<div id="respuesta"></div>
+
     <head>
         <!-- css -->
         <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8 "/>
@@ -12,10 +12,13 @@ include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link href="../css/bootstrap.min.css" rel='stylesheet'>
         <style>
-            body {
-                padding-top: 40px;
-                padding-bottom: 40px;
+               body {
+ 
                 background-color: #eee;
+                background: url(images/login.png) no-repeat ; 
+			
+				padding-top: 40px;
+                padding-bottom: 40px;
             }
 
             .form-signin {
@@ -51,14 +54,6 @@ include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
             }
-            .admin{
-                background: #7db9e8;
-                background: -moz-linear-gradient(top,  #7db9e8 0%, #2989d8 50%, #1e5799 100%);
-                background: -webkit-linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%);
-                background: linear-gradient(to bottom,  #7db9e8 0%,#2989d8 50%,#1e5799 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=0 );
-
-            }
         </style>
 
 
@@ -71,27 +66,35 @@ include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
             text-align: center;
         }
     </style>
-    <body background="images/bg.gif">
         <div class='container'>
-            <div class='col-md-4 col-md-offset-4 well-sm admin'>
+            <div class='col-md-4 col-md-offset-4 form-group well well-sm'>
+
+                <h2 class='form-singin-heading text'>Inicie sesi&oacute;n</h2>
+
+                <h4>Rut usuario</h4>
+                <label for="user" class="sr-only">Rut</label>
                 
-                    <h2 class='form-singin-heading'>Inicie sesi&oacute;n</h2>
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                <input id="user" name="user" type="text" class='form-control' placeholder='RUT con puntos y gui&oacute;n'  aria-describedby="basic-addon1" required />
+				</div>
+				
+                <h4>Contrase&ntilde;a</h4>
+                <label for='password' class="sr-only">Contrase&ntilde;a</label>
+                
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                <input name="password" id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
+				</div>
+				
+                <br>
+                <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
 
-
-                    <h4>Rut Admin</h4>
-                    <label for="user" class="sr-only">Rut</label> <input id="user" name="user" type="text" class='form-control'
-                                                                         placeholder='RUT con puntos y gui&oacute;n' required />
-                    <h4>Contrase&ntilde;a</h4>
-                    <label for='password' class="sr-only">Contrase&ntilde;a</label>
-                    <input id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
-                    <br>
-                    <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
-             
 
             </div>
 
         </div>
-
+	<div id="respuesta"></div>
 
     </body>
     <script>
@@ -118,6 +121,8 @@ include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
              			}
                         if (response == 0) {
                             $("#respuesta").html('<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>');
+                            $('.input-group').addClass('has-error');
+                            $( ".container" ).effect( "shake" );  
                         }
                     }
                 });
