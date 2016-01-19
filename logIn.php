@@ -14,10 +14,10 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
         <link href="css/bootstrap.min.css" rel='stylesheet'>
         <style>
             body {
- 
+
                 background-color: #eee;
-                background: url(images/login.png) no-repeat ; 
-			
+                background: url(images/login.png) no-repeat ;
+
 				padding-top: 40px;
                 padding-bottom: 40px;
             }
@@ -76,20 +76,20 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
 
                 <h4>Rut usuario</h4>
                 <label for="user" class="sr-only">Rut</label>
-                
+
                 <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                 <input id="user" name="user" type="text" class='form-control' placeholder='RUT con puntos y gui&oacute;n'  aria-describedby="basic-addon1" required />
 				</div>
-				
+
                 <h4>Contrase&ntilde;a</h4>
                 <label for='password' class="sr-only">Contrase&ntilde;a</label>
-                
+
                 <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
                 <input name="password" id="password" type="password" class='form-control' placeholder='Contrase&ntilde;a' required>
 				</div>
-				
+
                 <br>
                 <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
 
@@ -120,9 +120,9 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
                             $(location).attr('href', 'centros/index.php');
                         }
                         if (response == 0) {
-                            $("#respuesta").html('<div class="error">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>');
+                            $("#respuesta").html('<div class="alert alert-danger col-md-4 col-md-offset-4">Su usuario o clave no son v&aacute;lidos, intente nuevamente.</div>');
                             $('.input-group').addClass('has-error');
-                            $( ".container" ).effect( "shake" );                            
+                            $( ".container" ).effect( "shake" );
                         }
                     }
                 });

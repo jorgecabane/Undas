@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_SESSION)) {
     session_start();
     include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
@@ -8,7 +9,7 @@ if (!isset($_SESSION)) {
     $user = $_POST['user'];
     $password = $_POST['password'];
 
-    $rec = mysql_query("SELECT idTM FROM tm WHERE Rut = '$user' AND Password = '". md5($password) ."'") or die(mysql_error());
+    $rec = mysql_query("SELECT idTM FROM tm WHERE Rut = '$user' AND Password = '" . md5($password) . "'") or die(mysql_error());
     if (mysql_affected_rows() == 1) {
         insertLog('login', dirname(__FILE__) . '?&user=' . $user . '&IP=' . $_SERVER['REMOTE_ADDR']);
         $resultado = getTMRut($user);
@@ -21,16 +22,23 @@ if (!isset($_SESSION)) {
         echo "Tm";
     }
 
-    $rec2 = mysql_query("SELECT * FROM empresa WHERE Rut = '$user' AND Password = '". md5($password) ."'") or die(mysql_error());
+    $rec2 = mysql_query("SELECT * FROM empresa WHERE Rut = '$user' AND Password = '" . md5($password) . "'") or die(mysql_error());
     if (mysql_affected_rows() == 1) {
+        //se inserta log de ingreso
         insertLog('login', dirname(__FILE__) . '?&user=' . $user . '&IP=' . $_SERVER['REMOTE_ADDR']);
+
+        //se buscan los datos del a empresa
         $resultado34 = getEmpresaRut($user);
-        $_SESSION['idusuario'] = $resultado34 ['idEmpresa'];
-        $_SESSION["usuario"] = $resultado34 ['Nombre'];
-        //header("location:centros/index.php");
-        echo "Empresa";
+        if ($resultado34) {
+            $_SESSION['idusuario'] = $resultado34['idEmpresa'];
+            $_SESSION["usuario"] = $resultado34['Nombre'];
+            //header("location:centros/index.php");
+            echo "Empresa";
+        } else {
+            echo 0;
+        }
     }
 } else {
-    return 0;
+    echo 0;
 }
 ?>
