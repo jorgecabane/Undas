@@ -2,7 +2,7 @@
 include_once dirname(dirname(__FILE__)) . '/querys/getBugs.php';//conexion local
 include_once dirname(dirname(__FILE__)) . '/querys/getTM.php';//getTM
 include_once dirname(dirname(__FILE__)) . '/querys/getEmpresa.php';//getEmpresa
-echo "<table class='table table-condensed table-bordered table-hover'>
+echo "<table class='table table-condensed table-bordered table-hover' style='table-layout:fixed;'>
         <thead>
             <tr>
                 <th>Informante</th>
@@ -32,8 +32,8 @@ else{
 		echo  "<td>$datoEmpresa[Nombre]";
 	}
 } //en caso de que row sea de una empresa
-          echo "<td>$bug[Titulo]</td>
-                <td>$bug[Descripcion]</td>
+          echo "<td style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;'>$bug[Titulo]</td>
+                <td><div style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis;' data-toggle='popover' data-trigger='hover' title='$bug[Descripcion]' >$bug[Descripcion]</div></td>
                 <td>$bug[fecha]</td>
              </tr>";
     } // for each de los bugs
