@@ -5,7 +5,7 @@ include_once "../querys/getEmpresa.php";
 	<div class="col-xs-4  col-xs-offset-4 text-center hidden-print">
 		<label>Seleccione Empresa</label> <select
 			class="form-control text-center" id="empresa">
-			<option value="" disabled selected>Seleccione Empresa</option>
+			
 	<?php
 	$empresas = getEmpresa ();
 	foreach ( $empresas as $empresa ) {
@@ -29,5 +29,11 @@ include_once "../querys/getEmpresa.php";
 $("#empresa").change(function() {
 var empresa = $('#empresa').val();
 $("#prestaciones").slideDown('slow').load("perfil/prestaciones.php", {"rut": <?php echo "'$rut'";?>, "empresa": empresa});
+});
+</script>
+<script>
+$( document ).ready(function() {
+var empresa = $('#empresa option:eq(0)').val() ; 	
+$("#prestaciones").slideDown('slow').load("perfil/prestaciones.php", {"rut": <?php echo "'$rut'";?>, "empresa": empresa}); 
 });
 </script>
