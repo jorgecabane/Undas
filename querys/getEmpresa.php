@@ -1,9 +1,10 @@
 <?php
 
-/*
- * getEmpresa($idEmpresa) busca todas las empresas con sus datos o una empresa especificando su RUT
- * @param {varchar} : $idEmpresa
- * @return {array} : empresas con sus atributos
+/**
+ * getEmpresa($idEmpresa)
+ *
+ * @param varchar|null $idEmpresa
+ * @return array empresas con sus atributos
  */
 include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion local
 

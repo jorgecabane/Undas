@@ -1,8 +1,10 @@
 <?php
 
-/*
- * getTM funcion que se conecta al a base de datos para entregar la informacion de todos los TM
- * o un solo TM si hay una variable $_POST['idTM'] que indique id
+/**
+ * getEmpresaRut
+ *
+ * @param int|varchar $rut rut de la empresa
+ * @return array datos de la empresa Nombre|Rut|Giro|Direccion|Comuna|Ciudad|RazonSocial
  *
  */
 include_once dirname(__FILE__) . '/../conexionLocal.php'; // archivo de conexion local
