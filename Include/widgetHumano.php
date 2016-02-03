@@ -1,5 +1,5 @@
 <div id="map" style="position:relative; width:403px; height:664px; z-index:0; background-image:url(images/prestaciones.jpg); background-repeat: no-repeat;">
-    <select id="empresas" style="position:absolute;top:5px;left:255px;">
+    <select class="form-control" id="empresas" style="position:absolute;top:5px;left:255px; width: 200px;">
         <?php
         require_once dirname(__FILE__) . '/../querys/getEmpresa.php';
         $empresas = getEmpresaNotSinTurno();
