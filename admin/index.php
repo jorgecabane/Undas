@@ -35,7 +35,7 @@ include_once dirname(dirname(__FILE__)) . "/querys/getTM.php";
                 ?>
             </select> <br>
             <center>
-                <button type="button" class="btn btn-success btn-lg tecnologo">Ingresar</button>
+                <button type="button" class="btn btn-info btn-lg tecnologo">Ingresar</button>
             </center>
             <br>
             <!-- Aqui termina select TM --->

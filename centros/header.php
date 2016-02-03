@@ -20,7 +20,7 @@ if ($_SESSION ["usuario"]) {
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>TMTECNOMED APP</title>
+        <title>TMTECNOMED APP - Vista Centro</title>
 
         <script src="Include/jquery-2.1.4.min.js"></script>
         <script src="Include/bootstrap.js"></script>

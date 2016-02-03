@@ -30,6 +30,13 @@ if ($_SESSION ["usuario"]) {
         <script src='../calendario/fullcalendar.min.js'></script>
         <script src='../calendario/lang/es.js'></script>
         <script src='../chart-master/Chart.js'></script>
+        <script>
+            $(document).ready(function() {
+                $('.tema').click(function() {
+                    $('#tema-sitio').attr('href', $(this).attr('tema'));
+                });
+            });
+        </script>
 
         <!-- favico-->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -61,18 +68,24 @@ if ($_SESSION ["usuario"]) {
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse"
-                     id="bs-example-navbar-collapse-1">
-
-
-                    </ul>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!-- aqui termina -->
-
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <!-- Single button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Temas<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css">Cerulean</a></li>
+                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css">Lumen</a></li>
+                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css">Paper</a></li>
+                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css">Yeti</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="editarClave.php">Editar Clave</a></li>
-                        <li><button onClick="window.location.href = '../logOff.php'" class="btn btn-danger navbar-btn"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
+                        <li><button onClick="window.location.href = '../logOff.php';" class="btn btn-danger navbar-btn"><strong class=""><?php echo $_SESSION['usuario']; ?></strong> (Cerrar sesión)</button></li>
                     </ul>
-
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
