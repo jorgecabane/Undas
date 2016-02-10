@@ -100,7 +100,7 @@ function getPrestacionesNull($rutTM, $empresa) {
 	$query = "SELECT prestaciones.Grupo as Grupo, prestaciones.Especifico as Especifico, empresa.Nombre as Empresa, prestaciones.idprestaciones as idprestacion
 				from tm 
 				left join prestacionestm on (tm.idTM = prestacionestm.Tm_idTM and tm.Rut = '$rutTM')
-				left join empresa on (empresa.idEmpresa = prestacionestm.empresa_idEmpresa and empresa.idEmpresa = $empresa)
+				 join empresa on (empresa.idEmpresa = prestacionestm.empresa_idEmpresa and empresa.idEmpresa = $empresa)
 				right join prestaciones on (prestacionestm.prestaciones_idprestaciones = prestaciones.idprestaciones)
 				";
 
