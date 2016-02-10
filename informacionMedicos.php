@@ -16,11 +16,11 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
     echo "<div><br></div>";
     echo "<div class='well'><table class='table table-hover table-bordered table-condensed'>";
     echo "<thead><tr class='info'>";
-    echo "<th>Eliminar</th>";
     echo "<th>Nombre</th>";
     echo "<th>Apellido</th>";
     echo "<th>Guardar</th>";
     echo "<th>Cancelar</th>";
+    echo "<th>Eliminar</th>";
     echo "</thead><tbody>";
 
     //se buscan los medicos ya creados

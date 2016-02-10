@@ -4,15 +4,6 @@ require_once dirname(__FILE__)."/header.php";
 include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 include_once dirname(__FILE__)."/querys/getCentros.php";
 ?>
-<!DOCTYPE html>
-
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-</head>
-<body background="images/bg.gif">
 	<div class="container">
 		<h2>Agregar Nueva Eco</h2>
 	<?php //	<form action='querys/insertCentroNuevoR.php' method='POST'> ?>	
@@ -22,7 +13,7 @@ include_once dirname(__FILE__)."/querys/getCentros.php";
 </body>
 		
 		<div class="form-group">
-			<label>Centro a la que pertenece</label> <br>	
+			<span class="required"><label>Centro a la que pertenece</label><font color='red'> *</font></span> <br>	
 			<?php 
 			$resultado = getCentros();
 				if ($resultado) {
@@ -37,7 +28,8 @@ include_once dirname(__FILE__)."/querys/getCentros.php";
 			?>
     	</div>
 		<div class="form-group">
-			<label for="Ecos">N&uacute;mero de ecos</label> <input type="number" class="form-control" id="ecos" placeholder="Agrege n&uacute;mero de ecos" required>
+			<span class="required"><label for="Ecos">N&uacute;mero de ecos</label><font color='red'> *</font></span>
+			<input type="number" class="form-control" id="ecos" placeholder="Agrege n&uacute;mero de ecos" required>
 
 		</div>
 		<div class="form-group">
@@ -50,7 +42,7 @@ include_once dirname(__FILE__)."/querys/getCentros.php";
 		<div class="form-group">
 			<br> <input class='btn btn-info btnedit ' type='submit' value='Agregar'>
 	</div>
-</html>
+
 <script>
 
 	$( "#ecos" ).bind('keyup', function (event){
@@ -87,6 +79,21 @@ $('#checkbox').on('click', function() {
 <script>
 //ajax para guardado de datos
 $(".btnedit").click(function(){
+
+	var empty = 0;
+	
+	  $(".required").each(function() {
+	        var objeto = $(this).parent().find('.form-control');
+	     if(objeto.val() == ""){
+	    	 objeto.parent().addClass('has-error');
+         objeto.effect( "shake" );
+         empty++;
+	     }
+		    
+	    });
+	    
+	    if ( empty == 0)
+	    {
 
 	var nombreEcos = [];
 	$(".Eco").each(function(){
@@ -126,7 +133,20 @@ $(".btnedit").click(function(){
 	       }
 	 });
 
+	    }
 });
 
 
 </script>
+<script>
+  $(".required").each(function() {
+        var objeto = $(this);
+		objeto.attr("data-content", "Campo obligatorio");
+     
+    })
+            .popover({
+        html: true,
+        animation: true,
+        trigger: 'hover'
+    });//popover
+    </script>

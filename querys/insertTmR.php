@@ -1,7 +1,7 @@
 
 <?php
 include_once "../conexionLocal.php";
-if(isset($_POST['nombre'],$_POST ['apellido'],$_POST ['rut'],$_POST ['mail'],$_POST ['cuenta'],$_POST ['banco'],$_POST ['celular'],$_POST ['comentario'],$_POST ['segundonombre'],$_POST ['segundoapellido'])){
+if(isset($_POST['nombre'],$_POST ['apellido'],$_POST ['rut'],$_POST ['mail'])){
 $nombre = trim($_POST ['nombre']);
 $apellido = trim($_POST ['apellido']);
 $rut = trim($_POST ['rut']);

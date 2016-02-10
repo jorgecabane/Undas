@@ -11,22 +11,26 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 </p>
 </div>
 			<div class="form-group">
-				<label for="Nombre">Nombre</label> <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Agrege nombre" required>
+				<span class="required"><label for="Nombre">Nombre</label><font color='red'> *</font></span>
+				<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Agrege nombre" required>
 			</div>
 			<div class="form-group">
 				<label for="Segundonombre">Segundo Nombre</label> <input type="text" class="form-control" id="segundonombre" name="segundonombre" placeholder="Agrege segundo nombre" required>
 			</div>
 			<div class="form-group">
-				<label for="Apellido">Apellido</label> <input type="text" class="form-control"  id="apellido" name="apellido" placeholder="Agrege apellido" required>
+				<span class="required"><label for="Apellido">Apellido</label><font color='red'> *</font></span>
+				<input type="text" class="form-control"  id="apellido" name="apellido" placeholder="Agrege apellido" required>
 			</div>
 			<div class="form-group">
 				<label for="Segundoapellido">Segundo Apellido</label> <input type="text" class="form-control"  id="segundoapellido" name="Segundoapellido" placeholder="Agrege segundo apellido" required>
 			</div>
 			<div class="form-group">
-				<label for="RUT">RUT</label> <input type="text" class="form-control" id="rut" name="rut" placeholder="Agrege Rut con digito verificador y puntos" required>
+				<span class="required"><label for="RUT">RUT</label> <font color='red'> *</font></span>
+				<input type="text" class="form-control" id="rut" name="rut" placeholder="Agrege Rut con digito verificador y puntos" required>
 			</div>
 			<div class="form-group">
-				<label for="Mail">Mail</label> <input type="text" class="form-control" id="mail" name="mail" placeholder="Agrege Mail" required>
+				<span class="required"><label for="Mail">Mail</label><font color='red'> *</font></span>
+				<input type="text" class="form-control" id="mail" name="mail" placeholder="Agrege Mail" required>
 			</div>
 			<div class="form-group">
 				<label for="Celular">Celular</label> <input type="number" class="form-control" id="celular" name="celular" placeholder="Agrege Celular" required>
@@ -51,8 +55,22 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 
 <script>
 $("#agregar").click(function(){
-	var name= $('#nombre').val();
-	var lastname = $('#apellido').val();
+
+	var empty = 0;
+	
+	  $(".required").each(function() {
+	        var objeto = $(this).parent().find('.form-control');
+	     if(objeto.val() == ""){
+	    	 objeto.parent().addClass('has-error');
+           objeto.effect( "shake" );
+           empty++;
+	     }
+		    
+	    });
+	    
+	    if ( empty == 0)
+	    {
+	
 			 jQuery.ajax({
 			       method: "POST",
 			       url: "querys/insertTmR.php",
@@ -88,10 +106,24 @@ $("#agregar").click(function(){
 		                $('#comentario').val('');
 		                $('#segundonombre').val('');
 		                $('#segundoapellido').val('');
+		                $(".form-control").parent().removeClass('has-error');
 			       }
 
 			 });//ajax
+	    }
 
 });
 
 </script>
+<script>
+  $(".required").each(function() {
+        var objeto = $(this);
+		objeto.attr("data-content", "Campo obligatorio");
+     
+    })
+            .popover({
+        html: true,
+        animation: true,
+        trigger: 'hover'
+    });//popover
+    </script>

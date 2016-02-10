@@ -3,12 +3,7 @@ session_start();
 require_once dirname(__FILE__)."/header.php";
 include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 ?>
-<html>
-   <head>
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    </head>
-    <body background="images/bg.gif">
+
          <div class="container">
       <h2>Agregar Empresa</h2>
 	<div >
@@ -16,15 +11,15 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 </p>
 </div>
         <div class="form-group">
-          <label for="nombre">Nombre</label>
+          <span class="required"><label for="nombre">Nombre</label><font color='red'> *</font></span>
           <input type="text" class="form-control" id="nombre" placeholder="Agrege Nombre de la empresa" required>
         </div>
            <div class="form-group">
-          <label for="nombre">Rut</label>
+          <span class="required"><label for="nombre">Rut</label><font color='red'> *</font></span>
           <input type="text" class="form-control" id="rut" placeholder="Agrege Rut de la empresa con puntos y d&iacute;gito verificador" required>
         </div>
         <div class="form-group">
-          <label for="nombre">Correo</label>
+          <span class="required"><label for="nombre">Correo</label><font color='red'> *</font></span>
           <input type="text" class="form-control" id="mail" placeholder="Agrege mail de la empresa" required>
         </div>
            <div class="form-group">
@@ -51,13 +46,23 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 	
     </div>
 
-    </body>
-</html>
-
 <script>
 $("#agregar").click(function(){
 
-	var name= $('#nombre').val();
+	var empty = 0;
+	
+	  $(".required").each(function() {
+	        var objeto = $(this).parent().find('.form-control');
+	     if(objeto.val() == ""){
+	    	 objeto.parent().addClass('has-error');
+         objeto.effect( "shake" );
+         empty++;
+	     }
+		    
+	    });
+	    
+	    if ( empty == 0)
+	    {
 
 			 jQuery.ajax({
 			       method: "POST",
@@ -92,6 +97,20 @@ $("#agregar").click(function(){
 
 			       }
 			 });
+	    }
 
 });
 </script>
+
+<script>
+  $(".required").each(function() {
+        var objeto = $(this);
+		objeto.attr("data-content", "Campo obligatorio");
+     
+    })
+            .popover({
+        html: true,
+        animation: true,
+        trigger: 'hover'
+    });//popover
+    </script>

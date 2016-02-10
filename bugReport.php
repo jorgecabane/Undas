@@ -3,12 +3,8 @@ session_start();
 require_once dirname(__FILE__)."/header.php";
 include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 ?>
-<html>
-   <head>
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    </head>
-    <body background="images/bg.gif">
+
+
          <div class="container">
       <h2>Reporte de Errores</h2>
 	<div >
@@ -34,10 +30,6 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
              <input type="submit" value="Agregar" id='agregar' class='btn btn-info btnedit'/>
 	
     </div>
-
-    </body>
-</html>
-
 <script>
 $("#agregar").click(function(){
 

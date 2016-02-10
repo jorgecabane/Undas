@@ -4,29 +4,21 @@ require_once dirname(__FILE__)."/header.php";
 include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 include_once dirname(__FILE__)."/querys/getEmpresa.php";
 ?>
-<!DOCTYPE html>
 
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-</head>
-<body background="images/bg.gif">
 	<div class="container">
 		<h2>Agregar Centro Nuevo</h2>
 	<?php //	<form action='querys/insertCentroNuevoR.php' method='POST'> ?>	
 	
 	
 		<div id="respuesta"></div>
-</body>
+
 			<div class="form-group">
-			<label for="nombre">Nombre</label> <input type="text"
-				class="form-control" id="nombre" placeholder="Agrege nombre"
+			<span class="required"><label for="nombre">Nombre</label><font color='red'> *</font></span>
+			<input type="text"	class="form-control" id="nombre" placeholder="Agrege nombre"
 				required>
 		</div>
 		<div class="form-group">
-			<label>Empresa a la que pertenece</label> <br>
+			<span class="required"><label>Empresa a la que pertenece</label><font color='red'> *</font></span> <br>
 
           <?php
 			$resultado = getEmpresa();
@@ -42,11 +34,12 @@ include_once dirname(__FILE__)."/querys/getEmpresa.php";
 			?>
     	</div>
 		<div class="form-group">
-			<label for="siglas">Siglas</label> <input type="text" class="form-control" id="siglas" placeholder="Agrege siglas" required>
+			<span class="required"><label for="siglas">Siglas</label><font color='red'> *</font></span>
+			<input type="text" class="form-control" id="siglas" placeholder="Agrege siglas" required>
 		</div>
 		<div class="form-group">
-			<label for="Ecos">N&uacute;mero de ecos</label> <input type="number" class="form-control" id="ecos" placeholder="Agrege n&uacute;mero de ecos" required>
-
+			<span class="required"><label for="Ecos">N&uacute;mero de ecos</label><font color='red'> *</font></span>
+			 <input type="number" class="form-control" id="ecos" placeholder="Agrege n&uacute;mero de ecos" required>
 		</div>
 		<div class="form-group">
 			Modificar nombres y colores de Ecos (Eco1,Eco2... por Default) <br> <input type="checkbox" id="checkbox">
@@ -58,7 +51,7 @@ include_once dirname(__FILE__)."/querys/getEmpresa.php";
 		<div class="form-group">
 			<br> <input class='btn btn-info btnedit ' type='submit' value='Agregar'>
 	</div>
-</html>
+
 <script>
 
 	$( "#ecos" ).bind('keyup', function (event){
@@ -96,7 +89,21 @@ $('#checkbox').on('click', function() {
 //ajax para guardado de datos
 $(".btnedit").click(function(){
 
-	var name= $('#nombre').val();
+	var empty = 0;
+	
+	  $(".required").each(function() {
+	        var objeto = $(this).parent().find('.form-control');
+	     if(objeto.val() == ""){
+	    	 objeto.parent().addClass('has-error');
+         objeto.effect( "shake" );
+         empty++;
+	     }
+		    
+	    });
+	    
+	    if ( empty == 0)
+	    {
+
 	var nombreEcos = [];
 	$(".Eco").each(function(){
 		nombreEcos.push($(this).val());
@@ -135,8 +142,22 @@ $(".btnedit").click(function(){
 	     		setTimeout(function(){location.reload()},2500)
 	       }
 	 });
+	    }
 
 });
 
 
 </script>
+
+<script>
+  $(".required").each(function() {
+        var objeto = $(this);
+		objeto.attr("data-content", "Campo obligatorio");
+     
+    })
+            .popover({
+        html: true,
+        animation: true,
+        trigger: 'hover'
+    });//popover
+    </script>

@@ -60,7 +60,7 @@ if ($_SESSION["usuario"]) {
 
 		<div class="tab-pane fade" id="Etab">
 			<center>
-				<h3 class="hidden-print">Prestaciones por Empresa</h3>
+				<h3 class="hidden-print">Prestaciones</h3>
 			</center>
 			<div class="container-fluid empresa">
             <?php include_once "selectEmpresa.php"; ?>
