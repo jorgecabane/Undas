@@ -27,11 +27,12 @@ $centro = $_GET ['centro'];
 
             <div  id='external-events'>
                 <hr class='hr-sm'>
+                <input type='text' id='prestacionFilter' class='form-control' placeholder='Filtrar por Prestación'>
                 <?php
                 $tms = getTM();
                 foreach ($tms as $tm) {
                     echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
-                                <div id='tm" . $tm['idTM'] . "' class='prestaciones collapse'>Prestaciones:<br>
+                                <div id='tm" . $tm['idTM'] . "' class='prestaciones collapse' nombretm='" . $tm['Nombre'] . "'>Prestaciones:<br>
                                     ";
                     $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
                     if ($prestaciones) {
