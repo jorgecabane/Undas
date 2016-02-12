@@ -33,7 +33,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 				<input type="text" class="form-control" id="mail" name="mail" placeholder="Agrege Mail" required>
 			</div>
 			<div class="form-group">
-				<label for="Celular">Celular</label> <input type="number" class="form-control" id="celular" name="celular" placeholder="Agrege Celular" required>
+				<label for="Celular">Celular</label> <input type="text" class="form-control" id="celular" name="celular" placeholder="Agrege Celular" required>
 			</div>
 				<div class="form-group">
 				<label for="Banco">Banco</label> <input type="text" class="form-control" id="banco" name="banco" placeholder="Agrege Banco" required>

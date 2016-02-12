@@ -15,9 +15,9 @@ $segundoapellido = trim($_POST ['segundoapellido']);
 $random=rand(1000000,9999999);
 $contrasena=$apellido.$random;
 	
-	$query = "insert into tm values (null,'". mysql_real_escape_string($nombre) ."','". mysql_real_escape_string($apellido) ."','". mysql_real_escape_string($rut) ."',
-	'". mysql_real_escape_string($mail) ."', ".mysql_real_escape_string($celular)." ,'". md5($contrasena) ."',0,'". mysql_real_escape_string($cuenta) ."',
-	'". mysql_real_escape_string($banco) ."',0,'". mysql_real_escape_string($comentario) ."', '". mysql_real_escape_string($segundonombre) ."', '". mysql_real_escape_string($segundoapellido) ."')";
+	$query = "insert into tm values (null,'". $nombre ."','". $apellido ."','".$rut ."',
+	'". $mail ."', '". $celular ."' ,'". md5($contrasena) ."',0,'". $cuenta ."',
+	'". $banco ."',0,'". $comentario ."', '". $segundonombre ."', '". $segundoapellido ."')";
 	
 	$resultado2 = mysql_query ( $query );
 	if ($resultado2) {
