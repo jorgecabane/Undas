@@ -6,6 +6,7 @@ echo '<div class="table-responsive">';
 echo "<table class='table table-condensed table-bordered table-hover'>
         <thead>
             <tr>
+				<th>Close</th>
                 <th>Informante</th>
                 <th>Titulo</th>
                 <th>Descripcion</th>
@@ -17,7 +18,11 @@ echo "<tbody>";
 $bugs = getBugs();
 if ($bugs) {
     foreach($bugs as $bug){
+    	if($bug['status'] == 0){
+    		//0 significa open -> entonces lo muestro
+    	
     	echo "<tr>";
+    	echo  '<td><input type="checkbox" value="'.$bug['id'].'" class="closebug"></td>';
 if($bug['tm_idTM']!=NULL){
  $TM= getTecnologo($bug['tm_idTM']);
  foreach($TM as $dato)
@@ -38,6 +43,7 @@ else{
                 <td>$bug[Descripcion]</td>
                 <td>$bug[fecha]</td>
              </tr>";
+    	}
     } // for each de los bugs
 
     } // Si es que hay Bugs

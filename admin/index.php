@@ -136,3 +136,22 @@ include_once dirname ( dirname ( __FILE__ ) ) . "/querys/getTM.php";
         $(location).attr('href', "empresa.php?id=" + id + "&nombre=" + nombre);
     });
 </script>
+<script>
+$(".closebug").click(function() {
+	   var checkbox = $(this);
+	   var bugid = checkbox.val();
+	   var row = checkbox.parent().parent();
+	    jQuery.ajax({
+            method: "POST",
+            url: "querys/closebug.php",
+            data: {
+                "bugid": bugid,
+            },
+            success: function(response)
+            {
+               row.remove();
+               alert("Bug status closed.");
+            }
+        });    
+});
+</script>

@@ -59,7 +59,7 @@ $("#agregar").click(function(){
 
 			       success: function(response)
 			       {
-			    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Exito!</strong>'+response+'</div>');
+			    	   $("#respuesta").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+response+'</div>');
 			    	    $('#idsession').val('');
 			     		$('#titulo').val('');
 			     		$('#descripcion').val('');
