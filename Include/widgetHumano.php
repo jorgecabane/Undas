@@ -161,6 +161,7 @@
 </div>
 
 <script>
+$(document).ready(function() {
     $(".popovereable").each(function() {
         var idprestacion = $(this).attr('idprestacion');
         var idEmpresa = $('#empresas :selected').val();
@@ -220,7 +221,5 @@
         });//popover
 
     });
-
-</script>
-<script>
+});
 </script>

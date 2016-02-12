@@ -1,14 +1,16 @@
-<?php
-session_start();
-include_once dirname(__FILE__) . "/header.php";
-include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
-?>
+<div id="modalLibres" class="modal fade" style="overflow: hidden;">
+    <div class="modal-dialog" style="margin-right: 0; margin-left: 0;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Tecnólogos Médicos no asignados</h4>
 
-<script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-6 panel panel-info">
-            <div class="panel-heading">
+            </div>
+            <div class="modal-body">
+         
+         <!-- 
+         
+                     <div class="panel-heading">
                 <h4 class='panel-title'>
                     <strong>Tecn&oacute;logos M&eacute;dicos no asignados</strong>
                 </h4>
@@ -54,35 +56,27 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                     seleccionado.
                 </div>
             </div>
-
-        </div>
-        <div class="col-sm-6 panel panel-success">
-
-            <div class="panel-heading">
-                <h4 class='panel-title'><strong>Prestaciones Tecn&oacute;logos M&eacute;dicos TMTECNOMED</strong></h4>
+         
+          -->
+         
             </div>
-            <center>
-                <div id="progress2" class="progress" style="display: none">
-                    <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" style="width: 100%">
-                        <span class="sr-only">Cargando...</span>
-                    </div>
-                </div>
-                <div class='panel-body row-fluid'>
-                    <div class='col col-sm-12' style="background: #2F2F2F;">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
-                        <?php
-                        include "Include/widgetHumano.php";
-                        ?>
-
-                    </div>
-                </div>
-            </center>
-        </div><!-- panel-success -->
-    </div><!-- row -->
-
-
-
-</body>
+<script>
+$(document).ready(function() {
+$("#modalLibres").draggable({
+    handle: ".modal-header"
+});
+});
+</script>
 <script>
     $(function() {
         var hoy = moment().format('YYYY-MM-DD');
@@ -112,6 +106,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 </script>
 <!-- creacion del datepicker -->
 <script>
+$(document).ready(function() {
 // Get context with jQuery - using jQuery's .get() method.
     var ctx = $("#myChart").get(0).getContext("2d");
 // This will get the first returned node in the jQuery collection.
@@ -138,6 +133,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         }
     });
     $('.chartLegend').html(Grafico.generateLegend());
+});//ready
 </script>
 <!-- inicializacion del chart -->
 <script>
@@ -222,4 +218,4 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         });//slider
     });//ready
 </script>
-</html>
+

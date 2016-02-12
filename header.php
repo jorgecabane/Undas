@@ -6,6 +6,8 @@ include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
 include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
 include_once dirname(__FILE__) . "/Include/isAdmin.php";
+//include_once dirname(__FILE__) . "/Include/modalHumano.php";
+//include_once dirname(__FILE__) . "/Include/modalLibres.php";
 
 // si super isset -> no me sirve verificar isadmin
 if ($_SESSION ["usuario"]) {
@@ -156,8 +158,21 @@ if ($_SESSION ["usuario"]) {
                                     <li><a id="perfiles" href="agregarDoctor.php">Nuevo M&eacute;dico</a></li>
                                     <li><a id="perfiles" href="informacionMedicos.php">Editar M&eacute;dicos</a></li>
                                 </ul>
+                            </li>
+                            
                             <li><a href="resumenLiquidaciones.php">Resumen honorarios</a></li>
                         <?php } ?>
+                        
+                               <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Widgets<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#modalHumano" data-backdrop="false" data-toggle="modal">Prestaciones</a></li>
+                                    <li><a href="#modalLibres" data-backdrop="false" data-toggle="modal">TM Libres</a></li>
+                                </ul>
+                            </li>
+                                              
                     </ul>
 
                     <!-- aqui termina -->
@@ -182,3 +197,4 @@ if ($_SESSION ["usuario"]) {
             </div>
             <!-- /.container-fluid -->
         </nav>
+                                   
