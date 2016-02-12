@@ -5,7 +5,7 @@ include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
 include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
 
-if ($_SESSION ["usuario"]) {
+if ($_SESSION["usuario"]) {
 
 } else {
     //print_r($_SESSION);
@@ -88,16 +88,15 @@ if ($_SESSION ["usuario"]) {
                         </ul>
                     </li> -->
                         ';
-                        foreach (getCentrosGroup($_SESSION ["usuario"]) as $empresa => $centros) {
-                            echo '<li class="dropdown-submenu  disabled"><a href="#" tabindex="-1">' . $empresa . '</a><!-- $empresa  -->
+                        foreach (getCentrosGroup($_SESSION['idusuario']) as $empresa) {
+                            echo '<li class="dropdown-submenu"><a href="agendas.php?idEmpresa=' . $empresa['idEmpresa'] . '" tabindex="-1">' . $empresa['Nombre'] . '</a><!-- $empresa  -->
                             <ul class="dropdown-menu"><!-- menu $empresa -->
                                     ';
+                            $centros = $empresa['centros'];
                             foreach ($centros as $centro) {
-                                foreach ($centro as $datosCentro) {
-                                    //echo $datosCentro['Nombre'] . '<br>';
-                                    echo '<li><a href="informacionHorario.php?idCentro=' . $datosCentro['idCentro'] . '&centro=' . $datosCentro['Nombre'] . '(' . $datosCentro['Siglas'] . ')" tabindex="-1">' . $datosCentro['Nombre'] . ' <b>(' . $datosCentro['Siglas'] . ')</b></a></li>
+                                //echo $datosCentro['Nombre'] . '<br>';
+                                echo '<li><a href="informacionHorario.php?idCentro=' . $centro['idCentro'] . '&centro=' . $centro['Nombre'] . ' (' . $centro['Siglas'] . ')" tabindex="-1">' . $centro['Nombre'] . ' <b>(' . $centro['Siglas'] . ')</b></a></li>
                                         ';
-                                }
                             }
                             echo '</ul><!-- menu $empresa-->
                                   </li><!-- dropdown-submenu -->
