@@ -11,7 +11,7 @@ foreach($datosCentro AS $Centro){
         ?>
 
         <table id='t01' class='table table-hover table-bordered'>
-            <thead><tr class='bg-info'>
+            <thead><tr class='info'>
                     <th>Nombre Centro</th>
                     <th>Siglas</th>
                     <?php

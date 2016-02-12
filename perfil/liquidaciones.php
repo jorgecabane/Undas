@@ -5,7 +5,7 @@ include_once "../Include/meses.php";
 include_once "../querys/getHoras.php";
 include_once "../querys/getValorHora.php";
 include_once "../querys/getExtras.php";
-if ($_SESSION ["usuario"]) { 
+if ($_SESSION ["usuario"]) {
 	if (isAdmin($_SESSION["idusuario"],$_SESSION ["context"]) == 1) {
 		$admin = 1;
 	} else {
@@ -21,7 +21,7 @@ echo"<div id='errores'></div>";
 //aqui parte Resumen Fecha y TM
 $Horas = getHoras ( $rut, $mes );
 echo "<table id='t01' class='table table-hover table-bordered table-condensed table-responsive' style='max-width:80%; white-space: nowrap'>";
-echo "<thead><tr class='bg-primary'>";
+echo "<thead><tr class='primary'>";
 echo "<th>Fecha: ";
 echo "<span id='mes'>" . Mes ( $Horas [0] ['Mes'] ) . "</span>";
 echo " ";
@@ -29,7 +29,7 @@ echo "<span id='year'>" . $Horas [0] ['Year'] . "</span>";
 echo "</th>";
 echo "</tr></thead>";
 
-echo "<thead><tr class='bg-primary'>";
+echo "<thead><tr class='primary'>";
 echo "<th>TM: ";
 echo $Horas [0] ['TMNombre'];
 echo " " . $Horas [0] ['TMApellido'];
@@ -38,14 +38,14 @@ echo "</thead></tr>";
 // Aqui termina Resumen Fecha y TM
 
 // Aqui parte Valores Horas
-echo "<thead><tr class='bg-info'>";
+echo "<thead><tr class='info'>";
 echo "<th>Empresa</th>";
 echo "<th>Valor Hora</th>";
 echo "</thead></tr><tbody>";
 
 $ValorHoras = getValorHora ( $rut );
 if ($ValorHoras) {
-	
+
 	foreach ( $ValorHoras as $valores ) {
 		?>
 <tr class="hidden-print" style="display: none">
@@ -82,8 +82,8 @@ else { //caso de que no tenga valoreshora asociadas
 }
 //aqui termina valoresHora
 
-//aqui empìeza HorasRealizadas
-echo "<thead><tr class='bg-info'>";
+//aqui empï¿½eza HorasRealizadas
+echo "<thead><tr class='info'>";
 echo "<th>Empresa</th>";
 echo "<th>Horas Realizadas</th>";
 echo "</thead></tr><tbody>";
@@ -96,7 +96,7 @@ if ($Horas) {
 <tr>
 	<td><span class="CentroHoraRealizada"><?php echo $informacion['NombreEmpresa']; ?></span>
 		<span class="semanahorarealizada"><?php
-		
+
 if ($informacion ['Semana'] == 7) {
 			echo "Sabado";
 		} else {
@@ -119,7 +119,7 @@ echo "</tbody>";
 // aqui termina HorasRealizadas
 
 //aqui empieza Extras
-echo "<thead ><tr colspan='2' class='bg-info'>";
+echo "<thead ><tr colspan='2' class='info'>";
 echo "<th>Extras";
 if ($admin == 1) {
 	echo "<input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' />";
@@ -134,11 +134,11 @@ if ($extras) {
 		?>
 <tr>
 	<td>
-		<?php 
+		<?php
 		echo "<span class='tituloExtra'>";
 		echo $extra['Titulo'];
 		echo "</span>";
-		
+
 		?>
 		</td>
 	<td>
@@ -166,12 +166,12 @@ echo "</tbody>";
 
 //aquiparte Resumen honorarios
 echo "<thead>";
-echo "<tr class='bg-success'><th colspan='2'>Total Horas Mes: <span id='totalHoras' style='padding-left:120px'></span></th></tr>";
-echo "<tr class='bg-success' ><th colspan='2'>Valor Honorarios Base: <span style='padding-left:60px'>$ </span><span id='totalHonorarios'></span><span id='totalHonorariosHidden' style='display:none'></span></th></tr>";
-echo "<tr><th class='bg-info' colspan='2'><center>Boleta de Honorarios <center></th></tr>";
-echo "<tr><th class='bg-warning' colspan='2'>Total Bruto: <span style='padding-left:146px'>$ </span><span id='bruto'></span></th></tr>";
-echo "<tr><th class='bg-warning' colspan='2'>10% de retenci&oacute;n: <span style='padding-left:100px'>$ </span><span id='retencion'></span></th></tr>";
-echo "<tr><th class='bg-warning' colspan='2'>Total l&iacute;quido honorarios: <span style='padding-left:50px'>$ </span><span id='liquido'></span></th></tr>";
+echo "<tr class='success'><th colspan='2'>Total Horas Mes: <span id='totalHoras' style='padding-left:120px'></span></th></tr>";
+echo "<tr class='success' ><th colspan='2'>Valor Honorarios Base: <span style='padding-left:60px'>$ </span><span id='totalHonorarios'></span><span id='totalHonorariosHidden' style='display:none'></span></th></tr>";
+echo "<tr><th class='info' colspan='2'><center>Boleta de Honorarios <center></th></tr>";
+echo "<tr><th class='warning' colspan='2'>Total Bruto: <span style='padding-left:146px'>$ </span><span id='bruto'></span></th></tr>";
+echo "<tr><th class='warning' colspan='2'>10% de retenci&oacute;n: <span style='padding-left:100px'>$ </span><span id='retencion'></span></th></tr>";
+echo "<tr><th class='warning' colspan='2'>Total l&iacute;quido honorarios: <span style='padding-left:50px'>$ </span><span id='liquido'></span></th></tr>";
 echo "</thead>";
 //aqui termina resumen Honorarios
 ?>
@@ -203,8 +203,8 @@ var cuentaValoresHora = 0;
 $(".CentroHoraRealizada").each(function() {
 	cuentaHoras = cuentaHoras + 1;
  var horasRealizadas= $(this).text();
- var horas = $(this).parent().parent().find('.HorasRealizadas').text(); 
- var semanahorarealizada = $(this).parent().parent().find('.semanahorarealizada').text(); 
+ var horas = $(this).parent().parent().find('.HorasRealizadas').text();
+ var semanahorarealizada = $(this).parent().parent().find('.semanahorarealizada').text();
  //alert(horas);
  //alert(horasRealizadas);
  $(".nombreEmpresa").each(function() {
@@ -222,7 +222,7 @@ if(horasRealizadas == centroValorHora && semanahorarealizada == semanavalorhora)
 	contador= parseFloat(contador + parseFloat(horas*valorhora));
 }
 
-	
+
  });
  if(cuentaHoras > cuentaValoresHora){
 	 $('#errores').html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Error!</strong> Falta agregar Valores Hora para calcular Honorario.</div>");
@@ -241,13 +241,13 @@ $(".montoExtra").each(function(index) {
     suma = parseFloat(suma)+ parseFloat($(this).text());
 });
 //honorarios hidden totalHonorariosHidden
-sumaHonorarios = parseFloat(parseFloat(suma).toFixed()); 
+sumaHonorarios = parseFloat(parseFloat(suma).toFixed());
 $('#totalHonorariosHidden').html(suma);
 //honorarios displayed
 $('#totalHonorarios').html(sumaHonorarios.toLocaleString('de-DE'));
 </script>
 <script>
-//script para calcular los honorarios brutos, retencion y liquido (toLocaleString('de-DE') cambia el formato a separador de miles ) 
+//script para calcular los honorarios brutos, retencion y liquido (toLocaleString('de-DE') cambia el formato a separador de miles )
 var bruto = parseFloat($('#totalHonorariosHidden').text());
 $('#bruto').html(bruto.toLocaleString('de-DE'));
 var retenciondecimales = bruto*0.1;
@@ -260,9 +260,9 @@ $('#liquido').html(liquido.toLocaleString('de-DE'));
 
 
 <script>
-//script que añade un campo Extra
+//script que aï¿½ade un campo Extra
     $(".btnextra").click(function() {
-       
+
         var content = "<tr class= 'Extra'><td><input type='text' class= 'Extra form-control' required name='Extra' placeholder='Ingrese Titulo del Extra'></td>";
         content += "<td><input type='text' class='montoExtra form-control' required name='montoExtra' placeholder='Ingrese Monto Total (hora*valor)'>";
         content += "<button class='btn btn-info btnguardarExtra hidden-print'>Guardar</button>";
@@ -291,15 +291,15 @@ $('#liquido').html(liquido.toLocaleString('de-DE'));
                     "fecha": year,
                     "rutTM": "<?php echo $rut; ?>",
                     "titulo": titulo,
-                    "monto": monto   
+                    "monto": monto
                 },
                 success: function(response)
                 {
                     input.attr("disabled", "disabled");
                     inputmonto.attr("disabled", "disabled");
                 }
-            }); 
-               sumaMonto(monto); 
+            });
+               sumaMonto(monto);
              //script para eliminar un extra
                $('.eliminarExtra2').click(function(){
                	var titulo = $(this).parent().parent().find('.tituloExtra').text();
@@ -327,8 +327,8 @@ $('#liquido').html(liquido.toLocaleString('de-DE'));
                     }
                });
         });
-     
-  
+
+
     });
 
 </script>
@@ -365,9 +365,9 @@ $('.eliminarExtra').click(function(){
 //script para sumar los montos de los extras en el momento en que se guarden
 function sumaMonto(monto){
 	var suma = parseFloat($('#totalHonorariosHidden').text()).toFixed();
-    
+
     suma = parseFloat(parseFloat(suma)+ parseFloat(monto));
-//total honorarios hidden 
+//total honorarios hidden
 $('#totalHonorariosHidden').html(suma);
 //total honorarios displayed
 $('#totalHonorarios').html(suma.toLocaleString('de-DE'));

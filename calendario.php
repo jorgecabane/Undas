@@ -7,11 +7,11 @@ $centro = $_GET ['centro'];
 ?>
 
 <div class='container-fluid'>
-    <div class='row'>
-        <div class="col-md-1 col-md-offset-3 well well-sm well-titles hidden-print">
+    <div class='row well well-sm well-titles'>
+        <div class="col-md-1 col-md-offset-3 hidden-print">
             <center>
                 <div class="btn-group">
-                    <button id="deleteArea" class="btn btn-danger dropdown-toggle btn-block" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button id="deleteArea" class="btn btn-danger dropdown-toggle btn-block btn-lg" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Borrar <span class="glyphicon glyphicon-trash"></span> <span class="caret"></span>
 
                     </button>
@@ -22,7 +22,7 @@ $centro = $_GET ['centro'];
                 </div>
             </center>
         </div>
-        <div class='col-md-4 well well-sm well-titles'>
+        <div class='col-md-4'>
             <div class="row">
                 <center>
                     <h2>
@@ -35,10 +35,10 @@ $centro = $_GET ['centro'];
             </div>
         </div>
         <!-- Single button -->
-        <div class="col-md-1 well well-sm well-titles hidden-print">
+        <div class="col-md-1 hidden-print">
             <center>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Repetir
                         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
                         <span class="caret"></span>
