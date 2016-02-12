@@ -63,14 +63,14 @@ function getPrestacionesCentro($rutTM, $idCentro) {
  * @param {id} : $Empresa
  * @return {array} : listado con los tms que tienen esa prestacion asignada
  */
-function getPrestacionesWidget($especifico, $Empresa = false) {
+function getPrestacionesWidget($idprestacion, $Empresa = false) {
     if ($Empresa) {
         $query = "SELECT concat(tm.Nombre,' ' ,tm.Apellido) as Nombre
                   FROM prestaciones
                        inner join prestacionestm on (prestacionestm.prestaciones_idprestaciones = prestaciones.idprestaciones)
                        inner join tm on ( tm.idTM = prestacionestm.TM_idTM)
                        inner join empresa on (empresa.idEmpresa = prestacionestm.Empresa_idEmpresa)
-                  WHERE prestaciones.Especifico = '$especifico' AND
+                  WHERE prestaciones.idprestaciones = '$idprestacion' AND
                       empresa.idEmpresa = '$Empresa'
                   ORDER BY tm.Apellido asc";
     } else {
@@ -79,7 +79,7 @@ function getPrestacionesWidget($especifico, $Empresa = false) {
                        inner join prestacionestm on (prestacionestm.prestaciones_idprestaciones = prestaciones.idprestaciones)
                        inner join tm on ( tm.idTM = prestacionestm.TM_idTM)
                        inner join empresa on (empresa.idEmpresa = prestacionestm.Empresa_idEmpresa)
-                  WHERE prestaciones.Especifico = '$especifico'
+                  WHERE prestaciones.idprestaciones = '$idprestacion'
                   ORDER BY Empresa asc, tm.Apellido asc";
     }
 
