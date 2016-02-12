@@ -11,7 +11,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         </div>
         <div class="col-sm-6 panel panel-success">
             <div class="panel-heading">
-                <h4><strong>Prestaciones Tecn&oacute;logos M&eacute;dicos TMTECNOMED</strong></h4>
+                <h4 class='panel-title'><strong>Prestaciones Tecn&oacute;logos M&eacute;dicos TMTECNOMED</strong></h4>
             </div>
             <div class='panel-body row-fluid'>
                 <div class='col col-sm-12' style="background: #2F2F2F;">

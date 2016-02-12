@@ -36,13 +36,6 @@ if ($_SESSION ["usuario"]) {
         <script src='calendario/fullcalendar.min.js'></script>
         <script src='calendario/lang/es.js'></script>
         <script src='chart-master/Chart.js'></script>
-        <script>
-            $(document).ready(function() {
-                $('.tema').click(function() {
-                    $('#tema-sitio').attr('href', $(this).attr('tema'));
-                });
-            });
-        </script>
 
         <!-- favico-->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -52,7 +45,7 @@ if ($_SESSION ["usuario"]) {
         <!-- css -->
 
         <link href='css/jquery-ui.css' rel='stylesheet'>
-        <link href='css/bootstrap.min.css' rel='stylesheet' id='tema-sitio'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel='stylesheet' id='tema-sitio'>
         <link href='calendario/fullcalendar.css' rel='stylesheet'/>
         <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
         <link href='css/style.css' rel='stylesheet'>
@@ -102,7 +95,7 @@ if ($_SESSION ["usuario"]) {
                     </li> -->
                         ';
                             foreach (getCentrosGroup() as $empresa) {
-                                echo '<li class="dropdown-submenu"><a href="agendas.php?idEmpresa='.$empresa['idEmpresa'].'" tabindex="-1">' . $empresa['Nombre'] . '</a><!-- $empresa  -->
+                                echo '<li class="dropdown-submenu"><a href="agendas.php?idEmpresa=' . $empresa['idEmpresa'] . '" tabindex="-1">' . $empresa['Nombre'] . '</a><!-- $empresa  -->
                             <ul class="dropdown-menu"><!-- menu $empresa -->
                                     ';
                                 $centros = $empresa['centros'];
@@ -165,16 +158,6 @@ if ($_SESSION ["usuario"]) {
                                 </ul>
                             <li><a href="resumenLiquidaciones.php">Resumen honorarios</a></li>
                         <?php } ?>
-                        <li>
-                            <!-- Single button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Temas<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css">Cerulean</a></li>
-                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css">Lumen</a></li>
-                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css">Paper</a></li>
-                                <li><a href="#" class="tema" tema="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css">Yeti</a></li>
-                            </ul>
-                        </li>
                     </ul>
 
                     <!-- aqui termina -->

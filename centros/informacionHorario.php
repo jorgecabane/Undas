@@ -23,11 +23,14 @@ $centro = $_GET ['centro'];
     <div class="row">
         <div class="col-md-2 well well-sm hidden-print">
             <center><h3>Listado TM</h3></center>
-            <input type='text' id='search' class='form-control' placeholder='Filtrar por Nombre'>
-
+            <div class='form-group has-feedback'>
+                <input type='text' id='search' class='form-control' placeholder='Filtrar por Nombre'>
+            </div>
             <div  id='external-events'>
                 <hr class='hr-sm'>
-                <input type='text' id='prestacionFilter' class='form-control' placeholder='Filtrar por Prestación'>
+                <div class='form-group has-success'>
+                    <input type='text' id='prestacionFilter' class='form-control' placeholder='Filtrar por Prestación'>
+                </div>
                 <?php
                 $tms = getTM();
                 foreach ($tms as $tm) {

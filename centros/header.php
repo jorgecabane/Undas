@@ -39,7 +39,7 @@ if ($_SESSION["usuario"]) {
         <!-- css -->
 
         <link href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' rel='stylesheet'>
-        <link href='css/bootstrap.min.css' rel='stylesheet' id='tema-sitio'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel='stylesheet' id='tema-sitio'>
         <link href='calendario/fullcalendar.css' rel='stylesheet'/>
         <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
         <link href='css/style.css' rel='stylesheet'>

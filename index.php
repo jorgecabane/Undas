@@ -9,7 +9,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
     <div class="row">
         <div class="col-sm-6 panel panel-info">
             <div class="panel-heading">
-                <h4>
+                <h4 class='panel-title'>
                     <strong>Tecn&oacute;logos M&eacute;dicos no asignados</strong>
                 </h4>
             </div>
@@ -59,7 +59,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         <div class="col-sm-6 panel panel-success">
 
             <div class="panel-heading">
-                <h4><strong>Prestaciones Tecn&oacute;logos M&eacute;dicos TMTECNOMED</strong></h4>
+                <h4 class='panel-title'><strong>Prestaciones Tecn&oacute;logos M&eacute;dicos TMTECNOMED</strong></h4>
             </div>
             <center>
                 <div id="progress2" class="progress" style="display: none">
