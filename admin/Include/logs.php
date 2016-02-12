@@ -15,18 +15,18 @@ echo "<div class='col-sm-4'><input type='date' class='datepicker form-control' i
 //echo "</select></div>";
 echo "<div class='col-sm-4'>Otro filtro</div>";
 echo "</div><!-- row -->";
+echo '<div class="table-responsive" style="max-height: 300px; overflow-y: auto;">';
 echo "<table class='table table-fixed'>
         <thead>
             <tr>
-                <th width='21%'>Horario</th>
-                <th width='7%'>Tipo</th>
-                <th width='13%'>User</th>
-                <th width='17%'>IP</th>
-                <th width='43%'>URL</th>
+                <th>Horario</th>
+                <th>Tipo</th>
+                <th>User</th>
+                <th>IP</th>
+                <th>URL</th>
             </tr>
-        </thead></table>";
-echo '<div style="max-height: 300px; overflow-y: auto;">';
-echo "<table class='table table-bordered table-hover table-fixed'><tbody>";
+        </thead>";
+echo "<tbody>";
 $logs = getLogs();
 if ($logs) {
     foreach ($logs as $log) {

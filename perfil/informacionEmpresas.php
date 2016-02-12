@@ -11,7 +11,7 @@
     $resultado = mysql_query("SELECT * from empresa where idEmpresa=$idEmpresa") or die(mysql_error());
 
     if ($resultado) {
-
+    	echo '<div class="table-responsive">';
         echo "<table id='t01' class='table table-hover table-bordered'>";
         echo "<tbody>";
         while ($row = mysql_fetch_array($resultado)) {
@@ -137,7 +137,7 @@
                         </div>
                     </td>
                     </td>
-                    <td><input type="submit" value="Eliminar Empresa"
+                    <td><input type="submit" value="Eliminar"
                                class='btn btn-danger btnerase'></td>
                 </tr> <?php
             }
@@ -145,6 +145,7 @@
         ?>
     </tbody>
     </table>
+    </div>
     <?php
 }
 ?>

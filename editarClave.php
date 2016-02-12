@@ -9,15 +9,15 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 		<p id='respuesta'></p>
 	</div>
         <div class="form-group">
-            <label for="Nombre">Ingrese Clave Antigua</label>
+           <span class="required"><label for="Nombre">Ingrese Clave Antigua</label><font color='red'> *</font></span>
             <input id='claveantigua' type="password" class="form-control" name="claveantigua"  placeholder="Ingrese clave antigua" required>
         </div>
         <div class="form-group">
-            <label for="contrase�a">Nueva Clave</label>
+             <span class="required"><label for="contrase�a">Nueva Clave</label><font color='red'> *</font></span>
             <input id='clavenueva' type="password"  class="form-control" name="clavenueva" placeholder="Ingrese nueva clave" required>
         </div>
         <div class="form-group">
-            <label for="Repetircontrase�a">Repetir Clave Nueva</label>
+            <span class="required"><label for="Repetircontrase�a">Repetir Clave Nueva</label><font color='red'> *</font></span>
             <input id='repetirclave' type="password"  class="form-control" name="repetirclave" placeholder="Reescribir clave nueva" required>
         </div>
        
@@ -29,6 +29,20 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 <script>
 $("#cambiar").click(function(){
 
+	var empty = 0;
+	
+	  $(".required").each(function() {
+	        var objeto = $(this).parent().find('.form-control');
+	     if(objeto.val() == ""){
+	    	 objeto.parent().addClass('has-error');
+         objeto.effect( "shake" );
+         empty++;
+	     }
+		    
+	    });
+	    
+	    if ( empty == 0)
+	    {
 	
 				 jQuery.ajax({
 			       method: "POST",
@@ -51,14 +65,23 @@ $("#cambiar").click(function(){
 			    	   $('#claveantigua').val('');
 			     	   $('#clavenueva').val('');
 			     	   $('#repetirclave').val('');
-
-
+			     	   $(".form-control").parent().removeClass('has-error');
 			       }
 
 			 });
-
-
+	    }
 });
 
 </script>
-
+<script>
+  $(".required").each(function() {
+        var objeto = $(this);
+		objeto.attr("data-content", "Campo obligatorio");
+     
+    })
+            .popover({
+        html: true,
+        animation: true,
+        trigger: 'hover'
+    });//popover
+    </script>

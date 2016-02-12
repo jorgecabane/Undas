@@ -16,8 +16,8 @@
                     }
                 }
 
-        
-             echo "<table id='append' class='table table-hover table-bordered table-condensed'>";
+             echo "<input type='submit' value='Agregar Honorario' class='btn btn-info btncobro' />";
+             echo "<div class='table-responsive'><table id='append' class='table table-hover table-bordered table-condensed'>";
              echo "<thead><tr>";
              echo "<th>Empresa</th>";
              echo "<th>Honorario</th>";
@@ -28,7 +28,7 @@
              }
              echo "</thead><tbody >";
              if ($admin == 1) {
-             echo "<input type='submit' value='Agregar Honorario' class='btn btn-info btncobro' />";
+           
              echo "<div><br></div>";
              }
              
@@ -93,7 +93,7 @@
                     	echo '<strong>Oops!</strong> TM no tiene Honorarios asociados.';
                     	echo "</td></tr>";
                     }
-                    echo "</tbody></table>";
+                    echo "</tbody></table></div>";
                     ?>
                     
             </div>

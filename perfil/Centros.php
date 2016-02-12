@@ -9,7 +9,7 @@ include_once dirname(__FILE__) . "/../querys/getEcosGroup.php";
 
 foreach($datosCentro AS $Centro){
         ?>
-
+<div class="table-responsive">
         <table id='t01' class='table table-hover table-bordered'>
             <thead><tr class='info'>
                     <th>Nombre Centro</th>
@@ -106,6 +106,7 @@ foreach($datosCentro AS $Centro){
             ?>
         </tbody>
     </table>
+    </div>
 </div>
 <script>
     $(".editable").keyup(function() {

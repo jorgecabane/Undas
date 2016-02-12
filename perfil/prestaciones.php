@@ -16,7 +16,7 @@ $rut = $_POST['rut'];
 $empresa = $_POST['empresa'];
 
  
-    echo "<br><table id='appendPrestaciones' class='table table-hover table-bordered table-condensed'>";
+    echo "<br><div class='table-responsive'><table id='appendPrestaciones' class='table table-hover table-bordered table-condensed'>";
     echo "<thead><tr class='info'>";
     echo "<th class='rellenar'>Prestaciones</th>";
     echo "<th>Activo</th>";
@@ -58,7 +58,7 @@ $empresa = $_POST['empresa'];
         }
     }
 
-echo "</tbody></table>";
+echo "</tbody></table></div>";
 
 ?>
 <script>

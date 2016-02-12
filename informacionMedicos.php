@@ -6,22 +6,24 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
 ?>
 
 <div class="row">
-	<div class="col-xs-8  col-xs-offset-2 text-center hidden-print">
+	<div class="col-xs-10  col-xs-offset-1 text-center hidden-print">
 		<label><h3>Editar o Borrar M&eacute;dicos</h3></label> 
 		
 		<?php 
 
 
 
-    echo "<div><br></div>";
-    echo "<div class='well'><table class='table table-hover table-bordered table-condensed'>";
+    echo "<br>";
+    echo "<div class = 'well'>";
+    echo '<div class="table-responsive">';
+	echo "<table class='table table-hover table-bordered table-condensed'>";
     echo "<thead><tr class='info'>";
     echo "<th>Nombre</th>";
     echo "<th>Apellido</th>";
     echo "<th>Guardar</th>";
     echo "<th>Cancelar</th>";
     echo "<th>Eliminar</th>";
-    echo "</thead><tbody>";
+    echo "</tr></thead><tbody>";
 
     //se buscan los medicos ya creados
     $medicos = getMedicos();
@@ -46,7 +48,7 @@ include_once dirname(__FILE__) . "/querys/getMedicos.php";
         echo "</td></tr>";
     }
 
-echo "</tbody></table></div>";
+echo "</tbody></table></div></div>";
 
 ?>
 </div></div>

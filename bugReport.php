@@ -33,7 +33,7 @@ include_once dirname(__FILE__)."/Include/verificacionUsuario.php";
 <script>
 $("#agregar").click(function(){
 
-	var fullDate = new Date()
+	var fullDate = new Date();
 	 
 	//convert month to 2 digits
 	var twoDigitMonth = fullDate.getMonth()+1;
