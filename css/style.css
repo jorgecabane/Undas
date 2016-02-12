@@ -164,3 +164,6 @@ white-space: nowrap;
     max-height: 300px;
     overflow: auto;
 }
+.well{
+    background: #FFFFFF;
+}
