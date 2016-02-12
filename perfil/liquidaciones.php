@@ -122,7 +122,7 @@ echo "</tbody>";
 echo "<thead ><tr colspan='2' class='info'>";
 echo "<th>Extras";
 if ($admin == 1) {
-	echo "<input type='submit' value='Agregar Extra' class='btn btn-info btnextra pull-right hidden-print' />";
+	echo "<input type='submit' value='Agregar Extra' class='btn btn-primary btnextra pull-right hidden-print' />";
 }
 echo "</th>";
 echo "<th>Monto Total Extras</th>";

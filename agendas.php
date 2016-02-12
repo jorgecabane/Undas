@@ -16,7 +16,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
                     echo "<div class='panel-body'>";
                     echo "<div class='col-xs-6 col-xs-offset-3'>";
                     foreach ($datosEmpresa['centros'] as $dato) {
-                        echo "<a href='calendario.php?idCentro=" . $dato['idCentro'] . "&centro=" . $dato['Nombre'] . " (" . $dato['Siglas'] . ")' class='btn btn-lg btn-default btn-block'>" . $dato['Nombre'] . "</a>";
+                        echo "<a href='calendario.php?idCentro=" . $dato['idCentro'] . "&centro=" . $dato['Nombre'] . " (" . $dato['Siglas'] . ")' class='btn btn-lg btn-primary btn-block'>" . $dato['Nombre'] . "</a>";
                         //print_r($dato);
                     }//para cada centro
                     echo "</div></div>";
