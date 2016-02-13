@@ -8,7 +8,6 @@ include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
 include_once dirname(__FILE__) . "/Include/isAdmin.php";
 //include_once dirname(__FILE__) . "/Include/modalHumano.php";
 //include_once dirname(__FILE__) . "/Include/modalLibres.php";
-
 // si super isset -> no me sirve verificar isadmin
 if ($_SESSION ["usuario"]) {
     if (isAdmin($_SESSION ["idusuario"], $_SESSION["context"]) == 1) {
@@ -134,7 +133,7 @@ if ($_SESSION ["usuario"]) {
                                 </ul>
                             </li>
 
-                        <?php } // si es admin ve esto      ?>
+                        <?php } // si es admin ve esto       ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Tecn&oacute;logos M&eacute;dicos<span class="caret"></span>
@@ -159,20 +158,20 @@ if ($_SESSION ["usuario"]) {
                                     <li><a id="perfiles" href="informacionMedicos.php">Editar M&eacute;dicos</a></li>
                                 </ul>
                             </li>
-                            
+
                             <li><a href="resumenLiquidaciones.php">Resumen honorarios</a></li>
                         <?php } ?>
-                        
-                               <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    Widgets<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#modalHumano" data-backdrop="false" data-toggle="modal">Prestaciones</a></li>
-                                    <li><a href="#modalLibres" data-backdrop="false" data-toggle="modal">TM Libres</a></li>
-                                </ul>
-                            </li>
-                                              
+
+                        <!--<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Widgets<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#modalHumano" data-backdrop="false" data-toggle="modal">Prestaciones</a></li>
+                                <li><a href="#modalLibres" data-backdrop="false" data-toggle="modal">TM Libres</a></li>
+                            </ul>
+                        </li> -->
+
                     </ul>
 
                     <!-- aqui termina -->
@@ -197,4 +196,3 @@ if ($_SESSION ["usuario"]) {
             </div>
             <!-- /.container-fluid -->
         </nav>
-                                   
