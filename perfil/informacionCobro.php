@@ -15,8 +15,9 @@
                         $admin = 0;
                     }
                 }
-
+                if ($admin == 1) {
              echo "<input type='submit' value='Agregar Honorario' class='btn btn-info btncobro' />";
+                }
              echo "<div class='table-responsive'><table id='append' class='table table-hover table-bordered table-condensed'>";
              echo "<thead><tr>";
              echo "<th>Empresa</th>";
@@ -59,13 +60,16 @@
                      
                         <?php
                         if ($row ['Semana'] == 1) {
-                            echo "<td><select class='form-control text-center semana'>
+                            echo "<td><select class='form-control text-center semana'";  if ($admin == 0) { echo "disabled='disabled'";  } 
+                            echo ">
+                            
             		              <option value='1' class='default' selected> Semana </option>
             					  <option value='0' > Sabado </option>            		
             		              </td>";
                         } else {
 
-                            echo "<td><select class='form-control text-center semana'>
+                            echo "<td><select class='form-control text-center semana'";  if ($admin == 0) { echo "disabled='disabled'";  } 
+                            echo ">
             		              <option value='0' class='default' selected> Sabado </option>
             					  <option value='1' > Semana </option>            		
             		              </td>";
