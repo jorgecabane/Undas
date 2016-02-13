@@ -119,7 +119,6 @@ if ($_SESSION["usuario"]) {
                         if (isset($_SESSION['super'])) {
 
                         } else {
-                            echo '<li><a href="editarClave.php">Editar Clave</a></li>';
                             echo '<li><a href="bugReport.php" ><font color="red">¡Reportar Error!</font></a></li>';
                         }
                         ?>
