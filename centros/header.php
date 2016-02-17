@@ -9,8 +9,8 @@ if ($_SESSION["usuario"]) {
 
 } else {
     //print_r($_SESSION);
-    //si no hay sesion se envi al login
-    header('Location:logIn.php');
+    //si no hay sesion se envia al login
+    header('Location:../logIn.php');
 }
 ?>
 <!DOCTYPE html>
