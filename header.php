@@ -9,13 +9,20 @@ include_once dirname(__FILE__) . "/Include/isAdmin.php";
 //include_once dirname(__FILE__) . "/Include/modalHumano.php";
 //include_once dirname(__FILE__) . "/Include/modalLibres.php";
 // si super isset -> no me sirve verificar isadmin
-if ($_SESSION ["usuario"]) {
+if ($_SESSION ["context"]) {
+	$context = $_SESSION ["context"];
+	if ($context == "tm" || $context == "super"){
     if (isAdmin($_SESSION ["idusuario"], $_SESSION["context"]) == 1) {
         $admin = 1;
     } else {
         $admin = 0;
     }
-} else {
+	}//context tm o super
+	if ($context == "empresa"){
+		header('Location:centros/index.php');
+	}//context empresa
+} //si no hay contexto 
+else {
     //si no hay sesion se envia al login
     header('Location:logIn.php');
 }

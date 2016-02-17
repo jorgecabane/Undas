@@ -32,6 +32,7 @@ if (!isset($_SESSION)) {
         if ($resultado34) {
             $_SESSION['idusuario'] = $resultado34['idEmpresa'];
             $_SESSION["usuario"] = $resultado34['Nombre'];
+            $_SESSION["context"] = "empresa";
             //header("location:centros/index.php");
             echo "Empresa";
         } else {
