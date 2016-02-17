@@ -91,7 +91,7 @@ include_once dirname(__FILE__) . "/conexionLocal.php";
 				</div>
 
                 <br>
-                <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit"></input>
+                <input name='login' class="btn btn-lg btn-primary btn-block btnsubmit" type="submit" value="Ingresar"></input>
 
                 <center><a href="passwords/passwordRecovery.php">(Recuperar clave)</a></center>
             </div>
