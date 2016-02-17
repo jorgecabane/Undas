@@ -5,12 +5,20 @@ include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
 include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
 
-if ($_SESSION["usuario"]) {
-
+if ($_SESSION["context"]) {
+	$context = $_SESSION ["context"];
+	if ($context == "empresa" || $context == "super"){
+	//estas correcto en esta pagina	
+	}
+	else{
+		//no perteneces a esta pagina
+		session_destroy();
+		header('Location: ../logIn.php');
+	}
 } else {
     //print_r($_SESSION);
     //si no hay sesion se envia al login
-    header('Location:../logIn.php');
+    header('Location: ../logIn.php');
 }
 ?>
 <!DOCTYPE html>
