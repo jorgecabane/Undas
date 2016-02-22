@@ -74,7 +74,7 @@ $feriados = array(
     ),
     array(
         'start' => '2016-03-25',
-        'end' => '2016-03-25',
+        'end' => '2016-03-26',
         'description' => 'Viernes Santo',
         'feriado' => true
     ),
