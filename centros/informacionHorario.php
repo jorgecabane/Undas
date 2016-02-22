@@ -35,7 +35,7 @@ $centro = $_GET ['centro'];
                 $tms = getTM();
                 foreach ($tms as $tm) {
                     echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
-                                <div id='tm" . $tm['idTM'] . "' class='prestaciones collapse' nombretm='" . $tm['Nombre'] . "'>Prestaciones:<br>
+                                <div id='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "' class='prestaciones collapse' nombretm='" . $tm['Nombre'] . "'>Prestaciones:<br>
                                     ";
                     $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
                     if ($prestaciones) {
@@ -92,7 +92,21 @@ $centro = $_GET ['centro'];
                                 right: 'agendaDay,agendaWeek,month'
                             },
                             eventRender: function(event, element) {
-                                element.find('.fc-title').append("<br/>" + event.description);
+                                element.find('.fc-title').append("<br/>" + event.nombreTM + "<br/>" + event.apellidoTM);
+                                element.attr("idTM", event.idTM);
+                                //al hacer click se puede ver el detalle
+                                element.popover({
+                                    title: 'Detalles del Evento (' + event.id + ')',
+                                    content: '<div><b>Eco: </b>' + event.title + '<br>\n\
+                             <b>TM: </b>' + event.nombreTM + " " + event.apellidoTM + '<br>\n\
+                             <b>Fecha: </b>' + event.start.format('LL') + '<br>\n\
+                             <b>Inicio: </b>' + event.start.format("HH:mm") + '<br>\n\
+                             <b>Termino: </b>' + event.end.format("HH:mm") + '\n\
+                             </div>',
+                                    html: true,
+                                    animation: true,
+                                    placement: 'auto'
+                                });//popover
                             },
                             defaultView: 'month',
                             lazyFetch: true,

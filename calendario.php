@@ -90,7 +90,7 @@ $centro = $_GET ['centro'];
                         $tms = getTM();
                         foreach ($tms as $tm) {
                             echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
-                                <div id='tm" . $tm['idTM'] . "' class='collapse prestaciones' nombretm='" . $tm['Nombre'] . "'>Prestaciones:<br>
+                                <div id='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "' class='collapse prestaciones' nombretm='" . $tm['Nombre'] . "'>Prestaciones:<br>
                                     ";
                             $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
                             if ($prestaciones) {
@@ -180,9 +180,10 @@ $centro = $_GET ['centro'];
                                 }
 
                                 idTM = $(this).attr('idTM');
+                                nombreApellido = $.trim($(this).text()).split(" ", 2);
                                 $(this).data('event', {
                                     title: eco, // use the element's text as the event title
-                                    description: $.trim($(this).text()),
+                                    description: nombreApellido,
                                     //stick: true, // maintain when user navigates (see docs on the renderEvent method)
                                     color: color, //cambia el color al color asignado
                                     editable: true,
@@ -203,10 +204,11 @@ $centro = $_GET ['centro'];
                             eco = $('#ecos option:selected').text();
                             idEco = $('#ecos').val();
                             idTM = $(this).attr('idTM');
+                            nombreApellido = $.trim($(this).text()).split(" ", 2);
                             // store data so the calendar knows to render an event upon drop
                             $(this).data('event', {
                                 title: eco, // use the element's text as the event title
-                                description: $.trim($(this).text()),
+                                description: nombreApellido,
                                 //stick: true, // maintain when user navigates (see docs on the renderEvent method)
                                 color: color, //cambia el color al color asignado
                                 editable: true,
