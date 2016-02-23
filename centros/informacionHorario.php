@@ -55,11 +55,11 @@ $centro = $_GET ['centro'];
             </div>
         </div><!-- listado de tms -->
         <div class="col-sm-10 well well-sm">
-            <div class="col-sm-2 hidden-print">
-                <div class="alert alert-info alert-sm" ><span class="glyphicon glyphicon-hourglass pull-right"></span>
-                    <center>CUPOS/MES:<span id="cupos" class="badge badge-warning"></span></center></div>
+            <div class="col-sm-2 hidden-print tight">
+                <div class="alert alert-info alert-sm" >
+                    <center>CUPOS/MES:<span id="cupos" class="badge badge-warning"></span><span class="glyphicon glyphicon-hourglass"></span></center></div>
             </div>
-            <div class="col-sm-1 hidden-print">
+            <div class="col-sm-1 hidden-print tight">
                 <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span>
                 </button>
