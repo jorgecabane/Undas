@@ -5,8 +5,9 @@ var getCupos = function() {
     date = $('#calendar').fullCalendar('getView').intervalStart.format('YYYY-M');
     idCentro = $('#centro').attr('idCentro');
 
+
     $.ajax({
-        url: 'Include/getCupos.php',
+        url: '../Include/getCupos.php',
         async: true,
         data: {"idCentro": idCentro, "date": date},
         method: 'POST',
@@ -16,11 +17,9 @@ var getCupos = function() {
 
                 $('#cupos').text(output.Cupos);
             }
-            else{
+            else {
                 $('#cupos').text('0');
             }
         }//success
     });//ajax
 };
-
-

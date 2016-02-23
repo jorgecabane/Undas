@@ -11,7 +11,7 @@ $centro = $_GET ['centro'];
             <div class="row">
                 <center>
                     <h2>
-                        <span class="label label-info label-block">
+                        <span class="label label-info label-block" id="centro" idCentro="<?php echo $idCentro; ?>">
                             Centro: <b><?php echo $centro; ?></b>
                         </span>
                     </h2>
@@ -55,6 +55,10 @@ $centro = $_GET ['centro'];
             </div>
         </div><!-- listado de tms -->
         <div class="col-sm-10 well well-sm">
+            <div class="col-sm-2 hidden-print">
+                <div class="alert alert-info alert-sm" ><span class="glyphicon glyphicon-hourglass pull-right"></span>
+                    <center>CUPOS:<span id="cupos" class="badge badge-warning"></span></center></div>
+            </div>
             <div class="col-sm-1 hidden-print">
                 <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span>
@@ -66,7 +70,8 @@ $centro = $_GET ['centro'];
 </div>
 
 
-
+<script src="Include/filtro.js"></script>
+<script src="Include/getCupos.js"></script><!-- getCupos -->
 <script>
                     $(document).ready(function() {
                         $('#calendar').fullCalendar({
@@ -109,6 +114,7 @@ $centro = $_GET ['centro'];
                                 });//popover
                             },
                             defaultView: 'month',
+                            viewRender: getCupos,
                             lazyFetch: true,
                             hiddenDays: [0],
                             allDaySlot: false,
@@ -126,4 +132,3 @@ $centro = $_GET ['centro'];
         $(this).find('.glyphicon').toggleClass('glyphicon-plus-sign').toggleClass('glyphicon-minus-sign');
     });
 </script>
-<script src="Include/filtro.js"></script>
