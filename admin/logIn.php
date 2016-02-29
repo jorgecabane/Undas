@@ -7,9 +7,8 @@ include_once dirname(dirname(__FILE__)) . "/conexionLocal.php";
     <head>
         <!-- css -->
         <meta http-equiv="Content-Type" content="text/html" ; charset=utf-8 "/>
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="Include/jquery-2.1.4.min.js"></script>
+        <script src="Include/jquery-ui.js"></script>
         <link href="../css/bootstrap.min.css" rel='stylesheet'>
         <style>
                body {
