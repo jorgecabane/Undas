@@ -2,6 +2,7 @@
 session_start ();
 include_once "../conexionLocal.php";
 include_once "../Include/isAdmin.php";
+include_once "../Include/getNotSeen.php";
 
 $rut = $_POST ['Rut'];
 $nombreTM = $_POST ['nombreTM'];
@@ -18,7 +19,7 @@ if ($_SESSION["usuario"]) {
 	<ul class="nav nav-tabs nav-pills hidden-print" id="myTabs">
 		<li class="nav"><a href="#Atab" data-toggle="tab">Informaci&oacute;n</a></li>
 		<li class="nav"><a href="#Btab" data-toggle="tab">Honorarios</a></li>
-		<li class="nav active"><a href="#Ctab" data-toggle="tab">Horario</a></li>
+		<li class="nav active"><a href="#Ctab" data-toggle="tab">Horario <span class='label notseen label-danger top-right' style=' border-radius: 10px;'><?php if($_SESSION ["context"] != "super") {$notseen= getNotSeen($_SESSION ["idusuario"]); if ($notseen >= 1){echo $notseen;} }?></span></a></li>
 		<li class="nav"><a href="#Etab" data-toggle="tab">Prestaciones</a></li>
 		<?php if($admin==1){?>
 		<li class="nav"><a href="#Dtab" data-toggle="tab">Liquidaciones</a></li>

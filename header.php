@@ -5,7 +5,7 @@ include_once dirname(__FILE__) . "/querys/getEcos.php";
 include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
 include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
-include_once dirname(__FILE__) . "/include/getNotSeen.php";
+include_once dirname(__FILE__) . "/Include/getNotSeen.php";
 include_once dirname(__FILE__) . "/Include/isAdmin.php";
 //include_once dirname(__FILE__) . "/Include/modalHumano.php";
 //include_once dirname(__FILE__) . "/Include/modalLibres.php";
@@ -144,11 +144,12 @@ else {
                         <?php } // si es admin ve esto       ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Tecn&oacute;logos M&eacute;dicos  <span class='badge notseen'><?php if($context != "super") {$notseen= getNotSeen($_SESSION ["idusuario"]); if ($notseen >= 1){echo $notseen;} }?></span>
+                                Tecn&oacute;logos M&eacute;dicos  <span class='label notseen label-danger top-right' style=' border-radius: 10px;'><?php if($context != "super") {$notseen= getNotSeen($_SESSION ["idusuario"]); if ($notseen >= 1){echo $notseen;} }?></span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a id="perfiles" href="Perfiles.php">Perfiles Tecn&oacute;logos M&eacute;dicos</a></li>
+                                <li><a id="perfiles" href="Perfiles.php">Perfiles Tecn&oacute;logos M&eacute;dicos <span class='label notseen label-danger top-right' style=' border-radius: 10px;'><?php if($context != "super") {$notseen= getNotSeen($_SESSION ["idusuario"]); if ($notseen >= 1){echo $notseen;} }?></span></a>
+                                </li>
                                 <?php
                                 if ($admin == 1) {
                                     echo "<li><a href='agregarTmR.php'>Nuevo Tecn&oacute;logo M&eacute;dico</a></li>";
