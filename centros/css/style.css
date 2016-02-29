@@ -167,3 +167,7 @@ white-space: nowrap;
 .well{
     background: #FFFFFF;
 }
+.tight{
+    padding-left: 8px;
+    padding-right: 8px;
+}
