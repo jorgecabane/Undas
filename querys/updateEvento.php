@@ -14,7 +14,7 @@ function updateEvento($idEvento, $start, $end) {
     $end = $end[0] . ' ' . $end[1];
 
 
-    $query = "UPDATE evento SET HoraInicio='$start', HoraTermino='$end' WHERE idEvento=$idEvento";
+    $query = "UPDATE evento SET HoraInicio='$start', HoraTermino='$end', LastModified = NOW() WHERE idEvento=$idEvento";
     $result = mysql_query($query);
     if (mysql_affected_rows() == 1) {
         return 1;
