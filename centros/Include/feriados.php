@@ -67,18 +67,6 @@ $feriados = array(
         'feriado' => true
     ),
     array(
-        'start' => '2016-03-25T08:00:00',
-        'end' => '2016-03-25T21:00:00',
-        'description' => 'Viernes Santo',
-        'feriado' => true
-    ),
-    array(
-        'start' => '2016-03-25',
-        'end' => '2016-03-26',
-        'description' => 'Viernes Santo',
-        'feriado' => true
-    ),
-    array(
         'start' => '2016-05-21T08:00:00',
         'end' => '2016-05-21T21:00:00',
         'description' => 'Glorias Navales',
