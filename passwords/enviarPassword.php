@@ -14,7 +14,7 @@ $query="SELECT * FROM tm Where Rut='$rut'";
 			 	$random=rand(1000000,9999999);
 			 	$apellido=$row['Apellido'];
 			 	$nuevapassword=$apellido.$random;
-			 	$query2="UPDATE tm SET Password='$nuevapassword' WHERE Rut='$rut'";
+			 	$query2="UPDATE tm SET Password=MD5('$nuevapassword') WHERE Rut='$rut'";
 			 			$resultado2=mysql_query($query2);
 			 	if($resultado2){
 
