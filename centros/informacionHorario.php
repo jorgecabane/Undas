@@ -11,7 +11,7 @@ $centro = $_GET ['centro'];
             <div class="row">
                 <center>
                     <h2>
-                        <span class="label label-info label-block">
+                        <span class="label label-info label-block" id="centro" idCentro="<?php echo $idCentro; ?>">
                             Centro: <b><?php echo $centro; ?></b>
                         </span>
                     </h2>
@@ -34,9 +34,11 @@ $centro = $_GET ['centro'];
                 <?php
                 $tms = getTM();
                 foreach ($tms as $tm) {
-                    echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
-                                <div id='tm" . $tm['idTM'] . "' class='prestaciones collapse' nombretm='" . $tm['Nombre'] . "'>Prestaciones:<br>
-                                    ";
+                    echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "'>
+                            <span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "
+                          </a>
+                          <div id='tm" . $tm['idTM'] . "' idTM='" . $tm['idTM'] . "' class='prestaciones collapse' nombretm='" . $tm['Nombre'] . "'>
+                              Prestaciones:<br>";
                     $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
                     if ($prestaciones) {
                         foreach ($prestaciones as $prestacion) {
@@ -55,8 +57,12 @@ $centro = $_GET ['centro'];
             </div>
         </div><!-- listado de tms -->
         <div class="col-sm-10 well well-sm">
-            <div class="col-sm-1 hidden-print">
-                <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
+            <div class="col-sm-2 hidden-print tight">
+                <div class="alert alert-info alert-sm" >
+                    <center>CUPOS/MES:<span id="cupos" class="badge badge-warning"></span><span class="glyphicon glyphicon-hourglass"></span></center></div>
+            </div>
+            <div class="col-sm-1 hidden-print tight">
+                <button class="btn btn-danger btn-block btn-sm" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span>
                 </button>
             </div>
@@ -65,8 +71,8 @@ $centro = $_GET ['centro'];
     </div>
 </div>
 
-
-
+<script src="Include/filtro.js"></script>
+<script src="Include/getCupos.js"></script><!-- getCupos -->
 <script>
                     $(document).ready(function() {
                         $('#calendar').fullCalendar({
@@ -92,15 +98,13 @@ $centro = $_GET ['centro'];
                                 right: 'agendaDay,agendaWeek,month'
                             },
                             eventRender: function(event, element) {
-                                element.find('.fc-title').append("<br/>" + event.description);
+                                element.find('.fc-title').append("<br/>" + event.nombreTM + " " + event.apellidoTM);
                             },
                             defaultView: 'month',
+                            viewRender: getCupos,
                             lazyFetch: true,
                             hiddenDays: [0],
                             allDaySlot: false,
-                            minTime: '08:00:00',
-                            maxTime: '21:00:00',
-                            slotDuration: '00:15:00',
                             contentHeight: 800,
                             displayEventEnd: true,
                             timeFormat: 'H:mm'
@@ -112,4 +116,3 @@ $centro = $_GET ['centro'];
         $(this).find('.glyphicon').toggleClass('glyphicon-plus-sign').toggleClass('glyphicon-minus-sign');
     });
 </script>
-<script src="Include/filtro.js"></script>
