@@ -98,7 +98,7 @@ $centro = $_GET ['centro'];
                                 right: 'agendaDay,agendaWeek,month'
                             },
                             eventRender: function(event, element) {
-                                element.find('.fc-title').append("<br/>" + event.nombreTM + " " + event.apellidoTM);
+                                element.find('.fc-title').append("<br/>" + event.nombreTM + "<br/> " + event.apellidoTM);
                             },
                             defaultView: 'month',
                             viewRender: getCupos,

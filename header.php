@@ -5,7 +5,6 @@ include_once dirname(__FILE__) . "/querys/getEcos.php";
 include_once dirname(__FILE__) . "/querys/getEventos.php";
 include_once dirname(__FILE__) . "/querys/getCentrosGroup.php";
 include_once dirname(__FILE__) . "/querys/getPrestaciones.php";
-include_once dirname(__FILE__) . "/include/getNotSeen.php";
 include_once dirname(__FILE__) . "/Include/isAdmin.php";
 //include_once dirname(__FILE__) . "/Include/modalHumano.php";
 //include_once dirname(__FILE__) . "/Include/modalLibres.php";
@@ -50,7 +49,23 @@ else {
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
+            ga('create', 'UA-77059621-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
         <!-- css -->
 
         <link href='css/jquery-ui.css' rel='stylesheet'>
@@ -141,10 +156,10 @@ else {
                                 </ul>
                             </li>
 
-                        <?php } // si es admin ve esto       ?>
+                        <?php } // si es admin ve esto        ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Tecn&oacute;logos M&eacute;dicos  <span class='badge notseen'><?php if($context != "super") {$notseen= getNotSeen($_SESSION ["idusuario"]); if ($notseen >= 1){echo $notseen;} }?></span>
+                                Tecn&oacute;logos M&eacute;dicos
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
