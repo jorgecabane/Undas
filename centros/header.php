@@ -57,8 +57,30 @@ if ($_SESSION["context"]) {
 
             ga('create', 'UA-77059621-1', 'auto');
             ga('send', 'pageview');
-
         </script>
+        <!-- Begin Inspectlet Embed Code -->
+        <script type="text/javascript" id="inspectletjs">
+            window.__insp = window.__insp || [];
+            __insp.push(['wid', 1057382574]);
+            (function() {
+                function ldinsp() {
+                    if (typeof window.__inspld != "undefined")
+                        return;
+                    window.__inspld = 1;
+                    var insp = document.createElement('script');
+                    insp.type = 'text/javascript';
+                    insp.async = true;
+                    insp.id = "inspsync";
+                    insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js';
+                    var x = document.getElementsByTagName('script')[0];
+                    x.parentNode.insertBefore(insp, x);
+                }
+                ;
+                setTimeout(ldinsp, 500);
+                document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+            })();
+        </script>
+        <!-- End Inspectlet Embed Code -->
         <!-- css -->
 
         <link href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' rel='stylesheet'>
