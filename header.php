@@ -23,10 +23,11 @@ if ($_SESSION ["context"]) {
     }//context empresa
 } //si no hay contexto
 else {
-    //si no hay sesion se envia al login
+//si no hay sesion se envia al login
     header('Location:logIn.php');
 }
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,9 +51,9 @@ else {
         <link rel="icon" href="favicon.ico" type="image/x-icon">
 
         <script>
-            (function(i, s, o, g, r, a, m) {
+            (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function() {
+                i[r] = i[r] || function () {
                     (i[r].q = i[r].q || []).push(arguments)
                 }, i[r].l = 1 * new Date();
                 a = s.createElement(o),
@@ -70,7 +71,7 @@ else {
         <script type="text/javascript" id="inspectletjs">
             window.__insp = window.__insp || [];
             __insp.push(['wid', 1057382574]);
-            (function() {
+            (function () {
                 function ldinsp() {
                     if (typeof window.__inspld != "undefined")
                         return;
@@ -125,49 +126,42 @@ else {
 
                         <?php
                         // MENU HORARIOS
-                        if ($admin == 1) {
-                            echo '<li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" role="button">Agenda<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu multi-level" role="menu"><!-- empresas -->
-                    <!-- <li class="dropdown-submenu">
-                        <a tabindex="-1" href="#">More options</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" tabindex="-1">Second level link</a></li>
-                            <li><a href="#" tabindex="-1">Second level link</a></li>
-                            <li><a href="#" tabindex="-1">Second level link</a></li>
-                            <li><a href="#" tabindex="-1">Second level link</a></li>
-                            <li><a href="#" tabindex="-1">Second level link</a></li>
-                        </ul>
-                    </li> -->
-                        ';
-                            foreach (getCentrosGroup() as $empresa) {
-                                echo '<li class="dropdown-submenu"><a href="agendas.php?idEmpresa=' . $empresa['idEmpresa'] . '" tabindex="-1">' . $empresa['Nombre'] . '</a><!-- $empresa  -->
+                        //MENU AGENDAS    
+                        echo '<li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" role="button">Agendas<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu multi-level" role="menu"><!-- empresas -->
+                        <!-- <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">More options</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" tabindex="-1">Second level link</a></li>
+                                <li><a href="#" tabindex="-1">Second level link</a></li>
+                                <li><a href="#" tabindex="-1">Second level link</a></li>
+                                <li><a href="#" tabindex="-1">Second level link</a></li>
+                                <li><a href="#" tabindex="-1">Second level link</a></li>
+                            </ul>
+                        </li> -->';
+                        //SUBMENU AGENDAS
+                        foreach (getCentrosGroup() as $empresa) {
+                            echo '<li class="dropdown-submenu"><a href="agendas.php?idEmpresa=' . $empresa['idEmpresa'] . '" tabindex="-1">' . $empresa['Nombre'] . '</a><!-- $empresa  -->
                             <ul class="dropdown-menu"><!-- menu $empresa -->
                                     ';
-                                $centros = $empresa['centros'];
-                                foreach ($centros as $centro) {
-                                    //echo $datosCentro['Nombre'] . '<br>';
-                                    echo '<li><a href="calendario.php?idCentro=' . $centro['idCentro'] . '&centro=' . $centro['Nombre'] . ' (' . $centro['Siglas'] . ')" tabindex="-1">' . $centro['Nombre'] . ' <b>(' . $centro['Siglas'] . ')</b></a></li>
+                            $centros = $empresa['centros'];
+                            foreach ($centros as $centro) {
+                                //echo $datosCentro['Nombre'] . '<br>';
+                                echo '<li><a href="calendario.php?idCentro=' . $centro['idCentro'] . '&centro=' . $centro['Nombre'] . ' (' . $centro['Siglas'] . ')" tabindex="-1">' . $centro['Nombre'] . ' <b>(' . $centro['Siglas'] . ')</b></a></li>
                                         ';
-                                }
-                                echo '</ul><!-- menu $empresa-->
+                            }
+                            echo '</ul><!-- menu $empresa-->
                                   </li><!-- dropdown-submenu -->
                                   ';
-                            }
-                            echo '</ul><!-- empresas -->
+                        }
+                        echo '</ul><!-- empresas -->
                           </li><!-- menu horarios-->
                           ';
-                            /* while ($row = mysql_fetch_array($result)) {
-                              echo "<li><a href='calendario.php?idCentro=" . $row['idCentro'] . "'>" . $row['Nombre'] . "</a></li>\n";
-                              }
-                              echo "</ul>\n</li>\n <!-- Dropdown honorarios -->\n";
-                             */
-                        } // si es admin ve esto
-                        //MENU EMPRESAS
                         if ($admin == 1) {
-                            ?>
-                            <li class="dropdown">
+                            //MENU EMPRESAS
+                            '<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Empresas<span class="caret"></span>
                                 </a>
@@ -177,47 +171,38 @@ else {
                                     <li><a href="agregarCentroNuevoR.php">Nuevo Centro</a></li>
                                     <li><a href="agregarEcoNuevaR.php">Nuevas Ecos</a></li>
                                 </ul>
-                            </li>
+                            </li>';
 
-                        <?php } // si es admin ve esto        ?>
-                        <li class="dropdown">
+                            //MENU TMS
+                            echo '<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Tecn&oacute;logos M&eacute;dicos
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a id="perfiles" href="Perfiles.php">Perfiles Tecn&oacute;logos M&eacute;dicos</a></li>
-                                <?php
-                                if ($admin == 1) {
-                                    echo "<li><a href='agregarTmR.php'>Nuevo Tecn&oacute;logo M&eacute;dico</a></li>";
-                                } // si es admin ve esto
-                                ?>
+                                 <li><a href="agregarTmR.php">Nuevo Tecn&oacute;logo M&eacute;dico</a></li> 
+                            </ul>
+                            </li>';
+
+                            //MENU MEDICOS
+                            echo '<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                M&eacute;dicos<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a id="perfiles" href="agregarDoctor.php">Nuevo M&eacute;dico</a></li>
+                                <li><a id="perfiles" href="informacionMedicos.php">Editar M&eacute;dicos</a></li>
                             </ul>
                         </li>
 
-                        <?php if ($admin == 1) { ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    M&eacute;dicos<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a id="perfiles" href="agregarDoctor.php">Nuevo M&eacute;dico</a></li>
-                                    <li><a id="perfiles" href="informacionMedicos.php">Editar M&eacute;dicos</a></li>
-                                </ul>
-                            </li>
+                        <li><a href="resumenLiquidaciones.php">Resumen honorarios</a></li>';
+                        } else {
+                            echo '<li><a id="perfiles" href="Perfiles.php">Mi Perfil TM</a></li>';
+                        }
+                        ?>
 
-                            <li><a href="resumenLiquidaciones.php">Resumen honorarios</a></li>
-                        <?php } ?>
 
-                        <!--<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Widgets<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#modalHumano" data-backdrop="false" data-toggle="modal">Prestaciones</a></li>
-                                <li><a href="#modalLibres" data-backdrop="false" data-toggle="modal">TM Libres</a></li>
-                            </ul>
-                        </li> -->
 
                     </ul>
 
@@ -228,7 +213,7 @@ else {
                         <li><a href="books/libreria.php">Librer&iacute;a</a></li>
                         <?php
                         if (isset($_SESSION['super'])) {
-
+                            
                         } else {
                             echo '<li><a href="bugReport.php" ><font color="red">¡Reportar Error!</font></a></li>';
                             echo '<li><a href="editarClave.php">Editar Clave</a></li>';

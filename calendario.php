@@ -5,11 +5,12 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 $idCentro = $_GET ['idCentro'];
 $centro = $_GET ['centro'];
 ?>
-
 <div class='container-fluid'>
     <div class='row well well-sm well-titles'>
         <div class="col-md-1 col-md-offset-3 hidden-print">
-            <center>
+            <?php
+            if ($admin == 1) {
+                echo '<center>
                 <div class="btn-group">
                     <button id="deleteArea" class="btn btn-danger dropdown-toggle btn-block btn-lg" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Borrar <span class="glyphicon glyphicon-trash"></span> <span class="caret"></span>
@@ -20,7 +21,9 @@ $centro = $_GET ['centro'];
                         <li><a id="deleteMonth" class="btn">Borrar este mes</a></li>
                     </ul>
                 </div>
-            </center>
+            </center>';
+            }
+            ?>
         </div>
         <div class='col-md-4'>
             <div class="row">
@@ -31,11 +34,11 @@ $centro = $_GET ['centro'];
                         </span>
                     </h2>
                 </center>
-
             </div>
         </div>
-        <!-- Single button -->
-        <div class="col-md-1 hidden-print">
+        <?php
+        if ($admin == 1) {
+            echo '<div class="col-md-1 hidden-print">
             <center>
                 <div class="btn-group">
                     <button type="button" class="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,82 +51,86 @@ $centro = $_GET ['centro'];
                     </ul>
                 </div>
             </center>
-        </div>
+        </div>';
+        }
+        ?>
     </div>
 
     <div class='row'>
-        <div class='col-md-2 hidden-sm hidden-xs well well-sm'>
-            <div class="panel panel-info">
-                <div class="panel-heading"><h4 class='panel-title'>Seleccionar Eco</h4></div>
-                <div class="panel-body">
-                    <select name='ecos' id='ecos' class='form-control'
-                            style='width: 100%;'>
-                                <?php
-                                $ecos = getEcos($idCentro);
-                                foreach ($ecos as $eco) {
-                                    echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
-                                }
-                                ?>
-                        <!-- Generacion de listado de ecos como opcion -->
-                        <!-- <option value='eco1' event-color='#2b95ce'>Eco1</option>
-                        <option value='eco2' event-color='#5ed639'>Eco2</option> -->
-                    </select>
-                </div>
-            </div>
-            <div class='panel panel-info'>
-                <div class="panel-heading">
-                    <select class="form-control" id="selectTM">
-                        <option value="TM">Listado TM</option>
-                        <option value="doctores">Listado Doctores</option>
-                    </select>
-                </div>
-                <div class="panel-body">
-                    <div class='form-group has-feedback'>
-                        <input type='text' id='search' class='form-control' placeholder='Filtrar por Nombre'>
+        <?php if ($admin == 1) { ?>
+            <div class='col-md-2 hidden-sm hidden-xs well well-sm'>
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h4 class='panel-title'>Seleccionar Eco</h4></div>
+                    <div class="panel-body">
+                        <select name='ecos' id='ecos' class='form-control'
+                                style='width: 100%;'>
+                                    <?php
+                                    $ecos = getEcos($idCentro);
+                                    foreach ($ecos as $eco) {
+                                        echo "<option value='" . $eco ['idEcos'] . "' event-color='" . $eco ['color'] . "'>" . $eco ['Nombre'] . "</option>";
+                                    }
+                                    ?>
+                            <!-- Generacion de listado de ecos como opcion -->
+                            <!-- <option value='eco1' event-color='#2b95ce'>Eco1</option>
+                            <option value='eco2' event-color='#5ed639'>Eco2</option> -->
+                        </select>
                     </div>
-                    <div  id='external-events'>
-                        <hr class='hr-sm'>
-                        <div class='form-group has-success'>
-                            <input type='text' id='prestacionFilter' class='form-control' placeholder='Filtrar por Prestación'>
+                </div>
+                <div class='panel panel-info'>
+                    <div class="panel-heading">
+                        <select class="form-control" id="selectTM">
+                            <option value="TM">Listado TM</option>
+                            <option value="doctores">Listado Doctores</option>
+                        </select>
+                    </div>
+                    <div class="panel-body">
+                        <div class='form-group has-feedback'>
+                            <input type='text' id='search' class='form-control' placeholder='Filtrar por Nombre'>
                         </div>
-                        <?php
-                        $tms = getTM();
-                        foreach ($tms as $tm) {
-                            echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
+                        <div  id='external-events'>
+                            <hr class='hr-sm'>
+                            <div class='form-group has-success'>
+                                <input type='text' id='prestacionFilter' class='form-control' placeholder='Filtrar por Prestación'>
+                            </div>
+                            <?php
+                            $tms = getTM();
+                            foreach ($tms as $tm) {
+                                echo "<a class='label fc-event' role='button' data-toggle='collapse' href='#tm" . $tm['idTM'] . "' aria-expanded='false' aria-controls='tm" . $tm['idTM'] . "' event-color='" . $ecos[0]['color'] . "' idTM='" . $tm['idTM'] . "' style='background-color: " . $ecos[0]['color'] . "; border-color: " . $ecos[0]['color'] . ";'><span class='glyphicon glyphicon-plus-sign pull-right'></span>" . $tm ['Nombre'] . " " . $tm ['Apellido'] . "</a>
                                 <div id='tm" . $tm['idTM'] . "' class='collapse prestaciones' nombretm='" . $tm['Nombre'] . "'>Prestaciones:<br>
                                     ";
-                            $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
-                            if ($prestaciones) {
-                                foreach ($prestaciones as $prestacion) {
-                                    $especifico = $prestacion['Especifico'];
-                                    echo "<div class='alert alert-sm alert-info prestacion'>$especifico</div>";
-                                }//cada una de las prestaciones
-                            }//si hay prestaciones
-                            else {
-                                echo "<div class='alert alert-sm alert-warning'>No hay asignadas</div>";
-                            }
-                            echo"</div>
+                                $prestaciones = getPrestacionesCentro($tm['Rut'], $idCentro);
+                                if ($prestaciones) {
+                                    foreach ($prestaciones as $prestacion) {
+                                        $especifico = $prestacion['Especifico'];
+                                        echo "<div class='alert alert-sm alert-info prestacion'>$especifico</div>";
+                                    }//cada una de las prestaciones
+                                }//si hay prestaciones
+                                else {
+                                    echo "<div class='alert alert-sm alert-warning'>No hay asignadas</div>";
+                                }
+                                echo"</div>
                                 ";
-                        }//cada uno de los TM
-                        ?>
-                        <!-- Generacion de listado de TMs -->
-                    </div>
+                            }//cada uno de los TM
+                            ?>
+                            <!-- Generacion de listado de TMs -->
+                        </div>
 
-                    <div id="medicos" style="display:none;">
-                        <hr class="hr-sm">
-                        <?php
-                        $medicos = getMedicos();
-                        if ($medicos) {
-                            foreach ($medicos as $medico) {
-                                echo "<div class='fc-event medico' event-color='#ffaa00' idTM='" . $medico['idTM'] . "'>" . $medico['Nombre'] . " " . $medico['Apellido'] . "</div>";
+                        <div id="medicos" style="display:none;">
+                            <hr class="hr-sm">
+                            <?php
+                            $medicos = getMedicos();
+                            if ($medicos) {
+                                foreach ($medicos as $medico) {
+                                    echo "<div class='fc-event medico' event-color='#ffaa00' idTM='" . $medico['idTM'] . "'>" . $medico['Nombre'] . " " . $medico['Apellido'] . "</div>";
+                                }
                             }
-                        }
-                        ?>
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class='col-md-10 well well-sm' >
+        <?php } ?>
+        <div class="<?php if($admin ==1){echo 'col-md-10';}else{echo 'col-md-12';}?> well well-sm">
             <div class="progress" style="display:none">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
                     <span class="sr-only">Cargando...</span>
@@ -131,10 +138,12 @@ $centro = $_GET ['centro'];
             </div>
             <div id="horarioContent" class="alert alert-info" style="display:none"></div>
             <!-- calendario -->
-            <div class="col-sm-2 hidden-print">
+            <?php 
+            if($admin ==1){
+            echo '<div class="col-sm-2 hidden-print">
                 <div class="alert alert-info alert-sm" ><span class="glyphicon glyphicon-hourglass pull-right"></span>
                     <center>CUPOS:<span id="cupos" class="badge badge-warning"></span></center></div>
-            </div>
+            </div>'; }?>
             <div class="col-sm-1 hidden-print">
                 <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Imprimir o Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span> /
@@ -158,73 +167,73 @@ $centro = $_GET ['centro'];
 <!-- container-fluid -->
 </body>
 <?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion ?>
-<?php include_once dirname(__FILE__) . '/Include/modalEvento.php'; //modal para los eventos desde vista mes ?>
+<?php include_once dirname(__FILE__) . '/Include/modalEvento.php'; //modal para los eventos desde vista mes   ?>
 <script>
-                    $(document).ready(function() {
+    $(document).ready(function () {
 
-                        /* initialize the external events
-                         -----------------------------------------------------------------*/
-                        /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
-                         */
-                        $('#ecos').change(function() {
-                            color = $('#ecos option:selected').attr('event-color');
-                            eco = $('#ecos option:selected').text();
-                            idEco = $('#ecos').val();
+        /* initialize the external events
+         -----------------------------------------------------------------*/
+        /*cuando se cambia la eco se "instancia" nuevamente los ecos pero con el color de la eco
+         */
+        $('#ecos').change(function () {
+            color = $('#ecos option:selected').attr('event-color');
+            eco = $('#ecos option:selected').text();
+            idEco = $('#ecos').val();
 
-                            $('#external-events .fc-event, .medico').each(function() {
-                                if ($(this).hasClass('medico')) {
-                                    color = '#ffaa00'; //modificar para mantener el color de los medicos
-                                } else {
-                                    $(this).css('background', color).css('border', color).css("line-height", "1.45");
-                                    $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
-                                }
+            $('#external-events .fc-event, .medico').each(function () {
+                if ($(this).hasClass('medico')) {
+                    color = '#ffaa00'; //modificar para mantener el color de los medicos
+                } else {
+                    $(this).css('background', color).css('border', color).css("line-height", "1.45");
+                    $(this).attr('event-color', color); // se asigna el color de la eco correspondiente a cada elemento
+                }
 
-                                idTM = $(this).attr('idTM');
-                                $(this).data('event', {
-                                    title: eco, // use the element's text as the event title
-                                    description: $.trim($(this).text()),
-                                    //stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                                    color: color, //cambia el color al color asignado
-                                    editable: true,
-                                    idEco: idEco,
-                                    idTM: idTM,
-                                    fromBD: 0,
-                                    saved: 0
-                                });
-                            });// each
-                        });
+                idTM = $(this).attr('idTM');
+                $(this).data('event', {
+                    title: eco, // use the element's text as the event title
+                    description: $.trim($(this).text()),
+                    //stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                    color: color, //cambia el color al color asignado
+                    editable: true,
+                    idEco: idEco,
+                    idTM: idTM,
+                    fromBD: 0,
+                    saved: 0
+                });
+            });// each
+        });
 
-                        $('#external-events .fc-event, .medico').each(function() {
-                            /*
-                             * funcion que asigna el event a un pill de TM la primera vez
-                             * que se crean los pills
-                             */
-                            color = $(this).attr('event-color');
-                            eco = $('#ecos option:selected').text();
-                            idEco = $('#ecos').val();
-                            idTM = $(this).attr('idTM');
-                            // store data so the calendar knows to render an event upon drop
-                            $(this).data('event', {
-                                title: eco, // use the element's text as the event title
-                                description: $.trim($(this).text()),
-                                //stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                                color: color, //cambia el color al color asignado
-                                editable: true,
-                                idEco: idEco,
-                                idTM: idTM,
-                                fromBD: 0,
-                                saved: 0
-                            });
+        $('#external-events .fc-event, .medico').each(function () {
+            /*
+             * funcion que asigna el event a un pill de TM la primera vez
+             * que se crean los pills
+             */
+            color = $(this).attr('event-color');
+            eco = $('#ecos option:selected').text();
+            idEco = $('#ecos').val();
+            idTM = $(this).attr('idTM');
+            // store data so the calendar knows to render an event upon drop
+            $(this).data('event', {
+                title: eco, // use the element's text as the event title
+                description: $.trim($(this).text()),
+                //stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                color: color, //cambia el color al color asignado
+                editable: true,
+                idEco: idEco,
+                idTM: idTM,
+                fromBD: 0,
+                saved: 0
+            });
 
-                            // make the event draggable using jQuery UI
-                            $(this).draggable({
-                                zIndex: 999,
-                                revert: true, // will cause the event to go back to its original position after the drag
-                                revertDuration: 0
-                            });
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true, // will cause the event to go back to its original position after the drag
+                revertDuration: 0
+            });
 
-                        });//each
-                    });//ready
+        });//each
+    });//ready
 </script><!-- cambio de las ecos -->
 <script src="Include/js/saveBD.js"></script><!-- SAVEBD -->
 <script src="Include/js/eventReceive.js"></script><!-- eventReceive -->
@@ -239,7 +248,7 @@ $centro = $_GET ['centro'];
 <script src="Include/js/getCupos.js"></script><!-- getCupos -->
 <script>
     //$('#external-events').collapse({parent: '.fc-event'}); //creacion de los espacios para colapsar
-    $('a.label').click(function() {
+    $('a.label').click(function () {
         $(this).find('.glyphicon').toggleClass('glyphicon-plus-sign').toggleClass('glyphicon-minus-sign');
     });
 
@@ -247,7 +256,7 @@ $centro = $_GET ['centro'];
 <script>
     /* initialize the calendar
      -----------------------------------------------------------------*/
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('#calendar').fullCalendar({
             eventSources: [
@@ -294,7 +303,7 @@ $centro = $_GET ['centro'];
             maxTime: '21:00:00',
             defaultView: 'month',
             lazyFetch: true,
-            editable: true,
+            editable: <?php if($admin ==1){echo 'true';}else{echo 'false';}?>,
             droppable: true, // this allows things to be dropped onto the calendar
             hiddenDays: [0],
             contentHeight: 800,
@@ -308,7 +317,7 @@ $centro = $_GET ['centro'];
     });//document.ready
 </script><!-- fullCalendar -->
 <script>
-    var loading = function(isLoading, view) {
+    var loading = function (isLoading, view) {
         if (isLoading) {
             $('.loading-screen').show();
         } else {
@@ -317,15 +326,15 @@ $centro = $_GET ['centro'];
     };
 </script><!-- loading del calendario!-->
 <script>
-    $(document).ready(function() {
-        $('#refreshCalendar').click(function() {
+    $(document).ready(function () {
+        $('#refreshCalendar').click(function () {
             $('#calendar').fullCalendar('refetchEvents');
         });
     });
 </script><!-- refresh del calendario -->
 <script>
-    $(document).ready(function() {
-        $('#selectTM').change(function() {
+    $(document).ready(function () {
+        $('#selectTM').change(function () {
             $('#external-events').slideToggle('slow');
             $('#medicos').slideToggle('slow');
         });//change selectTM
