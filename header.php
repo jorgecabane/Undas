@@ -95,7 +95,7 @@ else {
         <link href='css/jquery-ui.css' rel='stylesheet'>
         <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel='stylesheet' id='tema-sitio'>
         <link href='calendario/fullcalendar.css' rel='stylesheet'/>
-        <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print' />
+        <link href='calendario/fullcalendar.print.css' rel='stylesheet' media='print'/>
         <link href='css/style.css' rel='stylesheet'>
 
     </head>
@@ -161,7 +161,7 @@ else {
                           ';
                         if ($admin == 1) {
                             //MENU EMPRESAS
-                            '<li class="dropdown">
+                            echo '<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Empresas<span class="caret"></span>
                                 </a>

@@ -130,7 +130,13 @@ $centro = $_GET ['centro'];
                 </div>
             </div>
         <?php } ?>
-        <div class="<?php if($admin ==1){echo 'col-md-10';}else{echo 'col-md-12';}?> well well-sm">
+        <div class="<?php
+        if ($admin == 1) {
+            echo 'col-md-10';
+        } else {
+            echo 'col-md-12';
+        }
+        ?> well well-sm">
             <div class="progress" style="display:none">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%">
                     <span class="sr-only">Cargando...</span>
@@ -138,12 +144,14 @@ $centro = $_GET ['centro'];
             </div>
             <div id="horarioContent" class="alert alert-info" style="display:none"></div>
             <!-- calendario -->
-            <?php 
-            if($admin ==1){
-            echo '<div class="col-sm-2 hidden-print">
+            <?php
+            if ($admin == 1) {
+                echo '<div class="col-sm-2 hidden-print">
                 <div class="alert alert-info alert-sm" ><span class="glyphicon glyphicon-hourglass pull-right"></span>
                     <center>CUPOS:<span id="cupos" class="badge badge-warning"></span></center></div>
-            </div>'; }?>
+            </div>';
+            }
+            ?>
             <div class="col-sm-1 hidden-print">
                 <button class="btn btn-danger btn-block" onClick="window.print();" id="descargar" data-toggle="tooltip" data-placement="left" title="Imprimir o Descargar PDF!">
                     <span class="glyphicon glyphicon-print"></span> /
@@ -166,8 +174,8 @@ $centro = $_GET ['centro'];
 
 <!-- container-fluid -->
 </body>
-<?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion ?>
-<?php include_once dirname(__FILE__) . '/Include/modalEvento.php'; //modal para los eventos desde vista mes   ?>
+<?php include_once dirname(__FILE__) . '/Include/modalVerificaciones.php'; //modal para los mensajes de verificacion   ?>
+<?php include_once dirname(__FILE__) . '/Include/modalEvento.php'; //modal para los eventos desde vista mes     ?>
 <script>
     $(document).ready(function () {
 
@@ -303,7 +311,13 @@ $centro = $_GET ['centro'];
             maxTime: '21:00:00',
             defaultView: 'month',
             lazyFetch: true,
-            editable: <?php if($admin ==1){echo 'true';}else{echo 'false';}?>,
+            editable: <?php
+if ($admin == 1) {
+    echo 'true';
+} else {
+    echo 'false';
+}
+?>,
             droppable: true, // this allows things to be dropped onto the calendar
             hiddenDays: [0],
             contentHeight: 800,
