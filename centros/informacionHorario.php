@@ -70,7 +70,6 @@ $centro = $_GET ['centro'];
         </div>
     </div>
 </div>
-
 <script src="Include/filtro.js"></script>
 <script src="Include/getCupos.js"></script><!-- getCupos -->
 <script>

@@ -4,7 +4,6 @@ include_once dirname(__FILE__) . "/header.php";
 include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 ?>
 
-<script type="text/javascript" src="maphilight-master/jquery.maphilight.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 panel panel-info">
@@ -79,12 +78,9 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             </center>
         </div><!-- panel-success -->
     </div><!-- row -->
-
-
-
 </body>
 <script>
-    $(function() {
+    $(function () {
         var hoy = moment().format('YYYY-MM-DD');
         $('#start').val(hoy);
         $('#end').val(hoy);
@@ -93,7 +89,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             defaultDate: "+1d",
             changeMonth: true,
             changeYear: true,
-            onClose: function(selectedDate) {
+            onClose: function (selectedDate) {
                 $("#end").datepicker("option", "minDate", selectedDate);
             },
             dateFormat: "yy-mm-dd"
@@ -103,7 +99,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             defaultDate: "+1d",
             changeMonth: true,
             changeYear: true,
-            onClose: function(selectedDate) {
+            onClose: function (selectedDate) {
                 $("#start").datepicker("option", "maxDate", selectedDate);
             },
             dateFormat: "yy-mm-dd"
@@ -133,7 +129,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
         segmentStrokeColor: "#fff",
         percentageInnerCutout: 30,
         responsive: true,
-        onAnimationComplete: function() {
+        onAnimationComplete: function () {
             this.showTooltip(this.segments, true);
         }
     });
@@ -141,7 +137,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
 </script>
 <!-- inicializacion del chart -->
 <script>
-    var getDisponibles = function() {
+    var getDisponibles = function () {
         start = $("#start").val() + ' ' + $('#rangoStart').text() + ':00';
         end = $("#end").val() + ' ' + $('#rangoEnd').text() + ':00';
 
@@ -150,23 +146,22 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             async: true,
             data: {"start": start, "end": end},
             method: 'POST',
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#progress').slideDown('slow');
             },
-            success: function(output) {
+            success: function (output) {
                 $('#progress').slideUp('slow');
                 output = $.parseJSON(output);
                 libres = 0;
 
                 $('#libres').html('');
                 //console.log(output);
-                $.each(output, function(index, value) {
+                $.each(output, function (index, value) {
                     if (index !== 0) {
                         if (value.nombreTM) {
                             libres++;//cantidad de TMs disponibles o libres en el intervalo seleccionado
                             $('#libres').append('<div class="alert alert-sm alert-info">' + value.nombreTM + '</div>');
-                        }
-                        else {
+                        } else {
                             $('#libres').append('<div class="alert alert-sm alert-warning">No hay TM libres en el rango seleccionado</div>');
                         }
                     } else {
@@ -186,7 +181,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
     };//function getDisponibles
 </script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#start, #end, #slider').change(getDisponibles);//change
         getDisponibles;
         $("#slider").slider({
@@ -195,7 +190,7 @@ include_once dirname(__FILE__) . "/Include/verificacionUsuario.php";
             max: 1260,
             step: 15,
             values: [510, 1200],
-            slide: function(e, ui) {
+            slide: function (e, ui) {
                 var hours1 = Math.floor(ui.values[0] / 60);
                 var minutes1 = ui.values[0] - (hours1 * 60);
 
