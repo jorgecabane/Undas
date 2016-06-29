@@ -4,8 +4,8 @@
  * o un solo TM si hay una variable $_POST['idTM'] que indique id
  *
  */
-include_once dirname(dirname(dirname(__FILE__))).'/conexionLocal.php'; // archivo de conexion local
-function getTecnologo($idTM = null) {
+include_once dirname(__FILE__).'/../conexionLocal.php'; // archivo de conexion local
+function getTM($idTM = null) {
 	if ($idTM == null) { // si se utilizo la funcion sin un id especifico
 		$query = "SELECT idTM, Nombre, Apellido, Rut, Mail, Celular
 				FROM tm
