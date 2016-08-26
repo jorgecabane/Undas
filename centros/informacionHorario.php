@@ -73,7 +73,7 @@ $centro = $_GET ['centro'];
 <script src="Include/filtro.js"></script>
 <script src="Include/getCupos.js"></script><!-- getCupos -->
 <script>
-                    $(document).ready(function() {
+                    $(document).ready(function () {
                         $('#calendar').fullCalendar({
                             eventSources: [
                                 {"url": "Include/feedEventosCentro.php?idCentro=<?php echo $idCentro; ?>",
@@ -96,8 +96,9 @@ $centro = $_GET ['centro'];
                                 center: 'title',
                                 right: 'agendaDay,agendaWeek,month'
                             },
-                            eventRender: function(event, element) {
+                            eventRender: function (event, element) {
                                 element.find('.fc-title').append("<br/>" + event.nombreTM + "<br/> " + event.apellidoTM);
+                                element.attr("idTM", event.idTM);
                             },
                             defaultView: 'month',
                             viewRender: getCupos,
@@ -111,7 +112,7 @@ $centro = $_GET ['centro'];
                     });//ready
 </script>
 <script>
-    $('a.label').click(function() {
+    $('a.label').click(function () {
         $(this).find('.glyphicon').toggleClass('glyphicon-plus-sign').toggleClass('glyphicon-minus-sign');
     });
 </script>
