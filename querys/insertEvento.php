@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * @param {int} : $idTM [mandatory]
  * @param {int} : $idEco [mandatory]
  * @param {string} : $start [mandatory] ('YYYY-MM-DDTHH:mm:ss')
@@ -17,7 +17,7 @@ function insertEvento($idTM, $idEco, $start, $end) {
     $newStart = $newStart[0] . ' ' . $newStart[1];
     $newEnd = $newEnd[0] . ' ' . $newEnd[1];
 
-    $query = "INSERT INTO evento (TM_idTM, Ecos_idEcos, HoraInicio, HoraTermino, LastModified) VALUES ($idTM,$idEco,'$newStart', '$newEnd', NOW())";
+    $query = "INSERT INTO evento (TM_idTM, Ecos_idEcos, HoraInicio, HoraTermino) VALUES ($idTM,$idEco,'$newStart', '$newEnd')";
     $result = mysql_query($query);
     if ($result) {
         return mysql_insert_id();
