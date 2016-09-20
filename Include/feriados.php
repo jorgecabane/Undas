@@ -6,6 +6,7 @@
  * vista mensual (debe tener 2fechas) y en la vista semanal(debe contener horario)
  */
 $feriados = array(
+    //2015 //////////////////////////////////////////
     array(
         'start' => '2015-10-12T08:00:00',
         'end' => '2015-10-12T21:00:00',
@@ -54,6 +55,8 @@ $feriados = array(
         'description' => 'Natividad de Jesus',
         'feriado' => true
     ),
+    //2015 //////////////////////////////////////////
+    ///////////////////2016 //////////////////////////////////////////
     array(
         'start' => '2016-01-01T08:00:00',
         'end' => '2016-01-01T21:00:00',
@@ -139,18 +142,6 @@ $feriados = array(
         'feriado' => true
     ),
     array(
-        'start' => '2016-10-12T08:00:00',
-        'end' => '2016-10-12T21:00:00',
-        'description' => 'Dia de la Raza',
-        'feriado' => true
-    ),
-    array(
-        'start' => '2016-10-12',
-        'end' => '2016-10-13',
-        'description' => 'Dia de la Raza',
-        'feriado' => true
-    ),
-    array(
         'start' => '2016-11-01T08:00:00',
         'end' => '2016-11-01T21:00:00',
         'description' => 'Dia de Todos los Santos',
@@ -158,7 +149,7 @@ $feriados = array(
     ),
     array(
         'start' => '2016-11-01',
-        'end' => '2016-11-02',
+        'end' => '2016-11-01',
         'description' => 'Dia de Todos los Santos',
         'feriado' => true
     ),
@@ -170,7 +161,7 @@ $feriados = array(
     ),
     array(
         'start' => '2016-12-25',
-        'end' => '2016-12-26',
+        'end' => '2016-12-25',
         'description' => 'Natividad de Jesus',
         'feriado' => true
     )
